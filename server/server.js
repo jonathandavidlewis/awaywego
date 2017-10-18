@@ -10,7 +10,7 @@ let app = express();
 // Serve up static files
 app.use(express.static(path.join(__dirname, '../client/public/dist')));
 
-app.get('/', (req, res) => {
+app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/public/dist/index.html'));
 });
 
