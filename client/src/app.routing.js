@@ -47,7 +47,7 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
 routing.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
 export default routing;
 
-
+//TODO: look into avoiding the ugly flash, possibly removing the $timeout()
 const redirectIfNotAuthed = function($q, $state, $timeout, UserService) {
   const result = $q.defer();
   if (UserService.isLoggedIn) {
