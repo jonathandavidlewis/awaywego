@@ -19,9 +19,9 @@ describe('Server tests', function() {
     });
   });
 
-  describe('/login', function() {
+  describe('/api/login', function() {
     it('should return a response on a post request', function(done) {
-      axios.post('http://localhost:8080/login')
+      axios.post('http://localhost:8080/auth/login')
         .then(function (response) {
           expect(response.data).to.exist;
           done();
@@ -33,7 +33,7 @@ describe('Server tests', function() {
     });
 
     it('should return a json web token', function(done) {
-      axios.post('http://localhost:8080/signup')
+      axios.post('http://localhost:8080/auth/signup')
         .then(function (response) {
           expect(response.data.token).to.exist;
           done();
@@ -47,7 +47,7 @@ describe('Server tests', function() {
 
   describe('/signup', function() {
     it('should return a response on a post request', function(done) {
-      axios.post('http://localhost:8080/signup')
+      axios.post('http://localhost:8080/auth/signup')
         .then(function (response) {
           expect(response.data).to.exist;
           done();
@@ -59,7 +59,7 @@ describe('Server tests', function() {
     });
 
     it('should return a json web token', function(done) {
-      axios.post('http://localhost:8080/signup')
+      axios.post('http://localhost:8080/auth/signup')
         .then(function (response) {
           expect(response.data.token).to.exist;
           done();
@@ -82,8 +82,9 @@ describe('Server tests', function() {
       it('should grant access', function(done) {
         let token;
 
-        req.post('/login')
+        req.post('/auth/login')
           .then(function (response) {
+            console.log(response);
             expect(response.body.token).to.exist;
             req.post('/testAuth')
               .set('Authorization', `Bearer ${response.body.token}`)
