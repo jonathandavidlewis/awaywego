@@ -1,18 +1,73 @@
+// named views can be referenced using:
+// views: { 'main-app': { template: '<ui-view name="main-app"/>' } },
+// or: views; { 'main-app': { component: 'home' } }
+
 const routing = function ($stateProvider, $urlRouterProvider, $locationProvider) {
   $locationProvider.html5Mode(true);
   $urlRouterProvider.otherwise('/');
 
-  const homeState = {
-    name: 'home',
-    url: '/home',
-    views: {
-      'main-app': { component: 'home' }
+  const loginState = {
+    name: 'login',
+    url: '/login',
+    component: 'login',
+    resolve: {
+      skip: skipIfAuthed,
     }
   };
 
+  const signupState = {
+    name: 'signup',
+    url: '/signup',
+    component: 'signup',
+  };
+
+  // all protected states are prefixed by /app
+  // you must be logged in to get through here
+  const appState = {
+    name: 'app',
+    url: '/app',
+    component: 'app',
+    resolve: {
+      protect: redirectIfNotAuthed,
+    }
+  };
+
+  const homeState = {
+    name: 'app.home',
+    url: '/home',
+    component: 'home',
+  };
+
+  $stateProvider.state(loginState);
+  $stateProvider.state(signupState);
+  $stateProvider.state(appState);
   $stateProvider.state(homeState);
 };
 
 routing.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
-
 export default routing;
+
+
+const redirectIfNotAuthed = function($q, $state, $timeout, UserService) {
+  const result = $q.defer();
+  if (UserService.isLoggedIn) {
+    result.resolve(UserService.user);
+  } else {
+    $timeout(() => $state.go('login'));
+    result.reject('Not authorized, please login!');
+  }
+  return result;
+};
+redirectIfNotAuthed.$inject = ['$q', '$state', '$timeout', 'UserService'];
+
+const skipIfAuthed = function($q, $state, $timeout, UserService) {
+  const result = $q.defer();
+  if (UserService.isLoggedIn) {
+    result.reject('Logged in, redirecting to home.');
+    $timeout(() => $state.go('app.home'));
+  } else {
+    result.resolve();
+  }
+  return result;
+};
+redirectIfNotAuthed.$inject = ['$q', '$state', '$timeout', 'UserService'];
