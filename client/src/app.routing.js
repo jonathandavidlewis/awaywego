@@ -4,7 +4,7 @@
 
 const routing = function ($stateProvider, $urlRouterProvider, $locationProvider) {
   $locationProvider.html5Mode(true);
-  $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/app/home');
 
   const loginState = {
     name: 'login',
