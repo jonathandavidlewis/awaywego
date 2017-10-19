@@ -1,21 +1,36 @@
+import decode from 'jwt-decode';
+
 export default class UserService {
-  constructor() {
-    this.isLoggedIn = true;
-    this.userId = 'abc123';
-    this.user = {
-      id: 'abc123',
-      name: 'jim'
-    };
+  constructor($state) {
+    this.$inject = ['$state'];
+    this.$state = $state;
+    this.isLoggedIn = false;
+    this.user = {};
+    this.processToken();
+  }
+
+  processToken() {
+    this.token = this.getToken();
+    if (this.token) {
+      let payload = decode(this.token);
+      this.user.name = payload.name;
+      this.user.id = payload.userId;
+      this.isLoggedIn = true;
+    }
   }
 
   login(token) {
+    console.log('logging in user');
     this.isLoggedIn = true;
     this.setToken(token);
+    this.processToken(); // update user data from token
   }
 
   logout() {
+    console.log('logging out user');
     this.isLoggedIn = false;
     this.destroyToken();
+    this.$state.go('login');
   }
 
   getToken() {
