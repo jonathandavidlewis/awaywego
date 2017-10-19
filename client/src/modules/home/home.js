@@ -5,18 +5,18 @@ import angular from 'angular';
 import template from './home.html';
 import './home.css';
 
-class HomeController {
+class HomeComponent {
   constructor() {
-    this.name = 'Hello world';
+    this.name = 'This is the home screen.';
   }
 }
-HomeController.$inject = [];
+HomeComponent.$inject = [];
 
 const homeComponent = {
   restrict: 'E',
   bindings: {},
   template: template,
-  controller: HomeController
+  controller: HomeComponent
 };
 
 const homeModule = angular.module('homeModule', [])
