@@ -5,6 +5,9 @@ import uirouter from '@uirouter/angularjs';
 import CommonModule from './modules/common/common';
 import HomeModule from './modules/home/home';
 
+// import global services
+import UserService from './services/user/user.service';
+
 // imports for this component
 import appRouting from './app.routing';
 import template from './app.html';
@@ -20,4 +23,5 @@ angular.module('app', [
   HomeModule,
 ])
   .config(appRouting)
+  .service('UserService', UserService)
   .component('app', AppComponent);

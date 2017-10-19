@@ -1,13 +1,11 @@
 import angular from 'angular';
 
-// services for this module
-import UserService from '../../services/user/user.service';
+// services *just* for this module
 
 // components for the common modules
 import { HeaderComponent } from './header/header';
 
 const CommonModule = angular.module('app.common', [])
-  .component('header', HeaderComponent)
-  .service('UserService', UserService);
+  .component('header', HeaderComponent);
 
 export default CommonModule.name;
