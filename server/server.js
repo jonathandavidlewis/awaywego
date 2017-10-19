@@ -7,7 +7,7 @@ var LocalStrategy = require('passport-local');
 var JwtStrategy = require('passport-jwt');
 
 // Port
-const port = process.env.PORT || 1337;
+const port = process.env.PORT || 8080;
 
 let app = express();
 
@@ -28,7 +28,9 @@ passport.use(new LocalStrategy(
 // Serve up static files
 app.use(express.static(path.join(__dirname, '../client/public/dist')));
 
-// app.get('/home',)
+app.post('/login', (req, res) => {
+  res.json('password');
+});
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/public/dist/index.html'));
