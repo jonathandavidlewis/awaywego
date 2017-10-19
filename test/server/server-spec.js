@@ -1,7 +1,7 @@
 const expect = require('chai').expect;
 const axios = require('axios');
 const request = require('supertest');
-const app = require('../../server.js');  //gets the app started
+const app = require('../../server/server.js');  //gets the app started
 req = request('http://localhost:8080');
 
 describe('Server tests', function() {
