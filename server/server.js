@@ -4,6 +4,8 @@ var morgan = require('morgan');
 let app = express();
 var { authRouter, jwtAuth } = require('./auth.js');
 
+const User = require('../db/models/user');
+
 app.use(morgan('[:date[clf]] | ":method :url" | STATUS: :status :res[content-length] ":referrer"'));
 
 app.use('/auth', authRouter);
