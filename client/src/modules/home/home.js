@@ -1,25 +1,24 @@
-// libraries
 import angular from 'angular';
 
-// component imports
+// imports for this component
 import template from './home.html';
 import './home.css';
 
-class HomeComponent {
+class HomeController {
   constructor() {
-    this.name = 'This is the home screen.';
+    this.name = 'Welcome to the the home screen.';
   }
 }
-HomeComponent.$inject = [];
+HomeController.$inject = [];
 
-const homeComponent = {
+const HomeComponent = {
   restrict: 'E',
   bindings: {},
   template: template,
-  controller: HomeComponent
+  controller: HomeController
 };
 
-const homeModule = angular.module('homeModule', [])
-  .component('homeComponent', homeComponent);
+const HomeModule = angular.module('app.home', [])
+  .component('home', HomeComponent);
 
-export default homeModule;
+export default HomeModule.name;
