@@ -24,7 +24,7 @@ passport.use(new JwtStrategy(jwtOptions, function(jwtPayload, done) {
   //     // or you could create a new account
   //   }
   // });
-  done(null, false);
+  done(null, {username: 'username'});
 }));
 
 // Port
@@ -33,6 +33,22 @@ const port = process.env.PORT || 8080;
 let app = express();
 
 app.use(morgan('[:date[clf]] | ":method :url" | STATUS: :status :res[content-length] ":referrer"'));
+
+app.post('/login', (req, res) => {
+  var token = jwt.sign({username: 'username'}, jwtOptions.secretOrKey);
+  res.json({message: 'Log In was successful', token: token});
+});
+
+app.post('/signup', (req, res) => {
+  var token = jwt.sign({username: 'username'}, jwtOptions.secretOrKey);
+  res.json({message: 'Log In was successful', token: token});
+});
+
+const jwtAuth = passport.authenticate('jwt', {session: false});
+
+app.post('/testAuth', jwtAuth, (req, res) => {
+  res.json('Access granted');
+});
 
 // Auth
 passport.use(new LocalStrategy(
@@ -49,15 +65,6 @@ passport.use(new LocalStrategy(
 // Serve up static files
 app.use(express.static(path.join(__dirname, '../client/public/dist')));
 
-app.post('/login', (req, res) => {
-  var token = jwt.sign({username: 'username'}, jwtOptions.secretOrKey);
-  res.json({message: 'Log In was successful', token: token});
-});
-
-app.post('/signup', (req, res) => {
-  var token = jwt.sign({username: 'username'}, jwtOptions.secretOrKey);
-  res.json({message: 'Log In was successful', token: token});
-});
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/public/dist/index.html'));

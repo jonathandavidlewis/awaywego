@@ -1,5 +1,7 @@
-var expect = require('chai').expect;
-var axios = require('axios');
+const expect = require('chai').expect;
+const axios = require('axios');
+const request = require('supertest');
+req = request('http://localhost:8080');
 
 describe('Server tests', function() {
 
@@ -69,4 +71,25 @@ describe('Server tests', function() {
     });
   });
 
+  describe('authentication', function() {
+
+    describe('json web token', function() {
+      it('should reject access', function(done) {
+        req.post('/testAuth')
+          .expect(401, done);
+      });
+
+      it('should grant access', function(done) {
+        let token;
+
+        req.post('/login')
+          .then(function (response) {
+            expect(response.body.token).to.exist;
+            req.post('/testAuth')
+              .set('Authorization', `Bearer ${response.body.token}`)
+              .expect(200, done);
+          });
+      });
+    });
+  });
 });
