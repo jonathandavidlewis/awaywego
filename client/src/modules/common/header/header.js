@@ -1,7 +1,6 @@
-// libraries
 import angular from 'angular';
 
-// component imports
+// imports for this component
 import template from './header.html';
 import './header.css';
 
@@ -12,7 +11,7 @@ class HeaderController {
 }
 HeaderController.$inject = [];
 
-export const headerComponent = {
+export const HeaderComponent = {
   restrict: 'E',
   bindings: {},
   template: template,

@@ -1,0 +1,18 @@
+.header-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-title {
+  color: darkblue;
+  font-size: 1.4em;
+  font-family: sans-serif;
+  margin-left: 20px;
+}
+
+.header-user-menu-container {
+  font-size: 1.3em;
+  margin-right: 20px;
+}
