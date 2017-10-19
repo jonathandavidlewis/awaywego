@@ -6,10 +6,10 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
     name: 'home',
     url: '/home',
     component: 'homeComponent'
-  }
+  };
 
   $stateProvider.state(homeState);
-}
+};
 
 routing.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
 
