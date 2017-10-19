@@ -36,3 +36,5 @@ bower_components/
 
 # Storybook
 stories/index.js
+
+.idea/
