@@ -5,11 +5,12 @@ import template from './header.html';
 import './header.css';
 
 class HeaderController {
-  constructor() {
+  constructor(UserService) {
     this.header = 'AwayWeGo';
+    this.user = UserService.user;
   }
 }
-HeaderController.$inject = [];
+HeaderController.$inject = ['UserService'];
 
 export const HeaderComponent = {
   restrict: 'E',
