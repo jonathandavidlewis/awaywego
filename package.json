@@ -7,7 +7,8 @@
     "start": "nodemon server/server.js",
     "test": "mocha test/**/*spec.js --exit",
     "pack": "webpack --watch",
-    "dev": "node node_modules/.bin/webpack-dev-server --history-api-fallback --hot --inline --progress"
+    "dev": "node node_modules/.bin/webpack-dev-server --history-api-fallback --hot --inline --progress",
+    "travis": "webpack & npm test"
   },
   "repository": {
     "type": "git",
