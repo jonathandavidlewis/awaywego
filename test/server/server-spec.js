@@ -31,4 +31,30 @@ describe('Server tests', function() {
     });
   });
 
+  describe('/signup', function() {
+    it('should return a response on a post request', function(done) {
+      axios.post('http://localhost:8080/signup')
+        .then(function (response) {
+          expect(response.data).to.exist;
+          done();
+        })
+        .catch(function (error) {
+          console.log(error);
+          done();
+        });
+    });
+
+    it('should return a json web token', function(done) {
+      axios.post('http://localhost:8080/signup')
+        .then(function (response) {
+          expect(response.data.token).to.exist;
+          done();
+        })
+        .catch(function (error) {
+          console.log(error);
+          done();
+        });
+    });
+  });
+
 });
