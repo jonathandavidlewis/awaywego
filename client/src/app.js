@@ -13,8 +13,16 @@ import appRouting from './app.routing';
 import template from './app.html';
 import './app.css';
 
+class AppController {
+  constructor(UserService) {
+    this.UserService = UserService;
+  }
+}
+AppController.$inject = ['UserService'];
+
 const AppComponent = {
-  template: template
+  template: template,
+  controller: AppController
 };
 
 angular.module('app', [
@@ -22,6 +30,6 @@ angular.module('app', [
   CommonModule,
   HomeModule,
 ])
-  .config(appRouting)
   .service('UserService', UserService)
+  .config(appRouting)
   .component('app', AppComponent);
