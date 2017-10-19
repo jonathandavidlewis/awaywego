@@ -19,7 +19,7 @@ module.exports = {
       },
       {
         test: /\.css$/, // have to include node modules for css b/c of react-widgets
-        include: [path.join(__dirname, '/public'), path.join(__dirname, '/node_modules')],
+        include: [path.join(__dirname, '/client/src')],
         loaders: ['style-loader', 'css-loader']
       },
       {
