@@ -19,7 +19,7 @@ describe('Server tests', function() {
     });
   });
 
-  describe('/api/login', function() {
+  describe('/auth/login', function() {
     it('should return a response on a post request', function(done) {
       axios.post('http://localhost:8080/auth/login')
         .then(function (response) {
