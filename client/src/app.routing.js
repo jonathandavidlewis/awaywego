@@ -5,7 +5,9 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
   const homeState = {
     name: 'home',
     url: '/home',
-    component: 'homeComponent'
+    views: {
+      'main-app': { component: 'home' }
+    }
   };
 
   $stateProvider.state(homeState);
