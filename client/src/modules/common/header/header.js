@@ -7,8 +7,10 @@ import './header.css';
 class HeaderController {
   constructor(UserService) {
     this.header = 'AwayWeGo';
-    this.user = UserService.user;
+    this.UserService = UserService;
   }
+
+  logout() { this.UserService.logout(); }
 }
 HeaderController.$inject = ['UserService'];
 

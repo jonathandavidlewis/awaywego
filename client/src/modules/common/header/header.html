@@ -4,6 +4,10 @@
   </div>
   <div class="header-user-menu-container">
     <i class="material-icons">account_circle</i>
-    <div class="header-user-name">{{$ctrl.user.name}}</div>
+    <div class="header-user-name">{{$ctrl.UserService.user.name}}</div>
+    <div ng-if="$ctrl.UserService.isLoggedIn"
+         ng-click="$ctrl.logout()" class="header-logout">
+      Logout
+    </div>
   </div>
 </div>
