@@ -17,7 +17,7 @@ authRouter.post('/login', (req, res) => {
 
 authRouter.post('/signup', (req, res) => {
   var token = jwt.sign({username: 'username'}, jwtOptions.secretOrKey);
-  res.json({message: 'Registration was successful', token: token});
+  res.status(200).json({message: 'Registration was successful', token: token});
 });
 
 passport.use(new JwtStrategy(jwtOptions, function(jwtPayload, done) {

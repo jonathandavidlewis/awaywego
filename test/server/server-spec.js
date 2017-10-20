@@ -85,7 +85,6 @@ describe('Server tests', function() {
 
         req.post('/auth/login')
           .then(function (response) {
-            console.log(response);
             expect(response.body.token).to.exist;
             req.post('/testAuth')
               .set('Authorization', `Bearer ${response.body.token}`)

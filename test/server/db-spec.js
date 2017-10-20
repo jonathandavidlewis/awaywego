@@ -11,35 +11,36 @@ describe('Database tests', function() {
 
   beforeEach(function(done) {
     // Log out currently signed in user
-    request(app)
-      .get('/logout')
-      .end(function(err, res) {
+    // request(app)
+    //   .get('/logout')
+    //   .end(function(err, res) {
 
-        // Delete objects from db so they can be created later for the test
-        User.remove({email: 'test1@gmail.com'}).exec();
-        User.remove({email: 'test2@gmail.com'}).exec();
+    //     // Delete objects from db so they can be created later for the test
 
-        done();
-      });
+    //     User.remove({email: 'test2@gmail.com'}).exec();
+
+    //     done();
+    //   });
+    User.remove({email: 'test1@gmail.com'}).exec(done);
   });
 
-  describe('', function() {
+  describe('Add new users to the database', function() {
     it('sign up creates a database entry', function(done) {
-      request(app)
-        .post('/signup')
+      req.post('/auth/signup')
         .send({
           'email': 'test1@gmail.com',
           'password': 'password1'
         })
         .expect(200)
-        .expect(function(res) {
+        .end(function(res) {
           User.findOne({'email': 'test1@gmail.com'})
             .exec(function(err, user) {
               if (err) { console.log(err); }
+              console.log('user ======>', user);
               expect(user.email).to.equal('test1@gmail.com');
+              done();
             });
-        })
-        .end(done);
+        });
     });
   });
 });
