@@ -53,4 +53,20 @@ describe('LoginModule', function() {
     element.find('#login').submit();
     expect(goSpy).to.have.been.calledWith('app.home');
   });
+
+  it('should trigger validation error when username or password are blank', () => {
+    element.find('#login').submit();
+    expect(loginCtrl.formWarning).to.be.not.empty;
+    loginCtrl.username = 'user';
+    element.find('#login').submit();
+    expect(loginCtrl.formWarning).to.be.not.empty;
+    loginCtrl.username = '';
+    loginCtrl.password = 'password';
+    element.find('#login').submit();
+    expect(loginCtrl.formWarning).to.be.not.empty;
+    loginCtrl.username = 'user';
+    element.find('#login').submit();
+    expect(loginSpy).to.have.been.called;
+  });
+
 });
