@@ -24,14 +24,10 @@ class LoginController {
   }
 
   validateForm() {
-    if (!this.username && !this.password) {
-      this.formWarning = 'Please enter your username and password';
-      return false;
-    } else if (!this.username) {
-      this.formWarning = 'Please enter your username';
-      return false;
-    } else if (!this.password) {
-      this.formWarning = 'Please enter your password';
+    if (!this.username || !this.password) {
+      this.formWarning = 'Please enter your ' +
+        (!this.username && !this.password ? 'username and password' :
+          !this.username ? 'password' : 'username');
       return false;
     } else {
       return true;
