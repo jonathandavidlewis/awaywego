@@ -41,12 +41,16 @@ describe('LoginModule', function() {
   });
 
   it('should trigger UserService.login() when login is clicked', () => {
-    element.find('#login').click();
+    loginCtrl.username = 'user';
+    loginCtrl.password = 'password';
+    element.find('#login').submit();
     expect(loginSpy).to.have.been.called;
   });
 
   it('should trigger redirect to app.home when login is clicked', () => {
-    element.find('#login').click();
+    loginCtrl.username = 'user';
+    loginCtrl.password = 'password';
+    element.find('#login').submit();
     expect(goSpy).to.have.been.calledWith('app.home');
   });
 });
