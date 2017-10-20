@@ -6,7 +6,16 @@ req = request('http://localhost:8080');
 const jwt = require('jsonwebtoken');
 const User = require('../../db/models/user');
 
+const TEST_USER = {
+  email: 'test1@example.com',
+  password: 'password1'
+};
+
 describe('Server tests', function() {
+
+  before(function(done) {
+    User.remove(TEST_USER).then(() => done());
+  });
 
   describe('/', function() {
     it('should return index.html on a get request', function(done) {
@@ -25,11 +34,11 @@ describe('Server tests', function() {
   describe('/auth/login', function() {
 
     before(function(done) {
-      User.create({email: 'test1@example.com', password: 'password1'}).then(() => { console.log('inside before'); done(); });
+      User.create(TEST_USER).then(() => { done(); });
     });
 
     after(function(done) {
-      User.remove({email: 'test1@example.com'}).then(() => done());
+      User.remove(TEST_USER).then(() => done());
     });
 
     it('should not grant access for invalid email', function(done) {
@@ -66,10 +75,7 @@ describe('Server tests', function() {
 
     it('should grant access for valid credentials', function(done) {
       req.post('/auth/login')
-        .send({
-          'email': 'test1@example.com',
-          'password': 'password1'
-        })
+        .send(TEST_USER)
         .then(function (response) {
           expect(response.body.token).to.exist;
           done();
@@ -90,10 +96,7 @@ describe('Server tests', function() {
 
     it('should not return a token if the user exists', function(done) {
       req.post('/auth/signup')
-        .send({
-          'email': 'test1@example.com',
-          'password': 'password1'
-        })
+        .send(TEST_USER)
         .then(() => {
           req.post('/auth/signup')
             .send({
@@ -110,10 +113,7 @@ describe('Server tests', function() {
 
     it('should return a json web token on a successful signup', function(done) {
       req.post('/auth/signup')
-        .send({
-          'email': 'test1@example.com',
-          'password': 'password1'
-        })
+        .send(TEST_USER)
         .then(function (response) {
           expect(response.body.token).to.exist;
           expect(response.statusCode).to.equal(200);
@@ -123,10 +123,7 @@ describe('Server tests', function() {
 
     it('should create a database entry on sign up', function(done) {
       req.post('/auth/signup')
-        .send({
-          'email': 'test1@example.com',
-          'password': 'password1'
-        })
+        .send(TEST_USER)
         .expect(200)
         .then((response) => {
           User.findOne({'email': 'test1@example.com'})

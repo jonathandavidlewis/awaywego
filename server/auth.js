@@ -19,7 +19,6 @@ authRouter.post('/login', (req, res) => {
 
   User.findOne({email: email})
     .then((user) => {
-      console.log('user ====>', user);
       if (user) {
         user.comparePassword(password)
           .then((isMatch) => {
