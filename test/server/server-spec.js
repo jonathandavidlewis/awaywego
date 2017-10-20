@@ -94,7 +94,7 @@ describe('Server tests', function() {
           'password': 'password1'
         })
         .expect(200)
-        .end((res) => {
+        .then((response) => {
           User.findOne({'email': 'test1@gmail.com'})
             .exec((err, user) => {
               if (err) { console.log(err); }
