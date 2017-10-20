@@ -1,12 +1,16 @@
 var express = require('express');
 var path = require('path');
 var morgan = require('morgan');
+const bodyParser = require('body-parser');
 let app = express();
 var { authRouter, jwtAuth } = require('./auth.js');
 
 const User = require('../db/models/user');
 
 app.use(morgan('[:date[clf]] | ":method :url" | STATUS: :status :res[content-length] ":referrer"'));
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/auth', authRouter);
 
