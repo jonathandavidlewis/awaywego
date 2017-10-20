@@ -3,6 +3,6 @@ node_js:
   - '6'
   - 'node'
 sudo: enabled
-script: npm run travis
-env:
+services: mongodb
+script: npm run travisenv:
   - TRAVIS=true
