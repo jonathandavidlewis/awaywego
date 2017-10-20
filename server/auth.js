@@ -14,8 +14,29 @@ const db = require('../db/config');
 const User = require('../db/models/user');
 
 authRouter.post('/login', (req, res) => {
-  let token = jwt.sign({email: 'email'}, jwtOptions.secretOrKey);
-  res.json({message: 'Log In was successful', token: token});
+  let email = req.body.email;
+  let password = req.body.password;
+
+  User.findOne({email: email})
+    .then((user) => {
+      console.log('user ====>', user);
+      if (user) {
+        user.comparePassword(password)
+          .then((isMatch) => {
+            if (isMatch) {
+              let token = jwt.sign({email: 'email'}, jwtOptions.secretOrKey);
+              res.json({message: 'Log In was successful', token: token});
+            } else {
+              res.json({message: 'Invalid credentials'});
+            }
+          })
+          .catch((err) => {
+            console.log('Error with comparing password in /login');
+          });
+      } else {
+        res.json({message: 'User not found'});
+      }
+    });
 });
 
 authRouter.post('/signup', (req, res) => {

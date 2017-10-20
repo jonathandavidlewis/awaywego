@@ -8,21 +8,6 @@ const User = require('../../db/models/user');
 
 describe('Server tests', function() {
 
-  beforeEach(function(done) {
-    // Log out currently signed in user
-    // request(app)
-    //   .get('/logout')
-    //   .end(function(err, res) {
-
-    //     // Delete objects from db so they can be created later for the test
-
-    //     User.remove({email: 'test2@gmail.com'}).exec();
-
-    //     done();
-    //   });
-    User.remove({email: 'test1@gmail.com'}).exec(done);
-  });
-
   describe('/', function() {
     it('should return index.html on a get request', function(done) {
       axios.get('http://localhost:8080/')
@@ -38,10 +23,55 @@ describe('Server tests', function() {
   });
 
   describe('/auth/login', function() {
-    it('should return a response on a post request', function(done) {
-      axios.post('http://localhost:8080/auth/login')
+
+    before(function(done) {
+      User.create({email: 'test1@example.com', password: 'password1'}).then(() => { console.log('inside before'); done(); });
+    });
+
+    after(function(done) {
+      User.remove({email: 'test1@example.com'}).then(() => done());
+    });
+
+    it('should not grant access for invalid email', function(done) {
+      req.post('/auth/login')
+        .send({
+          'email': 'invalid@example.com',
+          'password': 'password1'
+        })
         .then(function (response) {
-          expect(response.data).to.exist;
+          expect(response.body.token).to.not.exist;
+          done();
+        })
+        .catch(function (error) {
+          console.log(error);
+          done();
+        });
+    });
+
+    it('should not grant access for invalid password', function(done) {
+      req.post('/auth/login')
+        .send({
+          'email': 'test1@example.com',
+          'password': 'invalidpassword'
+        })
+        .then(function (response) {
+          expect(response.body).to.exist;
+          done();
+        })
+        .catch(function (error) {
+          console.log(error);
+          done();
+        });
+    });
+
+    it('should grant access for valid credentials', function(done) {
+      req.post('/auth/login')
+        .send({
+          'email': 'test1@example.com',
+          'password': 'password1'
+        })
+        .then(function (response) {
+          expect(response.body.token).to.exist;
           done();
         })
         .catch(function (error) {
@@ -53,21 +83,25 @@ describe('Server tests', function() {
   });
 
   describe('/signup', function() {
+
+    beforeEach(function(done) {
+      User.remove({email: 'test1@example.com'}).exec(done);
+    });
+
     it('should not return a token if the user exists', function(done) {
       req.post('/auth/signup')
         .send({
-          'email': 'test1@gmail.com',
+          'email': 'test1@example.com',
           'password': 'password1'
         })
         .then(() => {
           req.post('/auth/signup')
             .send({
-              'email': 'test1@gmail.com',
+              'email': 'test1@example.com',
               'password': 'password1'
             })
             .then((response) => {
               expect(response.body.token).to.not.exist;
-              expect(response.body.message).to.equal('User already exists');
               expect(response.statusCode).to.equal(401);
               done();
             });
@@ -77,7 +111,7 @@ describe('Server tests', function() {
     it('should return a json web token on a successful signup', function(done) {
       req.post('/auth/signup')
         .send({
-          'email': 'test1@gmail.com',
+          'email': 'test1@example.com',
           'password': 'password1'
         })
         .then(function (response) {
@@ -90,15 +124,15 @@ describe('Server tests', function() {
     it('should create a database entry on sign up', function(done) {
       req.post('/auth/signup')
         .send({
-          'email': 'test1@gmail.com',
+          'email': 'test1@example.com',
           'password': 'password1'
         })
         .expect(200)
         .then((response) => {
-          User.findOne({'email': 'test1@gmail.com'})
+          User.findOne({'email': 'test1@example.com'})
             .exec((err, user) => {
               if (err) { console.log(err); }
-              expect(user.email).to.equal('test1@gmail.com');
+              expect(user.email).to.equal('test1@example.com');
               done();
             });
         });
@@ -111,18 +145,6 @@ describe('Server tests', function() {
       it('should reject access', function(done) {
         req.post('/testAuth')
           .expect(401, done);
-      });
-
-      it('should grant access', function(done) {
-        let token;
-
-        req.post('/auth/login')
-          .then(function (response) {
-            expect(response.body.token).to.exist;
-            req.post('/testAuth')
-              .set('Authorization', `Bearer ${response.body.token}`)
-              .expect(200, done);
-          });
       });
     });
   });
