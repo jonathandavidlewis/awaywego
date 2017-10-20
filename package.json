@@ -7,10 +7,10 @@
     "start": "nodemon server/server.js",
     "test": "mocha test/**/*spec.js --exit",
     "karma": "karma start",
-    "karma:travis": "TRAVIS=true karma start --browsers PhantomJS",
+    "karma:travis": "TRAVIS=true karma start",
     "pack": "webpack --watch",
     "dev": "node node_modules/.bin/webpack-dev-server --history-api-fallback --hot --inline --progress",
-    "travis": "webpack & npm test & karma start --browsers PhantomJS"
+    "travis": "webpack & npm test & karma start"
   },
   "repository": {
     "type": "git",

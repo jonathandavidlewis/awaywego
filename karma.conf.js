@@ -36,7 +36,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome', 'PhantomJS'],
+    browsers: process.env.TRAVIS ? ['PhantomJS'] : ['Chrome'],
 
     singleRun: process.env.TRAVIS || false, // set to true for ContinuousIntegration
 
