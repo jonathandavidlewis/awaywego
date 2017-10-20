@@ -11,10 +11,14 @@ const TEST_USER = {
   password: 'password1'
 };
 
+const TEST_USER_EMAIL = {
+  email: 'test1@example.com'
+};
+
 describe('Server tests', function() {
 
   before(function(done) {
-    User.remove(TEST_USER).then(() => done());
+    User.remove(TEST_USER_EMAIL).then(() => done());
   });
 
   describe('/', function() {
@@ -38,7 +42,7 @@ describe('Server tests', function() {
     });
 
     after(function(done) {
-      User.remove(TEST_USER).then(() => done());
+      User.remove(TEST_USER_EMAIL).then(() => done());
     });
 
     it('should not grant access for invalid email', function(done) {
@@ -91,7 +95,11 @@ describe('Server tests', function() {
   describe('/signup', function() {
 
     beforeEach(function(done) {
-      User.remove({email: 'test1@example.com'}).exec(done);
+      User.remove(TEST_USER_EMAIL).then(() => done());
+    });
+
+    after(function(done) {
+      User.remove(TEST_USER_EMAIL).then(() => done());
     });
 
     it('should not return a token if the user exists', function(done) {
@@ -105,7 +113,7 @@ describe('Server tests', function() {
             })
             .then((response) => {
               expect(response.body.token).to.not.exist;
-              expect(response.statusCode).to.equal(401);
+              expect(response.statusCode).to.equal(422);
               done();
             });
         });
@@ -116,7 +124,7 @@ describe('Server tests', function() {
         .send(TEST_USER)
         .then(function (response) {
           expect(response.body.token).to.exist;
-          expect(response.statusCode).to.equal(200);
+          expect(response.statusCode).to.equal(201);
           done();
         });
     });
@@ -124,7 +132,7 @@ describe('Server tests', function() {
     it('should create a database entry on sign up', function(done) {
       req.post('/auth/signup')
         .send(TEST_USER)
-        .expect(200)
+        .expect(201)
         .then((response) => {
           User.findOne({'email': 'test1@example.com'})
             .exec((err, user) => {
@@ -133,16 +141,6 @@ describe('Server tests', function() {
               done();
             });
         });
-    });
-  });
-
-  describe('authentication', function() {
-
-    describe('json web token', function() {
-      it('should reject access', function(done) {
-        req.post('/testAuth')
-          .expect(401, done);
-      });
     });
   });
 });

@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 const Promise = require('bluebird');
 
 let userSchema = new Schema({
-  email: {type: String, required: true},
+  email: {type: String, required: true, unique: true},
   password: {type: String, required: true}
 });
 

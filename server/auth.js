@@ -47,7 +47,7 @@ authRouter.post('/signup', (req, res) => {
     // if user already exist
       if (user) {
       // refuse signup
-        res.status(401).json({message: 'User already exists'});
+        res.status(422).json({message: 'User already exists'});
       // else
       } else {
       // create a new user
@@ -55,12 +55,12 @@ authRouter.post('/signup', (req, res) => {
           .then((user) => {
             // give token
             let token = jwt.sign({email: 'email'}, jwtOptions.secretOrKey);
-            res.status(200).json({message: 'Registration was successful', token: token});
+            res.status(201).json({message: 'Registration was successful', token: token});
           });
       }
     })
     .catch((err) => {
-      res.status(401).json({message: err});
+      res.status(500).json({message: err});
     });
 });
 
