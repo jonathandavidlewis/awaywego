@@ -11,11 +11,31 @@ class LoginController {
   constructor(UserService, $state) {
     this.UserService = UserService;
     this.$state = $state;
+    this.username = '';
+    this.password = '';
+    this.formWarning = '';
   }
 
   login() {
-    this.UserService.login(testToken);
-    this.$state.go('app.home');
+    if (this.validateForm()) {
+      this.UserService.login(testToken);
+      this.$state.go('app.home');
+    }
+  }
+
+  validateForm() {
+    if (!this.username && !this.password) {
+      this.formWarning = 'Please enter your username and password';
+      return false;
+    } else if (!this.username) {
+      this.formWarning = 'Please enter your username';
+      return false;
+    } else if (!this.password) {
+      this.formWarning = 'Please enter your password';
+      return false;
+    } else {
+      return true;
+    }
   }
 }
 LoginController.$inject = ['UserService', '$state'];
