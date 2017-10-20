@@ -3,6 +3,12 @@
   <div class="login-form-container">
     <form ng-submit="$ctrl.login()">
       <div class="login-input-row flex">
+        <label class="sr-only" for="name"></label>
+        <div class="login-input-icon input-group-addon"><i class="material-icons">face</i></div>
+        <input class="login-input form-control" id="name" ng-model="$ctrl.name"
+          placeholder="Name" />
+      </div>
+      <div class="login-input-row flex">
         <label class="sr-only" for="email"></label>
         <div class="login-input-icon input-group-addon"><i class="material-icons">account_circle</i></div>
         <input class="login-input form-control" id="email" ng-model="$ctrl.email"
@@ -10,7 +16,7 @@
       </div>
       <div class="login-input-row flex">
         <label class="sr-only" for="password"></label>
-        <div class="login-input-icon input-group-addon"><i class="material-icons">lock</i></div>
+        <div class="login-input-icon input-group-addon"><i class="material-icons">lock_open</i></div>
         <input class="login-input form-control" id="password" ng-model="$ctrl.password"
           type="password" placeholder="Password" />
       </div>

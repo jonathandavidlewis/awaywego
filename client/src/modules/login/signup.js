@@ -11,6 +11,7 @@ class SignupController {
   constructor(UserService, $state) {
     this.UserService = UserService;
     this.$state = $state;
+    this.name = '';
     this.email = '';
     this.password = '';
     this.confPassword = '';
