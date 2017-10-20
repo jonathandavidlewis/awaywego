@@ -27,7 +27,7 @@ authRouter.post('/signup', (req, res) => {
     // if user already exist
       if (user) {
       // refuse signup
-        res.json({message: 'User already exists'});
+        res.status(401).json({message: 'User already exists'});
       // else
       } else {
       // create a new user
@@ -40,7 +40,7 @@ authRouter.post('/signup', (req, res) => {
       }
     })
     .catch((err) => {
-      res.json({message: err});
+      res.status(401).json({message: err});
     });
 });
 

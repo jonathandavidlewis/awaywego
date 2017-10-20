@@ -3,7 +3,7 @@ const axios = require('axios');
 const request = require('supertest');
 const app = require('../../server/server.js'); //gets the app started
 req = request('http://localhost:8080');
-
+const jwt = require('jsonwebtoken');
 const User = require('../../db/models/user');
 
 describe('Server tests', function() {
@@ -50,38 +50,39 @@ describe('Server tests', function() {
         });
     });
 
-    it('should return a json web token', function(done) {
+  });
+
+  describe('/signup', function() {
+    it('should not return a token if the user exists', function(done) {
       req.post('/auth/signup')
         .send({
           'email': 'test1@gmail.com',
           'password': 'password1'
         })
-        .expect(200)
-        .end(done);
-    });
-  });
-
-  describe('/signup', function() {
-    it('should return a response on a post request', function(done) {
-      axios.post('http://localhost:8080/auth/signup')
-        .then(function (response) {
-          expect(response.data).to.exist;
-          done();
-        })
-        .catch(function (error) {
-          console.log(error);
-          done();
+        .then(() => {
+          req.post('/auth/signup')
+            .send({
+              'email': 'test1@gmail.com',
+              'password': 'password1'
+            })
+            .then((response) => {
+              expect(response.body.token).to.not.exist;
+              expect(response.body.message).to.equal('User already exists');
+              expect(response.statusCode).to.equal(401);
+              done();
+            });
         });
     });
 
-    it('should return a json web token', function(done) {
-      axios.post('http://localhost:8080/auth/signup')
-        .then(function (response) {
-          expect(response.data.token).to.exist;
-          done();
+    it('should return a json web token on a successful signup', function(done) {
+      req.post('/auth/signup')
+        .send({
+          'email': 'test1@gmail.com',
+          'password': 'password1'
         })
-        .catch(function (error) {
-          console.log(error);
+        .then(function (response) {
+          expect(response.body.token).to.exist;
+          expect(response.statusCode).to.equal(200);
           done();
         });
     });
@@ -93,11 +94,10 @@ describe('Server tests', function() {
           'password': 'password1'
         })
         .expect(200)
-        .end(function(res) {
+        .end((res) => {
           User.findOne({'email': 'test1@gmail.com'})
-            .exec(function(err, user) {
+            .exec((err, user) => {
               if (err) { console.log(err); }
-              console.log('user ======>', user);
               expect(user.email).to.equal('test1@gmail.com');
               done();
             });
