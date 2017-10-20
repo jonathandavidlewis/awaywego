@@ -32,11 +32,13 @@
   background-color: rgba(21, 150, 157, .1);
   border-color: rgba(255,255,255,.2);
   border-left: none;
+  color: white;
 }
 
 .login-input:hover,
 .login-input:focus {
   background-color: rgba(21, 150, 157, .3);
+  color: white;
 }
 
 .login-input:focus {
