@@ -7,6 +7,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../../db/models/user');
 
 const TEST_USER = {
+  name: 'jim',
   email: 'test1@example.com',
   password: 'password1'
 };
@@ -102,22 +103,6 @@ describe('Server tests', function() {
       User.remove(TEST_USER_EMAIL).then(() => done());
     });
 
-    it('should not return a token if the user exists', function(done) {
-      req.post('/auth/signup')
-        .send(TEST_USER)
-        .then(() => {
-          req.post('/auth/signup')
-            .send({
-              'email': 'test1@example.com',
-              'password': 'password1'
-            })
-            .then((response) => {
-              expect(response.body.token).to.not.exist;
-              expect(response.statusCode).to.equal(422);
-              done();
-            });
-        });
-    });
 
     it('should return a json web token on a successful signup', function(done) {
       req.post('/auth/signup')
@@ -126,6 +111,20 @@ describe('Server tests', function() {
           expect(response.body.token).to.exist;
           expect(response.statusCode).to.equal(201);
           done();
+        });
+    });
+
+    it('should not return a token if the user exists', function(done) {
+      req.post('/auth/signup')
+        .send(TEST_USER)
+        .then(() => {
+          req.post('/auth/signup')
+            .send(TEST_USER)
+            .then((response) => {
+              expect(response.body.token).to.not.exist;
+              expect(response.statusCode).to.equal(422);
+              done();
+            });
         });
     });
 
