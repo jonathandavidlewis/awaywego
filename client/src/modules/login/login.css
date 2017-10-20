@@ -4,7 +4,7 @@
   justify-content: flex-start;
   height: 100vh;
   padding: 20px 50px;
-  background: linear-gradient(var(--b2), var(--b5));
+  background: linear-gradient(var(--b3), var(--b5));
 }
 
 .login-header {
@@ -14,7 +14,7 @@
 
 .login-header span {
   font-size: 3em;
-  color: var(--b4);
+  color: var(--b5);
 }
 
 .login-input-row {
@@ -93,8 +93,13 @@
    box-shadow:         inset 0 0 5px #000000;
 }
 
+.login-form-warning {
+  text-align: center;
+  color: red;
+}
+
 .login-other-container a {
   margin-top: 5px;
   text-decoration: none;
-  color: var(--b5);
+  color: var(--b1);
 }
