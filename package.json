@@ -10,7 +10,7 @@
     "karma:travis": "TRAVIS=true karma start",
     "pack": "webpack --watch",
     "dev": "node node_modules/.bin/webpack-dev-server --history-api-fallback --hot --inline --progress",
-    "travis": "webpack & npm test"
+    "travis": "webpack & npm test & karma start"
   },
   "repository": {
     "type": "git",
