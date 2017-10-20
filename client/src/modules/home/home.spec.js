@@ -1,6 +1,3 @@
-import angular from 'angular';
-import 'angular-mocks/angular-mocks';
-
 import HomeModule from './home';
 
 describe('HomeModule', function() {

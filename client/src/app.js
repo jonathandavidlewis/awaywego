@@ -5,6 +5,7 @@ import uirouter from '@uirouter/angularjs';
 import CommonModule from './modules/common/common';
 import HomeModule from './modules/home/home';
 import LoginModule from './modules/login/login';
+import SignupModule from './modules/login/signup';
 
 // import global services
 import UserService from './services/user/user.service';
@@ -31,6 +32,7 @@ angular.module('app', [
   CommonModule,
   HomeModule,
   LoginModule,
+  SignupModule,
 ])
   .service('UserService', UserService)
   .config(appRouting)

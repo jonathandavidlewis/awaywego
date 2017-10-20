@@ -2,3 +2,45 @@
   box-sizing: border-box;
   font-family: 'Lato', sans-serif;
 }
+
+:root {
+  --b1: #e9fbfc;
+  --b2: #d2f7f9;
+  --b3: #35dbe3;	/* Main Primary color */
+  --b4: #15969d;
+  --b5: #0c565a;
+
+  --w1: #f5f3ef;
+  --w2: #e0d7cc;
+  --w3: #c5b4a0;	/* Main Secondary color (1) */
+  --w4: #7e684e;
+  --w5: #4f4130;
+
+  --r1: #f3d8df;
+  --r2: #e8b0be;
+  --r3: #dc899e;	/* Main Secondary color (2) */
+  --r4: #9d2f4a;
+  --r5: #541928;
+}
+
+
+html, body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+/*  flex utility classes  */
+.flex { display: flex; }
+.flex-col { display: flex; flex-direction: column; }
+.flex-start { justify-content: flex-start; }
+.flex-end { justify-content: flex-end; }
+.flex-center { justify-content: center; }
+.space-around { justify-content: space-around; }
+.space-between { justify-content: space-between; }
+.flex-align-center { align-items: center; }
+.flex-align-start { align-items: flex-start; }
+.flex-align-end { align-items: flex-end; }
+.flex-align-stretch { align-items: stretch; }
+.flex-1 { flex: 1 };
+.flex-0 { flex: 0 };
