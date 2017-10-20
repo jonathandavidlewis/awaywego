@@ -18,19 +18,29 @@ class SignupController {
     this.formWarning = '';
   }
 
-  login() {
+  signup() {
     if (this.validateForm()) {
-      this.UserService.login(testToken);
-      this.$state.go('app.home');
+      let newUser = {
+        name: this.name,
+        email: this.email,
+        password: this.password
+      };
+      this.UserService.signup(newUser);
     }
   }
 
-  // TODO: update this for signup
   validateForm() {
-    if (!this.email || !this.password) {
-      this.formWarning = 'Please enter your ' +
-        (!this.email && !this.password ? 'email and password' :
-          !this.email ? 'password' : 'email');
+    if (!this.email) { // TODO: update this email-specific validation
+      this.formWarning = 'Please provide an email address';
+      return false;
+    } else if (!this.password) {
+      this.formWarning = 'Please provide a password';
+      return false;
+    } else if (this.password !== this.confPassword) {
+      this.formWarning = 'Passwords do not match';
+      return false;
+    } else if (!this.name) {
+      this.formWarning = 'Please provide a name';
       return false;
     } else {
       return true;

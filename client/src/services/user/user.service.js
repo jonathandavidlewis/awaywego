@@ -20,6 +20,14 @@ export default class UserService {
     }
   }
 
+  signup(newUser) {
+    console.log('signing up new user: ', newUser);
+    return this.$http.post('/auth/signup', newUser).then(resp => {
+      this.setToken(resp.data.token);
+      this.processToken();
+    }).catch(err => console.log('err'));
+  }
+
   login(email, password) {
     this.$http.post('/auth/login', { email, password })
       .then(resp => {
