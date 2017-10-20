@@ -1,8 +1,9 @@
 import decode from 'jwt-decode';
 
 export default class UserService {
-  constructor($state) {
-    this.$inject = ['$state'];
+  constructor($state, $http) {
+    this.$inject = ['$state', '$http'];
+    this.$http = $http;
     this.$state = $state;
     this.isLoggedIn = false;
     this.user = {};
@@ -19,11 +20,15 @@ export default class UserService {
     }
   }
 
-  login(token) {
-    console.log('logging in user');
-    this.isLoggedIn = true;
-    this.setToken(token);
-    this.processToken(); // update user data from token
+  login(email, password) {
+    this.$http.post('/auth/login', { email, password })
+      .then(resp => {
+        console.log('Resp: ', resp.data);
+      }).catch(err => console.log('Error: ', err));
+
+    // this.isLoggedIn = true;
+    // this.setToken();
+    // this.processToken(); // update user data from token
   }
 
   logout() {
