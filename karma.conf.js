@@ -5,12 +5,12 @@ module.exports = function(config) {
   config.set({
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
-    frameworks: ['mocha', 'chai'], // frameworks used in testing (jasmin/mocha/chai)
+    frameworks: ['mocha', 'sinon-chai'], // frameworks used in testing (jasmin/mocha/chai)
 
     // list of files / patterns to load in the browser
     files: [
-      './node_modules/jquery/dist/jquery.js',
-      './client/src/**/*.spec.js'
+      './node_modules/jquery/dist/jquery.js', // make sure jquery loads first
+      './client/src/index.spec.js'
     ],
     webpack: webpackConfig, // this loads the bundle for the app
 
@@ -42,7 +42,7 @@ module.exports = function(config) {
 
     plugins: [
       'karma-webpack',
-      'karma-chai',
+      'karma-sinon-chai',
       'karma-mocha',
       'karma-chrome-launcher',
       'karma-mocha-reporter',
