@@ -36,7 +36,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
+    browsers: ['Chrome', 'PhantomJS'],
 
     singleRun: process.env.TRAVIS || false, // set to true for ContinuousIntegration
 
@@ -46,6 +46,7 @@ module.exports = function(config) {
       'karma-mocha',
       'karma-chrome-launcher',
       'karma-mocha-reporter',
+      'karma-phantomjs-launcher'
     ]
   });
 };
