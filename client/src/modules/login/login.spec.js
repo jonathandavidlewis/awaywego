@@ -41,30 +41,30 @@ describe('LoginModule', function() {
   });
 
   it('should trigger UserService.login() when login is clicked', () => {
-    loginCtrl.username = 'user';
+    loginCtrl.email = 'user';
     loginCtrl.password = 'password';
     element.find('#login').submit();
     expect(loginSpy).to.have.been.called;
   });
 
   it('should trigger redirect to app.home when login is clicked', () => {
-    loginCtrl.username = 'user';
+    loginCtrl.email = 'user';
     loginCtrl.password = 'password';
     element.find('#login').submit();
     expect(goSpy).to.have.been.calledWith('app.home');
   });
 
-  it('should trigger validation error when username or password are blank', () => {
+  it('should trigger validation error when email or password are blank', () => {
     element.find('#login').submit();
     expect(loginCtrl.formWarning).to.be.not.empty;
-    loginCtrl.username = 'user';
+    loginCtrl.email = 'user';
     element.find('#login').submit();
     expect(loginCtrl.formWarning).to.be.not.empty;
-    loginCtrl.username = '';
+    loginCtrl.email = '';
     loginCtrl.password = 'password';
     element.find('#login').submit();
     expect(loginCtrl.formWarning).to.be.not.empty;
-    loginCtrl.username = 'user';
+    loginCtrl.email = 'user';
     element.find('#login').submit();
     expect(loginSpy).to.have.been.called;
   });

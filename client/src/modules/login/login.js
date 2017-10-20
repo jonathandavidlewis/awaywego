@@ -11,7 +11,7 @@ class LoginController {
   constructor(UserService, $state) {
     this.UserService = UserService;
     this.$state = $state;
-    this.username = '';
+    this.email = '';
     this.password = '';
     this.formWarning = '';
   }
@@ -24,10 +24,10 @@ class LoginController {
   }
 
   validateForm() {
-    if (!this.username || !this.password) {
-      this.formWarning = 'Please enter your ' +
-        (!this.username && !this.password ? 'username and password' :
-          !this.username ? 'password' : 'username');
+    if (!this.email || !this.password) {
+      this.formWarning = 'Please provide your ' +
+        (!this.email && !this.password ? 'email and password' :
+          !this.email ? 'password' : 'email');
       return false;
     } else {
       return true;
