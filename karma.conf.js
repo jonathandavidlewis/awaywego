@@ -38,7 +38,7 @@ module.exports = function(config) {
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
     browsers: ['Chrome'],
 
-    singleRun: true, // set to true for ContinuousIntegration
+    singleRun: process.env.TRAVIS || false, // set to true for ContinuousIntegration
 
     plugins: [
       'karma-webpack',
