@@ -18,7 +18,7 @@ class LoginController {
 
   login() {
     if (this.validateForm()) {
-      this.UserService.login(testToken);
+      this.UserService.login(this.email, this.password);
       this.$state.go('app.home');
     }
   }
