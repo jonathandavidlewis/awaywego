@@ -6,7 +6,7 @@ import './home.css';
 
 class HomeController {
   constructor() {
-    this.name = 'Welcome to the the home screen.';
+    this.name = 'Welcome to the home screen.';
   }
 }
 HomeController.$inject = [];
