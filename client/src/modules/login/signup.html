@@ -1,0 +1,38 @@
+<div class="login-container">
+  <div class="login-header"><span>Away We Go</span></div>
+  <div class="login-form-container">
+    <form ng-submit="$ctrl.login()">
+      <div class="login-input-row flex">
+        <label class="sr-only" for="email"></label>
+        <div class="login-input-icon input-group-addon"><i class="material-icons">account_circle</i></div>
+        <input class="login-input form-control" id="email" ng-model="$ctrl.email"
+          placeholder="Email Address" />
+      </div>
+      <div class="login-input-row flex">
+        <label class="sr-only" for="password"></label>
+        <div class="login-input-icon input-group-addon"><i class="material-icons">lock</i></div>
+        <input class="login-input form-control" id="password" ng-model="$ctrl.password"
+          type="password" placeholder="Password" />
+      </div>
+      <div class="login-input-row flex">
+        <label class="sr-only" for="conf-password"></label>
+        <div class="login-input-icon input-group-addon"><i class="material-icons">lock</i></div>
+        <input class="login-input form-control" id="conf-password" ng-model="$ctrl.confPassword"
+          type="password" placeholder="Confirm password" />
+      </div>
+      <div class="login-submit-container flex flex-center">
+        <div class="login-submit-button-container">
+          <button type="submit" class="login-button" id="login">Sign up</button>
+        </div>
+      </div>
+      <div ng-if="$ctrl.formWarning" class="login-form-warning flex flex-center">
+        <span>{{$ctrl.formWarning}}</span>
+      </div>
+    </form>
+  </div>
+  <div class="login-other-container">
+    <div class="login-other-container-item flex flex-center">
+      <a ui-sref="login">Already have an account? Login here</a>
+    </div>
+  </div>
+</div>
