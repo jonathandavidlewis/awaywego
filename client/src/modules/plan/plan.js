@@ -20,7 +20,9 @@ const PlanComponent = {
   controller: PlanController
 };
 
-const PlanModule = angular.module('app.plan', [PlannerModule])
+const PlanModule = angular.module('app.plan', [
+  PlannerModule
+])
   .component('plan', PlanComponent)
   .component('planNav', PlanNavComponent);
 

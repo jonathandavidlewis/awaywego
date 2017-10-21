@@ -23,7 +23,11 @@ const PlannerComponent = {
   controller: PlannerController
 };
 
-const PlannerModule = angular.module('app.plan.planner', [ItineraryModule, IdeasModule, AvailabilityModule])
+const PlannerModule = angular.module('app.plan.planner', [
+  ItineraryModule,
+  IdeasModule,
+  AvailabilityModule
+])
   .component('planner', PlannerComponent);
 
 
