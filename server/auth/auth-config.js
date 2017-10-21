@@ -30,5 +30,10 @@ passport.use(new LocalStrategy({usernameField: 'email'}, (email, password, done)
     }
   }).catch(err => console.log('Error: ', err));
 }));
-module.exports.pwdAuth = passport.authenticate('local', {session: false});
+
+module.exports.pwdAuth = function(req, res, next) {
+  passport.authenticate('local', (err, user, info) => {
+    if (user) { req.user = user; next(); } else { res.status(401).json(info); }
+  })(req, res, next);
+};
 module.exports.jwtOptions = jwtOptions;
