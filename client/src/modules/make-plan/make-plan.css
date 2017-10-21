@@ -1,0 +1,66 @@
+.make-plan-container {
+  height: 100%;
+  padding: 20px 50px;
+  background: linear-gradient(white, var(--b4));
+}
+
+.make-plan-header {
+  margin: 30px;
+  text-align: center;
+}
+
+.make-plan-header span {
+  font-size: 2em;
+  color: var(--b5);
+}
+
+.make-plan-input-block {
+  margin-bottom: 20px;
+}
+
+.make-plan-input-block label {
+  color: var(--b5);
+  font-style: italic;
+  font-size: 1.2em;
+}
+
+.make-plan-input-block div {
+  margin-top: -1rem;
+  margin-bottom: .5rem;
+}
+
+.make-plan-input {
+  width: 100%;
+}
+
+.make-plan-form-warning {
+  text-align: center;
+  color: red;
+}
+
+.make-plan-submit-button-container {
+  width: 100%;
+}
+
+.make-plan-button {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--b5);
+  color: var(--b1);
+  border: 1px solid var(--b5);
+}
+
+.login-button:hover {
+  background-color: var(--b4);
+}
+
+.make-plan-button:focus {
+  outline-color: var(--b3);
+}
+
+.make-plan-button:active {
+  background-color: var(--b5);
+   -moz-box-shadow:    inset 0 0 5px #000000;
+   -webkit-box-shadow: inset 0 0 5px #000000;
+   box-shadow:         inset 0 0 5px #000000;
+}

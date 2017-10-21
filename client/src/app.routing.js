@@ -47,11 +47,21 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
     }
   };
 
+  const makePlanState = {
+    name: 'app.makePlan',
+    url: '/new/plan',
+    component: 'makePlan',
+    resolve: {
+      protect: redirectIfNotAuthed
+    }
+  };
+
   $stateProvider.state(loginState);
   $stateProvider.state(signupState);
   $stateProvider.state(appState);
   $stateProvider.state(homeState);
   $stateProvider.state(planState);
+  $stateProvider.state(makePlanState);
 };
 
 routing.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
