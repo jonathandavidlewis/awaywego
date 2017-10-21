@@ -19,7 +19,6 @@ class LoginController {
   login() {
     if (this.validateForm()) {
       this.UserService.login(this.email, this.password).then(loggedIn => {
-        console.log('login called');
         if (loggedIn) {
           this.$state.go('app.home');
         } else {
