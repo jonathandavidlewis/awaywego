@@ -1,6 +1,7 @@
 import angular from 'angular';
 
-
+// Child Dependencies
+import ItineraryCardComponent from './itinerary-card/itinerary-card';
 // imports for this component
 import template from './itinerary.html';
 
@@ -21,7 +22,8 @@ const ItineraryComponent = {
 };
 
 const ItineraryModule = angular.module('app.plan.planner.itinerary', [])
-  .component('itinerary', ItineraryComponent);
+  .component('itinerary', ItineraryComponent)
+  .component('itineraryCard', ItineraryCardComponent);
 
 
 
