@@ -1,8 +1,14 @@
 .home-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  height: 100vh;
+  height: 100%;
   padding: 20px 50px;
-  background: linear-gradient(var(--b3), var(--b5));
+  background: linear-gradient(white, var(--b4));
 }
+
+.align-bottom {
+}
+
+.plan-card-space {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
