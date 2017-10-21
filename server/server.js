@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const app = express();
 const authRouter = require('./auth/auth-router.js');
+const { apiRouter } = require('./api/api-router.js');
 
 const User = require('../db/models/user');
 
@@ -13,6 +14,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/auth', authRouter);
+app.use('/api', apiRouter);
 
 // //todo: set to api routes
 // app.post('/testAuth', jwtAuth, (req, res) => {
