@@ -25,7 +25,13 @@ class SignupController {
         email: this.email,
         password: this.password
       };
-      this.UserService.signup(newUser);
+      this.UserService.signup(newUser).then(loggedIn => {
+        if (loggedIn) {
+          this.$state.go('app.home');
+        } else {
+          console.log('Login error, please try again or contact server admin');
+        }
+      });
     }
   }
 

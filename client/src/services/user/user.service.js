@@ -7,40 +7,38 @@ export default class UserService {
     this.$state = $state;
     this.isLoggedIn = false;
     this.user = {};
-    this.processToken();
+    this.processTokenAndSignIn(this.getToken());
   }
 
-  processToken() {
-    this.token = this.getToken();
-    if (this.token) {
-      let payload = decode(this.token);
-      this.user.name = payload.name;
-      this.user.id = payload.userId;
-      this.isLoggedIn = true;
+  processTokenAndSignIn(token) {
+    let payload;
+    try {
+      payload = decode(token);
+      this.setToken(token);
+    } catch (err) {
+      if (token) { console.log('Invalid token error: ', err); }
+      return false; // only log an error if there was actually a token
     }
+    this.user.name = payload.name;
+    this.user.id = payload.userId;
+    this.isLoggedIn = true;
+    return true;
   }
 
   signup(newUser) {
-    console.log('signing up new user: ', newUser);
     return this.$http.post('/auth/signup', newUser).then(resp => {
-      this.setToken(resp.data.token);
-      this.processToken();
-    }).catch(err => console.log('err'));
+      return this.processTokenAndSignIn(resp.data.token);
+    }).catch(err => err);
   }
 
   login(email, password) {
-    this.$http.post('/auth/login', { email, password })
+    return this.$http.post('/auth/login', { email, password })
       .then(resp => {
-        console.log('Resp: ', resp.data);
-      }).catch(err => console.log('Error: ', err));
-
-    // this.isLoggedIn = true;
-    // this.setToken();
-    // this.processToken(); // update user data from token
+        return this.processTokenAndSignIn(resp.data.token);
+      }).catch(err => err);
   }
 
   logout() {
-    console.log('logging out user');
     this.isLoggedIn = false;
     this.destroyToken();
     this.$state.go('login');

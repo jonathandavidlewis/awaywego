@@ -13,7 +13,7 @@ describe('LoginModule', function() {
     goSpy = sinon.spy($state, 'go');
 
     let UserService = {
-      login: (token) => null,
+      login: (token) => (new Promise((res, rej) => res(true))),
     };
     loginSpy = sinon.spy(UserService, 'login');
     $provide.value('$state', $state);
@@ -47,11 +47,16 @@ describe('LoginModule', function() {
     expect(loginSpy).to.have.been.called;
   });
 
-  it('should trigger redirect to app.home when login is clicked', () => {
+  it('should trigger redirect to app.home when login is clicked', (done) => {
     loginCtrl.email = 'user';
     loginCtrl.password = 'password';
     element.find('#login').submit();
-    expect(goSpy).to.have.been.calledWith('app.home');
+    setTimeout(() => { // since nested call has an internal async, using timeout for now
+      console.log('spies last call was: ');
+      console.log(goSpy.lastCall);
+      expect(goSpy).to.have.been.calledWith('app.home');
+      done();
+    }, 200);
   });
 
   it('should trigger validation error when email or password are blank', () => {

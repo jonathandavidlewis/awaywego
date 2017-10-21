@@ -18,8 +18,15 @@ class LoginController {
 
   login() {
     if (this.validateForm()) {
-      this.UserService.login(this.email, this.password);
-      this.$state.go('app.home');
+      this.UserService.login(this.email, this.password).then(loggedIn => {
+        console.log('login called');
+        if (loggedIn) {
+          this.$state.go('app.home');
+        } else {
+          console.log('Login error, please try again or contact server admin');
+        }
+      });
+    //
     }
   }
 
@@ -27,7 +34,7 @@ class LoginController {
     if (!this.email || !this.password) {
       this.formWarning = 'Please provide your ' +
         (!this.email && !this.password ? 'email and password' :
-          !this.email ? 'password' : 'email');
+          !this.email ? 'email' : 'password');
       return false;
     } else {
       return true;
