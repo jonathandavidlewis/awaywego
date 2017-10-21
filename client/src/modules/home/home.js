@@ -3,16 +3,29 @@ import angular from 'angular';
 import PlanCardComponent from './plan-card/plan-card';
 import NewPlanButtonComponent from './new-plan-button/new-plan-button';
 
-import PlanService from './home-services/plan.service';
+import PlanService from '../../services/plan/plan.service';
 // imports for this component
 import template from './home.html';
 import './home.css';
 
 class HomeController {
-  constructor(PlanService) {
-
-    this.name = 'Your Plans';
+  constructor($state, PlanService) {
+    this.$inject = ['$state', 'PlanService'];
+    this.$state = $state;
     this.PlanService = PlanService;
+    this.name = 'Your Plans';
+
+    this.deletePlan = function (planId) {
+      console.log("clicked!");
+      PlanService.deletePlanById(planId).then(
+          this.PlanService.getAllPlans().then(res => this.loadPlans(res.data))
+      )
+    };
+
+    this.loadPlans = (plans) => {
+      console.log(plans, "plans'");
+      this.plans = plans;
+    };
 
     this.plans = [
       {
@@ -26,17 +39,19 @@ class HomeController {
         imageUrl: "http://imaging.nikon.com/lineup/dslr/d600/img/sample01/img_01.png"
       }
     ];
-    this.$onInit = function () {
-      PlanService.getPlan('/api/plan', {}, this.loadPlans);
-    };
+    this.$onInit = () => {
+
+
+      this.PlanService.getAllPlans().then(res => this.loadPlans(res.data));
+    }
   }
 
-  loadPlans(plans) {
-    this.plans = plans;
-  }
+
+
 
 }
-HomeController.$inject = [];
+
+
 
 const HomeComponent = {
   restrict: 'E',

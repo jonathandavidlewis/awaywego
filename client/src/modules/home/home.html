@@ -1,5 +1,5 @@
 <div class="home-container flex-col flex-start flex-align-stretch">
   <h2>{{$ctrl.name}}</h2>
-  <plan-card class="plan-card-space" plan="plan" ng-repeat="plan in $ctrl.plans"></plan-card>
+  <plan-card deletePlan="$ctrl.deletePlan" class="plan-card-space" plan="plan" ng-repeat="plan in $ctrl.plans"></plan-card>
   <new-plan-button class="align-bottom"></new-plan-button>
 </div>
