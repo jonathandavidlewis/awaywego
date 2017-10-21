@@ -2,7 +2,7 @@ import angular from 'angular';
 
 // imports for this component
 import template from './plan-card.html';
-//import './home.css';
+import './plan-card.css';
 
 class PlanCardController {
   constructor() {
