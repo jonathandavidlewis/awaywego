@@ -8,18 +8,17 @@ planRouter.get('/', (req, res) => {
 });
 
 planRouter.post('/', (req, res) => {
-   const plan = req.body.plan;
-   plan.userId = req.user._id;
-  //append user to the plan object
-  Plan.create(req.body.plan).then(plan => res.status(201).json({_id: plan._id}))
+   const newPlan = req.body.plan;
+   console.log(req.user);
+  newPlan.userId = req.user._id;
+  Plan.create(newPlan).then(plan => res.status(201).json({_id: plan._id}))
       .cath(err => res.status(500).send('Server error: ', err));
 });
 
 planRouter.get('/:planId', (req, res) => {
 
-  //get user from req.user
-  //validate user is a member of the plan
-  Plan.find({userId: req.params.planId}).then(plans => res.status(200).json(plans))
+  //todo: get user from req.user and validate user is a member of the plan
+  Plan.find({_id: req.params.planId}).then(plans => res.status(200).json(plans))
   .cath(err => res.status(500).send('Server error: ', err));
 });
 
