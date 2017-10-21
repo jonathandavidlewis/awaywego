@@ -18,6 +18,7 @@ export default class UserService {
       if (token) { console.log('Invalid token error: ', err); }
       return false; // only log an error if there was actually a token
     }
+    this.$http.defaults.headers.common.Authorization = 'bearer ' + token;
     this.user.name = payload.name;
     this.user.id = payload.userId;
     this.isLoggedIn = true;
@@ -38,6 +39,7 @@ export default class UserService {
 
   logout() {
     this.isLoggedIn = false;
+    this.$http.default.headers.common.Authorization = '';
     this.destroyToken();
     this.$state.go('login');
   }
