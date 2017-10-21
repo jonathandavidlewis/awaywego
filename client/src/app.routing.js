@@ -38,6 +38,12 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
     component: 'home',
   };
 
+  const makePlanState = {
+    name: 'app.makePlan',
+    url: '/new/plan',
+    component: 'makePlan',
+  };
+
   const planState = {
     name: 'app.plan',
     url: '/plan',
@@ -47,11 +53,13 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
     }
   };
 
-
-  const makePlanState = {
-    name: 'app.makePlan',
-    url: '/new/plan',
-    component: 'makePlan',
+  const feedState = {
+    name: 'app.plan.feed',
+    url: '/feed',
+    component: 'feed',
+    resolve: {
+      protect: redirectIfNotAuthed
+    }
   };
 
   const plannerState = {
@@ -94,8 +102,9 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
   $stateProvider.state(signupState);
   $stateProvider.state(appState);
   $stateProvider.state(homeState);
-  $stateProvider.state(planState);
   $stateProvider.state(makePlanState);
+  $stateProvider.state(planState);
+  $stateProvider.state(feedState);
   $stateProvider.state(plannerState);
   $stateProvider.state(plannerItineraryState);
   $stateProvider.state(plannerIdeasState);

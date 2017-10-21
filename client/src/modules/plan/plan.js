@@ -1,6 +1,7 @@
 import angular from 'angular';
 
 import PlanNavComponent from './plan-nav/plan-nav';
+import FeedModule from './feed/feed';
 import PlannerModule from './planner/planner';
 // imports for this component
 import template from './plan.html';
@@ -21,6 +22,7 @@ const PlanComponent = {
 };
 
 const PlanModule = angular.module('app.plan', [
+  FeedModule,
   PlannerModule
 ])
   .component('plan', PlanComponent)
