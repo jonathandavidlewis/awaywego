@@ -4,6 +4,7 @@
     border-radius: 5px; /* 5px rounded corners */
     width: 100%;
     margin: 0 40px 20px 20px;
+    position: relative;
 }
 
 /* Add rounded corners to the top left and the top right corner of the image */
@@ -11,4 +12,22 @@
     border-radius: 5px 5px 0 0;
     width: 150px;
     height: 150px;
+    padding: 10px;
+}
+
+
+.itinerary-card-comment-icon {
+  justify-content: flex-end;
+}
+
+.itinerary-card-rsvp {
+
+  position: absolute;
+  bottom: 5px;
+}
+
+.itinerary-card-comment-icon {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
 }
