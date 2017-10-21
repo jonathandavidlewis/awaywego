@@ -15,7 +15,7 @@ class HomeController {
     this.PlanService = PlanService;
     this.name = 'Your Plans';
 
-    this.deletePlan = function (planId) {
+    this.deletePlan = (planId) => {
       console.log("clicked!");
       PlanService.deletePlanById(planId).then(
           this.PlanService.getAllPlans().then(res => this.loadPlans(res.data))
@@ -27,21 +27,7 @@ class HomeController {
       this.plans = plans;
     };
 
-    this.plans = [
-      {
-        title: "Weekend Getaway",
-        description: "Lets go out to the deasert this weekensd and have a ton of fun. We will be meeting up over by the catus.",
-        imageUrl: "http://imaging.nikon.com/lineup/dslr/d600/img/sample01/img_01.png"
-      },
-      {
-        title: "Going to the Beach",
-        description: "Summer is coming, so lets go to the beach!",
-        imageUrl: "http://imaging.nikon.com/lineup/dslr/d600/img/sample01/img_01.png"
-      }
-    ];
     this.$onInit = () => {
-
-
       this.PlanService.getAllPlans().then(res => this.loadPlans(res.data));
     }
   }
