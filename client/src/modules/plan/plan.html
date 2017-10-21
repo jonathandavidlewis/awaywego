@@ -1,8 +1,10 @@
-<div>
+<div class="flex flex-col">
   <h2>{{$ctrl.title}}</h2>
   <p>The plan is described</p>
   <div>
     <ui-view></ui-view>
   </div>
-  <plan-nav></plan-nav>
+  <div class="flex-end">
+    <plan-nav></plan-nav>
+  </div>
 </div>
