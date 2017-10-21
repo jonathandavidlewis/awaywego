@@ -58,12 +58,14 @@ html, body {
 
 
 
-
 /*
 Do we really want this to apply to all components?
-.ng-scope, .app-container {*/
-  /*height: 100%;*/
-/*}*/
+*/
+
+
+.ng-scope, .app-container {
+  /height: 100%;
+}
 
 .app-container {
   display: flex;
