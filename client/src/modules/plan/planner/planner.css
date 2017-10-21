@@ -4,6 +4,7 @@
   align-content: center;
   height: 100%;
   padding-right: 20px;
+  overflow: hidden;
 }
 
 .planner-top-nav {
