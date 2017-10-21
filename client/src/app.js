@@ -6,6 +6,7 @@ import CommonModule from './modules/common/common';
 import HomeModule from './modules/home/home';
 import LoginModule from './modules/login/login';
 import SignupModule from './modules/login/signup';
+import PlanModule from './modules/plan/plan';
 
 // import global services
 import UserService from './services/user/user.service';
@@ -14,6 +15,7 @@ import UserService from './services/user/user.service';
 import appRouting from './app.routing';
 import template from './app.html';
 import './app.css';
+import PlanCardComponent from './modules/home/plan-card/plan-card';
 
 class AppController {
   constructor(UserService) {
@@ -33,6 +35,7 @@ angular.module('app', [
   HomeModule,
   LoginModule,
   SignupModule,
+  PlanModule
 ])
   .service('UserService', UserService)
   .config(appRouting)
