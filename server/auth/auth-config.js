@@ -12,7 +12,7 @@ const debug = process.env.DEBUG || false;
 
 passport.use(new JwtStrategy(jwtOptions, (jwtPayload, done) => {
   if (debug) { console.log('JWT token payload received: ', jwtPayload); }
-  User.findOneById(jwtPayload.userId).then(user => {
+  User.findById(jwtPayload.userId).then(user => {
     if (user) { done(null, user); } else { done(null, false); }
   });
 }));
