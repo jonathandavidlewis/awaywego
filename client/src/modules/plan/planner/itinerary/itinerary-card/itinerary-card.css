@@ -23,11 +23,11 @@
 .itinerary-card-rsvp {
 
   position: absolute;
-  bottom: 5px;
+  bottom: 7.5px;
 }
 
 .itinerary-card-comment-icon {
   position: absolute;
   right: 5px;
-  bottom: 5px;
+  bottom: 0px;
 }
