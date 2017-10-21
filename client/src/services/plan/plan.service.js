@@ -9,7 +9,7 @@ export default class PlanService {
 
   getPlanById(planId) { return this.plans.find(plan => plan._id === planId) }
 
-  deletePlanById(planId) { this.$http.delete(`/api/plan${planId}`); }
+  deletePlanById(planId) { return this.$http.delete(`/api/plan/${planId}`); }
 
   getAllPlans() { return this.$http.get('/api/plan/') }
 }

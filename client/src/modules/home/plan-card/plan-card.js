@@ -9,9 +9,8 @@ class PlanCardController {
     this.$inject = ['$state', '$scope'];
     this.name = 'This is a plan title';
     this. handleDeleteClick = () => {
-
       this.deletePlan(this.plan._id);
-      debugger
+
     }
 
   }
@@ -21,7 +20,7 @@ const PlanCardComponent = {
   restrict: 'E',
   bindings: {
     plan: '<',
-    deletePlan: '&'
+    deletePlan: '<'
   },
   template: template,
   controller: PlanCardController
