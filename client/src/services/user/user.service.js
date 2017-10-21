@@ -1,10 +1,9 @@
 import decode from 'jwt-decode';
 
 export default class UserService {
-  constructor($state, $http) {
-    this.$inject = ['$state', '$http'];
+  constructor($http) {
+    this.$inject = ['$http'];
     this.$http = $http;
-    this.$state = $state;
     this.isLoggedIn = false;
     this.user = {};
     this.processTokenAndSignIn(this.getToken());
