@@ -12,10 +12,6 @@ describe('LoginModule', function() {
     };
     goSpy = sinon.spy($state, 'go');
 
-    let UserService = {
-      login: (token) => (new Promise((res, rej) => res(true))),
-    };
-    loginSpy = sinon.spy(UserService, 'login');
     $provide.value('$state', $state);
     $provide.value('UserService', UserService);
   }));
@@ -23,7 +19,9 @@ describe('LoginModule', function() {
   // loading the module itself
   beforeEach(angular.mock.module('app.login'));
   // rendering the login component
-  beforeEach(angular.mock.inject(($rootScope, $compile, UserService, $state) => {
+  beforeEach(angular.mock.inject(($rootScope, $compile, UserService, $state, $q) => {
+    UserService.login = () => $q((res, rej) => res(true));
+    loginSpy = sinon.spy(UserService, 'login');
     scope = $rootScope.$new();
     element = angular.element('<login></login>');
     element = $compile(element)(scope);
@@ -52,8 +50,6 @@ describe('LoginModule', function() {
     loginCtrl.password = 'password';
     element.find('#login').submit();
     setTimeout(() => { // since nested call has an internal async, using timeout for now
-      console.log('spies last call was: ');
-      console.log(goSpy.lastCall);
       expect(goSpy).to.have.been.calledWith('app.home');
       done();
     }, 200);
