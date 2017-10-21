@@ -4,6 +4,7 @@ import PlanNavComponent from './plan-nav/plan-nav';
 import PlannerModule from './planner/planner';
 // imports for this component
 import template from './plan.html';
+import './plan.css';
 
 class PlanController {
   constructor() {

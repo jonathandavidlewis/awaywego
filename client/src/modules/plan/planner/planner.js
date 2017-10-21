@@ -1,12 +1,13 @@
 import angular from 'angular';
 
-
-// imports for this component
-import template from './planner.html';
+// import child Modules
 import ItineraryModule from './itinerary/itinerary';
 import IdeasModule from './ideas/ideas';
 import AvailabilityModule from './availability/availability';
 
+// imports for this component
+import template from './planner.html';
+import './planner.css';
 
 class PlannerController {
   constructor() {
