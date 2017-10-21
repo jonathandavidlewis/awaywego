@@ -1,0 +1,18 @@
+[
+  {
+    "planId": "v3456yv456v46",
+    "label": "Weekend getaway",
+    "description": "Let's go to the mountains and have some fun. This trip will last the weekend.",
+    "imageUrl": "http://imaging.nikon.com/lineup/dslr/d600/img/sample01/img_01.png",
+    "tags": ["hiking", "outdoors", "food"],
+    "members": ["563gv456", "345f6", "fo3cf453bv54od"]
+  },
+  {
+    "planId": "457h347347nb",
+    "label": "Fun BBQ",
+    "description": "Let's have a BBQ!!!",
+    "imageUrl": "http://imaging.nikon.com/lineup/dslr/d600/img/sample01/img_01.png",
+    "tags": ["food", "outdoors", "friends"],
+    "members": ["563gv456", "345f6"]
+  }
+]
