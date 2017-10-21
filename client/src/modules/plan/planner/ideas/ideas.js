@@ -1,8 +1,11 @@
 import angular from 'angular';
 
+// import child dependencies
+import IdeasCardComponent from './ideas-card/ideas-card.js';
 
 // imports for this component
 import template from './ideas.html';
+import './ideas.css';
 
 
 
@@ -21,7 +24,8 @@ const IdeasComponent = {
 };
 
 const IdeasModule = angular.module('app.plan.planner.ideas', [])
-  .component('ideas', IdeasComponent);
+  .component('ideas', IdeasComponent)
+  .component('ideasCard', IdeasCardComponent);
 
 
 
