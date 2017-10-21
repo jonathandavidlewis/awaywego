@@ -3,6 +3,8 @@ import angular from 'angular';
 
 // imports for this component
 import template from './planner.html';
+import ItineraryModule from './itinerary/itinerary';
+
 
 class PlannerController {
   constructor() {
@@ -18,8 +20,9 @@ const PlannerComponent = {
   controller: PlannerController
 };
 
-const PlannerModule = angular.module('app.plan.planner', [])
+const PlannerModule = angular.module('app.plan.planner', [ItineraryModule])
   .component('planner', PlannerComponent);
+
 
 
 
