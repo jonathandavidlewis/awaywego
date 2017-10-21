@@ -81,6 +81,15 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
     }
   };
 
+  const plannerAvailabilityState = {
+    name: 'app.plan.planner.availability',
+    url: '/availability',
+    component: 'availability',
+    resolve: {
+      protect: redirectIfNotAuthed
+    }
+  };
+
   $stateProvider.state(loginState);
   $stateProvider.state(signupState);
   $stateProvider.state(appState);
@@ -90,6 +99,7 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
   $stateProvider.state(plannerState);
   $stateProvider.state(plannerItineraryState);
   $stateProvider.state(plannerIdeasState);
+  $stateProvider.state(plannerAvailabilityState);
 };
 
 routing.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
