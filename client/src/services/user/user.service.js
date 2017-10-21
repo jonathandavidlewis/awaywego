@@ -1,8 +1,9 @@
 import decode from 'jwt-decode';
 
 export default class UserService {
-  constructor($http) {
-    this.$inject = ['$http'];
+  constructor($http, $state) {
+    this.$inject = ['$http', '$state'];
+    this.$state = $state;
     this.$http = $http;
     this.isLoggedIn = false;
     this.user = {};
@@ -39,7 +40,7 @@ export default class UserService {
 
   logout() {
     this.isLoggedIn = false;
-    this.$http.default.headers.common.Authorization = '';
+    this.$http.defaults.headers.common.Authorization = '';
     this.destroyToken();
     this.$state.go('login');
   }
