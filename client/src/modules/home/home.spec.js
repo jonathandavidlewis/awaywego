@@ -16,13 +16,9 @@ describe('HomeModule', function() {
     expect(element.find('div.home-container').length).to.equal(1);
   });
 
-  it('should render a welcome message', () => {
-    var name = 'Welcome to the home screen.';
-    expect(element.find('h1').text()).to.equal(name);
-  });
 
   it('should have a controller with a name property', () => {
-    expect(element.isolateScope().$ctrl.name).to.exist;
+    expect(element.isolateScope().$ctrl).to.exist;
   });
 
   // this is not a meaningful test - it's serving as an example for now
@@ -42,7 +38,7 @@ describe('HomeController', function() {
   }));
 
   it ('should be a component called home with a name property', () => {
-    expect(HomeController.name).to.equal('Welcome to the home screen.');
+    expect(HomeController).to.exist;
   });
 
 });

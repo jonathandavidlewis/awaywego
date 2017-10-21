@@ -38,10 +38,20 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
     component: 'home',
   };
 
+  const planState = {
+    name: 'app.plan',
+    url: '/plan',
+    component: 'plan',
+    resolve: {
+      protect: redirectIfNotAuthed
+    }
+  };
+
   $stateProvider.state(loginState);
   $stateProvider.state(signupState);
   $stateProvider.state(appState);
   $stateProvider.state(homeState);
+  $stateProvider.state(planState);
 };
 
 routing.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
