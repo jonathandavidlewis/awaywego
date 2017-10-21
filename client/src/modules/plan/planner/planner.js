@@ -5,6 +5,7 @@ import angular from 'angular';
 import template from './planner.html';
 import ItineraryModule from './itinerary/itinerary';
 import IdeasModule from './ideas/ideas';
+import AvailabilityModule from './availability/availability';
 
 
 class PlannerController {
@@ -21,7 +22,7 @@ const PlannerComponent = {
   controller: PlannerController
 };
 
-const PlannerModule = angular.module('app.plan.planner', [ItineraryModule, IdeasModule])
+const PlannerModule = angular.module('app.plan.planner', [ItineraryModule, IdeasModule, AvailabilityModule])
   .component('planner', PlannerComponent);
 
 

@@ -1,8 +1,15 @@
 <div class="flex flex-center">
   <div class="flex">
-    <div class="plan-nav-button">Itinerary</div>
-    <div class="plan-nav-button">Ideas</div>
-    <div class="plan-nav-button">Availability</div>
+    <a ui-sref="app.plan.planner.itinerary">
+      <div class="plan-nav-button">Itinerary</div>
+    </a>
+
+    <a ui-sref="app.plan.planner.ideas">
+      <div class="plan-nav-button">Ideas</div>
+    </a>
+    <a ui-sref="app.plan.planner.availability">
+      <div class="plan-nav-button">Availability</div>
+    </a>
   </div>
   <div>
     <br><ui-view></ui-view>
