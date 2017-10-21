@@ -1,7 +1,7 @@
 <div class="make-plan-container flex-col flex-start flex-align-stretch">
   <div class="make-plan-header"><span>Awesome! <br /> Let's get started</span></div>
   <div class="make-plan-form-container">
-    <form>
+    <form ng-submit="$ctrl.submit()">
       <div class="make-plan-input-block">
         <label for="plan-title">First give your plan a name:</label>
         <input class="make-plan-input form-control" id="plan-title" ng-model="$ctrl.title"
