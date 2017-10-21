@@ -10,8 +10,6 @@ class FeedController {
   }
 }
 
-FeedController.$inject = [];
-
 const FeedComponent = {
   restrict: 'E',
   bindings: {
