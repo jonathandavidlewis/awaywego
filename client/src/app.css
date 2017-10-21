@@ -57,3 +57,7 @@ html, body {
   display: flex;
   flex-direction: column;
 }
+
+.app-header {
+  flex: 0 0 0;
+}
