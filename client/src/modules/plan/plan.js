@@ -1,6 +1,7 @@
 import angular from 'angular';
 
 import PlanNavComponent from './plan-nav/plan-nav';
+import PlannerModule from './planner/planner';
 // imports for this component
 import template from './plan.html';
 
@@ -18,9 +19,11 @@ const PlanComponent = {
   controller: PlanController
 };
 
-const PlanModule = angular.module('app.plan', [])
+const PlanModule = angular.module('app.plan', [PlannerModule])
   .component('plan', PlanComponent)
   .component('planNav', PlanNavComponent);
+
+
 
 
 export default PlanModule.name;

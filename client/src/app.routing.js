@@ -47,10 +47,17 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
     }
   };
 
+
   const makePlanState = {
     name: 'app.makePlan',
     url: '/new/plan',
     component: 'makePlan',
+  };
+
+  const plannerState = {
+    name: 'app.plan.planner',
+    url: '/planner',
+    component: 'planner',
     resolve: {
       protect: redirectIfNotAuthed
     }
@@ -62,6 +69,7 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
   $stateProvider.state(homeState);
   $stateProvider.state(planState);
   $stateProvider.state(makePlanState);
+  $stateProvider.state(plannerState);
 };
 
 routing.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
