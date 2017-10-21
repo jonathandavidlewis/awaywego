@@ -28,14 +28,13 @@ export default class UserService {
   signup(newUser) {
     return this.$http.post('/auth/signup', newUser).then(resp => {
       return this.processTokenAndSignIn(resp.data.token);
-    }).catch(err => err);
+    });
   }
 
   login(email, password) {
-    return this.$http.post('/auth/login', { email, password })
-      .then(resp => {
-        return this.processTokenAndSignIn(resp.data.token);
-      }).catch(err => err);
+    return this.$http.post('/auth/login', { email, password }).then(resp => {
+      return this.processTokenAndSignIn(resp.data.token);
+    });
   }
 
   logout() {

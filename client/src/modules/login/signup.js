@@ -31,6 +31,12 @@ class SignupController {
         } else {
           console.log('Login error, please try again or contact server admin');
         }
+      }).catch(err => {
+        if (err.status === 422) {
+          this.formWarning = 'Email already registered, check again or try signing in';
+        } else {
+          console.log('Error: ', err);
+        }
       });
     }
   }

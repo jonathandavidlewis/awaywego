@@ -24,8 +24,13 @@ class LoginController {
         } else {
           console.log('Login error, please try again or contact server admin');
         }
+      }).catch(err => {
+        if (err.data.messages === 'Incorrect password') {
+          this.formWarning = 'Incorrect password, please try again';
+        } else if (err.data.messages === 'User not found') {
+          this.formWarning = 'User not found, please try again';
+        }
       });
-    //
     }
   }
 
