@@ -3,13 +3,8 @@
   font-family: 'Lato', sans-serif;
 }
 
-.ng-scope, .app-container {
+.h100 {
   height: 100%;
-}
-
-.app-container {
-  display: flex;
-  flex-direction: column;
 }
 
 :root {

@@ -12,6 +12,10 @@
   margin-left: 20px;
 }
 
+a.header-title {
+  text-decoration: none;
+}
+
 .header-user-menu-container {
   font-size: 1.3em;
   margin-right: 20px;
