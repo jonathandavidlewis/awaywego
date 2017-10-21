@@ -1,6 +1,9 @@
-<div class="plan-card-container">
-  <hr/>
-  <h2>{{$ctrl.plan.title}}</h2>
-  <p>{{$ctrl.plan.description}}</p>
-  <hr/>
+<div class="plan-card-container space-around flex">
+  <div class="card-thumb-container">
+    <img class="plan-card-image" ng-src={{$ctrl.plan.imageUrl}} alt=""/>
+  </div>
+  <div class="text-center">
+    <h2>{{$ctrl.plan.title}}</h2>
+    <p>{{$ctrl.plan.description}}</p>
+  </div>
 </div>
