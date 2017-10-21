@@ -4,6 +4,7 @@ import angular from 'angular';
 import ItineraryCardComponent from './itinerary-card/itinerary-card';
 // imports for this component
 import template from './itinerary.html';
+import './itinerary.css';
 
 
 

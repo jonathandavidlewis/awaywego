@@ -1,0 +1,6 @@
+.itinerary-container {
+  display: flex;
+  flex-direction: column;
+  flex-flow: row wrap;
+  width: 95%;
+}

@@ -3,10 +3,11 @@
   flex-direction: column;
   align-content: center;
   height: 100%;
-  padding: 20px 50px;
+  overflow: auto;
+  padding-right: 20px;
 }
 
 .planner-top-nav {
 
-  
+
 }
