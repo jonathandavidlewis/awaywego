@@ -3,6 +3,15 @@
   font-family: 'Lato', sans-serif;
 }
 
+.ng-scope, .app-container {
+  height: 100%;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+}
+
 :root {
   --b1: #e9fbfc;
   --b2: #d2f7f9;
