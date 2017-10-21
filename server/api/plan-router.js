@@ -3,28 +3,30 @@ const Plan = require('../../db/models/plan.js');
 
 planRouter.get('/', (req, res) => {
 
-  Plan.find({userId: req.user._id}).then(plans => res.status(200).json(plans))
-    .cath(err => res.status(500).send('Server error: ', err));
+  Plan.find({userId: req.user._id}).then(plans => {
+    res.status(200).json(plans)
+  })
+    .catch(err => res.status(500).send('Server error: ', err));
 });
 
 planRouter.post('/', (req, res) => {
-   const newPlan = req.body.plan;
+   const newPlan = req.body;
    console.log(req.user);
   newPlan.userId = req.user._id;
   Plan.create(newPlan).then(plan => res.status(201).json({_id: plan._id}))
-      .cath(err => res.status(500).send('Server error: ', err));
+      .catch(err => res.status(500).send('Server error: ', err));
 });
 
 planRouter.get('/:planId', (req, res) => {
 
   //todo: get user from req.user and validate user is a member of the plan
   Plan.find({_id: req.params.planId}).then(plans => res.status(200).json(plans))
-  .cath(err => res.status(500).send('Server error: ', err));
+  .catch(err => res.status(500).send('Server error: ', err));
 });
 
 planRouter.delete('/:planId', (req, res) => {
   Plan.findOneAndRemove({_id: req.params.planId}).then(() => res.status(200).send('Deleted'))
-    .cath(err => res.status(500).send('Server error: ', err));
+    .catch(err => res.status(500).send('Server error: ', err));
 });
 
 planRouter.put('/:planId', (req, res) => {
@@ -32,7 +34,7 @@ planRouter.put('/:planId', (req, res) => {
     delete req.body.plan._id
   }
   Plan.findOneAndUpdate({_id: req.params.planId}, req.body.plan).then(plan => res.status(200).json(plan))
-    .cath(err => res.status(500).send('Server error: ', err));
+    .catch(err => res.status(500).send('Server error: ', err));
 });
 
 module.exports.planRouter = planRouter;

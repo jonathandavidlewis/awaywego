@@ -9,7 +9,6 @@ class NewPlanButtonController {
     this.name = 'This is a plan title';
   }
 }
-NewPlanButtonController.$inject = [];
 
 const NewPlanButtonComponent = {
   restrict: 'E',

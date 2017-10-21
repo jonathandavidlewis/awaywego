@@ -5,16 +5,23 @@ import template from './plan-card.html';
 import './plan-card.css';
 
 class PlanCardController {
-  constructor() {
+  constructor($state, $scope) {
+    this.$inject = ['$state', '$scope'];
     this.name = 'This is a plan title';
+    this. handleDeleteClick = () => {
+
+      this.deletePlan(this.plan._id);
+      debugger
+    }
+
   }
 }
-PlanCardController.$inject = [];
 
 const PlanCardComponent = {
   restrict: 'E',
   bindings: {
-    plan: '<'
+    plan: '<',
+    deletePlan: '&'
   },
   template: template,
   controller: PlanCardController

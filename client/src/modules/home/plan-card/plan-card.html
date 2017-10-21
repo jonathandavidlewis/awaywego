@@ -6,4 +6,6 @@
     <h4>{{$ctrl.plan.title}}</h4>
     <p>{{$ctrl.plan.description}}</p>
   </div>
+  <a ui-sref="app.plan.feed({ plan: plan })">Check out details for this plan</a>
+  <a ng-click="$ctrl.handleDeleteClick()">DELETE</a>
 </div>
