@@ -2,6 +2,7 @@ import angular from 'angular';
 
 // imports for this component
 import template from './plan-nav.html';
+import './plan-nav.css';
 
 class PlanNavController {
   constructor() {
