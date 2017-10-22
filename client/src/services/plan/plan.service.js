@@ -2,7 +2,7 @@ export default class PlanService {
   constructor($http) {
     this.$inject = ['$http'];
     this.$http = $http;
-    this.plans = {};
+    this.plans = [];
   }
 
   submitNewPlan(plan) { return this.$http.post('/api/plan', plan); }
