@@ -3,21 +3,27 @@
   <div class="login-form-container">
     <form name="loginForm" ng-submit="$ctrl.login()" novalidate>
       <div class="form-group">
-        <div class="flex">
+        <div class="form-group-row">
           <label class="sr-only" for="email"></label>
           <div class="awgl-form-input-icon input-group-addon"><i class="material-icons">account_circle</i></div>
           <input class="awgl-form-input form-control" name="email" type="email"
           ng-model="$ctrl.email" placeholder="Email Address" required
-          ng-class="{'has-error' : loginForm.email.$invalid && loginForm.email.$touched }" />
+          ng-class="{'awgl-has-error' : loginForm.email.$invalid && loginForm.email.$touched }" />
+          <div class="awgl-error-icon" ng-show="loginForm.email.$invalid && loginForm.email.$touched">
+            <i class="material-icons">error_outline</i>
+          </div>
         </div>
       </div>
       <div class="form-group">
-        <div class="flex">
+        <div class="form-group-row">
           <label class="sr-only" for="password"></label>
           <div class="awgl-form-input-icon input-group-addon"><i class="material-icons">lock</i></div>
           <input class="awgl-form-input form-control" name="password" type="password"
           ng-model="$ctrl.password" placeholder="Password" required
-          ng-class="{'has-error' : loginForm.password.$invalid && loginForm.password.$touched }" />
+          ng-class="{'awgl-has-error' : loginForm.password.$invalid && loginForm.password.$touched }" />
+          <div class="awgl-error-icon" ng-show="loginForm.password.$invalid && loginForm.password.$touched">
+            <i class="material-icons">error_outline</i>
+          </div>
         </div>
       </div>
       <div class="login-submit-container flex flex-center">
@@ -25,7 +31,7 @@
           <button type="submit" class="awgl-button" id="login" ng-disabled="loginForm.$invalid">Sign in</button>
         </div>
       </div>
-      <div ng-if="$ctrl.formWarning" class="awg-form-warning flex flex-center">
+      <div ng-if="$ctrl.formWarning" class="awgl-form-warning flex flex-center">
         <span>{{$ctrl.formWarning}}</span>
       </div>
     </form>

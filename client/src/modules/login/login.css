@@ -15,17 +15,22 @@
   height: 100%;
   overflow: auto;
   padding: 20px 50px;
-  background: linear-gradient(135deg, var(--m1), var(--m4));
+  background: linear-gradient(135deg, var(--dk2), var(--dk5));
 }
 
-.login-header {
+.login-header,
+.signup-header {
   margin: 50px 0 100px 0;
   text-align: center;
+  font-size: 3em;
 }
 
 .login-header span {
-  font-size: 3em;
   color: var(--dk3);
+}
+
+.signup-header span {
+  color: white;
 }
 
 .login-submit-container {
@@ -36,8 +41,13 @@
   width: 100%;
 }
 
-.login-other-container a {
+.login-other-container a,
+.signup-other-container a {
   margin-top: 5px;
   text-decoration: none;
   color: var(--dk3);
+}
+
+.signup-other-container a {
+  color: var(--m1);
 }

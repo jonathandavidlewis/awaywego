@@ -1,43 +1,57 @@
 <div class="signup-container">
-  <div class="login-header"><span>Away We Go</span></div>
+  <div class="signup-header"><span>Away We Go</span></div>
   <div class="login-form-container">
     <form name="signupForm" ng-submit="$ctrl.signup()" novalidate>
       <div class="form-group">
-        <div class="flex" >
+        <div class="form-group-row" >
           <label class="sr-only" for="name"></label>
           <div class="awgd-form-input-icon input-group-addon"><i class="material-icons">face</i></div>
           <input class="awgd-form-input form-control"  name="name" type="text"
           ng-model="$ctrl.name" placeholder="Name" required
-          ng-class="{'has-error' : signupForm.name.$invalid && signupForm.name.$touched }" />
+          ng-class="{'awgd-has-error' : signupForm.name.$invalid && signupForm.name.$touched }" />
+          <div class="awgd-error-icon" ng-show="signupForm.name.$invalid && signupForm.name.$touched">
+            <i class="material-icons">error_outline</i>
+          </div>
         </div>
-        <p class="awg-form-warning" ng-show="signupForm.name.$invalid && signupForm.name.$touched">Name is required</p>
+        <div class="awgd-form-warning" ng-show="signupForm.name.$invalid && signupForm.name.$touched">
+          <span>Name is required</span>
+        </div>
       </div>
       <div class="form-group">
-        <div class="flex">
+        <div class="form-group-row">
           <label class="sr-only" for="email"></label>
           <div class="awgd-form-input-icon input-group-addon"><i class="material-icons">account_circle</i></div>
           <input class="awgd-form-input form-control" name="email" type="email"
           ng-model="$ctrl.email" placeholder="Email Address" required
-          ng-class="{'has-error' : signupForm.email.$invalid && signupForm.email.$touched }" />
+          ng-class="{'awgd-has-error' : signupForm.email.$invalid && signupForm.email.$touched }" />
+          <div class="awgd-error-icon" ng-show="signupForm.email.$invalid && signupForm.email.$touched">
+            <i class="material-icons">error_outline</i>
+          </div>
         </div>
-        <p class="awg-form-warning" ng-show="signupForm.email.$invalid && signupForm.email.$touched">Please enter a valid email</p>
+        <p class="awgd-form-warning" ng-show="signupForm.email.$invalid && signupForm.email.$touched">Please enter a valid email</p>
       </div>
       <div class="form-group">
-        <div class="flex">
+        <div class="form-group-row">
           <label class="sr-only" for="password"></label>
           <div class="awgd-form-input-icon input-group-addon"><i class="material-icons">lock_open</i></div>
           <input class="awgd-form-input form-control" name="password" type="password"
           ng-model="$ctrl.password" placeholder="Password" required
-          ng-class="{'has-error' : signupForm.password.$invalid && signupForm.password.$touched }" />
+          ng-class="{'awgd-has-error' : signupForm.password.$invalid && signupForm.password.$touched }" />
+          <div class="awgd-error-icon" ng-show="signupForm.password.$invalid && signupForm.password.$touched">
+            <i class="material-icons">error_outline</i>
+          </div>
         </div>
       </div>
       <div class="form-group">
-        <div class="flex">
+        <div class="form-group-row">
           <label class="sr-only" for="conf-password"></label>
           <div class="awgd-form-input-icon input-group-addon"><i class="material-icons">lock</i></div>
           <input class="awgd-form-input form-control" name="confPassword" type="password"
           ng-model="$ctrl.confPassword" placeholder="Confirm password" required
-          ng-class="{'has-error' : signupForm.confPassword.$invalid && signupForm.confPassword.$touched }" />
+          ng-class="{'awgd-has-error' : signupForm.confPassword.$invalid && signupForm.confPassword.$touched }" />
+          <div class="awgd-error-icon" ng-show="signupForm.confPassword.$invalid && signupForm.confPassword.$touched">
+            <i class="material-icons">error_outline</i>
+          </div>
         </div>
       </div>
       <div class="login-submit-container flex flex-center">
@@ -45,12 +59,12 @@
           <button type="submit" class="awgd-button" id="login" ng-disabled="signupForm.$invalid">Sign up</button>
         </div>
       </div>
-      <div ng-if="$ctrl.formWarning" class="awg-form-warning flex flex-center">
+      <div ng-if="$ctrl.formWarning" class="awgd-form-warning flex flex-center">
         <span>{{$ctrl.formWarning}}</span>
       </div>
     </form>
   </div>
-  <div class="login-other-container">
+  <div class="signup-other-container">
     <div class="login-other-container-item flex flex-center">
       <a ui-sref="login">Already have an account? Login here</a>
     </div>
