@@ -3,28 +3,28 @@
   <div class="make-plan-form-container">
     <form ng-submit="$ctrl.submit()">
       <div class="make-plan-input-block">
-        <label for="plan-title">First give your plan a name:</label>
-        <input class="make-plan-input form-control" id="plan-title" ng-model="$ctrl.title"
+        <label for="plan-title">First, give your plan a name:</label>
+        <input class="awgl-form-input form-control" id="plan-title" ng-model="$ctrl.title"
           type="text" placeholder="Plan name" />
       </div>
       <div class="make-plan-input-block">
         <label for="description">Next, what you want to do?</label>
         <div class="make-plan-input-block-small"><small>(if you don't know yet, that's totally fine)</small></div>
-        <textarea class="make-plan-input form-control" id="plan-desc" ng-model="$ctrl.desc"
+        <textarea class="awgl-form-input form-control" id="plan-desc" ng-model="$ctrl.desc"
           type="text" rows=2></textarea>
       </div>
       <div class="make-plan-input-block">
-        <label for="description">Last, how about a background picture?</label>
-        <input class="make-plan-input form-control" id="plan-image" ng-model="$ctrl.imageUrl"
+        <label for="plan-image">Last, how about a background picture?</label>
+        <input class="awgl-form-input form-control" id="plan-image" ng-model="$ctrl.imageUrl"
           type="text" placeholder="Image url" />
+      </div>
+      <div ng-if="$ctrl.formWarning" class="awgl-form-warning flex flex-center">
+        <span>{{$ctrl.formWarning}}</span>
       </div>
       <div class="make-plan-submit-container flex flex-center">
         <div class="make-plan-submit-button-container">
-          <button type="submit" class="make-plan-button" id="make-plan-submit">Start Planning</button>
+          <button type="submit" class="awgl-button" id="make-plan-submit">Start Planning</button>
         </div>
-      </div>
-      <div ng-if="$ctrl.formWarning" class="make-plan-form-warning flex flex-center">
-        <span>{{$ctrl.formWarning}}</span>
       </div>
     </form>
   </div>
