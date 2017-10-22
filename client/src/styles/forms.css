@@ -133,7 +133,7 @@
   font-size: 1.1em;
   background-color: var(--m3tr1);
   border-color: var(--dk3);
-  color: var(--dk5);
+  color: var(--dk4);
 }
 
 /* input fields with icons */
@@ -178,10 +178,10 @@
 /* #################### */
 
 /* Placeholder text - light form */
-.awgl-form-input::-webkit-input-placeholder { color: var(--dk5); }
-.awgl-form-input::-moz-placeholder { color: var(--dk5); }
-.awgl-form-input:-ms-input-placeholder { color: var(--dk5); }
-.awgl-form-input:-moz-placeholder { color: var(--dk5); }
+.awgl-form-input::-webkit-input-placeholder { color: var(--dk4); }
+.awgl-form-input::-moz-placeholder { color: var(--dk4); }
+.awgl-form-input:-ms-input-placeholder { color: var(--dk4); }
+.awgl-form-input:-moz-placeholder { color: var(--dk4); }
 
 /* Not sold on these yet */
 /*.awgl-form-input.has-error:not(:focus)::-webkit-input-placeholder { color: red; }*/
