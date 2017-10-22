@@ -30,11 +30,8 @@ planRouter.delete('/:planId', (req, res) => {
 });
 
 planRouter.put('/:planId', (req, res) => {
-  if (req.body.plan._id) {
-    delete req.body.plan._id
-  }
   Plan.findOneAndUpdate({_id: req.params.planId}, req.body.plan).then(plan => res.status(200).json(plan))
     .catch(err => res.status(500).send('Server error: ', err));
 });
 
-module.exports.planRouter = planRouter;
+module.exports = planRouter;
