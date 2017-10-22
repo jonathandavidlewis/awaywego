@@ -6,10 +6,16 @@
 
 /* Global form stylings or bootstrap overrides */
 .form-group { margin: 10px 0; }
+
+.form-group-row {
+  display: flex;
+  position: relative;
+}
+
 .awgl-form-input,
 .awgl-form-input-icon,
 .awgd-form-input,
-.awgd-form-inpu-icon, {
+.awgd-form-input-icon {
   border-radius: 0 !important;
 }
 
@@ -33,15 +39,15 @@
 /* input fields with icons */
 .awgd-form-input-icon + .awgd-form-input { border-left: none !important; }
 .awgd-form-input-icon {
-  background-color: var(--dk3);
-  color: white;
+  background-color: var(--m0);
+  color: var(--dk5);
   border: 1px solid transparent;
 }
 /* #################### */
 
 .awgd-form-input:hover,
 .awgd-form-input:focus {
-  background-color: var(--m3);
+  background-color: var(--dk3);
   color: white;
 }
 
@@ -73,13 +79,50 @@
 .awgd-form-input::-moz-placeholder { color: white; }
 .awgd-form-input:-ms-input-placeholder { color: white; }
 .awgd-form-input:-moz-placeholder { color: white; }
-.awgd-form-input.has-error:not(:focus)::-webkit-input-placeholder { color: red; }
-.awgd-form-input.has-error:not(:focus)::-moz-placeholder { color: red; }
-.awgd-form-input.has-error:not(:focus):-ms-input-placeholder { color: red; }
-.awgd-form-input.has-error:not(:focus):-moz-placeholder { color: red; }
+
+/* Not sold on these yet */
+/*.awgd-form-input.awgd-has-error:not(:focus)::-webkit-input-placeholder { color: gold; }*/
+/*.awgd-form-input.awgd-has-error:not(:focus)::-moz-placeholder { color: red; }*/
+/*.awgd-form-input.awgd-has-error:not(:focus):-ms-input-placeholder { color: red; }*/
+/*.awgd-form-input.awgd-has-error:not(:focus):-moz-placeholder { color: red; }*/
 /* #################### */
 
-/* #### Light FORM & BUTTON COLOR SCHEME - AWGL #### */
+/* #################### */
+/* Error / Validation styling dark form */
+.awgd-form-warning {
+  text-align: left;
+  margin-left: 50px;
+  color: gold;
+  font-size: .8em;
+  font-style: italic;
+}
+
+
+.awgd-has-error {
+  border: 1.5px solid gold;
+}
+
+.awgd-error-icon {
+  display: flex;
+  position: absolute;
+  color: gold;
+  right: 10px;
+  top: 50%;
+  transform: translate(0,-50%);
+}
+
+.awgd-error-icon .material-icons {
+  font-size: 1.4em;
+}
+
+/* In case we want to hide the error icon while input is focused */
+.awgd-form-input:focus + .awgd-error-icon-hide-focus { display: none; }
+/* #################### */
+
+
+
+/* ############################################ */
+/* Light FORM & BUTTON COLOR SCHEME - AWGL #### */
 /* Basic input field styling */
 .awgl-form-input,
 .awgl-form-input-icon {
@@ -135,25 +178,53 @@
 }
 /* #################### */
 
-/* Placeholder text - dark form */
+/* Placeholder text - light form */
 .awgl-form-input::-webkit-input-placeholder { color: var(--dk5); }
 .awgl-form-input::-moz-placeholder { color: var(--dk5); }
 .awgl-form-input:-ms-input-placeholder { color: var(--dk5); }
 .awgl-form-input:-moz-placeholder { color: var(--dk5); }
-.awgl-form-input.has-error:not(:focus)::-webkit-input-placeholder { color: red; }
-.awgl-form-input.has-error:not(:focus)::-moz-placeholder { color: red; }
-.awgl-form-input.has-error:not(:focus):-ms-input-placeholder { color: red; }
-.awgl-form-input.has-error:not(:focus):-moz-placeholder { color: red; }
+
+/* Not sold on these yet */
+/*.awgl-form-input.has-error:not(:focus)::-webkit-input-placeholder { color: red; }*/
+/*.awgl-form-input.has-error:not(:focus)::-moz-placeholder { color: red; }*/
+/*.awgl-form-input.has-error:not(:focus):-ms-input-placeholder { color: red; }*/
+/*.awgl-form-input.has-error:not(:focus):-moz-placeholder { color: red; }*/
 /* #################### */
 
 
 /* #################### */
 /* Error / Validation styling */
-.awg-form-warning {
-  text-align: center;
-  color: red;
+.awgl-form-warning {
+  text-align: left;
+  margin-left: 50px;
+  color: gold;
+  font-size: .8em;
+  font-style: italic;
 }
 
-.has-error { border: 1.5px solid red; }
-/*.awgd-form-input-icon + .has-error.awgd-form-input { border-left none; }*/
+.awgl-form-warning .material-icons {
+  font-size: 1em;
+  padding-right: 3px;
+}
+
+.awgl-has-error {
+  border: 1.5px solid red;
+}
+
+.awgl-error-icon {
+  display: flex;
+  position: absolute;
+  color: red;
+  right: 10px;
+  top: 50%;
+  transform: translate(0,-50%);
+}
+
+.awgl-error-icon .material-icons {
+  font-size: 1.4em;
+}
+
+/* In case we want to hide the error icon while input is focused */
+.awgl-form-input:focus + .awgl-error-icon-hide-focus { display: none; }
+
 /* #################### */
