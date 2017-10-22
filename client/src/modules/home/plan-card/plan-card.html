@@ -6,6 +6,6 @@
     <h4>{{$ctrl.plan.title}}</h4>
     <p>{{$ctrl.plan.description}}</p>
   </div>
-  <a ui-sref="app.plan.feed({ plan: plan })">details...</a>
+  <a href = "" ui-sref="app.plan.feed({ plan: $ctrl.plan })">details...</a>
   <a ng-click="$ctrl.handleDeleteClick()">DELETE</a>
 </div>
