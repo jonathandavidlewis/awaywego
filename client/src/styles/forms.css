@@ -26,7 +26,7 @@
   font-size: 1.1em;
   background-color: var(--m3tr5);
   border-color: var(--tr2);
-  color: white;
+  color: white !important;
 }
 
 .awgd-form-input::selection {
@@ -128,7 +128,7 @@
   font-size: 1.1em;
   background-color: var(--m3tr1);
   border-color: var(--dk3);
-  color: var(--dk4);
+  color: var(--dk4) !important;
 }
 
 /* input fields with icons */
