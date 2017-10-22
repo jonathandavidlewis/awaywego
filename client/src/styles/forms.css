@@ -90,8 +90,7 @@
 /* #################### */
 /* Error / Validation styling dark form */
 .awgd-form-warning {
-  text-align: left;
-  margin-left: 50px;
+  text-align: center;
   color: gold;
   font-size: .8em;
   font-style: italic;
@@ -195,9 +194,8 @@
 /* #################### */
 /* Error / Validation styling */
 .awgl-form-warning {
-  text-align: left;
-  margin-left: 50px;
-  color: gold;
+  text-align: center;
+  color: red;
   font-size: .8em;
   font-style: italic;
 }
