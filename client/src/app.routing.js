@@ -58,7 +58,6 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
     url: '/feed/{plan}',
     component: 'feed',
     resolve: {
-
       protect: redirectIfNotAuthed
     }
   };
