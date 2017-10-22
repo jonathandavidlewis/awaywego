@@ -9,9 +9,8 @@ import template from './home.html';
 import './home.css';
 
 class HomeController {
-  constructor($state, PlanService) {
-    this.$inject = ['$state', 'PlanService'];
-    this.$state = $state;
+  constructor(PlanService) {
+    this.$inject = ['PlanService'];
     this.PlanService = PlanService;
     this.name = 'Your Plans';
 
