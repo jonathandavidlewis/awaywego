@@ -12,6 +12,9 @@ import MakePlanModule from './modules/make-plan/make-plan';
 // import global services
 import UserService from './services/user/user.service';
 
+// import global styles
+import './styles/forms.css';
+
 // imports for this component
 import appRouting from './app.routing';
 import template from './app.html';

@@ -1,0 +1,159 @@
+/* Below styles are assuming a bootstrap v4 environment  */
+/* Assumes form-group on input-group wrapping divs */
+/* Assumes input-group-addon on field-preceding icon addons */
+/* Assumes form-control on input-elements */
+/* Color references defined in app.css */
+
+/* Global form stylings or bootstrap overrides */
+.form-group { margin: 10px 0; }
+.awgl-form-input,
+.awgl-form-input-icon,
+.awgd-form-input,
+.awgd-form-inpu-icon, {
+  border-radius: 0 !important;
+}
+
+/* #### DARK FORM & BUTTON COLOR SCHEME - AWGD #### */
+/* Basic input field styling */
+.awgd-form-input {
+  padding: .8em 1em;
+  font-size: 1.1em;
+  background-color: var(--m3tr5);
+  border-color: var(--tr2);
+  color: white;
+}
+
+.awgd-form-input::selection {
+  background: var(--da);
+}
+.awgd-form-input::-moz-selection {
+  background: var(--da);
+}
+
+/* input fields with icons */
+.awgd-form-input-icon + .awgd-form-input { border-left: none !important; }
+.awgd-form-input-icon {
+  background-color: var(--dk3);
+  color: white;
+  border: 1px solid transparent;
+}
+/* #################### */
+
+.awgd-form-input:hover,
+.awgd-form-input:focus {
+  background-color: var(--m3);
+  color: white;
+}
+
+.awgd-form-input:focus { border-color: var(--lt); }
+
+/* AWG Dark Button styling */
+.awgd-button {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--dk3);
+  color: var(--lt);
+  border: none
+}
+
+.awgd-button:hover { background-color: var(--dk4); }
+.awgd-button:focus { outline-color: var(--dk3); }
+.awgd-button:disabled,
+.awgd-button:disabled:hover { background-color: var(--dk1); }
+
+.awgd-button:active {
+   -moz-box-shadow:    inset 0 0 5px #000000;
+   -webkit-box-shadow: inset 0 0 5px #000000;
+   box-shadow:         inset 0 0 5px #000000;
+}
+/* #################### */
+
+/* Placeholder text - dark form */
+.awgd-form-input::-webkit-input-placeholder { color: white; }
+.awgd-form-input::-moz-placeholder { color: white; }
+.awgd-form-input:-ms-input-placeholder { color: white; }
+.awgd-form-input:-moz-placeholder { color: white; }
+.awgd-form-input.has-error:not(:focus)::-webkit-input-placeholder { color: red; }
+.awgd-form-input.has-error:not(:focus)::-moz-placeholder { color: red; }
+.awgd-form-input.has-error:not(:focus):-ms-input-placeholder { color: red; }
+.awgd-form-input.has-error:not(:focus):-moz-placeholder { color: red; }
+/* #################### */
+
+/* #### Light FORM & BUTTON COLOR SCHEME - AWGL #### */
+/* Basic input field styling */
+.awgl-form-input,
+.awgl-form-input-icon {
+  border-radius: 0 !important;
+}
+
+.awgl-form-input {
+  padding: .8em 1em;
+  font-size: 1.1em;
+  background-color: var(--m3tr1);
+  border-color: var(--dk3);
+  color: var(--dk5);
+}
+
+/* input fields with icons */
+.awgl-form-input-icon + .awgl-form-input { border-left: none !important; }
+.awgl-form-input-icon {
+  background-color: var(--dk3);
+  color: white;
+  border: 1px solid transparent;
+}
+/* #################### */
+
+.awgl-form-input:hover,
+.awgl-form-input:focus {
+  background-color: var(--m1);
+}
+
+.awgl-form-input:focus { border-color: var(--m2); }
+
+/* AWG Light Button styling */
+.awgl-button {
+  width: 100%;
+  padding: 10px;
+  background-color: white;
+  border: 1.5px solid var(--dk3);
+  color: var(--dk5);
+}
+
+.awgl-button:hover { background-color: var(--m2); }
+.awgl-button:focus { outline-color: var(--m1); }
+.awgl-button:disabled,
+.awgl-button:disabled:hover {
+  border-color: var(--m0);
+  background-color: var(--m0);
+  color: grey;
+}
+
+.awgl-button:active {
+   -moz-box-shadow:    inset 0 0 5px #000000;
+   -webkit-box-shadow: inset 0 0 5px #000000;
+   box-shadow:         inset 0 0 5px #000000;
+}
+/* #################### */
+
+/* Placeholder text - dark form */
+.awgl-form-input::-webkit-input-placeholder { color: var(--dk5); }
+.awgl-form-input::-moz-placeholder { color: var(--dk5); }
+.awgl-form-input:-ms-input-placeholder { color: var(--dk5); }
+.awgl-form-input:-moz-placeholder { color: var(--dk5); }
+.awgl-form-input.has-error:not(:focus)::-webkit-input-placeholder { color: red; }
+.awgl-form-input.has-error:not(:focus)::-moz-placeholder { color: red; }
+.awgl-form-input.has-error:not(:focus):-ms-input-placeholder { color: red; }
+.awgl-form-input.has-error:not(:focus):-moz-placeholder { color: red; }
+/* #################### */
+
+
+/* #################### */
+/* Error / Validation styling */
+.awg-form-warning {
+  text-align: center;
+  color: red;
+}
+
+.has-error { border: 1.5px solid red; }
+/*.awgd-form-input-icon + .has-error.awgd-form-input { border-left none; }*/
+/* #################### */

@@ -12,23 +12,38 @@ html, body {
 .h100 { height: 100%; }
 
 :root {
-  --b1: #e9fbfc;
-  --b2: #d2f7f9;
-  --b3: #35dbe3;	/* Main Primary color */
-  --b4: #15969d;
-  --b5: #0c565a;
 
-  --w1: #f5f3ef;
-  --w2: #e0d7cc;
-  --w3: #c5b4a0;	/* Main Secondary color (1) */
-  --w4: #7e684e;
-  --w5: #4f4130;
+  /*-- white base: #f6f4ee;*/
+  --lt: hsla(40, 31%, 95%, 1);
 
-  --r1: #f3d8df;
-  --r2: #e8b0be;
-  --r3: #dc899e;	/* Main Secondary color (2) */
-  --r4: #9d2f4a;
-  --r5: #541928;
+  /* light accent base: #B1A8B2;*/
+  --la: hsla(294, 6%, 68%, 1);
+
+  /* primary color, m3 base: #73C2F1;*/
+  --m0: hsla(202, 50%, 90%, 1);
+  --m1: hsla(203, 95%, 92%, 1);
+  --m2: hsla(202, 86%, 80%, 1);
+  --m3: hsla(202, 82%, 70%, 1);
+  --m4: hsla(203, 75%, 60%, 1);
+  --m5: hsla(202, 66%, 50%, 1);
+
+  --m3tr1: hsla(202, 82%, 70%, .1);
+  --m3tr2: hsla(202, 82%, 70%, .2);
+  --m3tr5: hsla(202, 82%, 70%, .5);
+
+  /*--da: #758197;*/
+  --da: hsla(219, 14%, 53%, 1);
+
+  /*--dk: #3669B1;*/
+  --dk1: hsla(215, 54%, 65%, 1);
+  --dk2: hsla(215, 54%, 55%, 1);
+  --dk3: hsla(215, 54%, 45%, 1);
+  --dk4: hsla(215, 54%, 35%, 1);
+  --dk5: hsla(215, 54%, 25%, 1);
+
+  --tr2: hsla(0,0%,100%,.2);
+  --tr5: hsla(0,0%,100%,.5);
+
 }
 
 /* Make scrollbar invisible */
