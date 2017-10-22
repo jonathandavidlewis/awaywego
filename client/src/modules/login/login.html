@@ -1,25 +1,31 @@
 <div class="login-container">
   <div class="login-header"><span>Away We Go</span></div>
   <div class="login-form-container">
-    <form ng-submit="$ctrl.login()">
-      <div class="login-input-row flex">
-        <label class="sr-only" for="email"></label>
-        <div class="login-input-icon input-group-addon"><i class="material-icons">account_circle</i></div>
-        <input class="login-input form-control" id="email" ng-model="$ctrl.email"
-          placeholder="Email Address" />
+    <form name="loginForm" ng-submit="$ctrl.login()" novalidate>
+      <div class="form-group">
+        <div class="flex">
+          <label class="sr-only" for="email"></label>
+          <div class="awgl-form-input-icon input-group-addon"><i class="material-icons">account_circle</i></div>
+          <input class="awgl-form-input form-control" name="email" type="email"
+          ng-model="$ctrl.email" placeholder="Email Address" required
+          ng-class="{'has-error' : loginForm.email.$invalid && loginForm.email.$touched }" />
+        </div>
       </div>
-      <div class="login-input-row flex">
-        <label class="sr-only" for="password"></label>
-        <div class="login-input-icon input-group-addon"><i class="material-icons">lock</i></div>
-        <input class="login-input form-control" id="password" ng-model="$ctrl.password"
-          type="password" placeholder="Password" />
+      <div class="form-group">
+        <div class="flex">
+          <label class="sr-only" for="password"></label>
+          <div class="awgl-form-input-icon input-group-addon"><i class="material-icons">lock</i></div>
+          <input class="awgl-form-input form-control" name="password" type="password"
+          ng-model="$ctrl.password" placeholder="Password" required
+          ng-class="{'has-error' : loginForm.password.$invalid && loginForm.password.$touched }" />
+        </div>
       </div>
       <div class="login-submit-container flex flex-center">
         <div class="login-submit-button-container">
-          <button type="submit" class="login-button" id="login">Sign in</button>
+          <button type="submit" class="awgl-button" id="login" ng-disabled="loginForm.$invalid">Sign in</button>
         </div>
       </div>
-      <div ng-if="$ctrl.formWarning" class="login-form-warning flex flex-center">
+      <div ng-if="$ctrl.formWarning" class="awg-form-warning flex flex-center">
         <span>{{$ctrl.formWarning}}</span>
       </div>
     </form>
