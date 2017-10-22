@@ -123,11 +123,6 @@
 /* ############################################ */
 /* Light FORM & BUTTON COLOR SCHEME - AWGL #### */
 /* Basic input field styling */
-.awgl-form-input,
-.awgl-form-input-icon {
-  border-radius: 0 !important;
-}
-
 .awgl-form-input {
   padding: .8em 1em;
   font-size: 1.1em;
