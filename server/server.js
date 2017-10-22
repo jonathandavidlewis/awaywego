@@ -4,7 +4,7 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const app = express();
 const authRouter = require('./auth/auth-router.js');
-const { apiRouter } = require('./api/api-router.js');
+const apiRouter = require('./api/api-router.js');
 const { jwtAuth } = require('./auth/auth-config.js');
 
 const User = require('../db/models/user');
