@@ -3,6 +3,7 @@ import angular from 'angular';
 // import child Modules
 import ItineraryModule from './itinerary/itinerary';
 import IdeasModule from './ideas/ideas';
+import IdeaModule from './idea/idea';
 import AvailabilityModule from './availability/availability';
 
 // imports for this component
@@ -26,6 +27,7 @@ const PlannerComponent = {
 const PlannerModule = angular.module('app.plan.planner', [
   ItineraryModule,
   IdeasModule,
+  IdeaModule,
   AvailabilityModule
 ])
   .component('planner', PlannerComponent);
