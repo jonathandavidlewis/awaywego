@@ -4,24 +4,24 @@ const Plan = require('../../db/models/plan.js');
 planRouter.get('/', (req, res) => {
 
   Plan.find({userId: req.user._id}).then(plans => {
-    res.status(200).json(plans)
+    res.status(200).json(plans);
   })
     .catch(err => res.status(500).send('Server error: ', err));
 });
 
 planRouter.post('/', (req, res) => {
-   const newPlan = req.body;
-   console.log(req.user);
+  const newPlan = req.body;
+  console.log(req.user);
   newPlan.userId = req.user._id;
   Plan.create(newPlan).then(plan => res.status(201).json({_id: plan._id}))
-      .catch(err => res.status(500).send('Server error: ', err));
+    .catch(err => res.status(500).send('Server error: ', err));
 });
 
 planRouter.get('/:planId', (req, res) => {
 
   //todo: get user from req.user and validate user is a member of the plan
   Plan.find({_id: req.params.planId}).then(plans => res.status(200).json(plans))
-  .catch(err => res.status(500).send('Server error: ', err));
+    .catch(err => res.status(500).send('Server error: ', err));
 });
 
 planRouter.delete('/:planId', (req, res) => {
