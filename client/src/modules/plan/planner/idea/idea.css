@@ -1,10 +1,15 @@
-.idea-container {
-  display: flex;
-  flex-direction: column;
-  flex-flow: row wrap;
+img {
+  height: auto;
   width: 100%;
-  height: 500px;
-  overflow: auto;
-  overflow-x: hidden;
-  padding-right: 25px;
+}
+
+.event-image {
+  display: inline-block;
+  position: relative;
+}
+
+.event-image button {
+  float: right;
+  transform: translateY(48px);
+  margin-right: 10px;
 }
