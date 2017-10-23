@@ -1,11 +1,12 @@
-<div class="flex-col">
+<div class="idea-container flex-col">
   <div class="event-image">
     <button class="btn btn-secondary" ng-click="$ctrl.click()">Schedule</button>
     <img ng-src={{$ctrl.event.imageUrl}} alt="" />
   </div>
   <h2>{{$ctrl.event.title}}</h2>
   <p>{{$ctrl.event.description}}</p>
-  <div class="row flex-align-center justify-content-between">
+
+  <div class="row justify-content-between">
     <div class="col-3 flex space-around">
       <div ng-click="$ctrl.click()"><i class="material-icons">thumb_up</i></div>
       <div>+4</div>
@@ -13,6 +14,7 @@
     </div>
 
     <div class="col-1" ng-click="$ctrl.click()"><i class="material-icons">comment</i></div>
+  </div>
   </div>
 </div>
 

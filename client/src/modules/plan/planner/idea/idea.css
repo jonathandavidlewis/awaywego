@@ -1,5 +1,8 @@
+.idea-container {
+  padding-left: 20px;
+}
+
 img {
-  height: auto;
   width: 100%;
 }
 
@@ -12,4 +15,8 @@ img {
   float: right;
   transform: translateY(48px);
   margin-right: 10px;
+}
+
+.row {
+  border: 1px solid black;
 }
