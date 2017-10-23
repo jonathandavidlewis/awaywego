@@ -21,11 +21,11 @@ const Schema = mongoose.Schema;
 */
 
 const friendSchema = new Schema({
-  from: {type: Schema.ObjectId, ref: 'User', required: true },
-  to: {type: Schema.ObjectId, ref: 'User'},
+  from: { type: Schema.ObjectId, ref: 'User', required: true },
+  to: { type: Schema.ObjectId, ref: 'User' },
   toEmail: String,
-  status: String
-}, {timestamps: true});
+  status: { type: String, required: true, default: 'Pending' }
+}, { timestamps: true });
 
 var Friend = mongoose.model('Friend', friendSchema);
 module.exports = Friend;
