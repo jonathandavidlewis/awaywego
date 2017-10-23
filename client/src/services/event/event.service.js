@@ -18,7 +18,7 @@ export default class EventService {
       updatedEvent = eventId;
       eventId = updatedEvent._id;
     }
-    return this.$http.post(`/api/event/${eventId}`, updatedEvent);
+    return this.$http.put(`/api/event/${eventId}`, updatedEvent);
   }
 
   deleteEvent(eventId) { return this.$http.delete(`/api/event/${eventId}`); }
