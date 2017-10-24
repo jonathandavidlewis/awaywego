@@ -1,7 +1,3 @@
-.friends-list-container {
-  flex: 1;
-}
-
 .friends-section-header {
   display: flex;
   justify-content: space-between;
@@ -14,4 +10,8 @@
 
 .friends-add-form-mount {
   position: relative;
+}
+
+.friends-section-header .material-icons {
+  cursor: pointer;
 }

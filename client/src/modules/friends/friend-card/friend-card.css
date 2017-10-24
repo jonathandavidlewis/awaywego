@@ -55,6 +55,20 @@ friend-card:last-child .friend-card-container {
   align-items: center;
 }
 
+.friend-card-actions i,
+.friend-card-actions button {
+  cursor: pointer;
+}
+
+.friend-card-actions button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+}
+
+.friend-card-
+
 .friend-card-pending-actions,
 .friend-card-sent-actions,
 .friend-card-friend-actions {
