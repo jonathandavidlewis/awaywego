@@ -6,7 +6,7 @@ import './ideas-card.css';
 
 class IdeasCardController {
   constructor() {
-    this.planId = 'sample';
+    this.ideaId = 'sample';
   }
 }
 IdeasCardController.$inject = [];

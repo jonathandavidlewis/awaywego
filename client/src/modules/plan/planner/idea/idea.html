@@ -1,6 +1,7 @@
+<!-- TODO: Change $ctrl.event to $ctrl.idea once event-router is done -->
 <div class="idea-container flex-col">
   <div class="idea-image">
-    <button class="btn btn-secondary" ng-click="$ctrl.EventService.promoteEvent($ctrl.ideaId)">Schedule</button>
+    <button class="btn btn-secondary" ng-click="$ctrl.promoteEvent($ctrl.ideaId)">Schedule</button>
     <img ng-src={{$ctrl.event.imageUrl}} alt="" />
   </div>
 
@@ -9,9 +10,9 @@
 
   <div class="flex space-between">
     <div class="flex space-around">
-      <div ng-click="$ctrl.EventService.upvoteEvent($ctrl.ideaId)"><i class="material-icons">thumb_up</i></div>
+      <div ng-click="$ctrl.upvoteEvent($ctrl.ideaId)"><i class="material-icons">thumb_up</i></div>
       <div class="overall-vote">+4</div>
-      <div ng-click="$ctrl.EventService.downvoteEvent($ctrl.ideaId)"><i class="material-icons">thumb_down</i></div>
+      <div ng-click="$ctrl.downvoteEvent($ctrl.ideaId)"><i class="material-icons">thumb_down</i></div>
     </div>
     <div ng-click="$ctrl.click()"><i class="material-icons">comment</i></div>
   </div>
