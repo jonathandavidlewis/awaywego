@@ -9,13 +9,11 @@ import './feed.css';
 class FeedController {
   constructor($state, PlanService) {
     this.$state = $state;
-
     this.PlanService = PlanService;
   }
 
   $onInit() {
     this.plan = this.PlanService.getPlanById(this.$state.params.planId);
-    debugger;
   }
 
 }
