@@ -116,7 +116,10 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
     name: 'app.friends',
     url: '/friends',
     abstract: true,
-    component: 'friends'
+    component: 'friends',
+    resolve: {
+      friendsLoaded: loadFriends
+    }
   };
 
   const friendsListState = {
@@ -182,3 +185,8 @@ const skipIfAuthed = function($q, $state, $timeout, UserService) {
   return result;
 };
 redirectIfNotAuthed.$inject = ['$q', '$state', '$timeout', 'UserService'];
+
+const loadFriends = function(FriendService) {
+  return FriendService.loadFriends();
+};
+loadFriends.$inject = ['FriendService'];
