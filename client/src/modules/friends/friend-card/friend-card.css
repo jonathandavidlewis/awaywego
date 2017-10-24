@@ -67,8 +67,6 @@ friend-card:last-child .friend-card-container {
   padding: 5px;
 }
 
-.friend-card-
-
 .friend-card-pending-actions,
 .friend-card-sent-actions,
 .friend-card-friend-actions {
@@ -79,5 +77,5 @@ friend-card:last-child .friend-card-container {
 }
 
 .friend-card-actions .material-icons {
-  margin-left: 15px;
+  margin-left: 10px;
 }
