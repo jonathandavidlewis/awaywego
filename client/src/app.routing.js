@@ -27,6 +27,7 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
     name: 'app',
     url: '/app',
     component: 'app',
+    abstract: true,
     resolve: {
       protect: redirectIfNotAuthed,
     }
@@ -111,10 +112,39 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
     }
   };
 
+  const friendsState = {
+    name: 'app.friends',
+    url: '/friends',
+    abstract: true,
+    component: 'friends'
+  };
+
+  const friendsListState = {
+    name: 'app.friends.list',
+    url: '/list',
+    component: 'friendsList'
+  };
+
+  const addFriendState = {
+    name: 'app.friends.add',
+    url: '/add',
+    component: 'addFriend'
+  };
+
+  // auth states
   $stateProvider.state(loginState);
   $stateProvider.state(signupState);
+
+  // main app wrapper states
   $stateProvider.state(appState);
   $stateProvider.state(homeState);
+
+  // friends states
+  $stateProvider.state(friendsState);
+  $stateProvider.state(friendsListState);
+  $stateProvider.state(addFriendState);
+
+  // plan states
   $stateProvider.state(makePlanState);
   $stateProvider.state(planState);
   $stateProvider.state(feedState);
