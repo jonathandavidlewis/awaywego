@@ -25,7 +25,6 @@ class FriendsAddController {
     this.resetResults();
     let email = this.email; // store email in case user changes it!
     this.FriendService.findFriendByEmail(this.email).then(user => {
-      console.log('search result: ', user);
       if (user) {
         this.foundUser = user;
       } else if (email) {
@@ -41,6 +40,11 @@ class FriendsAddController {
       this.closeForm();
     });
   }
+  // 
+  // inviteFriend(email) {
+  //   this.FriendService.
+  // }
+
 }
 
 const FriendsAddComponent = {

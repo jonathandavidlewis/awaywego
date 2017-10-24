@@ -22,7 +22,8 @@ class FriendsListController {
     this.closeForm = this.closeForm.bind(this);
   }
 
-  toggleForm() {
+  toggleForm($event) {
+    $event.stopPropagation();
     this.newFriendOpen = !this.newFriendOpen;
   }
 

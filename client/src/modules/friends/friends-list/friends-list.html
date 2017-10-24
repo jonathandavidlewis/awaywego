@@ -1,4 +1,4 @@
-<div class="friends-list-container">
+<div ng-click="$ctrl.closeForm()" class="friends-list-container h100">
   <div ng-show="$ctrl.inboundReqs.length > 0" class="friends-section">
     <div class="friends-section-header">
       <span>Pending Friend Requests</span>
@@ -10,7 +10,7 @@
   <div class="friends-section">
     <div class="friends-section-header">
       <span>Friends</span>
-      <i ng-click="$ctrl.toggleForm()" class="material-icons">add_circle</i>
+      <i ng-click="$ctrl.toggleForm($event)" class="material-icons">add_circle</i>
     </div>
     <div ng-if="$ctrl.newFriendOpen" class="friends-add-form-mount">
       <friends-add close-form="$ctrl.closeForm"></friends-add>
