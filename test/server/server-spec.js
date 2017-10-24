@@ -209,6 +209,7 @@ describe('Server tests', function() {
         endTime: '2016-05-18T16:00:00Z',
       };
 
+
       // Makes a plan and updates planId
       before(function(done) {
         req.post('/api/plan')
@@ -231,7 +232,6 @@ describe('Server tests', function() {
           .expect(201)
           .then((response) => {
             PlanEvent.findOne({_id: response.body._Id}).then((planEvent) => {
-              console.log(planEvent);
               expect(planEvent).to.exist;
               done();
             });
@@ -243,11 +243,33 @@ describe('Server tests', function() {
           .set(AUTH)
           .expect(200)
           .then((response) => {
-            console.log(response.body);
             expect(response.body[0].title).to.equal(TEST_EVENT.title);
             done();
           });
       });
+
+      it('should allow updating by eventId', function(done) {
+        req.get('/api/event/' + TEST_EVENT.planId)
+          .set(AUTH)
+          .expect(200)
+          .then((response) => {
+            const EVENT_ID = response.body[0]._id;
+            let UPDATED_EVENT = Object.assign({}, TEST_EVENT);
+            UPDATED_EVENT.title = 'Updated title';
+            req.put('/api/event/' + EVENT_ID)
+              .send(UPDATED_EVENT)
+              .set(AUTH)
+              .expect(200)
+              .then((response) => {
+                expect(response.body.title).to.equal(UPDATED_EVENT.title);
+                PlanEvent.findOne({_id: EVENT_ID}).then((planEvent) => {
+                  expect(planEvent.title).to.equal(UPDATED_EVENT.title);
+                  done();
+                });
+              });
+          });
+      });
+
 
     });
 
