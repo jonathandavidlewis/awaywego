@@ -13,15 +13,14 @@ export default class FriendService {
   getSentRequests() { return this.friendshipRequests; }
 
   loadFriends() {
-    return this.refreshFriends().then(() => this.loadPendingFriends());
+    return this.loadFriendsAndSents().then(() => this.loadPendingRequests());
   }
 
   // Friends API support methods
-  refreshFriends() {
-    console.log('Refreshing friends now!');
+  loadFriendsAndSents() {
     return this.$http.get('/api/friends').then(resp => {
       this.friendships = [];
-      this.pendingFriendships = [];
+      this.friendshipRequests = [];
       resp.data.forEach(friendship => {
         if (friendship.status === 'accepted') {
           this.friendships.push(friendship);
@@ -32,7 +31,7 @@ export default class FriendService {
     });
   }
 
-  loadPendingFriends() {
+  loadPendingRequests() {
     return this.$http.get('/api/friends/pending').then(resp => {
       this.pendingFriendships = resp.data;
     });
@@ -58,4 +57,12 @@ export default class FriendService {
   cancelFriendRequest(frId) {
     return this.$http.put(`/api/friends/cancel/${frId}`);
   }
+
+  findFriendByEmail(email) {
+    let friend = this.$http.get(`/api/friends/find/${encodeURI(email)}`);
+    return friend.then(resp => resp.data).catch(err => {
+      if (err.status === 404 && err.data === 'user_not_found') { return false; }
+    });
+  }
+
 }
