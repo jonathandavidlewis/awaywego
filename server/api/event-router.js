@@ -3,8 +3,13 @@ const PlanEvent = require('../../db/models/event.js');
 
 // Get all events belonging to a specific plan
 eventRouter.get('/:planId', (req, res) => {
-  PlanEvent.find({planId: req.params.planId}).then(events => res.status(200).json(events))
-    .catch(err => res.status(500).send('Server error: ', err));
+  PlanEvent.find({planId: req.params.planId}).then((events) => {
+    if (events.length > 0) {
+      res.status(200).json(events);
+    } else {
+      res.status(404).json(events);
+    }
+  }).catch(err => res.status(500).send('Server error: ', err));
 });
 
 // Create Events
@@ -20,25 +25,25 @@ eventRouter.post('/', (req, res) => {
 
 // Update Events
 eventRouter.put('/:eventId', (req, res) => {
-  PlanEvent.findOneAndUpdate({_id: req.params.eventId}, req.body, {new: true})
+  PlanEvent.findOneAndUpdateById({_id: req.params.eventId}, req.body, {new: true})
     .then(planEvent => res.status(200).json(planEvent))
     .catch(err => res.status(500).json({'Server error': err}));
 });
 
 eventRouter.put('/:eventId/promote', (req, res) => {
-  PlanEvent.findOneAndUpdate({_id: req.params.eventId}, {status: 'itinerary'}, {new: true})
+  PlanEvent.findOneAndUpdateById({_id: req.params.eventId}, {status: 'itinerary'}, {new: true})
     .then(planEvent => res.status(200).json(planEvent))
     .catch(err => res.status(500).json({'Server error': err}));
 });
 
 eventRouter.put('/:eventId/demote', (req, res) => {
-  PlanEvent.findOneAndUpdate({_id: req.params.eventId}, {status: 'idea'}, {new: true})
+  PlanEvent.findOneAndUpdateById({_id: req.params.eventId}, {status: 'idea'}, {new: true})
     .then(planEvent => res.status(200).json(planEvent))
     .catch(err => res.status(500).json({'Server error': err}));
 });
 
 eventRouter.put('/:eventId/upvote', (req, res) => {
-  PlanEvent.findOne({_id: req.params.eventId})
+  PlanEvent.findOneById({_id: req.params.eventId})
     .then((planEvent) => {
       if (planEvent.upVotes.every(id => id.toString() !== req.user._id)) {
         planEvent.upVotes.push(req.user._id);
@@ -50,7 +55,7 @@ eventRouter.put('/:eventId/upvote', (req, res) => {
 });
 
 eventRouter.put('/:eventId/downvote', (req, res) => {
-  PlanEvent.findOne({_id: req.params.eventId})
+  PlanEvent.findOneById({_id: req.params.eventId})
     .then((planEvent) => {
       if (planEvent.upVotes.every(id => id.toString() !== req.user._id)) {
         planEvent.downVotes.push(req.user._id);
@@ -62,7 +67,7 @@ eventRouter.put('/:eventId/downvote', (req, res) => {
 });
 
 eventRouter.delete('/:eventId', (req, res) => {
-  PlanEvent.findOneAndRemove({_id: req.params.eventId}).then(() => res.status(200).send('Deleted'))
+  PlanEvent.findOneAndRemoveById({_id: req.params.eventId}).then(() => res.status(200).send('Deleted'))
     .catch(err => res.status(500).json({'Server error': err}));
 });
 
