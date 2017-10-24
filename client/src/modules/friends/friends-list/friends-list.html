@@ -1,13 +1,20 @@
 <div class="friends-list-container">
-  <div class="friends-pending-section">
-    <div class="friends-pending-section-header">
-      <span>Pending Friends</span>
+  <div ng-show="$ctrl.pendingFriendRequests.length > 0" class="friends-section">
+    <div class="friends-section-header">
+      <span>Pending Friend Requests</span>
     </div>
+    <friend-card user="fr.from" frId="fr._id" type="pending" ng-repeat="fr in $ctrl.pendingFriendRequests"></friend-card>
   </div>
   <div class="friends-section">
     <div class="friends-section-header">
       <span>Friends</span>
     </div>
-    <friend-card user="friend" ng-repeat="friend in $ctrl.friends"></friend-card>
+    <friend-card user="fr.to" frId="fr._id" type="friend" ng-repeat="fr in $ctrl.friendships"></friend-card>
+  </div>
+  <div ng-show="$ctrl.sentFriendRequests.length > 0" class="friends-section">
+    <div class="friends-section-header">
+      <span>Sent Friend Requests</span>
+    </div>
+    <friend-card user="fr.to" frId="fr._id" type="sent" ng-repeat="fr in $ctrl.sentFriendRequests"></friend-card>
   </div>
 </div>

@@ -1,0 +1,12 @@
+.friends-list-container {
+  flex: 1;
+}
+
+.friends-section-header {
+  color: var(--m5);
+  font-size: 1.3em;
+  text-indent: 5px;
+  border-bottom: 1px solid var(--da);
+  margin: 10px 10px;
+  padding: 5px 0;
+}
