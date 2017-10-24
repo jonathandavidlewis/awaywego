@@ -209,13 +209,13 @@ describe('Server tests', function() {
         endTime: '2016-05-18T16:00:00Z',
       };
 
+      // Makes a plan and updates planId
       before(function(done) {
         req.post('/api/plan')
           .send(TEST_PLAN)
           .set(AUTH)
           .then((response) => {
             TEST_EVENT.planId = response.body._id;
-            console.log('planId', TEST_EVENT.planId);
             done();
           });
       });
@@ -230,14 +230,25 @@ describe('Server tests', function() {
           .set(AUTH)
           .expect(201)
           .then((response) => {
-            console.log('In protected route');
-            PlanEvent.find({_id: response.eventId}).then((plan) => {
-              console.log(plan);
-              expect(plan).to.exist;
+            PlanEvent.findOne({_id: response.body._Id}).then((planEvent) => {
+              console.log(planEvent);
+              expect(planEvent).to.exist;
               done();
             });
           });
       });
+
+      it('should get all events for a particular planId', function(done) {
+        req.get('/api/event/' + TEST_EVENT.planId)
+          .set(AUTH)
+          .expect(200)
+          .then((response) => {
+            console.log(response.body);
+            expect(response.body[0].title).to.equal(TEST_EVENT.title);
+            done();
+          });
+      });
+
     });
 
 
