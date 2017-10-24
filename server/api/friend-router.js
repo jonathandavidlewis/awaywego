@@ -11,13 +11,20 @@ friendRouter.get('/', (req, res) => {
   });
 });
 
+// get pending requests to me
+friendRouter.get('/pending', (req, res) => {
+  Friend.find({to: oid(req.user._id), status: 'pending'}).then(friends => {
+    res.status(200).json(friends);
+  });
+});
+
 // post - new friend request to existing user
 friendRouter.post('/new/:friendId', (req, res) => {
   const fromId = oid(req.user._id);
   const toId = oid(req.params.friendId);
   Friend.find({from: fromId, to: toId}).then(fr => {
     if (fr) { throw new Error('fr_exists'); }
-    const newFr = { from: fromId, to: toId, status: 'Pending' };
+    const newFr = { from: fromId, to: toId, status: 'pending' };
     return Friend.create(newFr);
   }).then(newFr => res.status(201).json({message: 'created', frId: newFr._id}))
     .catch(err => {
@@ -33,10 +40,10 @@ friendRouter.post('/new/:friendId', (req, res) => {
 // TODO: send email to the invited friend
 friendRouter.post('/invite', (req, res) => {
   const fromId = oid(req.user._id);
-  const toEmail = req.body.toEmail;
+  const toEmail = req.params.toEmail;
   Friend.find({from: fromId, toEmail: toEmail}).then(fr => {
     if (fr) { throw new Error('fr_exists'); }
-    const newFr = { from: fromId, toEmail: toEmail, status: 'Pending' };
+    const newFr = { from: fromId, toEmail: toEmail, status: 'pending' };
     return Friend.create(newFr);
   }).then(newFr => res.status(200).json({message: 'created', frId: newFr._id}))
     .catch(err => {
@@ -54,12 +61,12 @@ friendRouter.put('/accept/:frId', (req, res) => {
   let fromId;
   Friend.findOneAndUpdate(
     {_id: oid(req.params.frId), to: toId}, // confirm this request is to me!
-    {status: 'Accepted'}
+    {status: 'accepted'}
   ).then(fr => {
     if (!fr) { throw new Error('fr_not_found'); }
     // look for the inverse record, if not there create it
     fromId = oid(fr.from);
-    return Friend.findOneAndUpdate({from: toId, to: fromId }, {status: 'Accepted'}).exec();
+    return Friend.findOneAndUpdate({from: toId, to: fromId }, {status: 'accepted'}).exec();
   }).then(invFr => {
     if (!invFr) {
       const newFr = { from: toId, to: fromId };
@@ -88,7 +95,7 @@ friendRouter.put('/accept/:frId', (req, res) => {
 friendRouter.put('/reject/:frId', (req, res) => {
   const toId = oid(req.user._id);
   Friend.findOneAndRemove(
-    {_id: oid(req.params.frId), to: toId, status: 'Pending'}
+    {_id: oid(req.params.frId), to: toId, status: 'pending'}
   ).then(fr => {
     if (!fr) { throw new Error('fr_not_found'); }
     res.status(200).json({message: 'rejected-request-deleted', frId: fr._id});
@@ -105,7 +112,7 @@ friendRouter.put('/reject/:frId', (req, res) => {
 friendRouter.put('/cancel/:frId', (req, res) => {
   const fromId = oid(req.user._id);
   Friend.findOneAndRemove(
-    {_id: oid(req.params.frId), from: fromId, status: 'Pending'}
+    {_id: oid(req.params.frId), from: fromId, status: 'pending'}
   ).then(fr => {
     if (!fr) { throw new Error('fr_not_found'); }
     res.status(200).json({message: 'updated', frId: fr._id});
