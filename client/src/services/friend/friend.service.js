@@ -15,5 +15,26 @@ export default class FriendService {
         }
       });
     });
-  } 
+  }
+
+  // TODO: identify and implement out appropriate error handling
+  newFriendRequest(friendId) {
+    return this.$http.post(`/api/friends/new/${friendId}`);
+  }
+
+  inviteFriend(email) {
+    return this.$http.post('/api/friends/invite', {toEmail: email});
+  }
+
+  acceptFriendRequest(frId) {
+    return this.$http.put(`/api/friends/accept/${frId}`);
+  }
+
+  rejectFriendRequest(frId) {
+    return this.$http.put(`/api/friends/reject/${frId}`);
+  }
+
+  cancelFriendRequest(frId) {
+    return this.$http.put(`/api/friends/cancel/${frId}`);
+  }
 }
