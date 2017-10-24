@@ -3,17 +3,24 @@ export default class FriendService {
     this.$inject = ['$http'];
     this.friends = [];
     this.friendRequests = [];
+    this.pendingFriends = [];
   }
 
   loadFriends() {
     return this.$http.get('/api/friends').then(friends => {
       friends.forEach(friend => {
-        if (friend.status === 'Accepted') {
+        if (friend.status === 'accepted') {
           this.friends.push(friend);
-        } else if (friend.status === 'Pending') {
+        } else if (friend.status === 'pending') {
           this.friendRequests.push(friend);
         }
       });
+    });
+  }
+
+  loadPendingFriends() {
+    return this.$http.get('/api/friends/pending').then(pendingFriends => {
+      this.pendingFriends = pendingFriends;
     });
   }
 
