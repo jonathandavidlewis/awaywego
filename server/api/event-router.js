@@ -5,7 +5,6 @@ const PlanEvent = require('../../db/models/event.js');
 eventRouter.get('/:planId', (req, res) => {
   PlanEvent.find({planId: req.params.planId}).then(events => res.status(200).json(events))
     .catch(err => res.status(500).send('Server error: ', err));
-
 });
 
 // Create Events
@@ -15,24 +14,19 @@ eventRouter.post('/', (req, res) => {
   newEvent.upVotes = [];
   newEvent.downVotes = [];
 
-  PlanEvent.create(newEvent).then((planEvent) => {
-    res.status(201).json({_Id: planEvent._id});
-  })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json({'Server error': err});
-    });
+  PlanEvent.create(newEvent).then(planEvent => res.status(201).json({_Id: planEvent._id}))
+    .catch(err => res.status(500).json({'Server error': err}));
 });
 
 eventRouter.put('/:eventId', (req, res) => {
-  PlanEvent.findOneAndUpdate({_id: req.params.eventId}, req.body, {new: true}).then((planEvent) => {
-    console.log('planevent ', planEvent);
-    res.status(200).json(planEvent);
-  })
-    .catch((err) => {
-      res.status(500).send('Server error: ', err);
-    });
+  PlanEvent.findOneAndUpdate({_id: req.params.eventId}, req.body, {new: true})
+    .then(planEvent => res.status(200).json(planEvent))
+    .catch(err => res.status(500).send('Server error: ', err));
 });
 
+eventRouter.delete('/:eventId', (req, res) => {
+  PlanEvent.findOneAndRemove({_id: req.params.eventId}).then(() => res.status(200).send('Deleted'))
+    .catch(err => res.status(500).send('Server error: ', err));
+});
 
 module.exports = eventRouter;

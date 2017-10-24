@@ -199,7 +199,7 @@ describe('Server tests', function() {
     });
 
 
-    describe('/events', function() {
+    describe('/event', function() {
 
       const TEST_EVENT = {
         title: 'John"s best BBQ',
@@ -270,10 +270,31 @@ describe('Server tests', function() {
           });
       });
 
+      it('should delete an event by id', function(done) {
+        req.get('/api/event/' + TEST_EVENT.planId)
+          .set(AUTH)
+          .expect(200)
+          .then((response) => {
+            const EVENT_ID = response.body[0]._id;
+            req.delete('/api/event/' + EVENT_ID)
+              .set(AUTH)
+              .expect(200)
+              .then(() => {
+                PlanEvent.findOne({_id: EVENT_ID}).then((planEvent) => {
+                  console.log(planEvent);
+                  expect(planEvent).to.not.exist;
+                  done();
+                });
+              });
+          });
+      });
 
-    });
+
+    }); // End of Describe /event
 
 
 
-  });
-});
+  }); // End of Describe /api
+
+
+}); // End of Describe Server
