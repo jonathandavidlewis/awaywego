@@ -14,6 +14,7 @@ class FriendsAddController {
 
     this.requestFriend = this.requestFriend.bind(this);
     this.searchForFriend = this.searchForFriend.bind(this);
+    this.inviteFriend = this.inviteFriend.bind(this);
   }
 
   resetResults() {
@@ -40,10 +41,16 @@ class FriendsAddController {
       this.closeForm();
     });
   }
-  // 
-  // inviteFriend(email) {
-  //   this.FriendService.
-  // }
+
+  inviteFriend(email) {
+    this.FriendService.inviteFriend(email).then(resp => {
+      let newFr = resp.data.newFr;
+      newFr.to = {_id: null, name: newFr.toEmail};
+      this.FriendService.sentReqs.push(newFr);
+      this.resetResults();
+      this.closeForm();
+    });
+  }
 
 }
 

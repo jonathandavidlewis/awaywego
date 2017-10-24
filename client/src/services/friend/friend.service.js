@@ -25,7 +25,12 @@ export default class FriendService {
         if (friendship.status === 'accepted') {
           this.friendships.push(friendship);
         } else if (friendship.status === 'pending') {
-          this.sentReqs.push(friendship);
+          if (friendship.to) {
+            this.sentReqs.push(friendship);
+          } else {
+            friendship.to = {_id: null, name: friendship.toEmail };
+            this.sentReqs.push(friendship);
+          }
         }
       });
     });
@@ -43,6 +48,7 @@ export default class FriendService {
   }
 
   inviteFriend(email) {
+    console.log('inviting user: ', email);
     return this.$http.post('/api/friends/invite', {toEmail: email});
   }
 

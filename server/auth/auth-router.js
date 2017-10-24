@@ -2,6 +2,8 @@ const authRouter = require('express').Router();
 const jwt = require('jsonwebtoken');
 const { jwtAuth, pwdAuth, jwtOptions } = require('./auth-config.js');
 const User = require('../../db/models/user.js');
+const Friend = require('../../db/models/friend.js');
+const oid = require('mongoose').Types.ObjectId;
 const debug = process.env.DEBUG || false;
 
 authRouter.post('/login', pwdAuth, (req, res) => {
@@ -23,6 +25,9 @@ authRouter.post('/signup', (req, res) => {
       User.create(newUser).then((user) => {
         const token = jwt.sign({name: user.name, userId: user._id}, jwtOptions.secretOrKey);
         res.status(201).json({message: 'Registration was successful', token: token});
+        // once signed up - see if anyone has invited this user
+        Friend.update({toEmail: user.email}, {toEmail: '', to: oid(user._id)})
+          .catch(err => console.log('Error updating invite-signup: ', err));
       });
     }
   }).catch((err) => res.status(500).json({message: err}));
