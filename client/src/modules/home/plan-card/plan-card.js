@@ -6,7 +6,6 @@ import './plan-card.css';
 
 class PlanCardController {
   constructor() {
-    this.name = 'This is a plan title';
     this. handleDeleteClick = () => {
       this.deletePlan(this.plan._id);
     };
