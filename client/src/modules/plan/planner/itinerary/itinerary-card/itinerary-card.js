@@ -13,7 +13,9 @@ ItineraryCardController.$inject = [];
 
 const ItineraryCardComponent = {
   restrict: 'E',
-  bindings: {},
+  bindings: {
+    event: '<'
+  },
   template: template,
   controller: ItineraryCardController
 };

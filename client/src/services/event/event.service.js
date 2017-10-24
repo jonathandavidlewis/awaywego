@@ -5,7 +5,8 @@ let TEST_DATA = [
     startTime: '2016-05-18T16:00:00Z',
     endTime: '2016-05-18T16:00:00Z',
     description: 'We will have a ton of fun at this park...',
-    imageUrl: 'https://d36tnp772eyphs.cloudfront.net/blogs/1/2014/08/Smith-Rock-940x595.jpg'
+    imageUrl: 'https://d36tnp772eyphs.cloudfront.net/blogs/1/2014/08/Smith-Rock-940x595.jpg',
+    status: 'itinerary'
   },
   {
     planId: 'hg5687h5834657h6',
@@ -13,7 +14,26 @@ let TEST_DATA = [
     startTime: '2016-05-18T16:00:00Z',
     endTime: '2016-05-18T16:00:00Z',
     description: 'We will have a ton of fun at this park...',
-    imageUrl: 'https://d36tnp772eyphs.cloudfront.net/blogs/1/2014/08/Smith-Rock-940x595.jpg'
+    imageUrl: 'https://d36tnp772eyphs.cloudfront.net/blogs/1/2014/08/Smith-Rock-940x595.jpg',
+    status: 'itinerary'
+  },
+  {
+    planId: 'hg5687h5834657h6',
+    title: 'John\'s third best BBQ',
+    startTime: '2016-05-18T16:00:00Z',
+    endTime: '2016-05-18T16:00:00Z',
+    description: 'We will have a ton of fun at this park...',
+    imageUrl: 'https://d36tnp772eyphs.cloudfront.net/blogs/1/2014/08/Smith-Rock-940x595.jpg',
+    status: 'idea'
+  },
+  {
+    planId: 'hg5687h5834657h6',
+    title: 'John\'s fourth best BBQ',
+    startTime: '2016-05-18T16:00:00Z',
+    endTime: '2016-05-18T16:00:00Z',
+    description: 'We will have a ton of fun at this park...',
+    imageUrl: 'https://d36tnp772eyphs.cloudfront.net/blogs/1/2014/08/Smith-Rock-940x595.jpg',
+    status: 'idea',
   }
 ];
 
