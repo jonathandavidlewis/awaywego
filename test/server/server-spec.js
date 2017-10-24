@@ -209,7 +209,6 @@ describe('Server tests', function() {
         endTime: '2016-05-18T16:00:00Z',
       };
 
-
       // Makes a plan and updates planId
       before(function(done) {
         req.post('/api/plan')
@@ -225,68 +224,113 @@ describe('Server tests', function() {
         User.remove(TEST_EVENT).then(() => done());
       });
 
-      it('should create an event entry on a post request', function(done) {
-        req.post('/api/event')
-          .send(TEST_EVENT)
-          .set(AUTH)
-          .expect(201)
-          .then((response) => {
-            PlanEvent.findOne({_id: response.body._Id}).then((planEvent) => {
-              expect(planEvent).to.exist;
+      describe('POST', function() {
+        it('should create an event entry on a post request', function(done) {
+          req.post('/api/event')
+            .send(TEST_EVENT)
+            .set(AUTH)
+            .expect(201)
+            .then((response) => {
+              PlanEvent.findOne({_id: response.body._Id}).then((planEvent) => {
+                expect(planEvent).to.exist;
+                done();
+              });
+            });
+        });
+      });
+
+      describe('GET', function() {
+        it('should get all events for a particular planId', function(done) {
+          req.get('/api/event/' + TEST_EVENT.planId)
+            .set(AUTH)
+            .expect(200)
+            .then((response) => {
+              expect(response.body[0].title).to.equal(TEST_EVENT.title);
               done();
             });
-          });
+        });
       });
 
-      it('should get all events for a particular planId', function(done) {
-        req.get('/api/event/' + TEST_EVENT.planId)
-          .set(AUTH)
-          .expect(200)
-          .then((response) => {
-            expect(response.body[0].title).to.equal(TEST_EVENT.title);
-            done();
-          });
-      });
+      describe('PUT', function() {
+        let EVENT_ID;
 
-      it('should allow updating by eventId', function(done) {
-        req.get('/api/event/' + TEST_EVENT.planId)
-          .set(AUTH)
-          .expect(200)
-          .then((response) => {
-            const EVENT_ID = response.body[0]._id;
-            let UPDATED_EVENT = Object.assign({}, TEST_EVENT);
-            UPDATED_EVENT.title = 'Updated title';
-            req.put('/api/event/' + EVENT_ID)
-              .send(UPDATED_EVENT)
-              .set(AUTH)
-              .expect(200)
-              .then((response) => {
-                expect(response.body.title).to.equal(UPDATED_EVENT.title);
-                PlanEvent.findOne({_id: EVENT_ID}).then((planEvent) => {
-                  expect(planEvent.title).to.equal(UPDATED_EVENT.title);
-                  done();
-                });
+        before(function(done) {
+          req.get('/api/event/' + TEST_EVENT.planId)
+            .set(AUTH)
+            .expect(200)
+            .then((response) => {
+              EVENT_ID = response.body[0]._id;
+              done();
+            });
+        });
+
+        after(function(done) {
+          PlanEvent.remove({EVENT_ID}).then(() => done());
+        });
+
+
+        it('should allow updating by eventId', function(done) {
+          let UPDATED_EVENT = Object.assign({}, TEST_EVENT);
+          UPDATED_EVENT.title = 'Updated title';
+          req.put('/api/event/' + EVENT_ID)
+            .send(UPDATED_EVENT)
+            .set(AUTH)
+            .expect(200)
+            .then((response) => {
+              expect(response.body.title).to.equal(UPDATED_EVENT.title);
+              PlanEvent.findOne({_id: EVENT_ID}).then((planEvent) => {
+                expect(planEvent.title).to.equal(UPDATED_EVENT.title);
+                done();
               });
-          });
-      });
+            });
 
-      it('should delete an event by id', function(done) {
-        req.get('/api/event/' + TEST_EVENT.planId)
-          .set(AUTH)
-          .expect(200)
-          .then((response) => {
-            const EVENT_ID = response.body[0]._id;
-            req.delete('/api/event/' + EVENT_ID)
-              .set(AUTH)
-              .expect(200)
-              .then(() => {
-                PlanEvent.findOne({_id: EVENT_ID}).then((planEvent) => {
-                  console.log(planEvent);
-                  expect(planEvent).to.not.exist;
-                  done();
-                });
+        });
+
+        it('should allow promoting an idea to itinerary', function(done) {
+          req.put(`/api/event/${EVENT_ID}/promote`)
+            .set(AUTH)
+            .expect(200)
+            .then((response) => {
+              expect(response.body.status).to.equal('itinerary');
+              PlanEvent.findOne({_id: EVENT_ID}).then((planEvent) => {
+                expect(planEvent.status).to.equal('itinerary');
+                done();
               });
-          });
+            });
+        });
+
+        it('should allow demoting an itinerary to idea', function(done) {
+          req.put(`/api/event/${EVENT_ID}/demote`)
+            .set(AUTH)
+            .expect(200)
+            .then((response) => {
+              expect(response.body.status).to.equal('idea');
+              PlanEvent.findOne({_id: EVENT_ID}).then((planEvent) => {
+                expect(planEvent.status).to.equal('idea');
+                done();
+              });
+            });
+        });
+      }); // End of Describe PUT
+
+      describe('DELETE', function() {
+        it('should delete an event by id', function(done) {
+          req.get(`/api/event/${TEST_EVENT.planId}`)
+            .set(AUTH)
+            .expect(200)
+            .then((response) => {
+              const EVENT_ID = response.body[0]._id;
+              req.delete('/api/event/' + EVENT_ID)
+                .set(AUTH)
+                .expect(200)
+                .then(() => {
+                  PlanEvent.findOne({_id: EVENT_ID}).then((planEvent) => {
+                    expect(planEvent).to.not.exist;
+                    done();
+                  });
+                });
+            });
+        });
       });
 
 

@@ -24,9 +24,23 @@ eventRouter.put('/:eventId', (req, res) => {
     .catch(err => res.status(500).send('Server error: ', err));
 });
 
+eventRouter.put('/:eventId/promote', (req, res) => {
+  PlanEvent.findOneAndUpdate({_id: req.params.eventId}, {status: 'itinerary'}, {new: true})
+    .then(planEvent => res.status(200).json(planEvent))
+    .catch(err => res.status(500).send('Server error: ', err));
+});
+
+eventRouter.put('/:eventId/demote', (req, res) => {
+  PlanEvent.findOneAndUpdate({_id: req.params.eventId}, {status: 'idea'}, {new: true})
+    .then(planEvent => res.status(200).json(planEvent))
+    .catch(err => res.status(500).send('Server error: ', err));
+});
+
 eventRouter.delete('/:eventId', (req, res) => {
   PlanEvent.findOneAndRemove({_id: req.params.eventId}).then(() => res.status(200).send('Deleted'))
     .catch(err => res.status(500).send('Server error: ', err));
 });
+
+
 
 module.exports = eventRouter;
