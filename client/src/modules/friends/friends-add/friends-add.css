@@ -35,4 +35,5 @@
 .friends-request-message {
   font-size: 1em;
   margin-right: 10px;
+  color: var(--dk3);
 }

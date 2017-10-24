@@ -10,9 +10,10 @@ class FriendsAddController {
     this.FriendService = FriendService;
     this.email = '';
     this.foundUser = null;
-    this.inviteUser = '';
+    this.inviteUser = null;
 
     this.requestFriend = this.requestFriend.bind(this);
+    this.searchForFriend = this.searchForFriend.bind(this);
   }
 
   resetResults() {
@@ -24,20 +25,22 @@ class FriendsAddController {
     this.resetResults();
     let email = this.email; // store email in case user changes it!
     this.FriendService.findFriendByEmail(this.email).then(user => {
+      console.log('search result: ', user);
       if (user) {
         this.foundUser = user;
-      } else {
-        this.inviteUser = email;
+      } else if (email) {
+        this.inviteUser = {name: email};
       }
     });
   }
 
   requestFriend(friendId) {
-    this.FriendService.newFriendRequest(friendId).then(() => {
+    this.FriendService.newFriendRequest(friendId).then(resp => {
+      this.FriendService.sentReqs.push(resp.data.newFr);
       this.resetResults();
+      this.closeForm();
     });
   }
-
 }
 
 const FriendsAddComponent = {

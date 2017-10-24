@@ -33,8 +33,11 @@ class FriendsListController {
   acceptFriendRequest(frId) {
     this.FriendService.acceptFriendRequest(frId).then(resp => {
       let accI = this.inboundReqs.findIndex(el => el._id === frId);
-      let accepted = this.inboundReqs.splice(accI, 1);
+      let accepted = this.inboundReqs.splice(accI, 1)[0];
       accepted.status = 'accepted';
+      let temp = accepted.from;
+      accepted.from = accepted.to;
+      accepted.to = temp;
       this.friendships.push(accepted);
     }).catch(err => console.log('Accept error: ', err));
   }
