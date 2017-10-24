@@ -4,7 +4,7 @@ import angular from 'angular';
 import FriendsNavComponent from './friends-nav/friends-nav.js';
 import FriendsListComponent from './friends-list/friends-list.js';
 import FriendsAddComponent from './friends-add/friends-add.js';
-import UserCardComponent from './user-card/user-card.js';
+import FriendCardComponent from './friend-card/friend-card.js';
 
 // imports for this component
 import template from './friends.html';
@@ -26,6 +26,6 @@ const FriendsModule = angular.module('app.friends', [])
   .component('friendsNav', FriendsNavComponent)
   .component('friendsList', FriendsListComponent)
   .component('friendsAdd', FriendsAddComponent)
-  .component('userCard', UserCardComponent);
+  .component('friendCard', FriendCardComponent);
 
 export default FriendsModule.name;

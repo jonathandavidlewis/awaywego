@@ -1,21 +1,21 @@
 import angular from 'angular';
 
 // imports for this component
-import template from './user-card.html';
-import './user-card.css';
+import template from './friend-card.html';
+import './friend-card.css';
 
-class UserCardController {
+class FriendCardController {
   constructor() {
   }
 }
 
-const UserCardComponent = {
+const FriendCardComponent = {
   restrict: 'E',
   bindings: {
     user: '<'
   },
   template: template,
-  controller: UserCardController
+  controller: FriendCardController
 };
 
-export default UserCardComponent;
+export default FriendCardComponent;
