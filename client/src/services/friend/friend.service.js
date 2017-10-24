@@ -6,6 +6,12 @@ export default class FriendService {
     this.pendingFriends = [];
   }
 
+  // FriendsService data access methods
+  getFriends() { return this.friends; }
+  getPendingFriends() { return this.pendingFriends; }
+  getRequestedFriends() { return this.friendRequests; }
+
+  // Friends API support methods
   refreshFriends() {
     return this.$http.get('/api/friends').then(friends => {
       this.friends = [];
