@@ -40,17 +40,24 @@ eventRouter.put('/:eventId/demote', (req, res) => {
 eventRouter.put('/:eventId/upvote', (req, res) => {
   PlanEvent.findOne({_id: req.params.eventId})
     .then((planEvent) => {
-      if (!planEvent.upVotes.includes(req.user._id)) {
+      if (planEvent.upVotes.every(id => id.toString() !== req.user._id)) {
         planEvent.upVotes.push(req.user._id);
       }
+      planEvent.downVotes = planEvent.downVotes.filter((id) => id.toString() !== req.user._id.toString());
       planEvent.save().then(planEvent => res.status(200).json(planEvent.upVotes));
     })
     .catch(err => res.status(500).json({'Server error': err}));
 });
 
 eventRouter.put('/:eventId/downvote', (req, res) => {
-  PlanEvent.findOneAndUpdate({_id: req.params.eventId}, {status: 'idea'}, {new: true})
-    .then(planEvent => res.status(200).json(planEvent))
+  PlanEvent.findOne({_id: req.params.eventId})
+    .then((planEvent) => {
+      if (planEvent.upVotes.every(id => id.toString() !== req.user._id)) {
+        planEvent.downVotes.push(req.user._id);
+      }
+      planEvent.upVotes = planEvent.upVotes.filter((id) => id.toString() !== req.user._id.toString());
+      planEvent.save().then(planEvent => res.status(200).json(planEvent.downVotes));
+    })
     .catch(err => res.status(500).json({'Server error': err}));
 });
 

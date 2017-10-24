@@ -264,6 +264,10 @@ describe('Server tests', function() {
             });
         });
 
+        beforeEach(function(done) {
+          PlanEvent.remove({EVENT_ID}).then(() => done());
+        });
+
         after(function(done) {
           PlanEvent.remove({EVENT_ID}).then(() => done());
         });
@@ -328,8 +332,59 @@ describe('Server tests', function() {
             });
         });
 
+        it('should allow downvoting', function(done) {
+          req.put(`/api/event/${EVENT_ID}/downvote`)
+            .set(AUTH)
+            .expect(200)
+            .then((response) => {
+              expect(response.body.length).to.equal(1);
+              PlanEvent.findOne({_id: EVENT_ID}).then((planEvent) => {
+                expect(planEvent.downVotes.length).to.equal(1);
+                User.findOne(TEST_USER_EMAIL).then((user) => {
+                  expect(planEvent.downVotes).to.contain(user._id);
+                  done();
+                });
+              });
+            });
+        });
+
+        it('should remove user from downvotes when upvoting', function(done) {
+          req.put(`/api/event/${EVENT_ID}/upvote`)
+            .set(AUTH)
+            .expect(200)
+            .then((response) => {
+              expect(response.body.length).to.equal(1);
+              PlanEvent.findOne({_id: EVENT_ID}).then((planEvent) => {
+                expect(planEvent.downVotes.length).to.equal(0);
+                expect(planEvent.upVotes.length).to.equal(1);
+                User.findOne(TEST_USER_EMAIL).then((user) => {
+                  expect(planEvent.downVotes).to.not.contain(user._id);
+                  expect(planEvent.upVotes).to.contain(user._id);
+                  done();
+                });
+              });
+            });
+        });
         // if user upVotes, take user off downVotes
+
         // if user downVotes, take user off upVotes
+        it('should remove user from upvotes when downvoting', function(done) {
+          req.put(`/api/event/${EVENT_ID}/downvote`)
+            .set(AUTH)
+            .expect(200)
+            .then((response) => {
+              expect(response.body.length).to.equal(1);
+              PlanEvent.findOne({_id: EVENT_ID}).then((planEvent) => {
+                expect(planEvent.upVotes.length).to.equal(0);
+                expect(planEvent.downVotes.length).to.equal(1);
+                User.findOne(TEST_USER_EMAIL).then((user) => {
+                  expect(planEvent.downVotes).to.contain(user._id);
+                  expect(planEvent.upVotes).to.not.contain(user._id);
+                  done();
+                });
+              });
+            });
+        });
         // user can only upVote once
         // user can only downVote once
 
