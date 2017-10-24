@@ -1,11 +1,11 @@
 <div class="friends-list-container">
-  <div ng-show="$ctrl.pendingFriendRequests.length > 0" class="friends-section">
+  <div ng-show="$ctrl.inboundReqs.length > 0" class="friends-section">
     <div class="friends-section-header">
       <span>Pending Friend Requests</span>
     </div>
     <friend-card user="fr.from" fr-id="fr._id" type="pending"
       accept="$ctrl.acceptFriendRequest" reject="$ctrl.rejectFriendRequest"
-      ng-repeat="fr in $ctrl.pendingFriendRequests"></friend-card>
+      ng-repeat="fr in $ctrl.inboundReqs"></friend-card>
   </div>
   <div class="friends-section">
     <div class="friends-section-header">
@@ -17,12 +17,12 @@
     </div>
     <friend-card user="fr.to" fr-id="fr._id" type="friend" ng-repeat="fr in $ctrl.friendships"></friend-card>
   </div>
-  <div ng-show="$ctrl.sentFriendRequests.length > 0" class="friends-section">
+  <div ng-show="$ctrl.sentReqs.length > 0" class="friends-section">
     <div class="friends-section-header">
       <span>Sent Friend Requests</span>
     </div>
     <friend-card user="fr.to" fr-id="fr._id" type="sent"
       cancel="$ctrl.cancelFriendRequest"
-      ng-repeat="fr in $ctrl.sentFriendRequests"></friend-card>
+      ng-repeat="fr in $ctrl.sentReqs"></friend-card>
   </div>
 </div>

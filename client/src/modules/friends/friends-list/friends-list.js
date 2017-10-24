@@ -9,8 +9,8 @@ class FriendsListController {
     this.$inject = ['FriendService'];
     this.FriendService = FriendService;
     this.friendships = this.FriendService.getFriendships();
-    this.pendingFriendRequests = this.FriendService.getPendingFriendRequests();
-    this.sentFriendRequests = this.FriendService.getSentRequests();
+    this.inboundReqs = this.FriendService.getInboundReqs();
+    this.sentReqs = this.FriendService.getSentReqs();
 
     // new friend form
     this.newFriendOpen = false;
@@ -32,8 +32,8 @@ class FriendsListController {
 
   acceptFriendRequest(frId) {
     this.FriendService.acceptFriendRequest(frId);
-    let accepted = this.pendingFriendRequests.findIndex(el => el._id === frId);
-    accepted = this.pendingFriendRequests.splice(accepted, 1);
+    let accI = this.inboundReqs.findIndex(el => el._id === frId);
+    let accepted = this.inboundReqs.splice(accI, 1);
     accepted.status = 'accepted';
     this.friendships.push(accepted);
   }
@@ -44,8 +44,8 @@ class FriendsListController {
 
   cancelFriendRequest(frId) {
     this.FriendService.cancelFriendRequest(frId);
-    let cancelled = this.sentFriendRequests.findIndex(el => el._id === frId);
-    this.sentFriendRequests.splice(cancelled, 1);
+    let cancI = this.sentReqs.findIndex(el => el._id === frId);
+    this.sentReqs.splice(cancI, 1);
   }
 }
 
