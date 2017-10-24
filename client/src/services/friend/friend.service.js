@@ -48,7 +48,6 @@ export default class FriendService {
   }
 
   inviteFriend(email) {
-    console.log('inviting user: ', email);
     return this.$http.post('/api/friends/invite', {toEmail: email});
   }
 
