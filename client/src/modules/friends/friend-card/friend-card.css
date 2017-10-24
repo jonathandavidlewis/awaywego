@@ -1,0 +1,56 @@
+.friend-card-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--la);
+}
+
+friend-card:last-child .friend-card-container {
+  border-bottom: none;
+}
+
+.friend-card-container:hover {
+  background-color: var(--m3tr2);
+}
+
+.friend-card-avatar {
+  display: flex;
+  align-items: center;
+}
+
+.friend-card-avatar {
+  flex: 0 0 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.friend-card-avatar .material-icons {
+  color: var(--da);
+  font-size: 2em;
+}
+
+.friend-card-content {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.friend-card-name {
+  font-size: .9em;
+  font-weight: bold;
+  color: var(--dk5);
+}
+
+.friend-card-email {
+  font-size: .7em;
+  font-style: italic;
+  color: var(--da);
+}
+
+.friend-card-actions {
+  flex: 0 0 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
