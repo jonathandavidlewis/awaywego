@@ -4,7 +4,7 @@
   </a>
   <div class="header-user-menu-container">
     <i class="material-icons">account_circle</i>
-    <div class="header-user-name">{{$ctrl.UserService.user.name}}</div>
+    <div class="header-user-name"><a ui-sref="app.friends.list">{{$ctrl.UserService.user.name}}</a></div>
     <div ng-if="$ctrl.UserService.isLoggedIn"
          ng-click="$ctrl.logout()" class="header-logout">
       Logout
