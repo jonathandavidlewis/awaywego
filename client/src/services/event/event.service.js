@@ -1,8 +1,28 @@
+let TEST_DATA = [
+  {
+    planId: 'hg5687h5834657h6',
+    title: 'John\'s best BBQ',
+    startTime: '2016-05-18T16:00:00Z',
+    endTime: '2016-05-18T16:00:00Z',
+    description: 'We will have a ton of fun at this park...',
+    imageUrl: 'https://d36tnp772eyphs.cloudfront.net/blogs/1/2014/08/Smith-Rock-940x595.jpg'
+  },
+  {
+    planId: 'hg5687h5834657h6',
+    title: 'John\'s second best BBQ',
+    startTime: '2016-05-18T16:00:00Z',
+    endTime: '2016-05-18T16:00:00Z',
+    description: 'We will have a ton of fun at this park...',
+    imageUrl: 'https://d36tnp772eyphs.cloudfront.net/blogs/1/2014/08/Smith-Rock-940x595.jpg'
+  }
+];
+
+
 export default class EventService {
   constructor($http) {
     this.$inject = ['$http'];
     this.$http = $http;
-    this.events = [];
+    this.events = TEST_DATA;
   }
 
   loadEventsByPlanId(planId) {

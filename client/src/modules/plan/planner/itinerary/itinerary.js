@@ -9,11 +9,13 @@ import './itinerary.css';
 
 
 class ItineraryController {
-  constructor() {
+  constructor(EventService) {
+    this.$inject = ['EventService'];
     this.title = 'This is the itinerary component';
+    this.EventService = EventService;
+
   }
 }
-ItineraryController.$inject = [];
 
 const ItineraryComponent = {
   restrict: 'E',
