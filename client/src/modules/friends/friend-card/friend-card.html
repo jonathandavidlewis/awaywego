@@ -17,10 +17,14 @@
     <div ng-if="$ctrl.type === 'friend'" class="friend-card-friend-actions">
     </div>
     <div ng-if="$ctrl.type === 'request'" class="friend-card-friend-actions">
-      <i  ng-click="$ctrl.request($ctrl.user._id)" class="material-icons">send</i>
+      <button class="awgd-button" ng-click="$ctrl.request($ctrl.user._id)">
+        <span>Send</span>
+      </button>
     </div>
     <div ng-if="$ctrl.type === 'invite'" class="friend-card-friend-actions">
-      <i  ng-click="$ctrl.invite($ctrl.user.name)" class="material-icons">send</i>
+      <button class="awgd-button" ng-click="$ctrl.invite($ctrl.user.name)">
+        <span>Invite</span>
+      </button>
     </div>
   </div>
 </div>
