@@ -31,11 +31,12 @@ class FriendsListController {
   }
 
   acceptFriendRequest(frId) {
-    this.FriendService.acceptFriendRequest(frId);
-    let accI = this.inboundReqs.findIndex(el => el._id === frId);
-    let accepted = this.inboundReqs.splice(accI, 1);
-    accepted.status = 'accepted';
-    this.friendships.push(accepted);
+    this.FriendService.acceptFriendRequest(frId).then(resp => {
+      let accI = this.inboundReqs.findIndex(el => el._id === frId);
+      let accepted = this.inboundReqs.splice(accI, 1);
+      accepted.status = 'accepted';
+      this.friendships.push(accepted);
+    }).catch(err => console.log('Accept error: ', err));
   }
 
   rejectFriendRequest(frId) {
@@ -43,9 +44,10 @@ class FriendsListController {
   }
 
   cancelFriendRequest(frId) {
-    this.FriendService.cancelFriendRequest(frId);
-    let cancI = this.sentReqs.findIndex(el => el._id === frId);
-    this.sentReqs.splice(cancI, 1);
+    this.FriendService.cancelFriendRequest(frId).then(resp => {
+      let cancI = this.sentReqs.findIndex(el => el._id === frId);
+      this.sentReqs.splice(cancI, 1);
+    }).catch(err => console.log('Cancel error: ', err));
   }
 }
 
