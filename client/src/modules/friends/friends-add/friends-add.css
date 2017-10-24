@@ -1,0 +1,31 @@
+.friends-add-container {
+  position: absolute;
+  background: white;
+  width: 100%;
+  padding: 20px 20px;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),
+   0 3px 1px -2px rgba(0,0,0,0.12),
+   0 1px 5px 0 rgba(0,0,0,0.2) !important;
+}
+
+.friends-add-header {
+  font-size: 1.2em;
+  color: var(--dk3);
+  margin-bottom: 10px;
+}
+
+.friends-search-container {
+
+}
+
+.friends-search-container .awgl-form-input {
+  font-size: 1em;
+  height: min-content;
+  padding: 5px;
+  margin-right: 5px;
+}
+
+.friends-add-button {
+  padding: 2px !important;
+  display: flex;
+}

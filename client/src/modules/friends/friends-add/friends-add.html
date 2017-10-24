@@ -1,3 +1,16 @@
 <div class="friends-add-container">
-  <h3>Add Friend Here</h3>
+  <div class="friends-add-header">
+    <span>Search by email to add a friend:</span>
+  </div>
+  <form name="addFriendForm">
+    <div class="friends-search-container flex">
+      <input class="awgl-form-input form-control" name="email" type="email"
+      ng-model="$ctrl.email" placeholder="Friend's email address" required/>
+      <div class="friends-add-button-container">
+        <button class="awgl-button friends-add-button" ng-disabled="addFriendForm.$invalid">
+          <i class="material-icons">add</i>
+        </button>
+      </div>
+    </div>
+  </form>
 </div>

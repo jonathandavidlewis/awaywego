@@ -12,10 +12,18 @@ class FriendsListController {
     this.pendingFriendRequests = this.FriendService.getPendingFriendRequests();
     this.sentFriendRequests = this.FriendService.getSentRequests();
 
+    // new friend form
+    this.newFriendOpen = false;
+    this.newFriendEmail = '';
+
     // callback bindings
     this.acceptFriendRequest = this.acceptFriendRequest.bind(this);
     this.rejectFriendRequest = this.rejectFriendRequest.bind(this);
     this.cancelFriendRequest = this.cancelFriendRequest.bind(this);
+  }
+
+  toggleForm() {
+    this.newFriendOpen = !this.newFriendOpen;
   }
 
   acceptFriendRequest(frId) {
