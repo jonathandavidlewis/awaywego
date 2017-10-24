@@ -33,7 +33,7 @@ friendRouter.post('/new/:friendId', (req, res) => {
 // TODO: send email to the invited friend
 friendRouter.post('/invite', (req, res) => {
   const fromId = oid(req.user._id);
-  const toEmail = req.params.toEmail;
+  const toEmail = req.body.toEmail;
   Friend.find({from: fromId, toEmail: toEmail}).then(fr => {
     if (fr) { throw new Error('fr_exists'); }
     const newFr = { from: fromId, toEmail: toEmail, status: 'Pending' };
