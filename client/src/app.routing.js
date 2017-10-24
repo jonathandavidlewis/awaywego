@@ -125,10 +125,10 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
     component: 'friendsList'
   };
 
-  const addFriendState = {
+  const friendsAddState = {
     name: 'app.friends.add',
     url: '/add',
-    component: 'addFriend'
+    component: 'friendsAdd'
   };
 
   // auth states
@@ -142,7 +142,7 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
   // friends states
   $stateProvider.state(friendsState);
   $stateProvider.state(friendsListState);
-  $stateProvider.state(addFriendState);
+  $stateProvider.state(friendsAddState);
 
   // plan states
   $stateProvider.state(makePlanState);
