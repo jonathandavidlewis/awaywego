@@ -8,6 +8,7 @@ import LoginModule from './modules/login/login';
 import SignupModule from './modules/login/signup';
 import PlanModule from './modules/plan/plan';
 import MakePlanModule from './modules/make-plan/make-plan';
+import FriendsModule from './modules/friends/friends.js';
 
 // import global services
 import UserService from './services/user/user.service';
@@ -41,6 +42,7 @@ angular.module('app', [
   SignupModule,
   PlanModule,
   MakePlanModule,
+  FriendsModule,
 ])
   .service('UserService', UserService)
   .config(appRouting)

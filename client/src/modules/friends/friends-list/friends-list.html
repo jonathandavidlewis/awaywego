@@ -1,0 +1,13 @@
+<div class="friends-list-container">
+  <div class="friends-pending-section">
+    <div class="friends-pending-section-header">
+      <span>Pending Friends</span>
+    </div>
+  </div>
+  <div class="friends-section">
+    <div class="friends-section-header">
+      <span>Friends</span>
+    </div>
+    <user-card user="friend" ng-repeat="friend in $ctrl.friends"></user-card>
+  </div>
+</div>
