@@ -15,9 +15,12 @@
     <div ng-if="$ctrl.newFriendOpen" class="friends-add-form-mount">
       <friends-add close-form="$ctrl.closeForm"></friends-add>
     </div>
+    <div ng-if="$ctrl.friendships" class="no-friends">
+      <span>Aww - no friends yet, why don't you add somebody?</span>
+    </div>
     <friend-card user="fr.to" fr-id="fr._id" type="friend" ng-repeat="fr in $ctrl.friendships"></friend-card>
   </div>
-  <div ng-show="$ctrl.sentReqs.length > 0" class="friends-section">
+  <div ng-if="$ctrl.sentReqs.length > 0" class="friends-section">
     <div class="friends-section-header">
       <span>Sent Friend Requests</span>
     </div>

@@ -15,3 +15,11 @@
 .friends-section-header .material-icons {
   cursor: pointer;
 }
+
+.no-friends {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  color: var(--dk5);
+  font-size: 1.1em;
+}
