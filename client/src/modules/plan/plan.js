@@ -1,5 +1,9 @@
 import angular from 'angular';
 
+// services for this module
+import PlanService from '../../services/plan/plan.service';
+import EventService from '../../services/event/event.service';
+
 import PlanNavComponent from './plan-nav/plan-nav';
 import FeedModule from './feed/feed';
 import PlannerModule from './planner/planner';
@@ -8,11 +12,11 @@ import template from './plan.html';
 import './plan.css';
 
 class PlanController {
-  constructor() {
+  constructor(PlanService, EventService) {
     this.title = 'This is a plan title';
   }
 }
-PlanController.$inject = [];
+PlanController.$inject = ['PlanService', 'EventService'];
 
 const PlanComponent = {
   restrict: 'E',
@@ -26,7 +30,9 @@ const PlanModule = angular.module('app.plan', [
   PlannerModule
 ])
   .component('plan', PlanComponent)
-  .component('planNav', PlanNavComponent);
+  .component('planNav', PlanNavComponent)
+  .service('PlanService', PlanService)
+  .service('EventService', EventService);
 
 
 
