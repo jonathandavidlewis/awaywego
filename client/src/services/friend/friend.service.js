@@ -6,8 +6,10 @@ export default class FriendService {
     this.pendingFriends = [];
   }
 
-  loadFriends() {
+  refreshFriends() {
     return this.$http.get('/api/friends').then(friends => {
+      this.friends = [];
+      this.pendingFriends = [];
       friends.forEach(friend => {
         if (friend.status === 'accepted') {
           this.friends.push(friend);
