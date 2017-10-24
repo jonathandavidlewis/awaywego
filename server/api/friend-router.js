@@ -26,7 +26,7 @@ friendRouter.get('/pending', (req, res) => {
 friendRouter.post('/new/:friendId', (req, res) => {
   const fromId = oid(req.user._id);
   const toId = oid(req.params.friendId);
-  Friend.find({from: fromId, to: toId}).then(fr => {
+  Friend.findOne({from: fromId, to: toId}).then(fr => {
     if (fr) { throw new Error('fr_exists'); }
     const newFr = { from: fromId, to: toId, status: 'pending' };
     return Friend.create(newFr);
@@ -45,7 +45,7 @@ friendRouter.post('/new/:friendId', (req, res) => {
 friendRouter.post('/invite', (req, res) => {
   const fromId = oid(req.user._id);
   const toEmail = req.params.toEmail;
-  Friend.find({from: fromId, toEmail: toEmail}).then(fr => {
+  Friend.findOne({from: fromId, toEmail: toEmail}).then(fr => {
     if (fr) { throw new Error('fr_exists'); }
     const newFr = { from: fromId, toEmail: toEmail, status: 'pending' };
     return Friend.create(newFr);
@@ -73,7 +73,7 @@ friendRouter.put('/accept/:frId', (req, res) => {
     return Friend.findOneAndUpdate({from: toId, to: fromId }, {status: 'accepted'}).exec();
   }).then(invFr => {
     if (!invFr) {
-      const newFr = { from: toId, to: fromId };
+      const newFr = { from: toId, to: fromId, status: 'accepted' };
       return Friend.create(newFr).then(newFr => {
         res.status(200).json({message: 'friendship accepted', frId: newFr._id});
       });
