@@ -15,10 +15,9 @@ class HomeController {
     this.name = 'Your Plans';
 
     this.deletePlan = (planId) => {
-      console.log("clicked!");
       PlanService.deletePlanById(planId).then(
-          this.PlanService.getAllPlans().then(res => this.loadPlans(res.data))
-      )
+        this.PlanService.getAllPlans().then(res => this.loadPlans(res.data))
+      );
     };
 
     this.loadPlans = (plans) => {
@@ -27,16 +26,10 @@ class HomeController {
     };
 
     this.$onInit = () => {
-      this.PlanService.getAllPlans().then(res => this.loadPlans(res.data));
-    }
+      this.PlanService.getAllPlans().then(plans => this.loadPlans(plans));
+    };
   }
-
-
-
-
 }
-
-
 
 const HomeComponent = {
   restrict: 'E',

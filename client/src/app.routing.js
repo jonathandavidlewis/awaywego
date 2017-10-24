@@ -55,7 +55,7 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
 
   const feedState = {
     name: 'app.plan.feed',
-    url: '/feed/{plan}',
+    url: '/feed/{planId}',
     component: 'feed',
     resolve: {
       protect: redirectIfNotAuthed
