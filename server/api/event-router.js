@@ -19,31 +19,31 @@ eventRouter.post('/', (req, res) => {
   newEvent.upVotes = [];
   newEvent.downVotes = [];
 
-  PlanEvent.create(newEvent).then(planEvent => res.status(201).json({_Id: planEvent._id}))
+  PlanEvent.create(newEvent).then(planEvent => res.status(201).json({eventId: planEvent._id}))
     .catch(err => res.status(500).json({'Server error': err}));
 });
 
 // Update Events
 eventRouter.put('/:eventId', (req, res) => {
-  PlanEvent.findOneAndUpdateById({_id: req.params.eventId}, req.body, {new: true})
+  PlanEvent.findByIdAndUpdate({_id: req.params.eventId}, req.body, {new: true})
     .then(planEvent => res.status(200).json(planEvent))
     .catch(err => res.status(500).json({'Server error': err}));
 });
 
 eventRouter.put('/:eventId/promote', (req, res) => {
-  PlanEvent.findOneAndUpdateById({_id: req.params.eventId}, {status: 'itinerary'}, {new: true})
+  PlanEvent.findByIdAndUpdate({_id: req.params.eventId}, {status: 'itinerary'}, {new: true})
     .then(planEvent => res.status(200).json(planEvent))
     .catch(err => res.status(500).json({'Server error': err}));
 });
 
 eventRouter.put('/:eventId/demote', (req, res) => {
-  PlanEvent.findOneAndUpdateById({_id: req.params.eventId}, {status: 'idea'}, {new: true})
+  PlanEvent.findByIdAndUpdate({_id: req.params.eventId}, {status: 'idea'}, {new: true})
     .then(planEvent => res.status(200).json(planEvent))
     .catch(err => res.status(500).json({'Server error': err}));
 });
 
 eventRouter.put('/:eventId/upvote', (req, res) => {
-  PlanEvent.findOneById({_id: req.params.eventId})
+  PlanEvent.findById({_id: req.params.eventId})
     .then((planEvent) => {
       if (planEvent.upVotes.every(id => id.toString() !== req.user._id)) {
         planEvent.upVotes.push(req.user._id);
@@ -55,7 +55,7 @@ eventRouter.put('/:eventId/upvote', (req, res) => {
 });
 
 eventRouter.put('/:eventId/downvote', (req, res) => {
-  PlanEvent.findOneById({_id: req.params.eventId})
+  PlanEvent.findById({_id: req.params.eventId})
     .then((planEvent) => {
       if (planEvent.upVotes.every(id => id.toString() !== req.user._id)) {
         planEvent.downVotes.push(req.user._id);
@@ -67,7 +67,7 @@ eventRouter.put('/:eventId/downvote', (req, res) => {
 });
 
 eventRouter.delete('/:eventId', (req, res) => {
-  PlanEvent.findOneAndRemoveById({_id: req.params.eventId}).then(() => res.status(200).send('Deleted'))
+  PlanEvent.findByIdAndRemove({_id: req.params.eventId}).then(() => res.status(200).send('Deleted'))
     .catch(err => res.status(500).json({'Server error': err}));
 });
 

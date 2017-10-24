@@ -181,7 +181,7 @@ describe('Server tests', function() {
           .expect(201)
           .then((response) => {
             console.log('In protected route');
-            PlanEvent.find({_id: response._Id}).then((plan) => {
+            PlanEvent.find({_id: response.eventId}).then((plan) => {
               console.log(plan);
               expect(plan).to.exist;
               done();
@@ -221,7 +221,7 @@ describe('Server tests', function() {
             .set(AUTH)
             .expect(201)
             .then((response) => {
-              PlanEvent.findOne({_id: response.body._Id}).then((planEvent) => {
+              PlanEvent.findOne({_id: response.body.eventId}).then((planEvent) => {
                 expect(planEvent).to.exist;
                 done();
               });
