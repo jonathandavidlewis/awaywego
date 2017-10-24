@@ -10,7 +10,6 @@ import './home.css';
 
 class HomeController {
   constructor(PlanService) {
-    this.$inject = ['PlanService'];
     this.PlanService = PlanService;
     this.name = 'Your Plans';
     this.loadPlans = this.loadPlans.bind(this);
@@ -33,6 +32,8 @@ class HomeController {
   }
 
 }
+
+HomeController.$inject = ['PlanService'];
 
 const HomeComponent = {
   restrict: 'E',

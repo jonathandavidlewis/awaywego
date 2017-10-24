@@ -5,8 +5,7 @@ import template from './plan-card.html';
 import './plan-card.css';
 
 class PlanCardController {
-  constructor($state) {
-    this.$inject = ['$state'];
+  constructor() {
     this.name = 'This is a plan title';
     this. handleDeleteClick = () => {
       this.deletePlan(this.plan._id);
