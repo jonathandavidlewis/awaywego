@@ -13,22 +13,25 @@ class HomeController {
     this.$inject = ['PlanService'];
     this.PlanService = PlanService;
     this.name = 'Your Plans';
-
-    this.deletePlan = (planId) => {
-      PlanService.deletePlanById(planId).then(
-        this.PlanService.getAllPlans().then(this.loadPlans)
-      );
-    };
-
-    this.loadPlans = (plans) => {
-      console.log(plans, "plans'");
-      this.plans = plans;
-    };
-
-    this.$onInit = () => {
-      this.PlanService.getAllPlans().then(this.loadPlans);
-    };
+    this.loadPlans = this.loadPlans.bind(this);
+    this.deletePlan = this.deletePlan.bind(this);
+    this.$onInit = this.$onInit.bind(this);
   }
+
+  loadPlans(plans) {
+    this.plans = plans;
+  }
+
+  deletePlan(planId) {
+    this.PlanService.deletePlanById(planId).then(
+      this.PlanService.getAllPlans().then(this.loadPlans)
+    );
+  }
+
+  $onInit() {
+    this.PlanService.getAllPlans().then(this.loadPlans);
+  }
+
 }
 
 const HomeComponent = {
