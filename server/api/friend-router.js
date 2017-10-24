@@ -43,14 +43,18 @@ friendRouter.post('/new/:friendId', (req, res) => {
     if (fr) { throw new Error('fr_exists'); }
     const newFr = { from: fromId, to: toId, status: 'pending' };
     return Friend.create(newFr);
-  }).then(newFr => res.status(201).json({message: 'created', frId: newFr._id}))
-    .catch(err => {
-      if (err.message === 'fr_exists') {
-        res.status(422).json('Friend request already exists');
-      } else {
-        res.status(500).json({message: 'Server error.', err});
-      }
-    });
+  }).then(newFr => {
+    return Friend.populate(newFr, [
+      { path: 'from', select: '-password'},
+      { path: 'to', select: '-password'}])
+      .then(newFr => res.status(201).json({message: 'created', newFr: newFr}));
+  }).catch(err => {
+    if (err.message === 'fr_exists') {
+      res.status(422).json('Friend request already exists');
+    } else {
+      res.status(500).json({message: 'Server error.', err});
+    }
+  });
 });
 
 // post - friend invite -
