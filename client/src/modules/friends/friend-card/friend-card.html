@@ -16,5 +16,8 @@
     </div>
     <div ng-if="$ctrl.type === 'friend'" class="friend-card-friend-actions">
     </div>
+    <div ng-if="$ctrl.type === 'request'" class="friend-card-friend-actions">
+      <i  ng-click="$ctrl.request($ctrl.user._id)" class="material-icons">send</i>
+    </div>
   </div>
 </div>
