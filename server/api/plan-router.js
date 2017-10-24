@@ -11,7 +11,6 @@ planRouter.get('/', (req, res) => {
 
 planRouter.post('/', (req, res) => {
   const newPlan = req.body;
-  console.log(req.user);
   newPlan.userId = req.user._id;
   Plan.create(newPlan).then(plan => res.status(201).json({_id: plan._id}))
     .catch(err => res.status(500).send('Server error: ', err));

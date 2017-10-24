@@ -311,6 +311,29 @@ describe('Server tests', function() {
               });
             });
         });
+
+        it('should allow upvoting', function(done) {
+          req.put(`/api/event/${EVENT_ID}/upvote`)
+            .set(AUTH)
+            .expect(200)
+            .then((response) => {
+              expect(response.body.length).to.equal(1);
+              PlanEvent.findOne({_id: EVENT_ID}).then((planEvent) => {
+                expect(planEvent.upVotes.length).to.equal(1);
+                User.findOne(TEST_USER_EMAIL).then((user) => {
+                  expect(planEvent.upVotes).to.contain(user._id);
+                  done();
+                });
+              });
+            });
+        });
+
+        // if user upVotes, take user off downVotes
+        // if user downVotes, take user off upVotes
+        // user can only upVote once
+        // user can only downVote once
+
+
       }); // End of Describe PUT
 
       describe('DELETE', function() {
