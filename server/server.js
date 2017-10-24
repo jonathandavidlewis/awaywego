@@ -17,6 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/auth', authRouter);
 app.use('/api', jwtAuth, apiRouter);
 
+
 // //todo: set to api routes
 // app.post('/testAuth', jwtAuth, (req, res) => {
 //   res.json('Access granted');

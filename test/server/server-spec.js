@@ -5,6 +5,7 @@ const app = require('../../server/server.js'); //gets the app started
 req = request('http://localhost:8080');
 const jwt = require('jsonwebtoken');
 const User = require('../../db/models/user');
+const PlanEvent = require('../../db/models/event');
 
 const TEST_USER = {
   name: 'jim',
@@ -16,6 +17,11 @@ const TEST_USER_EMAIL = {
   email: 'test1@example.com'
 };
 
+
+
+const TEST_PLAN = {
+  title: 'Test Plan Ever',
+};
 describe('Server tests', function() {
 
   before(function(done) {
@@ -141,5 +147,100 @@ describe('Server tests', function() {
             });
         });
     });
+  });
+
+  describe('/api', function() {
+    // For access to protected routes
+    let AUTH;
+
+
+
+    // Create a user and set token before api calls
+    before(function(done) {
+      User.create(TEST_USER).then(() => {
+        req.post('/auth/login')
+          .send(TEST_USER)
+          .then(function (response) {
+
+            AUTH = {Authorization: 'bearer ' + response.body.token};
+            done();
+          })
+          .catch(function (error) {
+            console.log(error);
+            done();
+          });
+      });
+    });
+
+    after(function(done) {
+      User.remove(TEST_USER_EMAIL).then(() => done());
+    });
+
+    xdescribe('/plan', function() {
+
+      after(function(done) {
+        User.remove(TEST_EVENT).then(() => done());
+      });
+
+      it('should create an event entry on a post request', function(done) {
+        req.post('/api/event')
+          .send(TEST_EVENT)
+          .set('Authorization', 'bearer ' + token)
+          .expect(201)
+          .then((response) => {
+            console.log('In protected route');
+            PlanEvent.find({_id: response._Id}).then((plan) => {
+              console.log(plan);
+              expect(plan).to.exist;
+              done();
+            });
+          });
+      });
+    });
+
+
+    describe('/events', function() {
+
+      const TEST_EVENT = {
+        title: 'John"s best BBQ',
+        description: 'We will have a ton of fun at this park...',
+        planId: 'undefined',
+        startTime: '2016-05-18T16:00:00Z',
+        endTime: '2016-05-18T16:00:00Z',
+      };
+
+      before(function(done) {
+        req.post('/api/plan')
+          .send(TEST_PLAN)
+          .set(AUTH)
+          .then((response) => {
+            TEST_EVENT.planId = response.body._id;
+            console.log('planId', TEST_EVENT.planId);
+            done();
+          });
+      });
+
+      after(function(done) {
+        User.remove(TEST_EVENT).then(() => done());
+      });
+
+      it('should create an event entry on a post request', function(done) {
+        req.post('/api/event')
+          .send(TEST_EVENT)
+          .set(AUTH)
+          .expect(201)
+          .then((response) => {
+            console.log('In protected route');
+            PlanEvent.find({_id: response.eventId}).then((plan) => {
+              console.log(plan);
+              expect(plan).to.exist;
+              done();
+            });
+          });
+      });
+    });
+
+
+
   });
 });
