@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   padding: 10px 0;
-  border-bottom: 1px solid var(--la);
+  border-bottom: 1px solid var(--m3tr5);
 }
 
 friend-card:last-child .friend-card-container {

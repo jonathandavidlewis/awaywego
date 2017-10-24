@@ -67,7 +67,7 @@
 .awgd-button:disabled,
 .awgd-button:disabled:hover { background-color: var(--dk1); }
 
-.awgd-button:active {
+.awgd-button:active:not(:disabled) {
    -moz-box-shadow:    inset 0 0 5px #000000;
    -webkit-box-shadow: inset 0 0 5px #000000;
    box-shadow:         inset 0 0 5px #000000;
@@ -165,7 +165,7 @@
   color: grey;
 }
 
-.awgl-button:active {
+.awgl-button:active:not(:disabled) {
    -moz-box-shadow:    inset 0 0 5px #000000;
    -webkit-box-shadow: inset 0 0 5px #000000;
    box-shadow:         inset 0 0 5px #000000;
