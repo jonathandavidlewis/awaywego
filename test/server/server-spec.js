@@ -17,11 +17,10 @@ const TEST_USER_EMAIL = {
   email: 'test1@example.com'
 };
 
-
-
 const TEST_PLAN = {
   title: 'Test Plan Ever',
 };
+
 describe('Server tests', function() {
 
   before(function(done) {
@@ -96,7 +95,6 @@ describe('Server tests', function() {
           done();
         });
     });
-
   });
 
   describe('/signup', function() {
@@ -108,7 +106,6 @@ describe('Server tests', function() {
     after(function(done) {
       User.remove(TEST_USER_EMAIL).then(() => done());
     });
-
 
     it('should return a json web token on a successful signup', function(done) {
       req.post('/auth/signup')
@@ -152,16 +149,12 @@ describe('Server tests', function() {
   describe('/api', function() {
     // For access to protected routes
     let AUTH;
-
-
-
     // Create a user and set token before api calls
     before(function(done) {
       User.create(TEST_USER).then(() => {
         req.post('/auth/login')
           .send(TEST_USER)
           .then(function (response) {
-
             AUTH = {Authorization: 'bearer ' + response.body.token};
             done();
           })
@@ -177,7 +170,6 @@ describe('Server tests', function() {
     });
 
     xdescribe('/plan', function() {
-
       after(function(done) {
         User.remove(TEST_EVENT).then(() => done());
       });
@@ -198,9 +190,7 @@ describe('Server tests', function() {
       });
     });
 
-
     describe('/event', function() {
-
       const TEST_EVENT = {
         title: 'John"s best BBQ',
         description: 'We will have a ton of fun at this park...',
@@ -271,7 +261,6 @@ describe('Server tests', function() {
         after(function(done) {
           PlanEvent.remove({EVENT_ID}).then(() => done());
         });
-
 
         it('should allow updating by eventId', function(done) {
           let UPDATED_EVENT = Object.assign({}, TEST_EVENT);
@@ -365,9 +354,7 @@ describe('Server tests', function() {
               });
             });
         });
-        // if user upVotes, take user off downVotes
 
-        // if user downVotes, take user off upVotes
         it('should remove user from upvotes when downvoting', function(done) {
           req.put(`/api/event/${EVENT_ID}/downvote`)
             .set(AUTH)
@@ -385,10 +372,6 @@ describe('Server tests', function() {
               });
             });
         });
-        // user can only upVote once
-        // user can only downVote once
-
-
       }); // End of Describe PUT
 
       describe('DELETE', function() {
@@ -410,13 +393,6 @@ describe('Server tests', function() {
             });
         });
       });
-
-
     }); // End of Describe /event
-
-
-
   }); // End of Describe /api
-
-
 }); // End of Describe Server
