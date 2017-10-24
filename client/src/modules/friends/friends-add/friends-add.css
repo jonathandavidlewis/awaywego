@@ -14,10 +14,6 @@
   margin-bottom: 10px;
 }
 
-.friends-search-container {
-
-}
-
 .friends-search-container .awgl-form-input {
   font-size: 1em;
   height: min-content;
@@ -28,4 +24,15 @@
 .friends-add-button {
   padding: 2px !important;
   display: flex;
+}
+
+.friends-request-container {
+  margin: 20px 0;
+  width: 100%;
+  color: var(--dk3);
+}
+
+.friends-request-message {
+  font-size: 1em;
+  margin-right: 10px;
 }

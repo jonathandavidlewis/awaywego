@@ -2,15 +2,26 @@
   <div class="friends-add-header">
     <span>Search by email to add a friend:</span>
   </div>
-  <form name="addFriendForm">
+  <form name="addFriendForm" ng-submit="$ctrl.searchForFriend()" >
     <div class="friends-search-container flex">
       <input class="awgl-form-input form-control" name="email" type="email"
       ng-model="$ctrl.email" placeholder="Friend's email address" required/>
       <div class="friends-add-button-container">
-        <button class="awgl-button friends-add-button" ng-disabled="addFriendForm.$invalid">
-          <i class="material-icons">add</i>
-        </button>
-      </div>
+        <button class="awgl-button friends-add-button" type="submit"
+        ng-disabled="addFriendForm.$invalid">
+        <i class="material-icons">add</i>
+      </button>
     </div>
-  </form>
+  </div>
+</form>
+<div ng-if="$ctrl.foundUser" class="friends-request-container">
+  <div class="friends-request-message">
+    Awesome! We found {{$ctrl.foundUser.name}}, want to send a friend request?
+  </div>
+  <div>
+    <friend-card type="request" user="$ctrl.foundUser" request="$ctrl.requestFriend"></friend-card>
+  </div>
+  <div ng-if="$ctrl.inviteUser" class="friends-invite-container">
+    Invite them to Away We Go?
+  </div>
 </div>

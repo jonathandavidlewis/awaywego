@@ -13,7 +13,7 @@
       <i ng-click="$ctrl.toggleForm()" class="material-icons">add_circle</i>
     </div>
     <div ng-if="$ctrl.newFriendOpen" class="friends-add-form-mount">
-      <friends-add></friends-add>
+      <friends-add close-form="$ctrl.closeForm"></friends-add>
     </div>
     <friend-card user="fr.to" fr-id="fr._id" type="friend" ng-repeat="fr in $ctrl.friendships"></friend-card>
   </div>
