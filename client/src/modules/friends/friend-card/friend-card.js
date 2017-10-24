@@ -18,7 +18,8 @@ const FriendCardComponent = {
     accept: '<',
     reject: '<',
     cancel: '<',
-    request: '<'
+    request: '<',
+    invite: '<'
   },
   template: template,
   controller: FriendCardController
