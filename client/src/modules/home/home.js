@@ -16,7 +16,7 @@ class HomeController {
 
     this.deletePlan = (planId) => {
       PlanService.deletePlanById(planId).then(
-        this.PlanService.getAllPlans().then(res => this.loadPlans(res.data))
+        this.PlanService.getAllPlans().then(this.loadPlans)
       );
     };
 
@@ -26,7 +26,7 @@ class HomeController {
     };
 
     this.$onInit = () => {
-      this.PlanService.getAllPlans().then(plans => this.loadPlans(plans));
+      this.PlanService.getAllPlans().then(this.loadPlans);
     };
   }
 }
