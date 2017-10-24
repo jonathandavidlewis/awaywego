@@ -6,7 +6,7 @@ let eventSchema = new Schema({
   title: {type: String, required: true},
   description: {type: String, required: true},
   planId: {type: Schema.ObjectId, ref: 'Plan', required: true },
-  startTime: {type: String, required: true},
+  startTime: {type: String, required: false},
   endTime: {type: String, required: false},
   status: {type: String, required: true},
   upVotes: [{type: Schema.ObjectId, ref: 'User'}],
