@@ -6,16 +6,20 @@ const oid = require('mongoose').Types.ObjectId;
 
 // get friends of user - /friends
 friendRouter.get('/', (req, res) => {
-  Friend.find({from: oid(req.user._id)}).then(friends => {
-    res.status(200).json(friends);
-  });
+  Friend.find({from: oid(req.user._id)})
+    .populate('from', '-password').populate('to', '-password').exec()
+    .then(friends => {
+      res.status(200).json(friends);
+    });
 });
 
 // get pending requests to me
 friendRouter.get('/pending', (req, res) => {
-  Friend.find({to: oid(req.user._id), status: 'pending'}).then(friends => {
-    res.status(200).json(friends);
-  });
+  Friend.find({to: oid(req.user._id), status: 'pending'})
+    .populate('from', '-password').populate('to', '-password').exec()
+    .then(friends => {
+      res.status(200).json(friends);
+    });
 });
 
 // post - new friend request to existing user

@@ -1,34 +1,34 @@
 export default class FriendService {
   constructor($http) {
     this.$inject = ['$http'];
-    this.friends = [];
-    this.friendRequests = [];
-    this.pendingFriends = [];
+    this.friendships = [];
+    this.friendshipRequests = [];
+    this.pendingFriendships = [];
   }
 
   // FriendsService data access methods
-  getFriends() { return this.friends; }
-  getPendingFriends() { return this.pendingFriends; }
-  getRequestedFriends() { return this.friendRequests; }
+  getFriendships() { return this.friendships; }
+  getPendingFriendRequests() { return this.pendingFriendships; }
+  getSentRequests() { return this.friendshipRequests; }
 
   // Friends API support methods
   refreshFriends() {
     return this.$http.get('/api/friends').then(friends => {
-      this.friends = [];
-      this.pendingFriends = [];
-      friends.forEach(friend => {
-        if (friend.status === 'accepted') {
-          this.friends.push(friend);
-        } else if (friend.status === 'pending') {
-          this.friendRequests.push(friend);
+      this.friendships = [];
+      this.pendingFriendships = [];
+      friends.forEach(friendship => {
+        if (friendship.status === 'accepted') {
+          this.friends.push(friendship);
+        } else if (friendship.status === 'pending') {
+          this.friendshipRequests.push(friendship);
         }
       });
     });
   }
 
   loadPendingFriends() {
-    return this.$http.get('/api/friends/pending').then(pendingFriends => {
-      this.pendingFriends = pendingFriends;
+    return this.$http.get('/api/friends/pending').then(pendingFriendships => {
+      this.pendingFriendships = pendingFriendships;
     });
   }
 
