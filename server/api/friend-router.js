@@ -22,6 +22,19 @@ friendRouter.get('/pending', (req, res) => {
     });
 });
 
+// find user by email
+// TODO: handle case sensitivity here
+friendRouter.get('/find/:email', (req, res) => {
+  console.log('Searching for user: ', decodeURI(req.params.email));
+  User.findOne({email: decodeURI(req.params.email)}).select('-password').then(user => {
+    if (user) {
+      res.status(200).json(user);
+    } else {
+      res.status(404).send('user_not_found');
+    }
+  });
+});
+
 // post - new friend request to existing user
 friendRouter.post('/new/:friendId', (req, res) => {
   const fromId = oid(req.user._id);
