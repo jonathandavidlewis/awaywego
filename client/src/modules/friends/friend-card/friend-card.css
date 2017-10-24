@@ -49,8 +49,21 @@ friend-card:last-child .friend-card-container {
 }
 
 .friend-card-actions {
-  flex: 0 0 50px;
+  flex: 0 0 80px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.friend-card-pending-actions,
+.friend-card-sent-actions,
+.friend-card-friend-actions {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 20px;
+}
+
+.friend-card-actions .material-icons {
+  margin-left: 15px;
 }

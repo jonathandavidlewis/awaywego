@@ -7,6 +7,14 @@
     <div class="friend-card-email">{{$ctrl.user.email}}</div>
   </div>
   <div class="friend-card-actions">
-    <i class="material-icons">person_add</i>
+    <div ng-if="$ctrl.type === 'pending'" class="friend-card-pending-actions">
+      <i ng-click="$ctrl.accept($ctrl.frId)" class="material-icons">check</i>
+      <i ng-click="$ctrl.reject($ctrl.frId)" class="material-icons">cancel</i>
+    </div>
+    <div ng-if="$ctrl.type === 'sent'" class="friend-card-sent-actions">
+      <i  ng-click="$ctrl.cancel($ctrl.frId)" class="material-icons">cancel</i>
+    </div>
+    <div ng-if="$ctrl.type === 'friend'" class="friend-card-friend-actions">
+    </div>
   </div>
 </div>

@@ -3,18 +3,22 @@
     <div class="friends-section-header">
       <span>Pending Friend Requests</span>
     </div>
-    <friend-card user="fr.from" frId="fr._id" type="pending" ng-repeat="fr in $ctrl.pendingFriendRequests"></friend-card>
+    <friend-card user="fr.from" fr-id="fr._id" type="pending"
+      accept="$ctrl.acceptFriendRequest" reject="$ctrl.rejectFriendRequest"
+      ng-repeat="fr in $ctrl.pendingFriendRequests"></friend-card>
   </div>
   <div class="friends-section">
     <div class="friends-section-header">
       <span>Friends</span>
     </div>
-    <friend-card user="fr.to" frId="fr._id" type="friend" ng-repeat="fr in $ctrl.friendships"></friend-card>
+    <friend-card user="fr.to" fr-id="fr._id" type="friend" ng-repeat="fr in $ctrl.friendships"></friend-card>
   </div>
   <div ng-show="$ctrl.sentFriendRequests.length > 0" class="friends-section">
     <div class="friends-section-header">
       <span>Sent Friend Requests</span>
     </div>
-    <friend-card user="fr.to" frId="fr._id" type="sent" ng-repeat="fr in $ctrl.sentFriendRequests"></friend-card>
+    <friend-card user="fr.to" fr-id="fr._id" type="sent"
+      cancel="$ctrl.cancelFriendRequest"
+      ng-repeat="fr in $ctrl.sentFriendRequests"></friend-card>
   </div>
 </div>

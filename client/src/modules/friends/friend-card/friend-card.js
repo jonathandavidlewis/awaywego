@@ -12,7 +12,12 @@ class FriendCardController {
 const FriendCardComponent = {
   restrict: 'E',
   bindings: {
-    user: '<'
+    user: '<',
+    type: '@',
+    frId: '<',
+    accept: '<',
+    reject: '<',
+    cancel: '<'
   },
   template: template,
   controller: FriendCardController

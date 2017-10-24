@@ -11,6 +11,23 @@ class FriendsListController {
     this.friendships = this.FriendService.getFriendships();
     this.pendingFriendRequests = this.FriendService.getPendingFriendRequests();
     this.sentFriendRequests = this.FriendService.getSentRequests();
+
+    // callback bindings
+    this.acceptFriendRequest = this.acceptFriendRequest.bind(this);
+    this.rejectFriendRequest = this.rejectFriendRequest.bind(this);
+    this.cancelFriendRequest = this.cancelFriendRequest.bind(this);
+  }
+
+  acceptFriendRequest(frId) {
+    this.FriendService.acceptFriendRequest(frId);
+  }
+
+  rejectFriendRequest(frId) {
+    this.FriendService.rejectFriendRequest(frId);
+  }
+
+  cancelFriendRequest(frId) {
+    this.FriendService.cancelFriendRequest(frId);
   }
 }
 
