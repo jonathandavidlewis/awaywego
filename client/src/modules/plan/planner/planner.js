@@ -6,6 +6,7 @@ import IdeasModule from './ideas/ideas';
 import IdeaModule from './idea/idea';
 import AvailabilityModule from './availability/availability';
 import MakeIdeaModule from './make-idea/make-idea';
+import PromoteIdeaModule from './promote-idea/promote-idea';
 
 // imports for this component
 import template from './planner.html';
@@ -30,7 +31,8 @@ const PlannerModule = angular.module('app.plan.planner', [
   IdeasModule,
   IdeaModule,
   AvailabilityModule,
-  MakeIdeaModule
+  MakeIdeaModule,
+  PromoteIdeaModule
 ])
   .component('planner', PlannerComponent);
 

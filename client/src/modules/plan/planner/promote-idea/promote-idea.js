@@ -1,22 +1,25 @@
 import angular from 'angular';
 
 // import services for this modules
-import EventService from '../../../../../services/event/event.service';
+import EventService from '../../../../services/event/event.service';
 
 // imports for this component
 import template from './promote-idea.html';
 import './promote-idea.css';
 
-class MakeIdeaController {
-  constructor($state, EventService, $stateParams) {
-    this.$inject = ['$state', 'EventService', '$stateParams'];
-    this.$state = $state;
+class PromoteIdeaController {
+  constructor(EventService, $stateParams) {
+    this.$inject = ['EventService', '$stateParams'];
     this.EventService = EventService;
     this.$stateParams = $stateParams;
+    this.$onInit = this.$onInit.bind(this);
     this.title = '';
     this.desc = '';
-    this.imageUrl = '';
     this.formWarning = '';
+  }
+
+  $onInit() {
+    this.event = this.EventService.getEvent(this.$stateParams.eventId);
   }
 
   submit() {
@@ -44,15 +47,15 @@ class MakeIdeaController {
   }
 }
 
-const MakeIdeaComponent = {
+const PromoteIdeaComponent = {
   restrict: 'E',
   bindings: {},
   template: template,
-  controller: MakeIdeaController
+  controller: PromoteIdeaController
 };
 
-const MakeIdeaModule = angular.module('app.plan.planner.makeIdea', [])
-  .component('makeIdea', MakeIdeaComponent)
+const PromoteIdeaModule = angular.module('app.plan.planner.promoteIdea', [])
+  .component('promoteIdea', PromoteIdeaComponent)
   .service('EventService', EventService);
 
-export default MakeIdeaModule.name;
+export default PromoteIdeaModule.name;

@@ -1,33 +1,32 @@
 <div class="promote-idea-container flex-col flex-start flex-align-stretch">
-  <div class="promote-idea-header"><span>Sweet!<br /> Let's make this idea happen</span></div>
-  <div><h6>You can also choose a </h6></div>
+  <div class="promote-idea-header"><span>Sweet!<br /> Let's schedule this</span></div>
   <div class="promote-idea-form-container">
     <form name="newIdea" ng-submit="$ctrl.submit()">
+
       <div class="promote-idea-input-block">
         <label for="idea-start-date">Select a start time:</label>
         <input class="awgl-form-input form-control" name="idea-start-date" ng-model="$ctrl.startDate"
-               type="date" placeholder="Idea name" />
+               type="date" placeholder="Start Date" />
+        <input class="awgl-form-input form-control" name="idea-start-time" ng-model="$ctrl.startTime"
+               type="time" placeholder="Start Time" />
       </div>
       <div class="promote-idea-input-block">
-        <label for="idea-end-date">Give your idea a name:</label>
+        <label for="idea-end-date">Select an end time:</label>
         <input class="awgl-form-input form-control" name="idea-end-date" ng-model="$ctrl.endDate"
                type="date" placeholder="Idea name" />
+        <input class="awgl-form-input form-control" name="idea-end-time" ng-model="$ctrl.endTime"
+               type="time" placeholder="End Time" />
       </div>
       <div class="promote-idea-input-block">
-        <label for="idea-title">Give your idea a name:</label>
+        <label for="idea-title">You can rename if you'd like</label>
         <input class="awgl-form-input form-control" name="idea-title" ng-model="$ctrl.title"
           type="text" placeholder="Idea name" />
       </div>
       <div class="promote-idea-input-block">
-        <label for="description">What do you want to suggest?</label>
+        <label for="description">Want to update your description?</label>
         <div class="promote-idea-input-block-small"><small>(you can skip this part)</small></div>
         <textarea class="awgl-form-input form-control" name="idea-desc" ng-model="$ctrl.desc"
           type="text" rows=2></textarea>
-      </div>
-      <div class="promote-idea-input-block">
-        <label for="idea-image">Last, how about a background picture?</label>
-        <input class="awgl-form-input form-control" name="idea-image" ng-model="$ctrl.imageUrl"
-          type="text" placeholder="Image url" />
       </div>
       <div ng-if="$ctrl.formWarning" class="awgl-form-warning flex flex-center">
         <span>{{$ctrl.formWarning}}</span>
