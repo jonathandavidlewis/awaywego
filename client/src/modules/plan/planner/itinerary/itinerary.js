@@ -34,7 +34,7 @@ class ItineraryController {
   deleteEvent(eventId) {
     this.EventService.deleteEvent(eventId).then(
       this.EventService.loadEventsByPlanId(this.$stateParams.planId).then((events) => {
-        this.loadIdeas(events);
+        this.loadEvents(events);
       })
     );
   }
