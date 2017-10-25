@@ -8,10 +8,11 @@ import template from './make-idea.html';
 import './make-idea.css';
 
 class MakeIdeaController {
-  constructor($state, EventService) {
-    this.$inject = ['$state', 'EventService'];
+  constructor($state, EventService, $stateParams) {
+    this.$inject = ['$state', 'EventService', '$stateParams'];
     this.$state = $state;
     this.EventService = EventService;
+    this.$stateParams = $stateParams;
     this.title = '';
     this.desc = '';
     this.imageUrl = '';
@@ -23,10 +24,11 @@ class MakeIdeaController {
       let newIdea = {
         title: this.title,
         description: this.desc,
-        imageUrl: this.imageUrl
+        imageUrl: this.imageUrl,
+        planId: this.$stateParams.planId
       };
-      this.EventService.submitNewIdea(newIdea).then(resp => {
-        this.$state.go('app.plan.feed');
+      this.EventService.submitNewEvent(newIdea).then(resp => {
+        this.$state.go('app.plan.planner.ideas');
       }).catch(err => {
         console.log('Server error: ', err);
         this.formWarning = 'Error: please try again or contact a server admin';
@@ -50,7 +52,7 @@ const MakeIdeaComponent = {
   controller: MakeIdeaController
 };
 
-const MakeIdeaModule = angular.module('app.plan.planner.ideas.new', [])
+const MakeIdeaModule = angular.module('app.plan.planner.makeIdea', [])
   .component('makeIdea', MakeIdeaComponent)
   .service('EventService', EventService);
 

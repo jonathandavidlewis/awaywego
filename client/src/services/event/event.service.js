@@ -6,7 +6,9 @@ export default class EventService {
   }
 
   loadEventsByPlanId(planId) {
-    return this.$http.get(`/api/events/${planId}`).then(response => this.events = response.data);
+    return this.$http.get(`/api/event/${planId}`).then(response => {
+      return this.events = response.data;
+    });
   }
 
   getEvent(eventId) { return this.events.find(event => event._id === eventId); }

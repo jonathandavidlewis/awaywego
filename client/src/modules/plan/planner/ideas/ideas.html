@@ -1,6 +1,6 @@
 <div class="ideas-container">
-  <ideas-card/>
-  <ideas-card/>
-  <ideas-card/>
-  <ideas-card/>
+  <div class="ideas-list">
+    <ideas-card ng-repeat="idea in $ctrl.ideas" idea="idea" delete-event="$ctrl.deleteEvent"/>
+  </div>
+  <new-idea-button class="align-bottom button"></new-idea-button>
 </div>
