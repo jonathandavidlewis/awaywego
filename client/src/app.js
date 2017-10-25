@@ -9,6 +9,7 @@ import SignupModule from './modules/login/signup';
 import PlanModule from './modules/plan/plan';
 import MakePlanModule from './modules/make-plan/make-plan';
 import FriendsModule from './modules/friends/friends';
+import PeopleModule from './modules/plan/people/people';
 
 // import global services
 import UserService from './services/user/user.service';
@@ -44,6 +45,7 @@ angular.module('app', [
   PlanModule,
   MakePlanModule,
   FriendsModule,
+  PeopleModule
 ])
   .service('UserService', UserService)
   .service('FriendService', FriendService)

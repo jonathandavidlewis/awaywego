@@ -1,0 +1,67 @@
+.people-card-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--m3tr5);
+}
+
+people-card:last-child .people-card-container {
+  border-bottom: none;
+}
+
+.people-card-container:hover {
+  background-color: var(--m3tr2);
+}
+
+.people-card-avatar {
+  display: flex;
+  align-items: center;
+}
+
+.people-card-avatar {
+  flex: 0 0 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.people-card-avatar .material-icons {
+  color: var(--da);
+  font-size: 2em;
+}
+
+.people-card-content {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.people-card-name {
+  font-size: .9em;
+  font-weight: bold;
+  color: var(--dk5);
+}
+
+.people-card-email {
+  font-size: .7em;
+  font-style: italic;
+  color: var(--da);
+}
+
+.people-card-actions {
+  flex: 0 0 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.people-card-actions i {
+  cursor: pointer;
+}
+
+.people-card-actions-icon-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 20px;
+}

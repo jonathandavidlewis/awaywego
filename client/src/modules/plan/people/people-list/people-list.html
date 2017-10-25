@@ -1,0 +1,10 @@
+<div class="people-list-container h100">
+  <div class="people-section-header">
+    <span>People in this Plan</span>
+  </div>
+  <people-card ng-repeat="user in $ctrl.planMembers"
+    user="user" type="member" self="$ctrl.UserService.user.id === user._id"
+    owner="$ctrl.planOwner === user._id"
+    remove="$ctrl.removeMember"
+  ></people-card>
+</div>

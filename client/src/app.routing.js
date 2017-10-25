@@ -179,6 +179,11 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
   $stateProvider.state(plannerMakeIdeaState);
   $stateProvider.state(plannerIdeaState);
   $stateProvider.state(plannerAvailabilityState);
+
+  // people states
+  $stateProvider.state(peopleState);
+  $stateProvider.state(peopleListState);
+  $stateProvider.state(peopleAddState);
 };
 
 routing.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
