@@ -12,11 +12,10 @@ import template from './plan.html';
 import './plan.css';
 
 class PlanController {
-  constructor(PlanService, EventService) {
-    this.title = 'This is a plan title';
+  constructor() {
   }
 }
-PlanController.$inject = ['PlanService', 'EventService'];
+PlanController.$inject = [];
 
 const PlanComponent = {
   restrict: 'E',
@@ -33,8 +32,5 @@ const PlanModule = angular.module('app.plan', [
   .component('planNav', PlanNavComponent)
   .service('PlanService', PlanService)
   .service('EventService', EventService);
-
-
-
 
 export default PlanModule.name;
