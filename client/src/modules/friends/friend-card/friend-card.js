@@ -9,6 +9,27 @@ class FriendCardController {
   }
 }
 
+/*
+  Friend card has many types that determine behavior
+  and also determine expected inputs
+  all types require a user, note that for invited
+  users (who have no 'name' yet), pass email in as name
+  in the user object:
+    user: {_id: null, name: a@a.com, email: ''}
+  ------------------------------------
+  pending: inbound friend request is pending
+   inputs: accept and reject methods
+  sent: outbound friend request is pending
+   inputs: cancel method, frId
+  friend:  person is already your friend
+   inputs: none atm TODO: add a remove friend system
+  request: person is user but not your friend
+   inputs: request method to send friend request
+  invite: person is not user and not your friend
+   inputs: invite method to send invite
+  self: person is you -> inputs: none
+*/
+
 const FriendCardComponent = {
   restrict: 'E',
   bindings: {

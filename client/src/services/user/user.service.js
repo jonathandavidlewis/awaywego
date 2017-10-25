@@ -22,6 +22,7 @@ export default class UserService {
     this.$http.defaults.headers.common.Authorization = 'bearer ' + token;
     this.user.name = payload.name;
     this.user.id = payload.userId;
+    this.user.email = payload.email;
     this.isLoggedIn = true;
     return true;
   }

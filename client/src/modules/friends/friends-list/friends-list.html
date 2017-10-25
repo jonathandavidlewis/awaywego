@@ -1,11 +1,11 @@
 <div ng-click="$ctrl.closeForm()" class="friends-list-container h100">
-  <div ng-show="$ctrl.inboundReqs.length > 0" class="friends-section">
+  <div ng-show="$ctrl.FriendService.inboundReqs.length > 0" class="friends-section">
     <div class="friends-section-header">
       <span>Pending Friend Requests</span>
     </div>
     <friend-card user="fr.from" fr-id="fr._id" type="pending"
-      accept="$ctrl.acceptFriendRequest" reject="$ctrl.rejectFriendRequest"
-      ng-repeat="fr in $ctrl.inboundReqs"></friend-card>
+      accept="$ctrl.acceptFriend" reject="$ctrl.rejectFriend"
+      ng-repeat="fr in $ctrl.FriendService.inboundReqs"></friend-card>
   </div>
   <div class="friends-section">
     <div class="friends-section-header">
@@ -15,17 +15,18 @@
     <div ng-if="$ctrl.newFriendOpen" class="friends-add-form-mount">
       <friends-add close-form="$ctrl.closeForm"></friends-add>
     </div>
-    <div ng-if="$ctrl.friendships.length === 0" class="no-friends">
+    <div ng-if="$ctrl.FriendService.friendships.length === 0" class="no-friends">
       <span>Aww - no friends yet, why don't you add somebody?</span>
     </div>
-    <friend-card user="fr.to" fr-id="fr._id" type="friend" ng-repeat="fr in $ctrl.friendships"></friend-card>
+    <friend-card user="fr.to" fr-id="fr._id" type="friend"
+    ng-repeat="fr in $ctrl.FriendService.friendships"></friend-card>
   </div>
-  <div ng-if="$ctrl.sentReqs.length > 0" class="friends-section">
+  <div ng-if="$ctrl.FriendService.sentReqs.length > 0" class="friends-section">
     <div class="friends-section-header">
       <span>Sent Friend Requests</span>
     </div>
     <friend-card user="fr.to" fr-id="fr._id" type="sent"
-      cancel="$ctrl.cancelFriendRequest"
-      ng-repeat="fr in $ctrl.sentReqs"></friend-card>
+      cancel="$ctrl.cancelFriend"
+      ng-repeat="fr in $ctrl.FriendService.sentReqs"></friend-card>
   </div>
 </div>

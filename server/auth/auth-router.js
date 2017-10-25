@@ -8,7 +8,11 @@ const debug = process.env.DEBUG || false;
 
 authRouter.post('/login', pwdAuth, (req, res) => {
   if (debug) { console.log('login attempt for: ', req.body.email); }
-  const token = jwt.sign({name: req.user.name, userId: req.user._id}, jwtOptions.secretOrKey);
+  const token = jwt.sign({
+    name: req.user.name,
+    userId: req.user._id,
+    email: req.user.email
+  }, jwtOptions.secretOrKey);
   res.json({message: 'Log In was successful', token: token});
 });
 
@@ -23,7 +27,7 @@ authRouter.post('/signup', (req, res) => {
       res.status(422).json({message: 'User already exists'});
     } else {
       User.create(newUser).then((user) => {
-        const token = jwt.sign({name: user.name, userId: user._id}, jwtOptions.secretOrKey);
+        const token = jwt.sign({name: user.name, userId: user._id, email: req.user.email}, jwtOptions.secretOrKey);
         res.status(201).json({message: 'Registration was successful', token: token});
         // once signed up - see if anyone has invited this user
         Friend.update({toEmail: user.email}, {toEmail: '', to: oid(user._id)})
