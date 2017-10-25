@@ -1,7 +1,7 @@
-.new-plan-button {
+.new-idea-button {
   width: 100%;
   padding: 10px;
-  background-color: var(--b5);
-  color: var(--b1);
-  border: 1px solid var(--b5);
+  background-color: var(--m5);
+  color: var(--dk1);
+  border: 1px solid var(--dk5);
 }

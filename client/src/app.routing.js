@@ -50,10 +50,10 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
     url: '/plan/{planId}',
     component: 'plan',
     resolve: {
-      //todo: Check if safe for minification
-      events: function($stateParams, EventService) {
+      protect: redirectIfNotAuthed,
+      events: ['$stateParams', 'EventService', function($stateParams, EventService) {
         return EventService.loadEventsByPlanId($stateParams.planId);
-      }
+      }]
     }
   };
 

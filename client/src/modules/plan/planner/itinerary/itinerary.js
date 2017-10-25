@@ -23,19 +23,19 @@ class ItineraryController {
   }
 
   deleteEvent(eventId) {
-    this.EventService.deleteEvent(eventId).then(
+    this.EventService.deleteEvent(eventId).then(() => {
       this.EventService.loadEventsByPlanId(this.$stateParams.planId).then((events) => {
         this.loadEvents(events);
-      })
-    );
+      });
+    });
   }
 
   demoteEvent(eventId) {
-    this.EventService.demoteEvent(eventId).then(
+    this.EventService.demoteEvent(eventId).then(() => {
       this.EventService.loadEventsByPlanId(this.$stateParams.planId).then((events) => {
         this.loadEvents(events);
-      })
-    );
+      });
+    });
   }
 
   $onInit() {
