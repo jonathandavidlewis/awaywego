@@ -1,31 +1,44 @@
+.idea-page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 20px;
+}
+
 .idea-container {
-  padding-left: 20px;
-  transform: translateY(-40px);
+  margin-bottom: 20px;
 }
 
-img {
+.idea-page-container img {
   width: 100%;
-}
-
-.idea-image {
-  display: inline-block;
-  position: relative;
+  margin-bottom: 10px;
 }
 
 .idea-image button {
-  float: right;
-  transform: translateY(48px);
+  position: absolute;
+  right: 20px;
+  transform: translateY(10px);
   margin-right: 10px;
 }
 
-.idea-title {
-  margin-top: 10px;
+.details-container {
+  display: flex;
+  flex-direction: column;
 }
 
-.overall-vote {
-  margin: 0px 20px;
+.icons-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
+.voting-container {
+  display: flex;
+  justify-content: space-around;
+  flex: 0 0 125px;
+}
+.edit-button-container {
+  width: 50%;
+}
 .edit-button {
-  margin-left: 20px;
 }
