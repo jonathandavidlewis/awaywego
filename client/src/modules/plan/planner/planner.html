@@ -1,17 +1,22 @@
-<div class="planner-container flex">
-  <div class="planner-top-nav flex flex-center">
-    <a ui-sref="app.plan.planner.itinerary">
-      <div class="plan-nav-button">Itinerary</div>
-    </a>
+<div class="planner-container h100 flex">
+  <!-- Planner Nav Bar - TODO: separate into component -->
+  <div class="planner-top-nav">
+    <div class="planner-nav-item-container" ui-sref-active="planner-nav-item-active">
+      <a ui-sref="app.plan.planner.itinerary">
+        <span class="planner-nav-button">Itinerary</span>
+      </a>
+    </div>
+    <div class="planner-nav-item-container" ui-sref-active="planner-nav-item-active">
+      <a ui-sref="app.plan.planner.ideas">
+        <span class="planner-nav-button">Ideas</span>
+      </a>
+    </div>
+    <div class="planner-nav-item-container" ui-sref-active="planner-nav-item-active">
+      <a ui-sref="app.plan.planner.availability">
+        <span class="planner-nav-button">Availability</span>
+      </a>
+    </div>
+  </div>
 
-    <a ui-sref="app.plan.planner.ideas">
-      <div class="plan-nav-button">Ideas</div>
-    </a>
-    <a ui-sref="app.plan.planner.availability">
-      <div class="plan-nav-button">Availability</div>
-    </a>
-  </div>
-  <div>
-    <br><ui-view></ui-view>
-  </div>
-<div>
+  <ui-view class="flex-1"></ui-view>
+</div>

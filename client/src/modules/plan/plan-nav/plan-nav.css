@@ -10,7 +10,7 @@
 }
 
 .plan-nav-item-container {
-  flex: 1 0 auto;
+  flex: 1 0 0;
   display: flex;
   height: 64px;
   background-color: var(--m0);
@@ -27,19 +27,31 @@
   padding: 5px;
   cursor: pointer;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-decoration: none !important;
 }
 
-.plan-nav-button .material-icons {
-  color: var(--dk3);
+.plan-nav-button span {
+  font-size: .7em;
+  font-variant: small-caps;
+}
+
+.plan-nav-button .material-icons,
+.plan-nav-button span {
+  color: var(--dk5);
 }
 
 .plan-nav-active {
   background: var(--m5);
 }
 
-.plan-nav-active .material-icons {
+.plan-nav-active .material-icons,
+.plan-nav-active .plan-nav-button span {
   color: white;
+}
+
+.plan-nav-item-container:hover:not(.plan-nav-active) {
+  background-color: var(--m2);
 }
