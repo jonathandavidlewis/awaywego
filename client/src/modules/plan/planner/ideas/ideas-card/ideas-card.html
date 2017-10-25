@@ -18,7 +18,7 @@
       <div ng-click="$ctrl.downVote()" class="ideas-card-vote flex"><i class="material-icons">thumb_down</i></div>
     </div>
     <div class="ideas-card-comment-wrapper flex">
-      <a ng-click="$ctrl.handlePromoteClick()">SCHEDULE</a><span>____</span>
+      <a ui-sref="app.plan.planner.promoteIdea({eventId: $ctrl.event._id})">SCHEDULE</a><span>____</span>
       <a ng-click="$ctrl.handleDeleteClick()">DELETE</a>
       <div class="ideas-card-comment-icon flex"><i class="material-icons">comment</i></div>
     </div>

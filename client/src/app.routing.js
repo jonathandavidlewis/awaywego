@@ -92,6 +92,12 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
     component: 'makeIdea'
   };
 
+  const plannerPromoteIdeaState = {
+    name: 'app.plan.planner.promoteIdea',
+    url: '/idea/{eventId}/promote',
+    component: 'promoteIdea'
+  };
+
   const plannerIdeaState = {
     name: 'app.plan.planner.idea',
     // TODO: Change to /idea/{ideaId} once event-router is done
@@ -161,6 +167,7 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
   $stateProvider.state(plannerMakeIdeaState);
   $stateProvider.state(plannerIdeaState);
   $stateProvider.state(plannerAvailabilityState);
+  $stateProvider.state(plannerPromoteIdeaState);
 
   // people states
   $stateProvider.state(peopleState);
