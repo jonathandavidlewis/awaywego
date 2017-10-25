@@ -34,8 +34,8 @@
 
 .voting-container {
   display: flex;
-  justify-content: space-around;
-  flex: 0 0 125px;
+  justify-content: space-between;
+  flex: 0 0 100px;
 }
 .edit-button-container {
   width: 50%;
