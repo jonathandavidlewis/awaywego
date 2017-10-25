@@ -28,24 +28,18 @@ class IdeasController {
 
   deleteEvent(eventId) {
     this.EventService.deleteEvent(eventId).then(() => {
-      this.EventService.loadEventsByPlanId(this.$stateParams.planId).then((events) => {
-        this.loadEvents(events);
-      });
+      this.EventService.loadEventsByPlanId(this.$stateParams.planId).then(this.loadEvents);
     });
   }
 
   promoteEvent(eventId) {
     this.EventService.promoteEvent(eventId).then(() => {
-      this.EventService.loadEventsByPlanId(this.$stateParams.planId).then((events) => {
-        this.loadEvents(events);
-      });
+      this.EventService.loadEventsByPlanId(this.$stateParams.planId).then(this.loadEvents);
     });
   }
 
   $onInit() {
-    this.EventService.loadEventsByPlanId(this.$stateParams.planId).then((events) => {
-      this.events = events;
-    });
+    this.EventService.loadEventsByPlanId(this.$stateParams.planId).then(this.loadEvents);
   }
 }
 IdeasController.$inject = ['EventService', '$stateParams'];
