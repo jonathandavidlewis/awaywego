@@ -5,37 +5,28 @@ import template from './ideas-card.html';
 import './ideas-card.css';
 
 class IdeasCardController {
-  constructor($scope) {
+  constructor() {
     this.planId = 'sample';
-    this.$scope = $scope;
     this.handleDeleteClick = this.handleDeleteClick.bind(this);
     this.handlePromoteClick = this.handlePromoteClick.bind(this);
   }
 
   handleDeleteClick() {
-    this.deleteEvent(this.idea._id);
+    this.deleteEvent(this.event._id);
   }
 
   handlePromoteClick() {
-    this.promoteEvent(this.idea._id);
+    this.promoteEvent(this.event._id);
   }
 }
-IdeasCardController.$inject = ['$scope'];
+IdeasCardController.$inject = [''];
 
 const IdeasCardComponent = {
   restrict: 'E',
   bindings: {
-<<<<<<< aa4c33d80d730dd1bf24c5bbbd36e7843992e90a
-    event: '<'
-=======
-    idea: '<',
-<<<<<<< 36556f0283a859a6762eeac1c8b87410a0b54268
-    deleteEvent: '<'
->>>>>>> Adds live events to idea page
-=======
+    event: '<',
     deleteEvent: '<',
     promoteEvent: '<'
->>>>>>> Add descriptions to event cards
   },
   template: template,
   controller: IdeasCardController
