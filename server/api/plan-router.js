@@ -3,10 +3,10 @@ const Plan = require('../../db/models/plan.js');
 
 planRouter.get('/', (req, res) => {
 
-  Plan.find({userId: req.user._id}).then(plans => {
-    res.status(200).json(plans);
-  })
-    .catch(err => res.status(500).send('Server error: ', err));
+  Plan.find({userId: req.user._id})
+    .populate('members', '-password').exec().then(plans => {
+      res.status(200).json(plans);
+    }).catch(err => res.status(500).send('Server error: ', err));
 });
 
 planRouter.post('/', (req, res) => {
@@ -15,6 +15,7 @@ planRouter.post('/', (req, res) => {
     delete newPlan.imageUrl;
   }
   newPlan.userId = req.user._id;
+  newPlan.members = [req.user._id];
   Plan.create(newPlan).then(plan => res.status(201).json({_id: plan._id}))
     .catch(err => res.status(500).send('Server error: ', err));
 });
