@@ -1,5 +1,6 @@
 import angular from 'angular';
 
+import EventService from '../../../../services/event/event.service';
 // Child Dependencies
 import ItineraryCardComponent from './itinerary-card/itinerary-card';
 // imports for this component
@@ -9,14 +10,27 @@ import './itinerary.css';
 
 
 class ItineraryController {
-  constructor(EventService) {
+  constructor(EventService, $stateParams) {
     this.title = 'This is the itinerary component';
+    this.$stateParams = $stateParams;
     this.EventService = EventService;
-    this.events = this.EventService.events;
+    this.events = [];
+  }
+
+  $onInit() {
+    this.events = this.EventService.loadEventsByPlanId(this.$stateParams.planId)
+      .then((events) => {
+        console.log('Events ', events);
+        this.events = events.map((event) => {
+          event.startTime = moment(event.startTime).format('MMMM Do YYYY, h:mm:ss a');
+          event.endTime = moment(event.endTime).format('MMMM Do YYYY, h:mm:ss a');
+          return event;
+        });
+      });
   }
 }
 
-ItineraryController.$inject = ['EventService'];
+ItineraryController.$inject = ['EventService', '$stateParams'];
 
 const ItineraryComponent = {
   restrict: 'E',

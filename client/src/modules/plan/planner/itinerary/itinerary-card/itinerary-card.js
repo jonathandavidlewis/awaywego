@@ -1,5 +1,5 @@
 import angular from 'angular';
-
+import moment from 'moment';
 // imports for this component
 import template from './itinerary-card.html';
 import './itinerary-card.css';

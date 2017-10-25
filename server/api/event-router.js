@@ -4,6 +4,7 @@ const PlanEvent = require('../../db/models/event.js');
 // Get all events belonging to a specific plan
 eventRouter.get('/:planId', (req, res) => {
   PlanEvent.find({planId: req.params.planId}).then((events) => {
+    console.log('Server events', events);
     if (events.length > 0) {
       res.status(200).json(events);
     } else {
