@@ -53,6 +53,9 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
       protect: redirectIfNotAuthed,
       events: ['$stateParams', 'EventService', function($stateParams, EventService) {
         return EventService.loadEventsByPlanId($stateParams.planId);
+      }],
+      loadPlan: ['$stateParams', 'PlanService', function($stateParams, PlanService) {
+        return PlanService.loadPlanById($stateParams.planId);
       }]
     }
   };
@@ -118,6 +121,24 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
     resolve: {
       protect: redirectIfNotAuthed
     }
+  };
+
+  const peopleState = {
+    name: 'app.plan.people',
+    abstract: true,
+    component: 'people'
+  };
+
+  const peopleListState = {
+    name: 'app.plan.people.list',
+    url: '/people',
+    component: 'peopleList'
+  };
+
+  const peopleAddState = {
+    name: 'app.plan.people.add',
+    url: '/people/add',
+    component: 'peopleAdd'
   };
 
   const friendsState = {
