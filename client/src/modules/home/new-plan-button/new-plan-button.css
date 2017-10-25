@@ -1,7 +1,8 @@
 .new-plan-button {
   width: 100%;
+  display: block;
   padding: 10px;
-  background-color: var(--b4);
-  color: var(--b1);
-  border: 1px solid var(--b5);
+  background-color: var(--m5);
+  color: var(--lt);
+  border: 1px solid var(--dk5);
 }
