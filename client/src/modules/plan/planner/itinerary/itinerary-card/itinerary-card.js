@@ -26,6 +26,7 @@ ItineraryCardController.$inject = [];
 const ItineraryCardComponent = {
   restrict: 'E',
   bindings: {
+    event: '<',
     demoteEvent: '<',
     deleteEvent: '<'
   },
