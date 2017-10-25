@@ -28,7 +28,7 @@ const PlannerModule = angular.module('app.plan.planner', [
   ItineraryModule,
   IdeasModule,
   IdeaModule,
-  AvailabilityModule
+  AvailabilityModule,
 ])
   .component('planner', PlannerComponent);
 
