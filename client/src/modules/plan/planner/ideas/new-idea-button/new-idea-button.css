@@ -1,7 +1,8 @@
 .new-idea-button {
   width: 100%;
+  display: block;
   padding: 10px;
   background-color: var(--m5);
-  color: var(--dk1);
+  color: var(--lt);
   border: 1px solid var(--dk5);
 }
