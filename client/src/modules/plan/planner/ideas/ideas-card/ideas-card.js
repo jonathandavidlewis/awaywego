@@ -7,13 +7,12 @@ import './ideas-card.css';
 
 class IdeasCardController {
   constructor(EventService) {
-    this.planId = 'sample';
-    this.handleDeleteClick = this.handleDeleteClick.bind(this);
-    this.handlePromoteClick = this.handlePromoteClick.bind(this);
     this.EventService = EventService;
     this.totalVotes = 0;
     this.upVote = this.upVote.bind(this);
     this.downVote = this.downVote.bind(this);
+    this.handleDeleteClick = this.handleDeleteClick.bind(this);
+    this.handlePromoteClick = this.handlePromoteClick.bind(this);
   }
 
   handleDeleteClick() {
