@@ -1,4 +1,3 @@
-<<<<<<< 36556f0283a859a6762eeac1c8b87410a0b54268
 <div class="itinerary-card flex-col">
   <div class="itinerary-card-main-container flex">
     <img src="{{$ctrl.event.imageUrl}}" alt="EventPicture">
@@ -8,6 +7,8 @@
         <div class="itinerary-card-startTime"><b>Starts: </b><span>{{$ctrl.event.startTime}}</span></div>
         <div ng-if="$ctrl.event.endTime" class="itinerary-card-endTime"><b>Ends: </b><span>{{$ctrl.event.endTime}}</span></div>
         <div class="itinerary-card-description"><b>Details: </b><span>{{$ctrl.event.description}}</span></div>
+        <spaan ><a ng-click="$ctrl.handleDemoteClick()">DEMOTE</a></spaan>
+        <span><a ng-click="$ctrl.handleDeleteClick()">DELETE</a></span>
       </div>
     </div>
   </div>
