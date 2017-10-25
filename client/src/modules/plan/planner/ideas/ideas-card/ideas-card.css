@@ -3,41 +3,63 @@
       0 3px 1px -2px rgba(0,0,0,0.12),
       0 1px 5px 0 rgba(0,0,0,0.2) !important;
     background-color: var(--lt);
-    /*border-radius: 5px;*/
+    border-radius: 3px;
     margin-bottom: 15px;
-}
-
-/* Add rounded corners to the top left and the top right corner of the image */
-.ideas-card img {
-    border-radius: 5px 5px 0 0;
-    width: 150px;
-    height: 150px;
     padding: 10px;
 }
-.ideas-card-likes-wrapper {
-  position: relative;
 
-  justify-content: center;
+.ideas-card img {
+    border-radius: 3px;
+    width: 150px;
+    height: 150px;
 }
 
-.ideas-card-upvote {
-  left: 20px;
-  bottom: 0;
-  position: absolute;
+.ideas-card-main-container {
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--la);
+}
+
+.ideas-card-info-container {
+  padding-left: 10px;
+}
+
+.ideas-card-header {
+  font-size: 1.3em;
+  color: var(--dk3);
+  text-decoration: none !important;
+}
+
+.ideas-card-details-container {
+  padding-left: 5px;
+}
+
+
+.ideas-card-footer {
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  padding: 0 20px;
+}
+
+.ideas-card-likes-wrapper {
+  justify-content: center;
+  align-items: center;
 }
 
 .ideas-card-likes {
-  bottom: 0px;
-  padding-bottom: 5px;
-}
-.ideas-card-downvote {
-  right: 20px;
-  bottom: 0;
-  position: absolute;
+  margin: 0 15px;
 }
 
+.ideas-card-vote,
 .ideas-card-comment-icon {
-  position: absolute;
-  right: 5px;
-  bottom: 0px;
+  cursor: pointer;
+}
+
+.ideas-card-vote:hover {
+  color: var(--m3);
+}
+
+.ideas-card-comment-wrapper {
+  justify-content: center;
+  align-items: center;
 }
