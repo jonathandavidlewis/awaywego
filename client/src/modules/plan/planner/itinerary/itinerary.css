@@ -7,15 +7,13 @@
   /*overflow-x: hidden;*/
   padding: 10px 20px;
   background-color: var(--m0);
-}
-
-.content-container {
-  display: flex;
-  flex-flow: column nowrap;
+  justify-content: center;
   align-items: center;
 }
 
+.no-events-container h3 {
+  text-align: center;
+}
+
 .go-to-ideas-button {
-  display: flex;
-  justify-content: center;
 }
