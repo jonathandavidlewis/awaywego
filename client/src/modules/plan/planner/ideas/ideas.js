@@ -12,12 +12,13 @@ import './ideas.css';
 
 
 class IdeasController {
-  constructor($stateParams, EventService, $scope) {
+  constructor($stateParams, EventService) {
     this.EventService = EventService;
     this.title = 'This is the ideas component';
     this.$stateParams = $stateParams;
     this.loadIdeas = this.loadIdeas.bind(this);
     this.deleteEvent = this.deleteEvent.bind(this);
+    this.promoteEvent = this.promoteEvent.bind(this);
     this.$onInit = this.$onInit.bind(this);
   }
 
@@ -33,13 +34,21 @@ class IdeasController {
     );
   }
 
+  promoteEvent(eventId) {
+    this.EventService.promoteEvent(eventId).then(
+      this.EventService.loadEventsByPlanId(this.$stateParams.planId).then((events) => {
+        this.loadIdeas(events);
+      })
+    );
+  }
+
   $onInit() {
     this.EventService.loadEventsByPlanId(this.$stateParams.planId).then((events) => {
       this.loadIdeas(events);
     });
   }
 }
-IdeasController.$inject = ['$stateParams', 'EventService', '$scope'];
+IdeasController.$inject = ['$stateParams', 'EventService'];
 
 const IdeasComponent = {
   restrict: 'E',

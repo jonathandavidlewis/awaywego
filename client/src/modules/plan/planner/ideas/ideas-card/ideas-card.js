@@ -9,10 +9,16 @@ class IdeasCardController {
     this.planId = 'sample';
     this.$scope = $scope;
     this.handleDeleteClick = this.handleDeleteClick.bind(this);
+    this.handlePromoteClick = this.handlePromoteClick.bind(this);
   }
 
   handleDeleteClick() {
     this.deleteEvent(this.idea._id);
+  }
+
+  handlePromoteClick() {
+    debugger;
+    this.promoteEvent(this.idea._id);
   }
 }
 IdeasCardController.$inject = ['$scope'];
@@ -21,7 +27,8 @@ const IdeasCardComponent = {
   restrict: 'E',
   bindings: {
     idea: '<',
-    deleteEvent: '<'
+    deleteEvent: '<',
+    promoteEvent: '<'
   },
   template: template,
   controller: IdeasCardController
