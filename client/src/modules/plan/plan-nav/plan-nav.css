@@ -5,11 +5,41 @@
   z-index: 99;
   flex-direction: row;
   justify-content: space-around;
-  align-items: center;
+  align-items: stretch;
+  border-top: 1px solid var(--da);
 }
 
+.plan-nav-item-container {
+  flex: 1 0 auto;
+  display: flex;
+  height: 64px;
+  background-color: var(--m0);
+  border-right: 1px solid var(--la);
+}
+
+.plan-nav-item-container:last-child {
+  border-right: none;
+}
 
 .plan-nav-button {
+  width: 100%;
+  height: 100%;
   padding: 5px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none !important;
+}
 
+.plan-nav-button .material-icons {
+  color: var(--dk3);
+}
+
+.plan-nav-active {
+  background: var(--m5);
+}
+
+.plan-nav-active .material-icons {
+  color: white;
 }
