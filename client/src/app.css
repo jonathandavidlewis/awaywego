@@ -11,6 +11,11 @@ html, body {
 
 .h100 { height: 100%; }
 
+.flex-window {
+  flex: 1 0 0;
+  min-height: 0;
+}
+
 :root {
 
   /*-- white base: #f6f4ee;*/
