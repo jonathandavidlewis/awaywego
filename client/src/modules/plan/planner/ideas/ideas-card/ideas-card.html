@@ -3,18 +3,18 @@
     <img class="ideas-card-thumbnail" src="https://d36tnp772eyphs.cloudfront.net/blogs/1/2014/08/Smith-Rock-940x595.jpg" alt="EventPicture">
     <div class="ideas-card-info-container flex-col">
       <!-- TODO: Change to ^.idea({ideaId: $ctrl.idea._id}) -->
-      <a class="ideas-card-header" ui-sref="^.idea">Rock Climbing - the Castle</a>
+      <a class="ideas-card-header" ui-sref="^.idea">{{$ctrl.event.title}}</a>
       <div class="ideas-card-details-container flex-col">
-        <div class="ideas-card-details-date"><span><b>Date:</b> 10/20/2017</span></div>
-        <div class="ideas-card-details-time"><span><b>Time:</b> 5pm - 10pm</span></div>
-        <div class="ideas-card-details-desc"><span><b>Details:</b> Let's go rock climbing!</span></div>
+        <div class="ideas-card-details-date"><span><b>Date:</b>{{$ctrl.event.startTime}}</span></div>
+        <div class="ideas-card-details-time"><span><b>Time:</b>{{$ctrl.event.endTime}}</span></div>
+        <div class="ideas-card-details-desc"><span><b>Details:</b>{{$ctrl.event.description}}</span></div>
       </div>
     </div>
   </div>
   <div class="ideas-card-footer flex">
     <div class="ideas-card-likes-wrapper flex">
       <div class="ideas-card-vote flex"><i class="material-icons">thumb_up</i></div>
-      <div class="ideas-card-likes">+4</div>
+      <div class="ideas-card-likes">{{$ctrl.event.upVotes.length - $ctrl.event.downVotes.length}}</div>
       <div class="ideas-card-vote flex"><i class="material-icons">thumb_down</i></div>
     </div>
     <div class="ideas-card-comment-wrapper flex">

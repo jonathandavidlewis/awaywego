@@ -1,9 +1,9 @@
 import angular from 'angular';
 
-import EventService from '../../../../services/event/event.service';
 // Child Dependencies
 import ItineraryCardComponent from './itinerary-card/itinerary-card';
 // imports for this component
+import EventService from '../../../../services/event/event.service';
 import template from './itinerary.html';
 import './itinerary.css';
 

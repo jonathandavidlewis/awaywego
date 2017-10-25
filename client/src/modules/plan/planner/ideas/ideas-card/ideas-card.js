@@ -13,7 +13,9 @@ IdeasCardController.$inject = [];
 
 const IdeasCardComponent = {
   restrict: 'E',
-  bindings: {},
+  bindings: {
+    event: '<'
+  },
   template: template,
   controller: IdeasCardController
 };

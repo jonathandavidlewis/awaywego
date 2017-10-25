@@ -1,6 +1,3 @@
 <div class="ideas-container">
-  <ideas-card/>
-  <ideas-card/>
-  <ideas-card/>
-  <ideas-card/>
+  <ideas-card event="event" ng-repeat="event in $ctrl.events" ng-if="event.status === 'idea'"/>
 </div>

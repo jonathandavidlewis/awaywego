@@ -4,17 +4,21 @@ import angular from 'angular';
 import IdeasCardComponent from './ideas-card/ideas-card.js';
 
 // imports for this component
+import EventService from '../../../../services/event/event.service';
 import template from './ideas.html';
 import './ideas.css';
 
 
 
 class IdeasController {
-  constructor() {
+  constructor(EventService, $stateParams) {
     this.title = 'This is the ideas component';
+    this.$stateParams = $stateParams;
+    this.EventService = EventService;
+    this.events = this.EventService.events;
   }
 }
-IdeasController.$inject = [];
+IdeasController.$inject = ['EventService', '$stateParams'];
 
 const IdeasComponent = {
   restrict: 'E',
