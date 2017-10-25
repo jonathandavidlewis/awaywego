@@ -1,3 +1,10 @@
 <div class="ideas-container">
+<<<<<<< aa4c33d80d730dd1bf24c5bbbd36e7843992e90a
   <ideas-card event="event" ng-repeat="event in $ctrl.events" ng-if="event.status === 'idea'"/>
+=======
+  <div class="ideas-list">
+    <ideas-card ng-repeat="idea in $ctrl.ideas" idea="idea" delete-event="$ctrl.deleteEvent"/>
+  </div>
+  <new-idea-button class="align-bottom button"></new-idea-button>
+>>>>>>> Adds live events to idea page
 </div>

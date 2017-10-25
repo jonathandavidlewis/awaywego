@@ -4,6 +4,7 @@ const PlanEvent = require('../../db/models/event.js');
 // Get all events belonging to a specific plan
 eventRouter.get('/:planId', (req, res) => {
   PlanEvent.find({planId: req.params.planId}).then((events) => {
+<<<<<<< aa4c33d80d730dd1bf24c5bbbd36e7843992e90a
     console.log('Server events', events);
     if (events.length > 0) {
       res.status(200).json(events);
@@ -11,6 +12,10 @@ eventRouter.get('/:planId', (req, res) => {
       res.status(404).json(events);
     }
   }).catch(err => res.status(500).send('Server error: ', err));
+=======
+    res.status(200).json(events);
+  }).catch(err => res.status(500).json({'Server error': err}));
+>>>>>>> Adds live events to idea page
 });
 
 // Create Events
