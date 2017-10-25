@@ -63,39 +63,25 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
   const feedState = {
     name: 'app.plan.feed',
     url: '/feed',
-    component: 'feed',
-    resolve: {
-      protect: redirectIfNotAuthed,
-      planId: ['$stateParams', function($stateParams) {
-        return $stateParams.planId;
-      }]
-    }
+    component: 'feed'
   };
 
   const plannerState = {
     name: 'app.plan.planner',
     url: '/planner',
-    component: 'planner',
-    resolve: {
-    }
+    component: 'planner'
   };
 
   const plannerItineraryState = {
     name: 'app.plan.planner.itinerary',
     url: '/itinerary',
-    component: 'itinerary',
-    resolve: {
-      protect: redirectIfNotAuthed
-    }
+    component: 'itinerary'
   };
 
   const plannerIdeasState = {
     name: 'app.plan.planner.ideas',
     url: '/ideas',
-    component: 'ideas',
-    resolve: {
-      protect: redirectIfNotAuthed
-    }
+    component: 'ideas'
   };
 
   const plannerMakeIdeaState = {
@@ -108,19 +94,13 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
     name: 'app.plan.planner.idea',
     // TODO: Change to /idea/{ideaId} once event-router is done
     url: '/idea',
-    component: 'idea',
-    resolve: {
-      protect: redirectIfNotAuthed
-    }
+    component: 'idea'
   };
 
   const plannerAvailabilityState = {
     name: 'app.plan.planner.availability',
     url: '/availability',
-    component: 'availability',
-    resolve: {
-      protect: redirectIfNotAuthed
-    }
+    component: 'availability'
   };
 
   const peopleState = {

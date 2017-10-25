@@ -8,9 +8,27 @@ export default class PlanService {
 
   submitNewPlan(plan) { return this.$http.post('/api/plan', plan); }
 
-  loadPlanById(planId) { this.currentPlan = this.plans.find(plan => plan._id === planId); }
+  loadPlanById(planId) {
+    if (this.plans.length) {
+      this.currentPlan = this.plans.find(plan => plan._id === planId);
+      if (this.currentPlan) {
+        console.log('loaded plan: ', planId);
+        console.log('current plan: ', this.currentPlan);
+        return this.currentPlan;
+      }
+    } else {
+      return this.getPlanById(planId).then(plan => {
+        this.currentPlan = plan;
+        console.log('loaded plan: ', planId);
+        console.log('current plan: ', this.currentPlan);
+      });
+    }
 
-  getPlanById(planId) { return this.plans.find(plan => plan._id === planId); }
+  }
+
+  getPlanById(planId) {
+    return this.$http.get(`/api/plan/${planId}`).then(resp => resp.data);
+  }
 
   deletePlanById(planId) {
     return this.$http.delete(`/api/plan/${planId}`);
@@ -18,7 +36,6 @@ export default class PlanService {
 
   getAllPlans() {
     return this.$http.get('/api/plan/').then((response => {
-      console.log(response);
       this.plans = response.data;
       return response.data;
     }));

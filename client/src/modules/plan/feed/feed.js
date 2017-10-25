@@ -9,11 +9,7 @@ import './feed.css';
 class FeedController {
   constructor($stateParams, PlanService) {
     this.$stateParams = $stateParams;
-    this.PlanService = PlanService;
-  }
-
-  $onInit() {
-    this.plan = this.PlanService.getPlanById(this.$stateParams.planId);
+    this.plan = PlanService.currentPlan;
   }
 }
 
@@ -21,9 +17,7 @@ FeedController.$inject = ['$stateParams', 'PlanService'];
 
 const FeedComponent = {
   restrict: 'E',
-  bindings: {
-    plan: '<'
-  },
+  bindings: {},
   template: template,
   controller: FeedController
 };

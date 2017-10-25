@@ -21,9 +21,9 @@ planRouter.post('/', (req, res) => {
 });
 
 planRouter.get('/:planId', (req, res) => {
-
   //todo: get user from req.user and validate user is a member of the plan
-  Plan.find({_id: req.params.planId}).then(plans => res.status(200).json(plans))
+  Plan.findById(req.params.planId).populate('members', '-password')
+    .then(plans => res.status(200).json(plans))
     .catch(err => res.status(500).send('Server error: ', err));
 });
 
