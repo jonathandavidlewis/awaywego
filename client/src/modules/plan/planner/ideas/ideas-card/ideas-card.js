@@ -19,7 +19,7 @@ class IdeasCardController {
     this.promoteEvent(this.event._id);
   }
 }
-IdeasCardController.$inject = [''];
+IdeasCardController.$inject = [];
 
 const IdeasCardComponent = {
   restrict: 'E',

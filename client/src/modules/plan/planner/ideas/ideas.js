@@ -44,9 +44,7 @@ class IdeasController {
   }
 
   $onInit() {
-    debugger;
     this.EventService.loadEventsByPlanId(this.$stateParams.planId).then((events) => {
-      debugger;
       this.events = events;
     });
   }
