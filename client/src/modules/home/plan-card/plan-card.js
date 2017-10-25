@@ -6,9 +6,11 @@ import './plan-card.css';
 
 class PlanCardController {
   constructor() {
-    this.handleDeleteClick = () => {
-      this.deletePlan(this.plan._id);
-    };
+    this.handleDeleteClick = this.handleDeleteClick.bind(this);
+  }
+
+  handleDeleteClick() {
+    this.deletePlan(this.plan._id);
   }
 }
 
@@ -21,6 +23,5 @@ const PlanCardComponent = {
   template: template,
   controller: PlanCardController
 };
-
 
 export default PlanCardComponent;

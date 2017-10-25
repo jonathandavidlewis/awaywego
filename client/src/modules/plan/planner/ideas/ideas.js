@@ -15,7 +15,6 @@ import './ideas.css';
 class IdeasController {
   constructor(EventService, $stateParams) {
     this.EventService = EventService;
-    this.title = 'This is the ideas component';
     this.$stateParams = $stateParams;
     this.loadEvents = this.loadEvents.bind(this);
     this.deleteEvent = this.deleteEvent.bind(this);
@@ -28,19 +27,19 @@ class IdeasController {
   }
 
   deleteEvent(eventId) {
-    this.EventService.deleteEvent(eventId).then(
+    this.EventService.deleteEvent(eventId).then(() => {
       this.EventService.loadEventsByPlanId(this.$stateParams.planId).then((events) => {
         this.loadEvents(events);
-      })
-    );
+      });
+    });
   }
 
   promoteEvent(eventId) {
-    this.EventService.promoteEvent(eventId).then(
+    this.EventService.promoteEvent(eventId).then(() => {
       this.EventService.loadEventsByPlanId(this.$stateParams.planId).then((events) => {
         this.loadEvents(events);
-      })
-    );
+      });
+    });
   }
 
   $onInit() {
@@ -58,7 +57,7 @@ const IdeasComponent = {
   controller: IdeasController
 };
 
-const IdeasModule = angular.module('app.event.eventner.ideas', [])
+const IdeasModule = angular.module('app.plan.planner.ideas', [])
   .component('ideas', IdeasComponent)
   .component('ideasCard', IdeasCardComponent)
   .component('newIdeaButton', NewIdeaButtonComponent);
