@@ -7,17 +7,8 @@ import EventService from '../../../../services/event/event.service';
 import template from './itinerary.html';
 import './itinerary.css';
 
-
-
 class ItineraryController {
-<<<<<<< 36556f0283a859a6762eeac1c8b87410a0b54268
   constructor(EventService, $stateParams) {
-    this.title = 'This is the itinerary component';
-    this.$stateParams = $stateParams;
-    this.EventService = EventService;
-    this.events = this.EventService.events;
-=======
-  constructor($stateParams, EventService) {
     this.title = 'This is the itinerary component';
     this.EventService = EventService;
     this.$stateParams = $stateParams;
@@ -45,25 +36,14 @@ class ItineraryController {
         this.loadEvents(events);
       })
     );
->>>>>>> Add descriptions to event cards
   }
 
   $onInit() {
-    this.EventService.loadEventsByPlanId(this.$stateParams.planId).then((events) => {
-<<<<<<< 36556f0283a859a6762eeac1c8b87410a0b54268
-      this.events = events;
-    });
+    this.EventService.loadEventsByPlanId(this.$stateParams.planId).then(this.loadEvents);
   }
 }
 
 ItineraryController.$inject = ['EventService', '$stateParams'];
-=======
-      this.loadEvents(events);
-    });
-  }
-}
-ItineraryController.$inject = ['$stateParams', 'EventService'];
->>>>>>> Add descriptions to event cards
 
 const ItineraryComponent = {
   restrict: 'E',

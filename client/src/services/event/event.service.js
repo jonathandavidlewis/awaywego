@@ -43,15 +43,7 @@ export default class EventService {
     this.$http = $http;
   }
 
-  loadEventsByPlanId(planId) {
-<<<<<<< aa4c33d80d730dd1bf24c5bbbd36e7843992e90a
-    return this.$http.get(`/api/event/${planId}`).then(response => this.events = response.data);
-=======
-    return this.$http.get(`/api/event/${planId}`).then(response => {
-      return this.events = response.data;
-    });
->>>>>>> Adds live events to idea page
-  }
+  loadEventsByPlanId(planId) { return this.$http.get(`/api/event/${planId}`).then(response => this.events = response.data); }
 
   getEvent(eventId) { return this.events.find(event => event._id === eventId); }
 
