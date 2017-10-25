@@ -46,11 +46,11 @@ eventRouter.put('/:eventId/demote', (req, res) => {
 eventRouter.put('/:eventId/upvote', (req, res) => {
   PlanEvent.findById({_id: req.params.eventId})
     .then((planEvent) => {
-      if (planEvent.upVotes.every(id => id.toString() !== req.user._id)) {
+      if (planEvent.upVotes.every(id => id.toString() !== req.user._id.toString())) {
         planEvent.upVotes.push(req.user._id);
       }
       planEvent.downVotes = planEvent.downVotes.filter((id) => id.toString() !== req.user._id.toString());
-      planEvent.save().then(planEvent => res.status(200).json(planEvent.upVotes));
+      planEvent.save().then(planEvent => res.status(200).json(planEvent));
     })
     .catch(err => res.status(500).json({'Server error': err}));
 });
@@ -58,11 +58,11 @@ eventRouter.put('/:eventId/upvote', (req, res) => {
 eventRouter.put('/:eventId/downvote', (req, res) => {
   PlanEvent.findById({_id: req.params.eventId})
     .then((planEvent) => {
-      if (planEvent.upVotes.every(id => id.toString() !== req.user._id)) {
+      if (planEvent.downVotes.every(id => id.toString() !== req.user._id.toString())) {
         planEvent.downVotes.push(req.user._id);
       }
       planEvent.upVotes = planEvent.upVotes.filter((id) => id.toString() !== req.user._id.toString());
-      planEvent.save().then(planEvent => res.status(200).json(planEvent.downVotes));
+      planEvent.save().then(planEvent => res.status(200).json(planEvent));
     })
     .catch(err => res.status(500).json({'Server error': err}));
 });

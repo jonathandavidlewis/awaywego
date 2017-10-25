@@ -164,7 +164,7 @@ describe('/api', function() {
           .set(AUTH)
           .expect(200)
           .then((response) => {
-            expect(response.body.length).to.equal(1);
+            expect(response.body.upVotes.length).to.equal(1);
             PlanEvent.findOne({_id: EVENT_ID}).then((planEvent) => {
               expect(planEvent.upVotes.length).to.equal(1);
               User.findOne(TEST_USER_EMAIL).then((user) => {
@@ -180,7 +180,7 @@ describe('/api', function() {
           .set(AUTH)
           .expect(200)
           .then((response) => {
-            expect(response.body.length).to.equal(1);
+            expect(response.body.downVotes.length).to.equal(1);
             PlanEvent.findOne({_id: EVENT_ID}).then((planEvent) => {
               expect(planEvent.downVotes.length).to.equal(1);
               User.findOne(TEST_USER_EMAIL).then((user) => {
@@ -196,7 +196,7 @@ describe('/api', function() {
           .set(AUTH)
           .expect(200)
           .then((response) => {
-            expect(response.body.length).to.equal(1);
+            expect(response.body.upVotes.length).to.equal(1);
             PlanEvent.findOne({_id: EVENT_ID}).then((planEvent) => {
               expect(planEvent.downVotes.length).to.equal(0);
               expect(planEvent.upVotes.length).to.equal(1);
@@ -214,7 +214,7 @@ describe('/api', function() {
           .set(AUTH)
           .expect(200)
           .then((response) => {
-            expect(response.body.length).to.equal(1);
+            expect(response.body.downVotes.length).to.equal(1);
             PlanEvent.findOne({_id: EVENT_ID}).then((planEvent) => {
               expect(planEvent.upVotes.length).to.equal(0);
               expect(planEvent.downVotes.length).to.equal(1);
