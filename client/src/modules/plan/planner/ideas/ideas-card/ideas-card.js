@@ -28,7 +28,12 @@ class IdeasCardController {
   }
 
   sumVotes() {
-    return this.event.upVotes.length - this.event.downVotes.length;
+    let sum = this.event.upVotes.length - this.event.downVotes.length;
+    if (sum > 0) {
+      return '+ ' + sum;
+    } else {
+      return sum;
+    }
   }
 
   upVote() {
