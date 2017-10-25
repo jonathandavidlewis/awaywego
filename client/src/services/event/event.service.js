@@ -69,6 +69,8 @@ export default class EventService {
 
   promoteEvent(eventId) { return this.$http.put(`api/event/${eventId}/promote`); }
 
+  demoteEvent(eventId) { return this.$http.put(`api/event/${eventId}/demote`); }
+
   downvoteEvent(eventId) { return this.$http.put(`api/event/${eventId}/downvote`); }
 
   upvoteEvent(eventId) { return this.$http.put(`api/event/${eventId}/upvote`); }

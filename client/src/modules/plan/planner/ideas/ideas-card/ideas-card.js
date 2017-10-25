@@ -17,7 +17,6 @@ class IdeasCardController {
   }
 
   handlePromoteClick() {
-    debugger;
     this.promoteEvent(this.idea._id);
   }
 }
