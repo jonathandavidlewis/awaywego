@@ -7,4 +7,7 @@
     owner="$ctrl.planOwner === user._id"
     remove="$ctrl.removeMember"
   ></people-card>
+  <div ng-if="$ctrl.planMembers.length === 0" class="no-people">
+    <span>Aww - no members yet, why don't you add somebody?</span>
+  </div>
 </div>

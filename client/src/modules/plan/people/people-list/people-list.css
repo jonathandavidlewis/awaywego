@@ -1,0 +1,17 @@
+.people-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--m5);
+  font-size: 1.3em;
+  border-bottom: 1px solid var(--la);
+  padding: 5px 10px;
+}
+
+.no-people {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  color: var(--dk5);
+  font-size: 1.1em;
+}
