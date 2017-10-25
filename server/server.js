@@ -9,6 +9,12 @@ const { jwtAuth } = require('./auth/auth-config.js');
 
 const User = require('../db/models/user');
 
+// TODO: Remove this comment when no longer needed
+// Use this to seed database with fake events
+// NOTE: Need to define plan ID in test/seed/seed.js
+// const seedEventDB = require('../test/seed/seed');
+// seedEventDB();
+
 app.use(morgan('[:date[clf]] | ":method :url" | STATUS: :status :res[content-length] ":referrer"'));
 
 app.use(bodyParser.json());

@@ -17,6 +17,12 @@ class IdeasController {
     this.EventService = EventService;
     this.events = this.EventService.events;
   }
+
+  $onInit() {
+    this.EventService.loadEventsByPlanId(this.$stateParams.planId).then((events) => {
+      this.events = events;
+    });
+  }
 }
 IdeasController.$inject = ['EventService', '$stateParams'];
 

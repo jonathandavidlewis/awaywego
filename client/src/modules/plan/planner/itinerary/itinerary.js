@@ -17,19 +17,11 @@ class ItineraryController {
     this.events = this.EventService.events;
   }
 
-  // $onInit() {
-  //   this.events = this.EventService.loadEventsByPlanId(this.$stateParams.planId)
-  //     .then((events) => {
-  //       if (events.length > 0) {
-  //         console.log('Events ', events);
-  //         this.events = events.map((event) => {
-  //           event.startTime = moment(event.startTime).format('MMMM Do YYYY, h:mm:ss a');
-  //           event.endTime = moment(event.endTime).format('MMMM Do YYYY, h:mm:ss a');
-  //           return event;
-  //         });
-  //       }
-  //     });
-  // }
+  $onInit() {
+    this.EventService.loadEventsByPlanId(this.$stateParams.planId).then((events) => {
+      this.events = events;
+    });
+  }
 }
 
 ItineraryController.$inject = ['EventService', '$stateParams'];
