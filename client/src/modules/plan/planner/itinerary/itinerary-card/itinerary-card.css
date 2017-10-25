@@ -1,33 +1,54 @@
 .itinerary-card {
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
-    border-radius: 5px; /* 5px rounded corners */
-    width: 100%;
-    margin: 0 40px 20px 20px;
-    position: relative;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),
+    0 3px 1px -2px rgba(0,0,0,0.12),
+    0 1px 5px 0 rgba(0,0,0,0.2) !important;
+  background-color: var(--lt);
+  border-radius: 3px;
+  margin-bottom: 15px;
+  padding: 10px;
 }
 
-/* Add rounded corners to the top left and the top right corner of the image */
+.itinerary-card-main-container {
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--la);
+}
 .itinerary-card img {
-    border-radius: 5px 5px 0 0;
-    width: 150px;
-    height: 150px;
-    padding: 10px;
+  border-radius: 3px;
+  width: 150px;
+  height: 150px;
 }
 
-
-.itinerary-card-comment-icon {
-  justify-content: flex-end;
+.itinerary-card-info-container {
+  padding-left: 10px;
 }
 
-.itinerary-card-rsvp {
-
-  position: absolute;
-  bottom: 7.5px;
+.itinerary-card-title {
+  font-size: 1.3em;
+  color: var(--dk3);
+  text-decoration: none !important;
 }
 
-.itinerary-card-comment-icon {
-  position: absolute;
-  right: 5px;
-  bottom: 0px;
+.itinerary-card-details-container {
+  padding-left: 5px;
+}
+
+.itinerary-card-footer {
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  padding: 0 20px;
+}
+
+.itinerary-card-footer-left {
+  justify-content: space-between;
+}
+
+.itinerary-card-button {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.itinerary-card-button:hover {
+  color: var(--m3);
 }

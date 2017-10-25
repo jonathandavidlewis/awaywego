@@ -14,20 +14,22 @@ class ItineraryController {
     this.title = 'This is the itinerary component';
     this.$stateParams = $stateParams;
     this.EventService = EventService;
-    this.events = [];
+    this.events = this.EventService.events;
   }
 
-  $onInit() {
-    this.events = this.EventService.loadEventsByPlanId(this.$stateParams.planId)
-      .then((events) => {
-        console.log('Events ', events);
-        this.events = events.map((event) => {
-          event.startTime = moment(event.startTime).format('MMMM Do YYYY, h:mm:ss a');
-          event.endTime = moment(event.endTime).format('MMMM Do YYYY, h:mm:ss a');
-          return event;
-        });
-      });
-  }
+  // $onInit() {
+  //   this.events = this.EventService.loadEventsByPlanId(this.$stateParams.planId)
+  //     .then((events) => {
+  //       if (events.length > 0) {
+  //         console.log('Events ', events);
+  //         this.events = events.map((event) => {
+  //           event.startTime = moment(event.startTime).format('MMMM Do YYYY, h:mm:ss a');
+  //           event.endTime = moment(event.endTime).format('MMMM Do YYYY, h:mm:ss a');
+  //           return event;
+  //         });
+  //       }
+  //     });
+  // }
 }
 
 ItineraryController.$inject = ['EventService', '$stateParams'];

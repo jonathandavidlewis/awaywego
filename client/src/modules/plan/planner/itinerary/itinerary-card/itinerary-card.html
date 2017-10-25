@@ -1,26 +1,22 @@
-<div class="itinerary-card flex">
-  <div class="flex">
-    <div class="flex-col">
-      <img src="{{$ctrl.event.imageUrl}}" alt="EventPicture">
-      <div class="flex">
-        <div class="itinerary-card-map-icon"><i class="material-icons">room</i></div>
-        <div class="itinerary-card-ticket-icon"><i class="material-icons">receipt</i></div>
-      </div>
-    </div>
-    <div>
-      <div class="itinerary-title">
-        <h3>{{$ctrl.event.title}}</h3>
-      </div>
-      <div class="itinerary-description">
-        <span>{{'Starts: ' + $ctrl.event.startTime}}</span><br>
-        <span>{{'Ends: ' + $ctrl.event.endTime}}</span><br>
-        <span>{{$ctrl.event.description}}</span><br>
-        <div class="flex">
-          <div class="itinerary-card-rsvp">RSVP</div>
-          <div class="itinerary-card-comment-icon"><i class="material-icons">comment</i></div>
-        </div>
+<div class="itinerary-card flex-col">
+  <div class="itinerary-card-main-container flex">
+    <img src="{{$ctrl.event.imageUrl}}" alt="EventPicture">
+    <div class="itinerary-card-info-container">
+      <div class="itinerary-card-title">{{$ctrl.event.title}}</div>
+      <div class="itinerary-card-details-container">
+        <div class="itinerary-card-startTime"><b>Starts: </b><span>{{$ctrl.event.startTime}}</span></div>
+        <div ng-if="$ctrl.event.endTime" class="itinerary-card-endTime"><b>Ends: </b><span>{{$ctrl.event.endTime}}</span></div>
+        <div class="itinerary-card-description"><b>Details: </b><span>{{$ctrl.event.description}}</span></div>
       </div>
     </div>
   </div>
 
+  <div class="itinerary-card-footer flex">
+    <div class="itinerary-card-footer-left flex">
+      <div class="itinerary-card-button"><i class="material-icons">room</i></div>
+      <div class="itinerary-card-button"><i class="material-icons">receipt</i></div>
+    </div>
+    <div class="itinerary-card-button">RSVP</div>
+    <div class="itinerary-card-button"><i class="material-icons">comment</i></div>
+  </div>
 </div>
