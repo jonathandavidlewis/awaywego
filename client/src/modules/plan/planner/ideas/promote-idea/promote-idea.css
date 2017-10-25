@@ -1,0 +1,37 @@
+.promote-idea-container {
+  height: 100%;
+  padding: 20px 50px;
+  background: linear-gradient(white, var(--m1));
+}
+
+.promote-idea-header {
+  margin: 10px 0 20px 0;
+  text-align: center;
+}
+
+.promote-idea-header span {
+  font-size: 1.7em;
+  color: var(--dk4);
+}
+
+.promote-idea-input-block {
+  margin-bottom: 20px;
+}
+
+.promote-idea-input-block label {
+  color: var(--dk3);
+  font-size: 1.1em;
+}
+
+.promote-idea-input-block div {
+  margin-top: -1rem;
+  margin-bottom: .5rem;
+}
+
+.promote-idea-input {
+  width: 100%;
+}
+
+.promote-idea-submit-button-container {
+  width: 100%;
+}
