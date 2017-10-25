@@ -6,7 +6,7 @@ let planSchema = new Schema({
   userId: {type: Schema.ObjectId, ref: 'User', required: true },
   title: {type: String, required: true},
   description: String,
-  imageUrl: String,
+  imageUrl: {type: String, default: 'http://wilderness.org/sites/default/files/styles/blog_full/public/boots%20at%20lake%20photo.jpg?itok=nIFuJ6G5'},
   tags: [String],
   members: [{type: Schema.ObjectId, ref: 'User'}]
 }, {timestamps: true});

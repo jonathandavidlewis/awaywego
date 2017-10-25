@@ -11,7 +11,7 @@ let eventSchema = new Schema({
   status: {type: String, required: true},
   upVotes: [{type: Schema.ObjectId, ref: 'User'}],
   downVotes: [{type: Schema.ObjectId, ref: 'User'}],
-  imageUrl: String,
+  imageUrl: { type: String, default: 'https://i.pinimg.com/736x/fe/1f/3f/fe1f3fb578749b1ab731966d33f1104e--awkward-engagement-photos-hilarious-photos.jpg' },
   tags: [String],
 }, {timestamps: true});
 
