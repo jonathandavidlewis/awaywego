@@ -1,21 +1,21 @@
 <div class="make-plan-container flex-col flex-start flex-align-stretch">
   <div class="make-plan-header"><span>Awesome! <br /> Let's get started</span></div>
   <div class="make-plan-form-container">
-    <form ng-submit="$ctrl.submit()">
+    <form name="newPan" ng-submit="$ctrl.submit()">
       <div class="make-plan-input-block">
         <label for="plan-title">First, give your plan a name:</label>
-        <input class="awgl-form-input form-control" id="plan-title" ng-model="$ctrl.title"
+        <input class="awgl-form-input form-control" name="plan-title" ng-model="$ctrl.title"
           type="text" placeholder="Plan name" />
       </div>
       <div class="make-plan-input-block">
         <label for="description">Next, what you want to do?</label>
         <div class="make-plan-input-block-small"><small>(if you don't know yet, that's totally fine)</small></div>
-        <textarea class="awgl-form-input form-control" id="plan-desc" ng-model="$ctrl.desc"
+        <textarea class="awgl-form-input form-control" name="plan-desc" ng-model="$ctrl.desc"
           type="text" rows=2></textarea>
       </div>
       <div class="make-plan-input-block">
         <label for="plan-image">Last, how about a background picture?</label>
-        <input class="awgl-form-input form-control" id="plan-image" ng-model="$ctrl.imageUrl"
+        <input class="awgl-form-input form-control" name="plan-image" ng-model="$ctrl.imageUrl"
           type="text" placeholder="Image url" />
       </div>
       <div ng-if="$ctrl.formWarning" class="awgl-form-warning flex flex-center">
@@ -23,7 +23,7 @@
       </div>
       <div class="make-plan-submit-container flex flex-center">
         <div class="make-plan-submit-button-container">
-          <button type="submit" class="awgl-button" id="make-plan-submit">Start Planning</button>
+          <button type="submit" class="awgl-button" name="make-plan-submit">Start Planning</button>
         </div>
       </div>
     </form>
