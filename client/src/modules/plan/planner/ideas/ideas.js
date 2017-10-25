@@ -32,6 +32,7 @@ class IdeasController {
     });
   }
 
+<<<<<<< caf10875381bb483f99a8a5885cab9b8e2037f0b
   promoteEvent(eventId) {
     this.EventService.promoteEvent(eventId).then(() => {
       this.EventService.loadEventsByPlanId(this.$stateParams.planId).then(this.loadEvents);
@@ -41,6 +42,9 @@ class IdeasController {
   $onInit() {
     this.EventService.loadEventsByPlanId(this.$stateParams.planId).then(this.loadEvents);
   }
+=======
+
+>>>>>>> upvoting and downvoting responsively changing on one user end
 }
 IdeasController.$inject = ['EventService', '$stateParams'];
 

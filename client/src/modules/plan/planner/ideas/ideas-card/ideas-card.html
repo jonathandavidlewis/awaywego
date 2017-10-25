@@ -13,9 +13,9 @@
   </div>
   <div class="ideas-card-footer flex">
     <div class="ideas-card-likes-wrapper flex">
-      <div class="ideas-card-vote flex"><i class="material-icons">thumb_up</i></div>
-      <div class="ideas-card-likes">{{$ctrl.event.upVotes.length - $ctrl.event.downVotes.length}}</div>
-      <div class="ideas-card-vote flex"><i class="material-icons">thumb_down</i></div>
+      <div ng-click="$ctrl.upVote()" class="ideas-card-vote flex"><i class="material-icons">thumb_up</i></div>
+      <div class="ideas-card-likes">{{$ctrl.totalVotes}}</div>
+      <div ng-click="$ctrl.downVote()" class="ideas-card-vote flex"><i class="material-icons">thumb_down</i></div>
     </div>
     <div class="ideas-card-comment-wrapper flex">
       <a ng-click="$ctrl.handlePromoteClick()">SCHEDULE</a><span>____</span>

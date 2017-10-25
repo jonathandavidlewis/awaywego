@@ -50,7 +50,9 @@ eventRouter.put('/:eventId/upvote', (req, res) => {
         planEvent.upVotes.push(req.user._id);
       }
       planEvent.downVotes = planEvent.downVotes.filter((id) => id.toString() !== req.user._id.toString());
-      planEvent.save().then(planEvent => res.status(200).json(planEvent));
+      planEvent.save().then(planEvent => {
+        res.status(200).json(planEvent);
+      });
     })
     .catch(err => res.status(500).json({'Server error': err}));
 });
@@ -62,7 +64,9 @@ eventRouter.put('/:eventId/downvote', (req, res) => {
         planEvent.downVotes.push(req.user._id);
       }
       planEvent.upVotes = planEvent.upVotes.filter((id) => id.toString() !== req.user._id.toString());
-      planEvent.save().then(planEvent => res.status(200).json(planEvent));
+      planEvent.save().then(planEvent => {
+        res.status(200).json(planEvent);
+      });
     })
     .catch(err => res.status(500).json({'Server error': err}));
 });
