@@ -1,8 +1,9 @@
 <div class="ideas-card flex-col">
   <div class="ideas-card-main-container flex">
-    <img class="ideas-card-thumbnail" src="https://d36tnp772eyphs.cloudfront.net/blogs/1/2014/08/Smith-Rock-940x595.jpg" alt="EventPicture">
+    <img class="ideas-card-thumbnail" ng-src={{$ctrl.idea.imageUrl}} alt="EventPicture">
     <div class="ideas-card-info-container flex-col">
       <!-- TODO: Change to ^.idea({ideaId: $ctrl.idea._id}) -->
+<<<<<<< 36556f0283a859a6762eeac1c8b87410a0b54268
 <<<<<<< aa4c33d80d730dd1bf24c5bbbd36e7843992e90a
       <a class="ideas-card-header" ui-sref="^.idea">{{$ctrl.event.title}}</a>
       <div class="ideas-card-details-container flex-col">
@@ -16,6 +17,11 @@
         <div class="ideas-card-details-time"><span><b>Time:</b> 5pm - 10pm</span></div>
         <div class="ideas-card-details-desc"><span><b>Details: </b>{{$ctrl.idea.details}}</span></div>
 >>>>>>> Adds live events to idea page
+=======
+      <a class="ideas-card-header" ui-sref="^.idea">{{$ctrl.idea.title}}</a>
+      <div class="ideas-card-details-container flex-col">
+        <div class="ideas-card-details-desc"><span><b>Details: </b>{{$ctrl.idea.description}}</span></div>
+>>>>>>> Add descriptions to event cards
       </div>
     </div>
   </div>
@@ -26,6 +32,7 @@
       <div class="ideas-card-vote flex"><i class="material-icons">thumb_down</i></div>
     </div>
     <div class="ideas-card-comment-wrapper flex">
+      <a ng-click="$ctrl.handlePromoteClick()">SCHEDULE</a><span>____</span>
       <a ng-click="$ctrl.handleDeleteClick()">DELETE</a>
       <div class="ideas-card-comment-icon flex"><i class="material-icons">comment</i></div>
     </div>

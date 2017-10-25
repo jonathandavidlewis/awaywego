@@ -13,6 +13,7 @@ import './ideas.css';
 
 
 class IdeasController {
+<<<<<<< 36556f0283a859a6762eeac1c8b87410a0b54268
 <<<<<<< aa4c33d80d730dd1bf24c5bbbd36e7843992e90a
   constructor(EventService, $stateParams) {
     this.title = 'This is the ideas component';
@@ -21,11 +22,15 @@ class IdeasController {
     this.events = this.EventService.events;
 =======
   constructor($stateParams, EventService, $scope) {
+=======
+  constructor($stateParams, EventService) {
+>>>>>>> Add descriptions to event cards
     this.EventService = EventService;
     this.title = 'This is the ideas component';
     this.$stateParams = $stateParams;
     this.loadIdeas = this.loadIdeas.bind(this);
     this.deleteEvent = this.deleteEvent.bind(this);
+    this.promoteEvent = this.promoteEvent.bind(this);
     this.$onInit = this.$onInit.bind(this);
   }
 
@@ -42,6 +47,14 @@ class IdeasController {
 >>>>>>> Adds live events to idea page
   }
 
+  promoteEvent(eventId) {
+    this.EventService.promoteEvent(eventId).then(
+      this.EventService.loadEventsByPlanId(this.$stateParams.planId).then((events) => {
+        this.loadIdeas(events);
+      })
+    );
+  }
+
   $onInit() {
     this.EventService.loadEventsByPlanId(this.$stateParams.planId).then((events) => {
 <<<<<<< aa4c33d80d730dd1bf24c5bbbd36e7843992e90a
@@ -55,8 +68,12 @@ IdeasController.$inject = ['EventService', '$stateParams'];
     });
   }
 }
+<<<<<<< 36556f0283a859a6762eeac1c8b87410a0b54268
 IdeasController.$inject = ['$stateParams', 'EventService', '$scope'];
 >>>>>>> Adds live events to idea page
+=======
+IdeasController.$inject = ['$stateParams', 'EventService'];
+>>>>>>> Add descriptions to event cards
 
 const IdeasComponent = {
   restrict: 'E',
