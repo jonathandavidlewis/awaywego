@@ -7,8 +7,14 @@
   /*overflow-x: hidden;*/
   padding: 10px 20px;
   background-color: var(--m0);
+}
+
+.no-events-container {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex: 1;
 }
 
 .no-events-container h3 {
