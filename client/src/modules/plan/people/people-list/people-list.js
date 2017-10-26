@@ -6,9 +6,21 @@ import './people-list.css';
 
 class PeopleListController {
   constructor(PlanService, FriendService, UserService) {
-    this.planOwner = PlanService.currentPlan.userId;
-    this.planMembers = PlanService.currentPlan.members;
+    this.PlanService = PlanService;
+    this.refreshPlan();
+    this.remove = this.remove.bind(this);
   }
+
+  refreshPlan() {
+    this.planOwner = this.PlanService.currentPlan.userId;
+    this.planMembers = this.PlanService.currentPlan.members;
+  }
+
+  remove(userId) {
+    this.PlanService.removeMemberFromCurrentPlan(userId)
+      .then(() => this.refreshPlan());
+  }
+
 }
 PeopleListController.$inject = ['PlanService', 'FriendService', 'UserService'];
 

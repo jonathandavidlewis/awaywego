@@ -5,7 +5,7 @@
   <people-card ng-repeat="user in $ctrl.planMembers"
     user="user" type="member" self="$ctrl.UserService.user.id === user._id"
     owner="$ctrl.planOwner === user._id"
-    remove="$ctrl.removeMember"
+    remove="$ctrl.remove"
   ></people-card>
   <div ng-if="$ctrl.planMembers.length === 0" class="no-people">
     <span>Aww - no members yet, why don't you add somebody?</span>

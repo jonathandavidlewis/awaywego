@@ -2,8 +2,7 @@ const planRouter = require('express').Router();
 const Plan = require('../../db/models/plan.js');
 
 planRouter.get('/', (req, res) => {
-
-  Plan.find({userId: req.user._id})
+  Plan.find({members: req.user._id})
     .populate('members', '-password').exec().then(plans => {
       res.status(200).json(plans);
     }).catch(err => res.status(500).send('Server error: ', err));
@@ -21,7 +20,7 @@ planRouter.post('/', (req, res) => {
 });
 
 planRouter.get('/:planId', (req, res) => {
-  //todo: get user from req.user and validate user is a member of the plan
+  //TODO: get user from req.user and validate user is a member of the plan
   Plan.findById(req.params.planId).populate('members', '-password')
     .then(plans => res.status(200).json(plans))
     .catch(err => res.status(500).send('Server error: ', err));
@@ -40,7 +39,7 @@ planRouter.put('/:planId', (req, res) => {
 planRouter.put('/:planId/members/add', (req, res) => {
   Plan.findById(req.params.planId).then(plan => {
     req.body.members.forEach(m => plan.members.addToSet(m));
-    return plan.save();
+    return plan.save().then(plan => plan.populate('members', '-password').execPopulate());
   }).then(plan => res.status(200).json(plan))
     .catch(err => res.status(500).send('Server error: ', err));
 });
@@ -49,7 +48,7 @@ planRouter.put('/:planId/members/remove/:userId', (req, res) => {
   Plan.findById(req.params.planId).then(plan => {
     if (plan.userId.equals(req.params.userId)) { throw new Error('rem_owner'); }
     plan.members.pull(req.params.userId);
-    return plan.save();
+    return plan.save().then(plan => plan.populate('members', '-password').execPopulate());
   }).then(plan => res.status(200).json(plan))
     .catch(err => {
       if (err.message === 'rem_owner') {
