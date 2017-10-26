@@ -7,6 +7,9 @@ import './people-list.css';
 class PeopleListController {
   constructor(PlanService, FriendService, UserService) {
     this.PlanService = PlanService;
+    this.UserService = UserService;
+    this.planOwner = '';
+    this.planMembers = [];
     this.refreshPlan();
     this.remove = this.remove.bind(this);
   }
