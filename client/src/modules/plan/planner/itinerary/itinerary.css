@@ -9,17 +9,29 @@
   background-color: var(--m0);
 }
 
-.no-events-container {
+.no-events-page-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   flex: 1;
 }
 
-.no-events-container h3 {
+.no-events-page-container h3 {
   text-align: center;
 }
 
+.no-events-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+}
+
+.no-events-container button {
+  cursor: pointer;
+}
+
 .go-to-ideas-button {
+  flex-basis: 100%;
 }

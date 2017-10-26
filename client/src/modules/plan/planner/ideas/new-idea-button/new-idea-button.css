@@ -1,3 +1,7 @@
-.share-idea-button {
+.share-idea-button h3 {
+  text-align: center;
+}
 
+.share-idea-button button {
+  cursor: pointer;
 }

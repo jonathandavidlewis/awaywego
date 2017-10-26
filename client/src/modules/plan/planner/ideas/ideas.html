@@ -1,4 +1,5 @@
 <div class="ideas-container">
   <ideas-card event="event" ng-repeat="event in $ctrl.events" promote-event="$ctrl.promoteEvent" delete-event="$ctrl.deleteEvent" />
-  <new-idea-button class="align-bottom button"></new-idea-button>
+  <new-idea-button events="$ctrl.events" ng-if="$ctrl.events.length === 0" class="new-idea-button button-center"></new-idea-button>
+  <new-idea-button events="$ctrl.events" ng-if="$ctrl.events.length" class="new-idea-button button-bottom"></new-idea-button>
 </div>

@@ -1,7 +1,7 @@
 <div class="itinerary-container">
   <itinerary-card event="event" ng-repeat="event in $ctrl.events" ng-if="event.status === 'itinerary'" demote-event="$ctrl.demoteEvent" delete-event="$ctrl.deleteEvent"/>
-  <div class="no-events-container" ng-if="$ctrl.events.length === 0">
-    <div class="no-events-content">
+  <div class="no-events-page-container" ng-if="$ctrl.events.length === 0">
+    <div class="no-events-container">
       <h3>No events currently scheduled</h3>
       <button class="go-to-ideas-button awgd-button" ui-sref="app.plan.planner.ideas">
         <span>Go to your ideas page!</span>

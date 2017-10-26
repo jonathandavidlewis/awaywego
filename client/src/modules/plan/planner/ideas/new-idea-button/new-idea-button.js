@@ -11,7 +11,9 @@ class NewIdeaButtonController {
 
 const NewIdeaButtonComponent = {
   restrict: 'E',
-  bindings: {},
+  bindings: {
+    events: '<'
+  },
   template: template,
   controller: NewIdeaButtonController
 };

@@ -4,14 +4,20 @@
   width: 100%;
   height: 100%;
   overflow-y: auto;
-  /*overflow-x: hidden;*/
   padding: 10px 20px;
   background-color: var(--m0);
 }
 
-.align-bottom.button {
+.new-idea-button {
   display: flex;
   flex-direction: column;
   flex: 1 0 auto;
+}
+
+.button-bottom {
   justify-content: flex-end;
+}
+
+.button-center {
+  justify-content: center;
 }
