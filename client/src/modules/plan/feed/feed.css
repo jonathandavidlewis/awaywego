@@ -44,13 +44,12 @@
 .feed-title {
   font-size: 1.6em;
   color: var(--dk3);
-  padding-left: 10px;
   align-self: center;
 }
 
 .feed-description {
   align-self: flex-start;
-  padding-left: 10px;
+  padding-left: 20px;
 }
 
 .feed-body {
