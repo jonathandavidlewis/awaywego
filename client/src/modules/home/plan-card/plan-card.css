@@ -32,7 +32,8 @@
   cursor: pointer;
 }
 
-.plan-card-delete:hover {
+.plan-card-delete i:hover,
+.plan-card-more-details:hover {
   color: var(--m3);
 }
 
