@@ -2,15 +2,23 @@
   <a ui-sref="app.home" class="header-title">
     <span>{{$ctrl.header}}</span>
   </a>
-  <div class="header-user-menu-container">
-    <div class="header-user-name"><a ui-sref="app.friends.list">Friends</a></div>
-    <div class="header-user-name">{{$ctrl.UserService.user.name}}</div>
-    <div class="header-user-avatar">
+  <div class="header-user-dropdown-container dropdown">
+
+    <div class="header-user-dropdown-toggle dropdown-toggle" id="userDropdown"
+      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <i class="material-icons">account_circle</i>
+      <div class="header-user-menu-name">{{$ctrl.UserService.user.name}}</div>
     </div>
-    <div ng-if="$ctrl.UserService.isLoggedIn"
-         ng-click="$ctrl.logout()" class="header-logout">
-      Logout
+
+    <div class="header-user-dropdown-menu dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+      <div class="header-dropdown-item dropdown-item">
+        <a class="header-dropdown-item-link" ui-sref="app.friends.list"><span>Friends</span></a>
+      </div>
+      <div class="header-dropdown-item dropdown-item">
+        <a class="header-dropdown-item-link header-logout"
+          ng-if="$ctrl.UserService.isLoggedIn" ng-click="$ctrl.logout()">Logout
+        </a>
+      </div>
     </div>
   </div>
 </div>
