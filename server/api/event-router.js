@@ -32,7 +32,14 @@ eventRouter.put('/:eventId', (req, res) => {
 });
 
 eventRouter.put('/:eventId/promote', (req, res) => {
-  PlanEvent.findByIdAndUpdate({_id: req.params.eventId}, {status: 'itinerary'}, {new: true})
+  const promotedEvent = req.body;
+  console.log('RECEIVED:', promotedEvent);
+  promotedEvent.status = 'itinerary';
+  if (promotedEvent._id) {
+    delete promotedEvent._id;
+  }
+  console.log('RECEIVED:', promotedEvent);
+  PlanEvent.findByIdAndUpdate({_id: req.params.eventId}, promotedEvent, {new: true})
     .then(planEvent => res.status(200).json(planEvent))
     .catch(err => res.status(500).json({'Server error': err}));
 });

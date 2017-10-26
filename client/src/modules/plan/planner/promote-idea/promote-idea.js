@@ -8,19 +8,13 @@ import template from './promote-idea.html';
 import './promote-idea.css';
 
 class PromoteIdeaController {
-  constructor(EventService, $stateParams) {
-    this.$inject = ['EventService', '$stateParams'];
+  constructor(EventService, $stateParams, $state) {
+    this.$inject = ['EventService', '$stateParams', '$state'];
     this.EventService = EventService;
     this.$stateParams = $stateParams;
+    this.$state = $state;
     this.$onInit = this.$onInit.bind(this);
-    this.tryCombineDateTime = this.tryCombineDateTime.bind(this);
-    this.title = '';
-    this.desc = '';
     this.formWarning = '';
-    this.startDate = '';
-    this.startTime = '';
-    this.endDate = '';
-    this.endTime = '';
   }
 
   $onInit() {
@@ -30,11 +24,7 @@ class PromoteIdeaController {
   submit() {
     if (this.validateForm()) {
       debugger;
-      let promotedIdea = {
-        title: this.event.title,
-        description: this.event.description,
-        planId: this.$stateParams.planId
-      };
+      let promotedIdea = this.event;
       this.EventService.promoteEvent(promotedIdea).then(resp => {
         this.$state.go('app.plan.planner.ideas');
       }).catch(err => {
@@ -45,35 +35,19 @@ class PromoteIdeaController {
   }
 
   validateForm() {
-    //this.tryCombineDateTime();
-    var d = new Date();
-    console.log(this.startDate);
-    console.log(this.startTime.getTime());
-    console.log(new Date(this.startDate.getTime() + this.startTime.getTime()));
-
     if (!this.event.title) {
-      this.formWarning = 'Please enter a title\n';
+      this.formWarning = 'Please enter a title';
     }
-    if (!this.startDate) {
-      this.formWarning += 'Please enter a start date\n';
+    if (!this.event.startTime) {
+      this.formWarning = 'Please enter a start time';
       return false;
     }
-    return false;
-  }
-
-  tryCombineDateTime() {
-    if(this.startDate && this.startDate) {
-      var dateParts = this.startDate.split('-');
-      var timeParts = this.startTime.split(':');
-
-      if(dateParts && timeParts) {
-        dateParts[1] -= 1;
-        this.fullDate = new Date(Date.UTC.apply(undefined, dateParts.concat(timeParts))).toISOString();
-        console.log('Full DATE', this.fullDate);
-      }
+    if (!this.event.startTime) {
+      this.formWarning = 'Please enter an end time';
+      return false;
     }
+    return true;
   }
-
 }
 
 const PromoteIdeaComponent = {

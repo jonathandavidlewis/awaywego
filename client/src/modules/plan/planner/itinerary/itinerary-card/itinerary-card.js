@@ -9,6 +9,7 @@ class ItineraryCardController {
     this.planId = 'sample';
     this.handleDeleteClick = this.handleDeleteClick.bind(this);
     this.handleDemoteClick = this.handleDemoteClick.bind(this);
+    this.moment = moment;
   }
 
   handleDeleteClick() {

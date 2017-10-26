@@ -4,8 +4,8 @@
     <div class="itinerary-card-info-container">
       <div class="itinerary-card-title">{{$ctrl.event.title}}</div>
       <div class="itinerary-card-details-container">
-        <div class="itinerary-card-startTime"><b>Starts: </b><span>{{$ctrl.event.startTime}}</span></div>
-        <div ng-if="$ctrl.event.endTime" class="itinerary-card-endTime"><b>Ends: </b><span>{{$ctrl.event.endTime}}</span></div>
+        <div class="itinerary-card-startTime"><b>Starts: </b><span>{{$ctrl.moment($.ctrl.event.startTime.format("dddd, MMMM Do YYYY, h:mm:ss a"))}}</span></div>
+        <div ng-if="$ctrl.event.endTime.toString()" class="itinerary-card-endTime"><b>Ends: </b><span>{{$ctrl.moment($.ctrl.event.endTime).format("dddd, MMMM Do YYYY, h:mm:ss a")}}</span></div>
         <div class="itinerary-card-description"><b>Details: </b><span>{{$ctrl.event.description}}</span></div>
         <span ><a ng-click="$ctrl.handleDemoteClick()">DEMOTE</a></span>
         <span><a ng-click="$ctrl.handleDeleteClick()">DELETE</a></span>
