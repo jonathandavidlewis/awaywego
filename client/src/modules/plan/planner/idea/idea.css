@@ -31,6 +31,24 @@
   right: 15px;
 }
 
+.idea-image .back-arrow-button {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+}
+
+.back-arrow-button {
+  height: 38px;
+  width: 38px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.back-arrow-button i {
+  font-size: 2em;
+}
+
 .details-container {
   display: flex;
   flex-direction: column;

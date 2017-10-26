@@ -1,6 +1,7 @@
 <div class="idea-page-container">
   <div class="idea-container">
     <div class="idea-image">
+      <div class="back-arrow-button btn btn-secondary" ui-sref="app.plan.planner.ideas"><i class="material-icons">keyboard_arrow_left</i></div>
       <button class="btn btn-secondary" ui-sref="app.plan.planner.promoteIdea({eventId: $ctrl.idea._id})">Schedule</button>
       <img ng-src={{$ctrl.idea.imageUrl}} alt="" />
     </div>
