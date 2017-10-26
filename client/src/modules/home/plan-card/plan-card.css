@@ -2,13 +2,16 @@
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),
     0 3px 1px -2px rgba(0,0,0,0.12),
     0 1px 5px 0 rgba(0,0,0,0.2) !important;
-  background: linear-gradient(white, var(--lt));
-  padding: 10px;
+  background-color: var(--lt);
+  border-radius: 3px;
   margin-bottom: 15px;
+  padding: 10px;
 }
 
 .plan-card-main-container {
   display: flex;
+  border-bottom: 1px solid var(--la);
+  padding-bottom: 10px;
 }
 .plan-card-info-container {
   padding-left: 10px;
@@ -19,8 +22,9 @@
 }
 
 .plan-card-title {
-  font: 1.3em;
+  font-size: 1.3em;
   color: var(--dk3);
+  text-decoration: none !important;
 }
 
 .plan-card-delete {
@@ -44,6 +48,7 @@
 
 .plan-card-more-details {
   display: flex;
+  margin-top: 10px;
 }
 
 .plan-card-image {

@@ -1,24 +1,29 @@
 .home-container {
-  height: 100%;
-  width: 100%;
-  overflow-y: auto;
   display: flex;
   flex-direction: column;
   background-color: var(--m0);
   padding: 10px 20px;
+  height: 100%;
 }
 
 .home-container-window {
-  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
   overflow: auto;
+  min-height: 0;
+  flex-grow: 1;
 }
 
 .home-title {
   text-align: center;
-  font-size: 1.3em;
+  font-size: 1.6em;
+  color: var(--dk3);
+  border-bottom: 1px solid var(--la);
+  margin-bottom: 10px;
+  flex: 0 0 auto;
 }
 
-.home-container-footer {
-  flex: 0 0 auto;
-
+.home-footer {
+  flex: 0;
 }
