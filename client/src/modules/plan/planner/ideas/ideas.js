@@ -2,6 +2,8 @@ import angular from 'angular';
 
 // import child dependencies
 import IdeasCardComponent from './ideas-card/ideas-card.js';
+import NewIdeaButtonComponent from './new-idea-button/new-idea-button';
+
 
 // imports for this component
 import EventService from '../../../../services/event/event.service';
@@ -12,20 +14,33 @@ import './ideas.css';
 
 class IdeasController {
   constructor(EventService, $stateParams) {
-    this.$stateParams = $stateParams;
     this.EventService = EventService;
-    this.events = this.EventService.events;
+    this.$stateParams = $stateParams;
+    this.loadEvents = this.loadEvents.bind(this);
+    this.deleteEvent = this.deleteEvent.bind(this);
+    this.promoteEvent = this.promoteEvent.bind(this);
+    this.$onInit = this.$onInit.bind(this);
   }
 
-  $onInit() {
-    this.EventService.loadEventsByPlanId(this.$stateParams.planId).then((events) => {
-      this.events = events;
+  loadEvents(events) {
+    this.events = events.filter((event) => event.status === 'idea');
+  }
+
+  deleteEvent(eventId) {
+    this.EventService.deleteEvent(eventId).then(() => {
+      this.EventService.loadEventsByPlanId(this.$stateParams.planId).then(this.loadEvents);
     });
   }
 
+  promoteEvent(eventId) {
+    this.EventService.promoteEvent(eventId).then(() => {
+      this.EventService.loadEventsByPlanId(this.$stateParams.planId).then(this.loadEvents);
+    });
+  }
 
-
-
+  $onInit() {
+    this.EventService.loadEventsByPlanId(this.$stateParams.planId).then(this.loadEvents);
+  }
 }
 IdeasController.$inject = ['EventService', '$stateParams'];
 
@@ -38,9 +53,7 @@ const IdeasComponent = {
 
 const IdeasModule = angular.module('app.plan.planner.ideas', [])
   .component('ideas', IdeasComponent)
-  .component('ideasCard', IdeasCardComponent);
-
-
-
+  .component('ideasCard', IdeasCardComponent)
+  .component('newIdeaButton', NewIdeaButtonComponent);
 
 export default IdeasModule.name;

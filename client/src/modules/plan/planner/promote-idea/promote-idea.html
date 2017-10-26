@@ -1,31 +1,40 @@
 <div class="promote-idea-container flex-col flex-start flex-align-stretch">
-  <div class="promote-idea-header"><span>Sweet!<br /> Let's schedule this</span></div>
+  <div class="promote-idea-header"><span>Let's schedule this</span></div>
   <div class="promote-idea-form-container">
     <form name="newIdea" ng-submit="$ctrl.submit()">
 
       <div class="promote-idea-input-block">
-        <label for="idea-start-date">Select a start time:</label>
-        <input class="awgl-form-input form-control" name="idea-start-date" ng-model="$ctrl.startDate"
-               type="date" placeholder="Start Date" />
-        <input class="awgl-form-input form-control" name="idea-start-time" ng-model="$ctrl.startTime"
-               type="time" placeholder="Start Time" />
+        <div class="flex">
+          <div class="flex-col flex-1">
+            <label for="idea-start-date">Start date:</label>
+            <input class="awgl-form-input form-control" name="idea-start-date" ng-model="$ctrl.startDate" type="date" placeholder="Start Date" />
+          </div>
+            <div class="flex-col flex-1">
+              <label for="idea-start-date">Start time:</label>
+              <input class="awgl-form-input form-control" name="idea-start-time" ng-model="$ctrl.startTime" type="time" placeholder="Start Time" />
+            </div>
+        </div>
       </div>
       <div class="promote-idea-input-block">
-        <label for="idea-end-date">Select an end time:</label>
-        <input class="awgl-form-input form-control" name="idea-end-date" ng-model="$ctrl.endDate"
-               type="date" placeholder="Idea name" />
-        <input class="awgl-form-input form-control" name="idea-end-time" ng-model="$ctrl.endTime"
-               type="time" placeholder="End Time" />
+        <div class="flex">
+          <div class="flex-col flex-1">
+            <label for="idea-end-date">End date:</label>
+            <input class="awgl-form-input form-control" name="idea-end-date" ng-model="$ctrl.endDate" type="date" />
+          </div>
+          <div class="flex-col flex-1">
+            <label for="idea-end-date">End time:</label>
+            <input class="awgl-form-input form-control" name="idea-end-time" ng-model="$ctrl.endTime" type="time" />
+          </div>
+        </div>
       </div>
       <div class="promote-idea-input-block">
-        <label for="idea-title">You can rename if you'd like</label>
+        <label for="idea-title">Title</label>
         <input class="awgl-form-input form-control" name="idea-title" ng-model="$ctrl.event.title"
           type="text" placeholder="Idea name" />
       </div>
       <div class="promote-idea-input-block">
-        <label for="description">Want to update your description?</label>
-        <div class="promote-idea-input-block-small"><small>(you can skip this part)</small></div>
-        <textarea class="awgl-form-input form-control" name="idea-desc" ng-model="$ctrl.this.event.description"
+        <label for="description">Description</label>
+        <textarea class="awgl-form-input form-control" name="idea-desc" ng-model="$ctrl.event.description"
           type="text" rows=2></textarea>
       </div>
       <div ng-if="$ctrl.formWarning" class="awgl-form-warning flex flex-center">
@@ -33,7 +42,7 @@
       </div>
       <div class="promote-idea-submit-container flex flex-center">
         <div class="promote-idea-submit-button-container">
-          <button type="submit" class="awgl-button" name="promote-idea-submit">Submit your idea</button>
+          <button type="submit" class="awgl-button" name="promote-idea-submit">Schedule event</button>
         </div>
       </div>
     </form>

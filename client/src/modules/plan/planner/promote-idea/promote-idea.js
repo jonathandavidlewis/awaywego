@@ -16,6 +16,10 @@ class PromoteIdeaController {
     this.title = '';
     this.desc = '';
     this.formWarning = '';
+    this.startDate = '';
+    this.startTime = '';
+    this.endDate = '';
+    this.endTime = '';
   }
 
   $onInit() {
@@ -24,9 +28,10 @@ class PromoteIdeaController {
 
   submit() {
     if (this.validateForm()) {
+      debugger;
       let promotedIdea = {
-        title: this.title,
-        description: this.desc,
+        title: this.event.title,
+        description: this.event.description,
         planId: this.$stateParams.planId
       };
       this.EventService.promoteEvent(promotedIdea).then(resp => {
@@ -39,8 +44,12 @@ class PromoteIdeaController {
   }
 
   validateForm() {
-    if (!this.title) {
-      this.formWarning = 'Please enter a title';
+    if (!this.event.title) {
+      this.formWarning = 'Please enter a title\n';
+
+    }
+    if (!this.startDate) {
+      this.formWarning += 'Please enter a start date\n';
       return false;
     }
     return true;
