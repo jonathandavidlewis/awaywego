@@ -24,8 +24,8 @@
 }
 
 .promote-idea-input-block div {
-  margin-top: -1rem;
-  margin-bottom: .5rem;
+  margin-top: -0.5rem;
+  margin-bottom: .25rem;
 }
 
 .promote-idea-input {
@@ -34,4 +34,9 @@
 
 .promote-idea-submit-button-container {
   width: 100%;
+}
+
+label {
+  margin-top: 10px;
+  margin-bottom: 0;
 }
