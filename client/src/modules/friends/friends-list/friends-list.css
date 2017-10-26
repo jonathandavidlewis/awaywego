@@ -10,7 +10,7 @@
   font-size: 1.3em;
   border-bottom: 1px solid var(--la);
   background-color: var(--lt);
-  box-shadow: 0 2px 2px var(--dk5);
+  box-shadow: 0 1px 1px var(--dk5);
   padding: 5px 10px;
 }
 

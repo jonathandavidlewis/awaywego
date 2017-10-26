@@ -13,7 +13,7 @@
 
 .people-search-container {
   background-color: var(--lt);
-  box-shadow: 0 2px 2px var(--dk5);
+  box-shadow: 0 1px 1px var(--dk5);
   margin-bottom: 10px;
 }
 
