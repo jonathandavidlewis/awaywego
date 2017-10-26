@@ -1,4 +1,4 @@
-<div class="people-add-container">
+<div class="people-add-container h100">
   <div class="people-add-header">
     <span>Add your friends to this plan</span>
   </div>
@@ -7,8 +7,11 @@
     ng-model="$ctrl.search" ng-model-options="{ debounce: 100 }"
     placeholder="Filter friends list" required/>
   </div>
-  <people-card ng-repeat="available in $ctrl.availableFriends | filter:{$:$ctrl.search}"
-    user="available.user" type="available.status"
-    include="$ctrl.include" exclude="$ctrl.exclude"
+  <people-card ng-repeat="friend in $ctrl.availableFriends | filter:$ctrl.filterFriends"
+    user="friend.user" type="select" checked="friend.status"
+    toggle="$ctrl.toggleSelect"
   ></people-card>
+  <div class="people-add-save-container">
+    <button class="awgd-button">Add to Plan</button>
+  </div>
 </div>

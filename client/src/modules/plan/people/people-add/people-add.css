@@ -1,0 +1,31 @@
+.people-add-container {
+  overflow: scroll;
+}
+
+.people-add-header {
+  padding: 5px 10px;
+  font-size: 1.3em;
+  color: var(--m5);
+}
+
+.people-add-save-container {
+  position: fixed;
+  bottom: 89px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.people-add-save-container .awgd-button {
+  /*border-radius: 10px;*/
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.people-add-save-container .material-icons {
+  display: flex;
+  justify-content: center;
+}

@@ -1,5 +1,6 @@
 <div class="people-card-container"
-  ng-class="{'people-card-owner': !!$ctrl.owner, 'people-card-self': !!$ctrl.self}">
+  ng-class="{'people-card-owner': !!$ctrl.owner, 'people-card-self': !!$ctrl.self}"
+  ng-click="$ctrl.handleContainerClick()">
   <div class="people-card-avatar">
     <i class="material-icons">account_circle</i>
   </div>
@@ -11,11 +12,9 @@
     <div ng-if="$ctrl.type === 'member'" class="people-card-actions-icon-container">
       <i ng-click="$ctrl.remove($ctrl.user._id)" class="material-icons">clear</i>
     </div>
-    <div ng-if="$ctrl.type === 'unchecked'" class="people-card-actions-icon-container">
-      <i  ng-click="$ctrl.include($ctrl.user._id)" class="material-icons">check_box_outline_blank</i>
-    </div>
-    <div ng-if="$ctrl.type === 'checked'" class="people-card-icon-actions-icon-container">
-      <i  ng-click="$ctrl.exclude($ctrl.user._id)" class="material-icons">check_box</i>
+    <div ng-if="$ctrl.type === 'select'" class="people-card-actions-icon-container">
+      <i ng-if="$ctrl.checked" class="material-icons">check_box</i>
+      <i ng-if="!$ctrl.checked" class="material-icons">check_box_outline_blank</i>
     </div>
   </div>
 </div>
