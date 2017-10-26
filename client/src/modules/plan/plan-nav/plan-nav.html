@@ -1,29 +1,29 @@
 <div class="plan-nav-container">
-  <div class="plan-nav-item-container" ui-sref-active="plan-nav-active">
+  <div class="plan-nav-item-container" ng-class="{'plan-nav-active': $ctrl.$state.includes('app.plan.feed')}">
     <a class="plan-nav-button" ui-sref="app.plan.feed">
       <i class="material-icons">subject</i>
       <span>Feed</span>
     </a>
   </div>
-  <div class="plan-nav-item-container" ui-sref-active="plan-nav-active">
+  <div class="plan-nav-item-container" ng-class="{'plan-nav-active': $ctrl.$state.includes('app.plan.planner')}">
     <a class="plan-nav-button" ui-sref="app.plan.planner.itinerary">
       <i class="material-icons">book</i>
       <span>Planner</span>
     </a>
   </div>
-  <div class="plan-nav-item-container" ui-sref-active="plan-nav-active">
+  <div class="plan-nav-item-container" ng-class="{'plan-nav-active': $ctrl.$state.includes('app.plan.chat')}">
     <a class="plan-nav-button" ui-sref="app.plan.chat">
       <i class="material-icons">chat</i>
       <span>Chat</span>
     </a>
   </div>
-  <div class="plan-nav-item-container" ui-sref-active="plan-nav-active">
+  <div class="plan-nav-item-container" ng-class="{'plan-nav-active': $ctrl.$state.includes('app.plan.money')}">
     <a class="plan-nav-button" ui-sref="app.plan.money">
       <i class="material-icons">attach_money</i>
       <span>Expenses</span>
     </a>
   </div>
-  <div class="plan-nav-item-container" ui-sref-active="plan-nav-active">
+  <div class="plan-nav-item-container" ng-class="{'plan-nav-active': $ctrl.$state.includes('app.plan.people')}">
     <a class="plan-nav-button" ui-sref="app.plan.people.list">
       <i class="material-icons">people</i>
       <span>People</span>

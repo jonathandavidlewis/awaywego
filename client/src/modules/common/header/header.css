@@ -1,26 +1,33 @@
 .header-container {
   width: 100%;
+  height: 64px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: var(--dk3);
 }
 
 .header-title {
-  color: darkblue;
-  font-size: 1.4em;
-  font-family: sans-serif;
+  color: var(--lt);
+  /*color: var(--dk5);*/
+  font-size: 1.5em;
+  font-style: italic;
   margin-left: 20px;
 }
 
+.header-title span {
+  font-family: 'Montserrat' !important;
+}
+
 a.header-title {
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
 .header-user-menu-container {
   font-size: 1.3em;
   margin-right: 20px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
 }
 

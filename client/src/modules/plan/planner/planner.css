@@ -31,10 +31,12 @@
   align-items: center;
   text-decoration: none;
   color: var(--dk5);
+  font-size: 1.2em;
+  font-variant: small-caps;
 }
 
 .planner-nav-item-active {
-  background-color: var(--m5);
+  background-color: var(--da);
 }
 
 .planner-nav-item-active a {
@@ -42,5 +44,5 @@
 }
 
 .planner-nav-item-container:hover:not(.planner-nav-item-active) a {
-  background-color: var(--m2);
+  background-color: var(--la);
 }

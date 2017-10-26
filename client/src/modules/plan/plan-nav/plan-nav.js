@@ -5,11 +5,11 @@ import template from './plan-nav.html';
 import './plan-nav.css';
 
 class PlanNavController {
-  constructor() {
-    this.planId = 'sample';
+  constructor($state) {
+    this.$state = $state;
   }
 }
-PlanNavController.$inject = [];
+PlanNavController.$inject = ['$state'];
 
 const PlanNavComponent = {
   restrict: 'E',
