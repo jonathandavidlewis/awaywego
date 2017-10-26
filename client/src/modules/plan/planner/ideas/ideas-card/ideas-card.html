@@ -7,6 +7,9 @@
         <div class="ideas-card-details-desc"><span><b>Details:</b>{{$ctrl.event.description}}</span></div>
       </div>
     </div>
+    <div class="ideas-card-admin-delete-container">
+      <i class="material-icons">delete</i>
+    </div>
   </div>
   <div class="ideas-card-footer flex">
     <div class="ideas-card-likes-wrapper flex">
@@ -14,9 +17,10 @@
       <div class="ideas-card-likes">{{$ctrl.totalVotes}}</div>
       <div ng-click="$ctrl.downVote()" class="ideas-card-vote flex"><i class="material-icons">thumb_down</i></div>
     </div>
+    <div class="ideas-card-actions flex">
+      <a ui-sref="app.plan.planner.promoteIdea({eventId: $ctrl.event._id})">Schedule</a>
+    </div>
     <div class="ideas-card-comment-wrapper flex">
-      <a ui-sref="app.plan.planner.promoteIdea({eventId: $ctrl.event._id})">SCHEDULE</a><span>____</span>
-      <a ng-click="$ctrl.handleDeleteClick()">DELETE</a>
       <div class="ideas-card-comment-icon flex"><i class="material-icons">comment</i></div>
     </div>
   </div>

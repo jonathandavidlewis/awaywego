@@ -15,11 +15,20 @@
 }
 
 .ideas-card-main-container {
+  position: relative;
   padding-bottom: 10px;
   border-bottom: 1px solid var(--la);
 }
 
+.ideas-card-admin-delete-container {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+}
+
 .ideas-card-info-container {
+  flex: 1 0 auto;
   padding-left: 10px;
 }
 
@@ -58,6 +67,17 @@
 
 .ideas-card-vote:hover {
   color: var(--m3);
+}
+
+.ideas-card-actions a {
+  text-decoration: none;
+  color: var(--m5);
+  font-size: 1.3em;
+  font-variant: small-caps;
+}
+
+.ideas-card-actions a:hover {
+  color: var(--dk5);
 }
 
 .ideas-card-comment-wrapper {
