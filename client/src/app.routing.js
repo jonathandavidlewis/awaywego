@@ -30,6 +30,9 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
     abstract: true,
     resolve: {
       protect: redirectIfNotAuthed,
+      friendsLoaded: ['FriendService', function(FriendService) {
+        return FriendService.loadFriends();
+      }]
     }
   };
 
@@ -50,7 +53,6 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
     url: '/plan/{planId}',
     component: 'plan',
     resolve: {
-      protect: redirectIfNotAuthed,
       events: ['$stateParams', 'EventService', function($stateParams, EventService) {
         return EventService.loadEventsByPlanId($stateParams.planId);
       }],
