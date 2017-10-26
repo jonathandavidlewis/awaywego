@@ -13,6 +13,7 @@ class PromoteIdeaController {
     this.EventService = EventService;
     this.$stateParams = $stateParams;
     this.$onInit = this.$onInit.bind(this);
+    this.tryCombineDateTime = this.tryCombineDateTime.bind(this);
     this.title = '';
     this.desc = '';
     this.formWarning = '';
@@ -44,16 +45,35 @@ class PromoteIdeaController {
   }
 
   validateForm() {
+    //this.tryCombineDateTime();
+    var d = new Date();
+    console.log(this.startDate);
+    console.log(this.startTime.getTime());
+    console.log(new Date(this.startDate.getTime() + this.startTime.getTime()));
+
     if (!this.event.title) {
       this.formWarning = 'Please enter a title\n';
-
     }
     if (!this.startDate) {
       this.formWarning += 'Please enter a start date\n';
       return false;
     }
-    return true;
+    return false;
   }
+
+  tryCombineDateTime() {
+    if(this.startDate && this.startDate) {
+      var dateParts = this.startDate.split('-');
+      var timeParts = this.startTime.split(':');
+
+      if(dateParts && timeParts) {
+        dateParts[1] -= 1;
+        this.fullDate = new Date(Date.UTC.apply(undefined, dateParts.concat(timeParts))).toISOString();
+        console.log('Full DATE', this.fullDate);
+      }
+    }
+  }
+
 }
 
 const PromoteIdeaComponent = {

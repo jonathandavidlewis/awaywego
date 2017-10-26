@@ -2,7 +2,7 @@
 <div class="idea-page-container">
   <div class="idea-container">
     <div class="idea-image">
-      <button class="btn btn-secondary" ng-click="$ctrl.promoteEvent($ctrl.ideaId)">Schedule</button>
+      <button class="btn btn-secondary" ui-sref="app.plan.planner.promoteIdea({eventId: $ctrl.event._id})">Schedule</button>
       <img ng-src={{$ctrl.event.imageUrl}} alt="" />
     </div>
     <div class="details-container">
