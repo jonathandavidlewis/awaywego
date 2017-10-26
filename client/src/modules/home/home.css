@@ -1,6 +1,7 @@
 .home-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
   background-color: var(--m0);
   padding: 10px 10px;
   height: 100%;
@@ -14,6 +15,7 @@
   overflow: auto;
   min-height: 0;
   flex-grow: 1;
+  width: 100%;
 }
 
 .home-title {
@@ -23,8 +25,17 @@
   border-bottom: 1px solid var(--la);
   margin-bottom: 10px;
   flex: 0 0 auto;
+  width: 100%;
 }
 
 .home-footer {
   flex: 0;
+}
+
+.new-plan-button-container {
+  width: 50%;
+}
+
+.new-plan-button-container .awgd-button {
+  cursor: pointer;
 }

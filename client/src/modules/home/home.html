@@ -3,6 +3,7 @@
   <div class=home-container-window>
     <plan-card delete-plan="$ctrl.deletePlan" plan="plan" ng-repeat="plan in $ctrl.plans"></plan-card>
   </div>
-  <new-plan-button class="home-footer"></new-plan-button>
-
+  <div class="new-plan-button-container">
+    <button class="awgd-button" ui-sref="app.makePlan">Make a plan</button>
+  </div>
 </div>
