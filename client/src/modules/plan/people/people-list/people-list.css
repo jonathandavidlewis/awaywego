@@ -15,3 +15,8 @@
   color: var(--dk5);
   font-size: 1.1em;
 }
+
+.people-list-add-button-container {
+  margin: 20px auto 0 auto;
+  width: 50%;
+}

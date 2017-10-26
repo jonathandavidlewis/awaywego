@@ -13,7 +13,7 @@ PeopleCardController.$inject = [];
 const PeopleCardComponent = {
   restrict: 'E',
   bindings: {
-    type: '@',
+    type: '<',
     user: '<',
     owner: '<',
     self: '<',
