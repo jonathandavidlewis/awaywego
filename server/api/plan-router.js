@@ -37,4 +37,27 @@ planRouter.put('/:planId', (req, res) => {
     .catch(err => res.status(500).send('Server error: ', err));
 });
 
+planRouter.put('/:planId/members/add', (req, res) => {
+  Plan.findById(req.params.planId).then(plan => {
+    req.body.members.forEach(m => plan.members.addToSet(m));
+    return plan.save();
+  }).then(plan => res.status(200).json(plan))
+    .catch(err => res.status(500).send('Server error: ', err));
+});
+
+planRouter.put('/:planId/members/remove/:userId', (req, res) => {
+  Plan.findById(req.params.planId).then(plan => {
+    if (plan.userId.equals(req.params.userId)) { throw new Error('rem_owner'); }
+    plan.members.pull(req.params.userId);
+    return plan.save();
+  }).then(plan => res.status(200).json(plan))
+    .catch(err => {
+      if (err.message === 'rem_owner') {
+        res.status(400).send('Cannot remove owner of plan');
+      } else {
+        res.status(500).send('Server error: ', err);
+      }
+    });
+});
+
 module.exports = planRouter;

@@ -12,16 +12,10 @@ export default class PlanService {
     if (this.plans.length) {
       this.currentPlan = this.plans.find(plan => plan._id === planId);
       if (this.currentPlan) {
-        console.log('loaded plan: ', planId);
-        console.log('current plan: ', this.currentPlan);
         return this.currentPlan;
       }
     } else {
-      return this.getPlanById(planId).then(plan => {
-        this.currentPlan = plan;
-        console.log('loaded plan: ', planId);
-        console.log('current plan: ', this.currentPlan);
-      });
+      return this.getPlanById(planId).then(plan => this.currentPlan = plan);
     }
 
   }
@@ -41,7 +35,14 @@ export default class PlanService {
     }));
   }
 
-  removeMemberFromCurrentPlan() {}
-  addMembersToCurrentPlan() {}
+  removeMemberFromCurrentPlan(userId) {
+    return this.$http.put(`/api/plan/${this.currentPlan._id}/members/remove/${userId}`)
+      .then(resp => this.currentPlan = resp.data);
+  }
+
+  addMembersToCurrentPlan(members) {
+    return this.$http.put(`/api/plan/${this.currentPlan._id}/members/add`, {members})
+      .then(resp => this.currentPlan = resp.data);
+  }
 
 }
