@@ -40,6 +40,11 @@
   cursor: pointer;
 }
 
+.header-user-dropdown-menu {
+  min-width: 5rem;
+  text-align: right;
+}
+
 .header-dropdown-item-link {
   width: 100%;
   color: var(--dk5) !important;
@@ -48,8 +53,8 @@
 
 .header-dropdown-item {
   width: 100% !important;
-  padding: 10px !important;
   font-size: 1.1em;
+  padding: 0 !important;
   cursor: pointer;
 }
 
@@ -61,6 +66,8 @@
 }
 
 .header-dropdown-item-link {
+  padding: 10px !important;
+  display: inline-block;
   width: 100%;
   height: 100%;
 }
