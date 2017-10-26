@@ -27,9 +27,8 @@
 
 .idea-image button {
   position: absolute;
-  right: 5px;
-  transform: translateY(10px);
-  margin-right: 5px;
+  right: 15px;
+  transform: translateY(15px);
 }
 
 .details-container {
