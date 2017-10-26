@@ -3,7 +3,7 @@
     <img class="ideas-card-thumbnail" ng-src={{$ctrl.event.imageUrl}} alt="EventPicture">
     <div class="ideas-card-info-container flex-col">
       <!-- TODO: Change to ^.idea({ideaId: $ctrl.idea._id}) -->
-      <a class="ideas-card-header" ui-sref="^.idea">{{$ctrl.event.title}}</a>
+      <a class="ideas-card-header" ui-sref="^.idea({ideaId: $ctrl.event._id})">{{$ctrl.event.title}}</a>
       <div class="ideas-card-details-container flex-col">
         <div class="ideas-card-details-date"><span><b>Date:</b>{{$ctrl.event.startTime}}</span></div>
         <div class="ideas-card-details-time"><span><b>Time:</b>{{$ctrl.event.endTime}}</span></div>

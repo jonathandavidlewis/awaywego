@@ -2,12 +2,12 @@
 <div class="idea-page-container">
   <div class="idea-container">
     <div class="idea-image">
-      <button class="btn btn-secondary" ui-sref="app.plan.planner.promoteIdea({eventId: $ctrl.event._id})">Schedule</button>
-      <img ng-src={{$ctrl.event.imageUrl}} alt="" />
+      <button class="btn btn-secondary" ui-sref="app.plan.planner.promoteIdea({eventId: $ctrl.idea._id})">Schedule</button>
+      <img ng-src={{$ctrl.idea.imageUrl}} alt="" />
     </div>
     <div class="details-container">
-      <h2 class="idea-title">{{$ctrl.event.title}}</h2>
-      <p>{{$ctrl.event.description}}</p>
+      <h2 class="idea-title">{{$ctrl.idea.title}}</h2>
+      <p>{{$ctrl.idea.description}}</p>
     </div>
     <div class="icons-container">
       <div class="voting-container">

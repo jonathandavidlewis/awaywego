@@ -100,9 +100,13 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
 
   const plannerIdeaState = {
     name: 'app.plan.planner.idea',
-    // TODO: Change to /idea/{ideaId} once event-router is done
-    url: '/idea',
-    component: 'idea'
+    url: '/idea/{ideaId}',
+    component: 'idea',
+    resolve: {
+      ideaId: ['$stateParams', function($stateParams) {
+        return $stateParams.ideaId;
+      }]
+    }
   };
 
   const plannerAvailabilityState = {
