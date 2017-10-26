@@ -8,11 +8,17 @@
   color: var(--m5);
 }
 
-.people-add-save-container {
+.people-add-controls {
   position: fixed;
-  bottom: 89px;
+  bottom: 90px;
   left: 50%;
-  transform: translate(-50%, 0);
+  margin-left: -134px;
+  /*transform: translate(-50%, 0);*/
+  display: flex;
+  justify-content: space-between;
+}
+
+.people-add-save-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,12 +26,14 @@
 }
 
 .people-add-save-container .awgd-button {
-  /*border-radius: 10px;*/
   padding-left: 20px;
   padding-right: 20px;
 }
 
-.people-add-save-container .material-icons {
+.people-add-back-container {
+  margin-right: 30px;
+}
+
+.people-add-controls .material-icons {
   display: flex;
-  justify-content: center;
 }
