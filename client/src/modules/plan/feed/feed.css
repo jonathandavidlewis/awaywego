@@ -28,6 +28,8 @@
   padding-bottom: 10px;
   border-bottom: 1px solid var(--la);
   overflow: auto;
+  flex: 1 0 auto;
+  justify-content: center;
 }
 
 
@@ -35,15 +37,15 @@
   padding: 10px;
   width: 95%;
   height: 95%;
-  max-width: 430px;
-  max-height: 320px;
   border-radius: 3px;
+  align-self: center;
 }
 
 .feed-title {
   font-size: 1.6em;
   color: var(--dk3);
   padding-left: 10px;
+  align-self: center;
 }
 
 .feed-description {
@@ -54,7 +56,11 @@
 .feed-body {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   padding-bottom: 10px;
+  flex: 0 1 auto
+}
+.feed-body-scroll {
   overflow: auto;
 }
 
