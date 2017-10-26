@@ -12,6 +12,7 @@
   display: flex;
   border-bottom: 1px solid var(--la);
   padding-bottom: 10px;
+  align-items: flex-start;
 }
 .plan-card-info-container {
   padding-left: 10px;
@@ -25,6 +26,7 @@
   font-size: 1.3em;
   color: var(--dk3);
   text-decoration: none !important;
+  cursor: pointer;
 }
 
 .plan-card-delete {
@@ -33,7 +35,8 @@
 }
 
 .plan-card-delete i:hover,
-.plan-card-more-details:hover {
+.plan-card-more-details:hover,
+.plan-card-title:hover {
   color: var(--m3);
 }
 
