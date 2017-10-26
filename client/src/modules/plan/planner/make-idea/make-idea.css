@@ -2,6 +2,7 @@
   height: 100%;
   padding: 20px 50px;
   background: linear-gradient(white, var(--m1));
+  overflow: auto;
 }
 
 .make-idea-header {

@@ -1,15 +1,15 @@
 <div class="ideas-card flex-col">
   <div class="ideas-card-main-container flex">
-    <img class="ideas-card-thumbnail" ng-src={{$ctrl.event.imageUrl}} alt="EventPicture">
-    <div class="ideas-card-info-container flex-col">
+    <div class="ideas-card-image-container" style="background-image: url({{$ctrl.event.imageUrl}});" alt="EventPicture"></div>
+    <div class="ideas-card-header-container flex-col">
       <a class="ideas-card-header" ui-sref="^.idea({ideaId: $ctrl.event._id})">{{$ctrl.event.title}}</a>
-      <div class="ideas-card-details-container flex-col">
-        <div class="ideas-card-details-desc"><span><b>Details:</b>{{$ctrl.event.description}}</span></div>
-      </div>
     </div>
     <div class="ideas-card-admin-delete-container">
       <i class="material-icons">delete</i>
     </div>
+  </div>
+  <div class="ideas-card-details-container">
+    <div class="ideas-card-details-desc"><span><b>Details:</b>{{$ctrl.event.description}}</span></div>
   </div>
   <div class="ideas-card-footer flex">
     <div class="ideas-card-likes-wrapper flex">
