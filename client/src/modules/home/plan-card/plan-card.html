@@ -1,11 +1,15 @@
-<div class="plan-card-container space-around flex">
-  <div class="card-thumb-container">
+<div class="plan-card-container flex-col">
+  <div class="plan-card-main-container">
     <img class="plan-card-image" ng-src={{$ctrl.plan.imageUrl}} alt=""/>
+    <div class="plan-card-info-container">
+      <div class="plan-card-title"><span>{{$ctrl.plan.title}}<span></div>
+      <div class="plan-card-description"><span>{{$ctrl.plan.description}}<span></div>
+    </div>
+    <a class="plan-card-delete" ng-click="$ctrl.handleDeleteClick()"><i class="material-icons">delete</i></a>
   </div>
-  <div class="text-center card-info-padding">
-    <h4>{{$ctrl.plan.title}}</h4>
-    <p>{{$ctrl.plan.description}}</p>
+  <div class="plan-card-bottom-menu">
+      <a class="plan-card-more-details" href = "" ui-sref="app.plan.feed({planId: $ctrl.plan._id})">
+        <span>More Details</span>
+      </a>
   </div>
-  <a href = "" ui-sref="app.plan.feed({planId: $ctrl.plan._id})">details...</a>
-  <a ng-click="$ctrl.handleDeleteClick()">DELETE</a>
 </div>

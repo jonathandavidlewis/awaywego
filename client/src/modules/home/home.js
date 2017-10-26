@@ -11,7 +11,6 @@ import './home.css';
 class HomeController {
   constructor(PlanService) {
     this.PlanService = PlanService;
-    this.name = 'Your Plans';
     this.loadPlans = this.loadPlans.bind(this);
     this.deletePlan = this.deletePlan.bind(this);
     this.$onInit = this.$onInit.bind(this);

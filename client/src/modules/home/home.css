@@ -1,14 +1,24 @@
 .home-container {
   height: 100%;
-  padding: 20px 50px;
-  background: linear-gradient(white, var(--b4));
+  width: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--m0);
+  padding: 10px 20px;
 }
 
-.align-bottom {
+.home-container-window {
+  flex: 1 0 auto;
+  overflow: auto;
 }
 
-.plan-card-space {
-  margin-top: 15px;
-  margin-bottom: 15px;
+.home-title {
+  text-align: center;
+  font-size: 1.3em;
 }
 
+.home-container-footer {
+  flex: 0 0 auto;
+
+}
