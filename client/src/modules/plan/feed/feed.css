@@ -1,0 +1,64 @@
+.feed-container {
+  display: flex;
+  height: 100%;
+  padding: 10px 20px;
+  background-color: var(--m0);
+}
+
+.feed-card {
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),
+    0 3px 1px -2px rgba(0,0,0,0.12),
+    0 1px 5px 0 rgba(0,0,0,0.2) !important;
+  border-radius: 3px;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  background-color: var(--lt);
+  flex: 0 0 auto;
+  padding: 10px;
+  height: 100%;
+  overflow: auto;
+}
+
+.feed-main {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--la);
+  overflow: auto;
+}
+
+
+.feed-card img {
+  padding: 10px;
+  width: 95%;
+  height: 95%;
+  max-width: 430px;
+  max-height: 320px;
+  border-radius: 3px;
+}
+
+.feed-title {
+  font-size: 1.6em;
+  color: var(--dk3);
+  padding-left: 10px;
+}
+
+.feed-description {
+  align-self: flex-start;
+  padding-left: 10px;
+}
+
+.feed-body {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10px;
+  overflow: auto;
+}
+
+.feed-body-title {
+  font-size: 1.3em;
+  color: var(--dk3);
+}
