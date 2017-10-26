@@ -2,28 +2,19 @@
   <div class="promote-idea-header"><span>Let's schedule this</span></div>
   <div class="promote-idea-form-container">
     <form name="newIdea" ng-submit="$ctrl.submit()">
-
       <div class="promote-idea-input-block">
         <div class="flex">
           <div class="flex-col flex-1">
-            <label for="idea-start-date">Start date:</label>
-            <input class="awgl-form-input form-control" name="idea-start-date" ng-model="$ctrl.startDate" type="date" placeholder="Start Date" />
+            <label for="idea-start-time">Start time:</label>
+            <input class="awgl-form-input form-control" name="idea-start-time" ng-model="$ctrl.event.startTime" type="datetime-local" />
           </div>
-            <div class="flex-col flex-1">
-              <label for="idea-start-date">Start time:</label>
-              <input class="awgl-form-input form-control" name="idea-start-time" ng-model="$ctrl.startTime" type="time" placeholder="Start Time" />
-            </div>
         </div>
       </div>
       <div class="promote-idea-input-block">
         <div class="flex">
           <div class="flex-col flex-1">
-            <label for="idea-end-date">End date:</label>
-            <input class="awgl-form-input form-control" name="idea-end-date" ng-model="$ctrl.endDate" type="date" />
-          </div>
-          <div class="flex-col flex-1">
-            <label for="idea-end-date">End time:</label>
-            <input class="awgl-form-input form-control" name="idea-end-time" ng-model="$ctrl.endTime" type="time" />
+            <label for="idea-end-time">End time:</label>
+            <input class="awgl-form-input form-control" name="idea-end-time" ng-model="$ctrl.event.endTime" type="datetime-local"/>
           </div>
         </div>
       </div>

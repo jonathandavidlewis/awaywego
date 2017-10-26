@@ -59,7 +59,7 @@ export default class EventService {
 
   deleteEvent(eventId) { return this.$http.delete(`/api/event/${eventId}`); }
 
-  promoteEvent(eventId) { return this.$http.put(`api/event/${eventId}/promote`); }
+  promoteEvent(event) { return this.$http.put(`api/event/${event._id}/promote`, event); }
 
   demoteEvent(eventId) { return this.$http.put(`api/event/${eventId}/demote`); }
 
