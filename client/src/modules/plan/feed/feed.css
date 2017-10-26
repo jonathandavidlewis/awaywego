@@ -5,6 +5,7 @@
   height: 100%;
   padding: 10px 20px;
   background-color: var(--m0);
+  overflow: auto;
 }
 
 .feed-card {
