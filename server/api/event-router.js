@@ -11,14 +11,12 @@ eventRouter.get('/:planId', (req, res) => {
 // Create Events
 eventRouter.post('/', (req, res) => {
   const newEvent = req.body;
-  console.log(newEvent);
   if (newEvent.imageUrl === '') {
     delete newEvent.imageUrl;
   }
   newEvent.status = 'idea';
   newEvent.upVotes = [];
   newEvent.downVotes = [];
-  console.log(newEvent);
 
   PlanEvent.create(newEvent).then(planEvent => res.status(201).json({eventId: planEvent._id}))
     .catch(err => res.status(500).json({'Server error': err}));
@@ -33,12 +31,10 @@ eventRouter.put('/:eventId', (req, res) => {
 
 eventRouter.put('/:eventId/promote', (req, res) => {
   const promotedEvent = req.body;
-  console.log('RECEIVED:', promotedEvent);
   promotedEvent.status = 'itinerary';
   if (promotedEvent._id) {
     delete promotedEvent._id;
   }
-  console.log('RECEIVED:', promotedEvent);
   PlanEvent.findByIdAndUpdate({_id: req.params.eventId}, promotedEvent, {new: true})
     .then(planEvent => res.status(200).json(planEvent))
     .catch(err => res.status(500).json({'Server error': err}));
