@@ -1,3 +1,12 @@
+.share-idea-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.share-idea-button {
+  flex: 1;
+}
+
 .share-idea-button h3 {
   text-align: center;
 }
