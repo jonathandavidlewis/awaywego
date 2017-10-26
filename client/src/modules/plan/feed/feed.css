@@ -1,5 +1,7 @@
 .feed-container {
   display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   height: 100%;
   padding: 10px 20px;
   background-color: var(--m0);
@@ -18,7 +20,6 @@
   background-color: var(--lt);
   flex: 0 0 auto;
   padding: 10px;
-  height: 100%;
   overflow: auto;
 }
 
@@ -28,7 +29,6 @@
   padding-bottom: 10px;
   border-bottom: 1px solid var(--la);
   overflow: auto;
-  /*flex: 1 0 auto;*/
   justify-content: center;
 }
 

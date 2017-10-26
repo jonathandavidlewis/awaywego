@@ -23,7 +23,6 @@ class PromoteIdeaController {
 
   submit() {
     if (this.validateForm()) {
-      debugger;
       let promotedIdea = this.event;
       this.EventService.promoteEvent(promotedIdea).then(resp => {
         this.$state.go('app.plan.planner.ideas');

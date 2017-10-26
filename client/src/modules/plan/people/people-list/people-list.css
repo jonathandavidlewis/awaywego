@@ -1,3 +1,7 @@
+.people-list-container {
+  background-color: var(--m0);
+}
+
 .people-section-header {
   display: flex;
   justify-content: space-between;
@@ -6,6 +10,8 @@
   font-size: 1.3em;
   border-bottom: 1px solid var(--la);
   padding: 5px 10px;
+  background-color: var(--lt);
+  box-shadow: 0 2px 2px var(--dk5);
 }
 
 .no-people {

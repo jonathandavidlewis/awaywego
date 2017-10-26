@@ -1,6 +1,7 @@
 .friends-add-container {
   position: absolute;
-  background: white;
+  background: var(--m0);
+  color: white;
   width: 100%;
   padding: 20px 20px;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),
@@ -10,14 +11,13 @@
 
 .friends-add-header {
   font-size: 1.2em;
-  color: var(--dk3);
+  color: var(--dk5);
   margin-bottom: 10px;
 }
 
 .friends-search-container .awgl-form-input {
   font-size: 1em;
-  height: min-content;
-  padding: 5px;
+  padding: 10px;
   margin-right: 5px;
 }
 

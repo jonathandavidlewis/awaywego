@@ -1,3 +1,7 @@
+.friends-list-container {
+  background-color: var(--m0);
+}
+
 .friends-section-header {
   display: flex;
   justify-content: space-between;
@@ -5,6 +9,8 @@
   color: var(--m5);
   font-size: 1.3em;
   border-bottom: 1px solid var(--la);
+  background-color: var(--lt);
+  box-shadow: 0 2px 2px var(--dk5);
   padding: 5px 10px;
 }
 
