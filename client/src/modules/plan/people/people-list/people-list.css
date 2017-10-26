@@ -11,7 +11,7 @@
   border-bottom: 1px solid var(--la);
   padding: 5px 10px;
   background-color: var(--lt);
-  box-shadow: 0 1px 1px var(--dk5);
+  margin-bottom: 10px;
 }
 
 .no-people {

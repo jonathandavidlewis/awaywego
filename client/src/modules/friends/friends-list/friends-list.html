@@ -1,14 +1,6 @@
 <div ng-click="$ctrl.closeForm()" class="friends-list-container h100">
-  <div ng-show="$ctrl.FriendService.inboundReqs.length > 0" class="friends-section">
-    <div class="friends-section-header">
-      <span>Pending Friend Requests</span>
-    </div>
-    <friend-card user="fr.from" fr-id="fr._id" type="pending"
-      accept="$ctrl.acceptFriend" reject="$ctrl.rejectFriend"
-      ng-repeat="fr in $ctrl.FriendService.inboundReqs"></friend-card>
-  </div>
   <div class="friends-section">
-    <div class="friends-section-header">
+    <div class="friends-section-header header-shadow">
       <span>Friends</span>
       <i ng-click="$ctrl.toggleForm($event)" class="material-icons">add_circle</i>
     </div>
@@ -20,6 +12,14 @@
     </div>
     <friend-card user="fr.to" fr-id="fr._id" type="friend"
     ng-repeat="fr in $ctrl.FriendService.friendships"></friend-card>
+  </div>
+  <div ng-show="$ctrl.FriendService.inboundReqs.length > 0" class="friends-section">
+    <div class="friends-section-header">
+      <span>Pending Friend Requests</span>
+    </div>
+    <friend-card user="fr.from" fr-id="fr._id" type="pending"
+      accept="$ctrl.acceptFriend" reject="$ctrl.rejectFriend"
+      ng-repeat="fr in $ctrl.FriendService.inboundReqs"></friend-card>
   </div>
   <div ng-if="$ctrl.FriendService.sentReqs.length > 0" class="friends-section">
     <div class="friends-section-header">

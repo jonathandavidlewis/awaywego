@@ -16,6 +16,10 @@ html, body {
   min-height: 0;
 }
 
+.header-shadow {
+  box-shadow: 0 1px 1px var(--dk5);
+}
+
 :root {
 
   /*-- white base: #f6f4ee;*/
