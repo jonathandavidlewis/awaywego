@@ -1,7 +1,6 @@
 import angular from 'angular';
 // components used by this module
 import PlanCardComponent from './plan-card/plan-card';
-import NewPlanButtonComponent from './new-plan-button/new-plan-button';
 
 import PlanService from '../../services/plan/plan.service';
 // imports for this component
@@ -44,7 +43,6 @@ const HomeComponent = {
 const HomeModule = angular.module('app.home', [])
   .component('home', HomeComponent)
   .component('planCard', PlanCardComponent)
-  .component('newPlanButton', NewPlanButtonComponent)
   .service('PlanService', PlanService);
 
 export default HomeModule.name;
