@@ -5,12 +5,16 @@
   border-bottom: 1px solid var(--m3tr5);
 }
 
+.people-card-selected {
+  background-color: var(--m0);
+}
+
 people-card:last-child .people-card-container {
   border-bottom: none;
 }
 
 .people-card-container:hover {
-  background-color: var(--m3tr2);
+  background-color: var(--m1);
 }
 
 .people-card-avatar {
