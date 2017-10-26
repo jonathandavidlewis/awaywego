@@ -10,9 +10,9 @@
     </div>
     <div class="icons-container">
       <div class="voting-container">
-        <div ng-click="$ctrl.upvoteEvent($ctrl.ideaId)"><i class="material-icons">thumb_up</i></div>
-        <div class="overall-vote">+4</div>
-        <div ng-click="$ctrl.downvoteEvent($ctrl.ideaId)"><i class="material-icons">thumb_down</i></div>
+        <div ng-click="$ctrl.upVote()"><i class="material-icons">thumb_up</i></div>
+        <div class="overall-vote">{{$ctrl.totalVotes}}</div>
+        <div ng-click="$ctrl.downVote()"><i class="material-icons">thumb_down</i></div>
       </div>
       <div ng-click="$ctrl.click()"><i class="comment-icon material-icons">comment</i></div>
     </div>
