@@ -3,6 +3,8 @@
   flex-direction: column;
   align-items: center;
   padding: 10px 20px;
+  overflow: auto;
+  height: 100%;
 }
 
 .idea-container {
@@ -19,11 +21,15 @@
   cursor: pointer;
 }
 
+.idea-image {
+  position: relative;
+}
+
 .idea-image button {
   position: absolute;
-  right: 20px;
+  right: 5px;
   transform: translateY(10px);
-  margin-right: 10px;
+  margin-right: 5px;
 }
 
 .details-container {
