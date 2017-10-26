@@ -4,14 +4,14 @@
   padding: 10px 0;
   border-bottom: 1px solid var(--m3tr5);
   background-color: var(--lt);
-  margin: 10px;
+  margin: 5px 10px;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),
     0 3px 1px -2px rgba(0,0,0,0.12),
     0 1px 5px 0 rgba(0,0,0,0.2) !important;
 }
 
 .people-card-selected {
-  background-color: var(--m0);
+  background-color: var(--m1);
 }
 
 people-card:last-child .people-card-container {
