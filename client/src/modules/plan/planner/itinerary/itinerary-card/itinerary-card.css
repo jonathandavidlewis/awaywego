@@ -6,6 +6,8 @@
   border-radius: 3px;
   margin-bottom: 15px;
   padding: 10px;
+  min-width: 300px;
+  max-width: 500px;
 }
 
 .itinerary-card-main-container {
