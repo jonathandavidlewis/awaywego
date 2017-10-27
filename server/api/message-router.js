@@ -2,6 +2,7 @@ const messageRouter = require('express').Router();
 const Message = require('../../db/models/message.js');
 const Plan = require('../../db/models/plan.js');
 const oid = require('mongoose').Types.ObjectId;
+
 messageRouter.get('/:planId', (req, res) => {
   const userId = req.user._id;
   const planId = req.params.planId;
@@ -26,3 +27,6 @@ messageRouter.get('/:planId', (req, res) => {
       }
     });
 });
+
+
+module.exports = messageRouter;
