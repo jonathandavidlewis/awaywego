@@ -33,6 +33,8 @@ class PromoteIdeaController {
     }
   }
 
+  //todo: add calendar logic
+
   validateForm() {
     if (!this.event.title) {
       this.formWarning = 'Please enter a title';
