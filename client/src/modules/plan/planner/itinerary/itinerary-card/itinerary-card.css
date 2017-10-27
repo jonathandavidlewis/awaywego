@@ -9,27 +9,30 @@
 }
 
 .itinerary-card-main-container {
-  padding-bottom: 10px;
+  margin-bottom: 10px;
   border-bottom: 1px solid var(--la);
 }
-.itinerary-card img {
+
+.itinerary-card-image-container {
+  width: 100%;
+  flex: 0 0 auto;
+  margin-bottom: 5px;
+}
+
+.itinerary-card-image-container img {
+  width: 100%;
+  height: auto;
   border-radius: 3px;
-  width: 150px;
-  height: 150px;
 }
 
-.itinerary-card-info-container {
-  padding-left: 10px;
-}
-
-.itinerary-card-title {
-  font-size: 1.3em;
+.itinerary-card-header {
+  font-size: 1.1em;
   color: var(--dk3);
   text-decoration: none !important;
 }
 
 .itinerary-card-details-container {
-  padding-left: 5px;
+  font-size: .9em;
 }
 
 .itinerary-card-footer {

@@ -6,21 +6,31 @@
     border-radius: 3px;
     margin-bottom: 15px;
     padding: 10px;
+    min-width: 300px;
+    max-width: 500px;
 }
 
 .ideas-card-main-container {
-  padding-bottom: 10px;
+  position: relative;
+  margin-bottom: 10px;
+  flex: 1 0 auto;
 }
 
 .ideas-card-image-container {
-  flex: 1 0 0;
-  overflow: hidden;
-  background-size: cover;
-  background-position: center center;
+  width: 100%;
+  flex: 0 0 auto;
+  margin-bottom: 5px;
+}
+
+.ideas-card-image {
+  width: 100%;
+  height: auto;
+  border-radius: 3px;
 }
 
 .ideas-card-admin-delete-container {
-  align-self: flex-start;
+  position: absolute;
+  right: 3px;
   cursor: pointer;
 }
 
@@ -28,29 +38,23 @@
   font-size: 1em;
 }
 
-.ideas-card-header-container {
-  flex: 2 0 0;
-  padding-left: 10px;
-}
-
 .ideas-card-details-container {
   border-bottom: 1px solid var(--la);
 }
 
 .ideas-card-header {
-  font-size: 1.1rem;
+  font-size: 1.1em;
   color: var(--dk3);
   text-decoration: none !important;
+  flex: 0 0 auto;
+  margin-bottom: 5px;
 }
 
 .ideas-card-details-container {
+  flex: 1 0 auto;
   padding-left: 5px;
-}
-
-.ideas-card-details-desc {
   font-size: .9em;
 }
-
 
 .ideas-card-footer {
   justify-content: space-between;

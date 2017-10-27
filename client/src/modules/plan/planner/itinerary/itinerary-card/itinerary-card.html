@@ -1,18 +1,17 @@
 <div class="itinerary-card flex-col">
-  <div class="itinerary-card-main-container flex">
-    <img src="{{$ctrl.event.imageUrl}}" alt="EventPicture">
-    <div class="itinerary-card-info-container">
-      <div class="itinerary-card-title">{{$ctrl.event.title}}</div>
-      <div class="itinerary-card-details-container">
-        <div class="itinerary-card-startTime"><b>Starts: </b><span>{{$ctrl.moment($.ctrl.event.startTime.format("dddd, MMMM Do YYYY, h:mm:ss a"))}}</span></div>
-        <div ng-if="$ctrl.event.endTime.toString()" class="itinerary-card-endTime"><b>Ends: </b><span>{{$ctrl.moment($.ctrl.event.endTime).format("dddd, MMMM Do YYYY, h:mm:ss a")}}</span></div>
-        <div class="itinerary-card-description"><b>Details: </b><span>{{$ctrl.event.description}}</span></div>
-        <span ><a ng-click="$ctrl.handleDemoteClick()">DEMOTE</a></span>
-        <span><a ng-click="$ctrl.handleDeleteClick()">DELETE</a></span>
-      </div>
+  <div class="itinerary-card-main-container flex-col">
+    <div class="itinerary-card-header">{{$ctrl.event.title}}</div>
+    <div class="itinerary-card-image-container">
+      <img src="{{$ctrl.event.imageUrl}}" alt="EventPicture">
+    </div>
+    <div class="itinerary-card-details-container">
+      <div class="itinerary-card-description"><span>{{$ctrl.event.description}}</span></div>
+      <div class="itinerary-card-startTime"><b>Starts: </b><span>{{$ctrl.moment($.ctrl.event.startTime.format("dddd, MMMM Do YYYY, h:mm:ss a"))}}</span></div>
+      <div ng-if="$ctrl.event.endTime.toString()" class="itinerary-card-endTime"><b>Ends: </b><span>{{$ctrl.moment($.ctrl.event.endTime).format("dddd, MMMM Do YYYY, h:mm:ss a")}}</span></div>
+      <span><a ng-click="$ctrl.handleDemoteClick()">DEMOTE</a></span>
+      <span><a ng-click="$ctrl.handleDeleteClick()">DELETE</a></span>
     </div>
   </div>
-
   <div class="itinerary-card-footer flex">
     <div class="itinerary-card-footer-left flex">
       <div class="itinerary-card-button"><i class="material-icons">room</i></div>
