@@ -189,7 +189,6 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
   $stateProvider.state(expensesState);
   $stateProvider.state(expensesMainState);
 
-
   // people states
   $stateProvider.state(peopleState);
   $stateProvider.state(peopleListState);
