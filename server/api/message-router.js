@@ -28,5 +28,27 @@ messageRouter.get('/:planId', (req, res) => {
     });
 });
 
+messageRouter.post('/:planId', (req, res) => {
+  const userId = req.user._id;
+  const planId = req.params.planId;
 
+  Plan.findById(req.query.planId).then(plan => {
+    if (!plan) { throw new Error('plan_not_found'); }
+    if (plan.members.indexOf(userId) === -1) { throw new Error('not_member'); }
+    return plan;
+  }).then(plan => {
+    let newMsg = {planId: planId, user: userId, text: req.body.text};
+    return newMsg.save();
+  }).then(newMsg => res.status(200).json({message: 'created', newMsg: newMsg}))
+    .catch(err => {
+      if (err.message === 'plan_not_found') {
+        res.status(404).send();
+      } else if (err.message === 'not_member') {
+        res.status(401).send('not member of this plan');
+      } else {
+        res.status(500).send('Server error: ', err);
+      }
+    });
+
+});
 module.exports = messageRouter;
