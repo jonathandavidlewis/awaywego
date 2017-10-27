@@ -7,13 +7,15 @@ import './chat-message.css';
 
 class ChatMessageController {
   constructor() {
+    console.log(this);
   }
 }
 
 const ChatMessageComponent = {
   restrict: 'E',
   bindings: {
-    'message': '<'
+    'message': '<',
+    'self': '<'
   },
   template: template,
   controller: ChatMessageController

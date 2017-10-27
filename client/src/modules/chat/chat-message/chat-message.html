@@ -1,11 +1,13 @@
-<div class="chat-message-container">
-  <div ng-if="$ctrl.message.user.profilePic !== ''" class="chat-message-avatar">
-    <div class="chat-message-avatar-pic"
-         ng-style="{'background-image':'url($ctrl.message.user.profilePic)'}">
+<div class="chat-message-container flex" ng-class="{'chat-self': $ctrl.self}">
+  <div class="chat-message-avatar-container">
+    <div ng-if="$ctrl.message.user.profilePic !== ''" class="chat-message-avatar">
+      <div class="chat-message-avatar-pic"
+           ng-style="{'background-image':'url({{$ctrl.message.user.profilePic}})'}">
+      </div>
     </div>
-  </div>
-  <div ng-if="$ctrl.message.user.profilePic === ''">
-    <i class="material-icons">account_circle</i>
+    <div ng-if="$ctrl.message.user.profilePic === ''">
+      <i class="material-icons">account_circle</i>
+    </div>
   </div>
   <div class="chat-message-bubble">
     <span>{{$ctrl.message.text}}</span>

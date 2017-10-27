@@ -1,0 +1,15 @@
+.chat-message-container.chat-self {
+  justify-content: flex-end;
+}
+
+.chat-self .chat-message-avatar-container {
+  order: 99;
+}
+
+.chat-message-avatar-pic {
+  width: 30px;
+  height: 30px;
+  background-size: contain;
+  background-position: center center;
+  border-radius: 50%;
+}

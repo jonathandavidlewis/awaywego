@@ -1,3 +1,7 @@
+.chat-container {
+  background-color: var(--m0);
+}
+
 .chat-messages-container {
   flex: 1 0 100px;
   overflow: auto;

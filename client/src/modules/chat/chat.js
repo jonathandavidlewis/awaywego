@@ -11,9 +11,10 @@ import template from './chat.html';
 import './chat.css';
 
 class ChatController {
-  constructor(ChatService, PlanService) {
+  constructor(ChatService, PlanService, UserService) {
     this.ChatService = ChatService;
     this.PlanService = PlanService;
+    this.UserService = UserService;
   }
 }
 
