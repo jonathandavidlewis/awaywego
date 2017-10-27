@@ -167,6 +167,12 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
     component: 'expensesAdd'
   };
 
+  const chatState = {
+    name: 'app.plan.chat',
+    url: '/chat',
+    component: 'chat'
+  };
+
   // auth states
   $stateProvider.state(loginState);
   $stateProvider.state(signupState);
@@ -190,6 +196,7 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
   $stateProvider.state(plannerIdeaState);
   $stateProvider.state(plannerAvailabilityState);
   $stateProvider.state(plannerPromoteIdeaState);
+  $stateProvider.state(chatState);
 
   // expenses states
   $stateProvider.state(expensesState);
