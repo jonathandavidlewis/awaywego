@@ -11,7 +11,7 @@ const Schema = mongoose.Schema;
 
 const messageSchema = new Schema({
   planId: { type: Schema.ObjectId, ref: 'Plan', required: true },
-  userId: { type: Schema.ObjectId, ref: 'User', required: true },
+  user: { type: Schema.ObjectId, ref: 'User', required: true },
   text: String
 }, { timestamps: true });
 
