@@ -1,4 +1,5 @@
 .friends-add-container {
+  margin-top: -10px;
   position: absolute;
   background: var(--lt);
   color: white;
