@@ -149,6 +149,18 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
     component: 'friendsList'
   };
 
+  const expensesState = {
+    name: 'app.plan.expenses',
+    url: '/expenses',
+    component: 'expenses'
+  };
+
+  const expensesMainState = {
+    name: 'app.plan.expenses.main',
+    url: '/main',
+    component: 'expensesMain'
+  };
+
   // auth states
   $stateProvider.state(loginState);
   $stateProvider.state(signupState);
@@ -173,10 +185,16 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
   $stateProvider.state(plannerAvailabilityState);
   $stateProvider.state(plannerPromoteIdeaState);
 
+  // expenses states
+  $stateProvider.state(expensesState);
+  $stateProvider.state(expensesMainState);
+
+
   // people states
   $stateProvider.state(peopleState);
   $stateProvider.state(peopleListState);
   $stateProvider.state(peopleAddState);
+
 };
 
 routing.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];

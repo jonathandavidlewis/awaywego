@@ -7,6 +7,7 @@ import EventService from '../../services/event/event.service';
 import PlanNavComponent from './plan-nav/plan-nav';
 import FeedModule from './feed/feed';
 import PlannerModule from './planner/planner';
+import ExpensesModule from './expenses/expenses';
 // imports for this component
 import template from './plan.html';
 import './plan.css';
@@ -26,7 +27,8 @@ const PlanComponent = {
 
 const PlanModule = angular.module('app.plan', [
   FeedModule,
-  PlannerModule
+  PlannerModule,
+  ExpensesModule
 ])
   .component('plan', PlanComponent)
   .component('planNav', PlanNavComponent)
