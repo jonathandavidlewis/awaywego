@@ -1,0 +1,4 @@
+.chat-messages-container {
+  flex: 1 0 100px;
+  overflow: auto;
+}

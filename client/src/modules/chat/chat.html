@@ -1,0 +1,10 @@
+<div class="chat-container flex-col">
+  <div class="chat-header">
+    <span>Chat for {{$ctrl.PlanService.currentPlan.title}}</span>
+  </div>
+  <div class="chat-messages-container">
+    <chat-message ng-repeat="message in $ctrl.ChatService.messages"></chat-message>
+  </div>
+  <div class="chat-status">Jim is typing</div>
+  <chat-input></chat-input>
+</div>
