@@ -4,6 +4,7 @@ import angular from 'angular';
 //import moment from 'moment';
 import EventService from '../../../../services/event/event.service';
 import momentPicker from 'angular-moment-picker';
+import moment from 'moment';
 
 
 //import DatetimePickerComponent from '../../../common/datetime-picker/datetime-picker-config';
@@ -18,20 +19,34 @@ class PromoteIdeaController {
     this.EventService = EventService;
     this.$stateParams = $stateParams;
     this.$state = $state;
+    this.moment = moment;
     this.$onInit = this.$onInit.bind(this);
     this.formWarning = '';
     this.birthday = '';
+    this.formattedStartTime = '';
+    this.formattedEndTime = '';
+    this.onEndDateChange = this.onEndDateChange.bind(this);
   }
 
   $onInit() {
     this.event = this.EventService.getEvent(this.$stateParams.eventId);
+    this.formattedStartTime = this.moment(this.event.startTime).format('MM/DD/YYYY hh:mm A');
+    this.formattedEndTime = this.moment(this.event.endTime).format('MM/DD/YYYY hh:mm A');
+  }
+
+  onStartDateChange(newValue) {
+    this.formattedStartTime = newValue.format('MM/DD/YYYY hh:mm A');
+  }
+
+  onEndDateChange(newValue) {
+    this.formattedEndTime = newValue.format('MM/DD/YYYY hh:mm A');
   }
 
   submit() {
     if (this.validateForm()) {
       let promotedIdea = this.event;
       promotedIdea.startTime = new Date(promotedIdea.startTime);
-      debugger;
+      promotedIdea.endTime = new Date(promotedIdea.endTime);
       this.EventService.promoteEvent(promotedIdea).then(resp => {
         this.$state.go('app.plan.planner.ideas');
       }).catch(err => {
@@ -44,7 +59,6 @@ class PromoteIdeaController {
   //todo: add calendar logic
 
   validateForm() {
-    debugger;
     if (!this.event.title) {
       this.formWarning = 'Please enter a title';
     }
