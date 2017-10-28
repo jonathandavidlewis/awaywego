@@ -1,4 +1,4 @@
-<div ng-show="$ctrl.addPeople === false" class="ng-show expenses-add-container flex-col">
+<div ng-show="$ctrl.showAddPeople === false" class="ng-show expenses-add-container flex-col">
   <div class="expenses-add-header"><span>Awesome! <br /> Let's get started</span></div>
   <div class="expenses-add-form-container">
     <form name="newExpense" ng-submit="$ctrl.submit()">
@@ -13,7 +13,7 @@
           type="number" placeholder="Expense Amount" />
       </div>
 
-      <button ng-click="$ctrl.toggleAddPeople()" class="awgd-button"> Add friends to expense </button>
+      <button ng-click="$ctrl.toggleShowAddPeople()" class="awgd-button"> Add friends to expense </button>
       <div ng-if="$ctrl.formWarning" class="awgl-form-warning flex flex-center">
         <span>{{$ctrl.formWarning}}</span>
       </div>
@@ -31,6 +31,6 @@
 </div>
 
 
-<div ng-show="$ctrl.addPeople === true" class="ng-show expenses-add-container flex-col">
+<div ng-show="$ctrl.showAddPeople === true" class="ng-show expenses-add-container flex-col">
   <expenses-add-people />
 </div>

@@ -1,14 +1,17 @@
-<div> Here are your Group members! </div>
-<div> Who paid? </div>
-<label for="share">Share Equally</label>
-<input  name="share" type="radio" />
-<label for="share">Share Percentage</label>
-<input  name="share" type="radio" />
+<div class="expenses-add-people-container">
+  <div class="expenses-add-people-header"> Here are your Group members! </div>
+  <div class="expenses-add-people-share-option">
+    <label for="share">Share Equally</label>
+    <input  name="share" type="radio" />
+    <label for="share">Share Percentage</label>
+    <input  name="share" type="radio" />
+  </div>
 
-<expenses-add-people-card ng-repeat="member in $ctrl.members" member="member"/>
+  <expenses-add-people-card ng-repeat="member in $ctrl.members" member="member"/>
 
-<div class="expenses-add-controls">
-  <a ng-click="$ctrl.expensesAddCtrl.toggleAddPeople()" class="expenses-add-back-container">
-    <button class="awgd-button"><i class="material-icons">arrow_back</i></button>
-  </a>
+  <div class="expenses-add-controls">
+    <a ng-click="$ctrl.expensesAddCtrl.toggleShowAddPeople()" class="expenses-add-back-container">
+      <button class="awgd-button"><i class="material-icons">arrow_back</i></button>
+    </a>
+  </div>
 </div>

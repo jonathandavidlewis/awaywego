@@ -6,10 +6,13 @@ import './expenses-add-people-card.css';
 
 class ExpensesAddPeopleCardController {
   constructor() {
-
+    this.selected = false;
   }
 
-
+  clickPerson() {
+    this.selected = !this.selected;
+    console.log('selected');
+  }
 }
 
 ExpensesAddPeopleCardController.$inject = [];

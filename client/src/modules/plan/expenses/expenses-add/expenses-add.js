@@ -9,17 +9,20 @@ class ExpensesAddController {
     this.expenses = {
       description: '',
       amount: '',
-      transactions: [],
-      completed: []
+      transactions: []
     };
-    this.addPeople = false;
+    this.showAddPeople = false;
 
-    this.toggleAddPeople = this.toggleAddPeople.bind(this);
+    this.toggleShowAddPeople = this.toggleShowAddPeople.bind(this);
   }
 
-  toggleAddPeople() {
-    this.addPeople = !this.addPeople;
+  toggleShowAddPeople() {
+    this.showAddPeople = !this.showAddPeople;
   }
+
+
+
+
 
 
 

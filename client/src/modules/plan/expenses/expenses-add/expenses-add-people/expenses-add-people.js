@@ -10,7 +10,15 @@ class ExpensesAddPeopleController {
     this.members = PlanService.currentPlan.members;
   }
 
+  createTransaction(from, to, amount) {
+    let transaction = {
+      from: from,
+      to: to,
+      amount: amount
+    };
 
+    return transaction;
+  }
 }
 
 ExpensesAddPeopleController.$inject = ['PlanService'];

@@ -4,9 +4,9 @@
   <div class="expenses-add-people-card-avatar">
     <i class="material-icons">account_circle</i>
   </div>
-  <div class="expenses-add-people-card-content">
+  <div ng-click="$ctrl.clickPerson()" class="expenses-add-people-card-content">
     <div class="expenses-add-people-card-name">{{$ctrl.member.name}}</div>
-    <div class="expenses-add-people-card-email">{{$ctrl.member.email}}</div>
+    <div ng-if="$ctrl.selected === true">Selected</div>
   </div>
   <div ng-if="!$ctrl.owner && !$ctrl.self" class="expenses-add-people-card-actions">
     <div ng-if="$ctrl.type === 'member'" class="expenses-add-people-card-actions-icon-container">
