@@ -30,7 +30,13 @@ class PromoteIdeaController {
 
   $onInit() {
     this.event = this.EventService.getEvent(this.$stateParams.eventId);
+    if (!this.event.startTime) {
+      this.event.startTime = this.moment().format('MM/DD/YYYY hh:mm A');
+    }
     this.formattedStartTime = this.moment(this.event.startTime).format('MM/DD/YYYY hh:mm A');
+    if (!this.event.endTime) {
+      this.event.endTime = this.moment().format('MM/DD/YYYY hh:mm A');
+    }
     this.formattedEndTime = this.moment(this.event.endTime).format('MM/DD/YYYY hh:mm A');
   }
 
