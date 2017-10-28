@@ -15,6 +15,8 @@ class ChatController {
     this.ChatService = ChatService;
     this.PlanService = PlanService;
     this.UserService = UserService;
+
+    this.msg = '';
   }
 }
 
