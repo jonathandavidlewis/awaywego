@@ -12,7 +12,8 @@ class ChatInputController {
 const ChatInputComponent = {
   restrict: 'E',
   bindings: {
-    'msg': '='
+    'msg': '=',
+    'submit': '<',
   },
   template: template,
   controller: ChatInputController

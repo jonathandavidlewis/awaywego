@@ -17,6 +17,13 @@ class ChatController {
     this.UserService = UserService;
 
     this.msg = '';
+
+    this.submit = this.submit.bind(this);
+  }
+
+  submit() {
+    console.log(this.msg);
+    this.msg = '';
   }
 }
 
