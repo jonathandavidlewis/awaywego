@@ -6,7 +6,10 @@
         <div class="flex">
           <div class="flex-col flex-1">
             <label for="idea-start-time">Start time:</label>
-            <input class="awgl-form-input form-control" name="idea-start-time" ng-model="$ctrl.event.startTime" type="datetime-local" />
+
+            <div class="awgl-form-input form-control" moment-picker="$ctrl.event.startTime" format="LL LTS">
+              {{ $ctrl.event.startTime }}
+            </div>
           </div>
         </div>
       </div>
@@ -14,7 +17,7 @@
         <div class="flex">
           <div class="flex-col flex-1">
             <label for="idea-end-time">End time:</label>
-            <input class="awgl-form-input form-control" name="idea-end-time" ng-model="$ctrl.event.endTime" type="datetime-local"/>
+            <input class="awgl-form-input form-control" name="idea-end-time" moment-picker="$ctrl.event.endTime" ng-model="$ctrl.event.endTime" format="DD/MM/YYYY hh:mm A">
           </div>
         </div>
       </div>

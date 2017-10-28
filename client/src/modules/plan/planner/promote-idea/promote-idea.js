@@ -1,7 +1,12 @@
 import angular from 'angular';
 
 // import services for this modules
+//import moment from 'moment';
 import EventService from '../../../../services/event/event.service';
+import momentPicker from 'angular-moment-picker';
+
+
+//import DatetimePickerComponent from '../../../common/datetime-picker/datetime-picker-config';
 
 // imports for this component
 import template from './promote-idea.html';
@@ -15,6 +20,7 @@ class PromoteIdeaController {
     this.$state = $state;
     this.$onInit = this.$onInit.bind(this);
     this.formWarning = '';
+    this.birthday = '';
   }
 
   $onInit() {
@@ -58,8 +64,9 @@ const PromoteIdeaComponent = {
   controller: PromoteIdeaController
 };
 
-const PromoteIdeaModule = angular.module('app.plan.planner.promoteIdea', [])
+const PromoteIdeaModule = angular.module('app.plan.planner.promoteIdea', ['moment-picker'])
   .component('promoteIdea', PromoteIdeaComponent)
+  .component('momentPicker', momentPicker)
   .service('EventService', EventService);
 
 export default PromoteIdeaModule.name;
