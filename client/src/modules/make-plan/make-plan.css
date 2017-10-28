@@ -40,9 +40,11 @@
 .make-plan-images {
   display: flex;
   flex-wrap: wrap;
+  border: 1px solid black;
 }
 
 .make-plan-images img {
-  width: 200px;
+  flex: 1 1 50%;
   height: auto;
+  cursor: pointer;
 }

@@ -21,7 +21,7 @@
       </div>
       <div class="make-plan-images">
         <div ng-repeat="image in $ctrl.images">
-          <img ng-src="{{ image }}" />
+          <img ng-click="$ctrl.imageClick($event)" ng-src="{{ image }}" />
         </div>
       </div>
       <div ng-if="$ctrl.formWarning" class="awgl-form-warning flex flex-center">

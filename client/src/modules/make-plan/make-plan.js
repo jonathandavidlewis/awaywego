@@ -57,11 +57,15 @@ class MakePlanController {
     }).then((resp) => {
       let imageArray = resp.data.value;
       this.images = [];
-      for (let i = 0; i < 10; i++) {
+      for (let i = 0; i < 6; i++) {
         this.images.push(imageArray[i].thumbnailUrl);
       }
       console.log(resp.data.value);
     });
+  }
+
+  imageClick(e) {
+    this.imageUrl = e.target.currentSrc;
   }
 }
 
