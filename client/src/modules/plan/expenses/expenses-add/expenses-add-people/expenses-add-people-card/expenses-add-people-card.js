@@ -7,11 +7,14 @@ import './expenses-add-people-card.css';
 class ExpensesAddPeopleCardController {
   constructor() {
     this.selected = false;
+
   }
 
   clickPerson() {
     this.selected = !this.selected;
     console.log('selected');
+    console.log(this.member);
+    this.toggle(this.member);
   }
 }
 
@@ -20,7 +23,9 @@ ExpensesAddPeopleCardController.$inject = [];
 const ExpensesAddPeopleCardComponent = {
   restrict: 'E',
   bindings: {
-    member: '<'
+    member: '<',
+    toggle: '<',
+    amount: '<'
   },
   template: template,
   controller: ExpensesAddPeopleCardController

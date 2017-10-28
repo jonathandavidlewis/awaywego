@@ -1,10 +1,10 @@
 <div class="expenses-add-people-card-container"
   ng-class="{'expenses-add-people-card-owner': !!$ctrl.owner, 'expenses-add-people-card-self': !!$ctrl.self, 'expenses-add-people-card-selected': !!$ctrl.checked}"
-  ng-click="$ctrl.handleContainerClick()">
+  ng-click="$ctrl.clickPerson()">
   <div class="expenses-add-people-card-avatar">
     <i class="material-icons">account_circle</i>
   </div>
-  <div ng-click="$ctrl.clickPerson()" class="expenses-add-people-card-content">
+  <div class="expenses-add-people-card-content">
     <div class="expenses-add-people-card-name">{{$ctrl.member.name}}</div>
     <div ng-if="$ctrl.selected === true">Selected</div>
   </div>

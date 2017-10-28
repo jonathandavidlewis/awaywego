@@ -17,6 +17,7 @@
       <div ng-if="$ctrl.formWarning" class="awgl-form-warning flex flex-center">
         <span>{{$ctrl.formWarning}}</span>
       </div>
+      <div ng-repeat="member in $ctrl.displayCheckedMembers" class="expenses-added-people">{{member}}</div>
 
       <div class="expenses-add-controls">
         <a ui-sref="^.main" class="expenses-add-back-container">
@@ -32,5 +33,5 @@
 
 
 <div ng-show="$ctrl.showAddPeople === true" class="ng-show expenses-add-container flex-col">
-  <expenses-add-people />
+  <expenses-add-people toggle-member="$ctrl.toggleMember" members="$ctrl.members" amount="$ctrl.amount" />
 </div>

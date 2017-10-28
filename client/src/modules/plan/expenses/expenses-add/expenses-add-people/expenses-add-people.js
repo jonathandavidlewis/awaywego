@@ -5,27 +5,21 @@ import template from './expenses-add-people.html';
 import './expenses-add-people.css';
 
 class ExpensesAddPeopleController {
-  constructor(PlanService) {
-    this.PlanService = PlanService;
-    this.members = PlanService.currentPlan.members;
-  }
+  constructor() {
 
-  createTransaction(from, to, amount) {
-    let transaction = {
-      from: from,
-      to: to,
-      amount: amount
-    };
 
-    return transaction;
   }
 }
 
-ExpensesAddPeopleController.$inject = ['PlanService'];
+ExpensesAddPeopleController.$inject = [];
 
 const ExpensesAddPeopleComponent = {
   restrict: 'E',
-  bindings: {},
+  bindings: {
+    toggleMember: '<',
+    members: '<',
+    amount: '<',
+  },
   template: template,
   controller: ExpensesAddPeopleController,
   require: {
