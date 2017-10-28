@@ -30,6 +30,8 @@ class PromoteIdeaController {
   submit() {
     if (this.validateForm()) {
       let promotedIdea = this.event;
+      promotedIdea.startTime = new Date(promotedIdea.startTime);
+      debugger;
       this.EventService.promoteEvent(promotedIdea).then(resp => {
         this.$state.go('app.plan.planner.ideas');
       }).catch(err => {
@@ -42,6 +44,7 @@ class PromoteIdeaController {
   //todo: add calendar logic
 
   validateForm() {
+    debugger;
     if (!this.event.title) {
       this.formWarning = 'Please enter a title';
     }
@@ -49,7 +52,7 @@ class PromoteIdeaController {
       this.formWarning = 'Please enter a start time';
       return false;
     }
-    if (!this.event.startTime) {
+    if (!this.event.endTime) {
       this.formWarning = 'Please enter an end time';
       return false;
     }
