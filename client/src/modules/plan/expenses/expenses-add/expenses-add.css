@@ -1,0 +1,34 @@
+.expenses-add-container {
+  padding: 10px;
+}
+
+
+.expenses-add-controls {
+  position: fixed;
+  bottom: 90px;
+  left: 50%;
+  margin-left: -134px;
+  /*transform: translate(-50%, 0);*/
+  display: flex;
+  justify-content: space-between;
+}
+
+.expenses-add-save-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.expenses-add-save-container .awgd-button {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.expenses-add-back-container {
+  margin-right: 30px;
+}
+
+.expenses-add-controls .material-icons {
+  display: flex;
+}

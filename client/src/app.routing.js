@@ -161,6 +161,12 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
     component: 'expensesMain'
   };
 
+  const expensesAddState = {
+    name: 'app.plan.expenses.add',
+    url: '/add',
+    component: 'expensesAdd'
+  };
+
   // auth states
   $stateProvider.state(loginState);
   $stateProvider.state(signupState);
@@ -188,6 +194,7 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
   // expenses states
   $stateProvider.state(expensesState);
   $stateProvider.state(expensesMainState);
+  $stateProvider.state(expensesAddState);
 
   // people states
   $stateProvider.state(peopleState);

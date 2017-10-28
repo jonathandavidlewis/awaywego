@@ -1,0 +1,41 @@
+<div ng-show="$ctrl.addPeople === false" class="ng-show expenses-add-container flex-col">
+  <div class="expenses-add-header"><span>Awesome! <br /> Let's get started</span></div>
+  <div class="expenses-add-form-container">
+    <form name="newExpense" ng-submit="$ctrl.submit()">
+      <div class="expenses-add-input-block">
+        <label for="expense-description">Describe your expense</label>
+        <input class="awgl-form-input form-control" name="expense-description" ng-model="$ctrl.description"
+          type="text" placeholder="Expense Description" />
+      </div>
+      <div class="expenses-add-input-block">
+        <label for="expense-amount">Amount</label>
+        <input class="awgl-form-input form-control" name="expense-amount" ng-model="$ctrl.amount"
+          type="number" placeholder="Expense Amount" />
+      </div>
+      <div> Who paid? </div>
+      <label for="share">Share Equally</label>
+      <input  name="share" type="radio" />
+      <label for="share">Share Percentage</label>
+      <input  name="share" type="radio" />
+
+      <div ng-click="$ctrl.toggleAddPeople()"> Add friends to expense </div>
+      <div ng-if="$ctrl.formWarning" class="awgl-form-warning flex flex-center">
+        <span>{{$ctrl.formWarning}}</span>
+      </div>
+
+      <div class="expenses-add-controls">
+        <a ui-sref="^.main" class="expenses-add-back-container">
+          <button class="awgd-button"><i class="material-icons">arrow_back</i></button>
+        </a>
+        <div class="expenses-add-save-container">
+          <button class="awgd-button">Add to expense</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<div ng-show="$ctrl.addPeople === true" class="ng-show expenses-add-container flex-col">
+  <expenses-add-people />
+</div>

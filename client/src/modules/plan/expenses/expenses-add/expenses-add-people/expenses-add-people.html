@@ -1,0 +1,8 @@
+<div> Here are your Group members! </div>
+<expenses-add-people-card ng-repeat="member in $ctrl.members" member="member"/>
+
+<div class="expenses-add-controls">
+  <a ng-click="$ctrl.expensesAddCtrl.toggleAddPeople()" class="expenses-add-back-container">
+    <button class="awgd-button"><i class="material-icons">arrow_back</i></button>
+  </a>
+</div>
