@@ -1,10 +1,11 @@
 const expect = require('chai').expect;
 const axios = require('axios');
 const request = require('supertest');
-const app = require('../../server/server.js'); //gets the app started
-req = request('http://localhost:8080');
 const User = require('../../db/models/user');
 const PlanEvent = require('../../db/models/event');
+
+require('../../server'); //gets the app started
+req = request('http://localhost:8080');
 
 const TEST_USER = {
   name: 'jim',
