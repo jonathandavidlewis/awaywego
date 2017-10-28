@@ -11,9 +11,35 @@ const TEST_MSGS = [
   {planId: TEST_PLAN, user: USER1, text: 'Not bad, really enjoying learning AngularJS all over again, its so amazing, how many different lines of code to write something silly simple in React... lol... how about you?', createdAt: '2017-10-28T00:14:09.416Z'},
 ];
 
-
 export default class ChatService {
-  constructor() {
+  constructor($http) {
+    this.$inject = ['$http'];
+    this.$http = $http;
     this.messages = TEST_MSGS;
+  }
+
+  submitMessage(planId, message) {
+    return this.$http.post(`/api/messages/${planId}`, {text: message})
+      .then(resp => resp.data)
+      .catch(err => console.log('Chat server error: ', err));
+  }
+
+  loadMessages(planId) {
+    return this.$http.post(`/api/messages/${planId}`, {text: message})
+      .then(resp => this.messages = resp.data.reverse());
+  }
+
+  loadNewMessages(planId) {
+    const latest = this.messages[this.messages.length - 1].createdAt;
+    return this.$http.get(`/api/messages/${planId}?after=${latest}`)
+      .then(resp => this.messages = this.messages.concat(resp.data.reverse()))
+      .catch(err => console.log('Chat server error: ', err));
+  }
+
+  loadOlderMessages(planId) {
+    const oldest = this.messages[0].createdAt;
+    return this.$http.get(`/api/messages/${planId}?before=${oldest}`)
+      .then(resp => this.messages = resp.data.reverse().concat(this.messages))
+      .catch(err => console.log('Chat server error: ', err));
   }
 }

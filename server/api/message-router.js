@@ -7,7 +7,7 @@ messageRouter.get('/:planId', (req, res) => {
   const userId = req.user._id;
   const planId = req.params.planId;
 
-  Plan.findById(req.query.planId).then(plan => {
+  Plan.findById(planId).then(plan => {
     if (!plan) { throw new Error('plan_not_found'); }
     if (plan.members.indexOf(userId) === -1) { throw new Error('not_member'); }
     return plan;
@@ -32,7 +32,7 @@ messageRouter.post('/:planId', (req, res) => {
   const userId = req.user._id;
   const planId = req.params.planId;
 
-  Plan.findById(req.query.planId).then(plan => {
+  Plan.findById(planId).then(plan => {
     if (!plan) { throw new Error('plan_not_found'); }
     if (plan.members.indexOf(userId) === -1) { throw new Error('not_member'); }
     return plan;
