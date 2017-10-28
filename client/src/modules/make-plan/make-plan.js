@@ -8,14 +8,19 @@ import template from './make-plan.html';
 import './make-plan.css';
 
 class MakePlanController {
-  constructor($state, PlanService) {
-    this.$inject = ['$state', 'PlanService'];
+  constructor($state, PlanService, $http) {
+    this.$inject = ['$state', 'PlanService', '$http'];
     this.$state = $state;
     this.PlanService = PlanService;
+    this.$http = $http;
     this.title = '';
     this.desc = '';
     this.imageUrl = '';
     this.formWarning = '';
+    this.host = 'https://api.cognitive.microsoft.com';
+    this.path = '/bing/v7.0/images/search';
+    this.subKey = 'e8ae475ded96446c8641f0aa607e623b';
+    this.images = [];
   }
 
   submit() {
@@ -40,6 +45,23 @@ class MakePlanController {
       return false;
     }
     return true;
+  }
+
+  imageSearch(query) {
+    return this.$http({
+      method: 'GET',
+      url: this.host + this.path + '?q=' + encodeURIComponent(query),
+      headers: {
+        'Ocp-Apim-Subscription-Key': this.subKey
+      }
+    }).then((resp) => {
+      let imageArray = resp.data.value;
+      this.images = [];
+      for (let i = 0; i < 10; i++) {
+        this.images.push(imageArray[i].thumbnailUrl);
+      }
+      console.log(resp.data.value);
+    });
   }
 }
 

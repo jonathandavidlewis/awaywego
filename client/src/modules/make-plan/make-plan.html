@@ -5,7 +5,7 @@
       <div class="make-plan-input-block">
         <label for="plan-title">First, give your plan a name:</label>
         <input class="awgl-form-input form-control" name="plan-title" ng-model="$ctrl.title"
-          type="text" placeholder="Plan name" />
+          type="text" placeholder="Plan name" ng-blur="$ctrl.imageSearch($ctrl.title)" />
       </div>
       <div class="make-plan-input-block">
         <label for="description">Next, what you want to do?</label>
@@ -17,6 +17,12 @@
         <label for="plan-image">Last, how about a background picture?</label>
         <input class="awgl-form-input form-control" name="plan-image" ng-model="$ctrl.imageUrl"
           type="text" placeholder="Image url" />
+          <plan-card delete-plan="$ctrl.deletePlan" plan="plan" ng-repeat="plan in $ctrl.plans"></plan-card>
+      </div>
+      <div class="make-plan-images">
+        <div ng-repeat="image in $ctrl.images">
+          <img ng-src="{{ image }}" />
+        </div>
       </div>
       <div ng-if="$ctrl.formWarning" class="awgl-form-warning flex flex-center">
         <span>{{$ctrl.formWarning}}</span>

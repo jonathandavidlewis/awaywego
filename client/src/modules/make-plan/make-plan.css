@@ -36,3 +36,13 @@
 .make-plan-submit-button-container {
   width: 100%;
 }
+
+.make-plan-images {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.make-plan-images img {
+  width: 200px;
+  height: auto;
+}
