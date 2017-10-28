@@ -1,4 +1,10 @@
 <div> Here are your Group members! </div>
+<div> Who paid? </div>
+<label for="share">Share Equally</label>
+<input  name="share" type="radio" />
+<label for="share">Share Percentage</label>
+<input  name="share" type="radio" />
+
 <expenses-add-people-card ng-repeat="member in $ctrl.members" member="member"/>
 
 <div class="expenses-add-controls">

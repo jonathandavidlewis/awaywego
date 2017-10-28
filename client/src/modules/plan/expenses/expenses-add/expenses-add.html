@@ -12,13 +12,8 @@
         <input class="awgl-form-input form-control" name="expense-amount" ng-model="$ctrl.amount"
           type="number" placeholder="Expense Amount" />
       </div>
-      <div> Who paid? </div>
-      <label for="share">Share Equally</label>
-      <input  name="share" type="radio" />
-      <label for="share">Share Percentage</label>
-      <input  name="share" type="radio" />
 
-      <div ng-click="$ctrl.toggleAddPeople()"> Add friends to expense </div>
+      <button ng-click="$ctrl.toggleAddPeople()" class="awgd-button"> Add friends to expense </button>
       <div ng-if="$ctrl.formWarning" class="awgl-form-warning flex flex-center">
         <span>{{$ctrl.formWarning}}</span>
       </div>
