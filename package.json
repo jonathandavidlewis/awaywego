@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server/server.js",
+    "start": "nodemon server/index.js",
     "test": "mocha test/**/*spec.js --exit",
     "karma": "karma start",
     "karma:travis": "TRAVIS=true karma start",

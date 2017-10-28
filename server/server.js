@@ -35,10 +35,4 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/public/dist/index.html'));
 });
 
-const port = process.env.PORT || 8080;
-
-app.listen(port, () => {
-  console.log('Running on ' + port);
-});
-
-module.exports.app = app;
+module.exports = app;
