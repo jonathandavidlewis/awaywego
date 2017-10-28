@@ -17,6 +17,7 @@ class ItineraryCardController {
   }
 
   handleDemoteClick() {
+    debugger;
     this.demoteEvent(this.event._id);
   }
 }
