@@ -5,7 +5,6 @@ import ChatMessageComponent from './chat-message/chat-message';
 import ChatInputComponent from './chat-input/chat-input';
 import ChatService from './chat.service';
 
-
 // imports for this component
 import template from './chat.html';
 import './chat.css';
@@ -23,7 +22,6 @@ class ChatController {
 
   submit() {
     this.ChatService.submitMessage(this.planId, this.msg).then(rdata => {
-      console.log('Submitted message: ', this.msg, ' received: ', rdata);
       this.msg = '';
     });
   }
