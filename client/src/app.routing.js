@@ -173,7 +173,7 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
     component: 'chat',
     resolve: {
       messagesLoaded: ['ChatService', 'PlanService', function(ChatService, PlanService) {
-        return ChatService.loadMessages(PlanService.currentPlan._id);
+        return ChatService.loadChat(PlanService.currentPlan._id);
       }]
     }
   };

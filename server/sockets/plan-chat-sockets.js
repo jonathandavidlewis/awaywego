@@ -2,14 +2,14 @@ const debug = process.env.DEBUG || true;
 
 module.exports = (io) => {
   io.on('connection', socket => {
-    if (debug) { console.log('user connected'); }
+    if (debug) { console.log('user connected: ', socket.id); }
 
-    socket.on('enter plan', plan => { // entering a specific plan based on planid
+    socket.on('enter plan-chat', plan => { // entering a specific plan based on planid
       if (debug) { console.log('user entered plan: ', plan); }
       socket.join(plan);
     });
 
-    socket.on('leave plan', plan => {
+    socket.on('leave plan-chat', plan => {
       if (debug) { console.log('user left plan: ', plan); }
       socket.leave(plan);
     });

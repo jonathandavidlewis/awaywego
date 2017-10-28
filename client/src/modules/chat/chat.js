@@ -21,7 +21,7 @@ class ChatController {
   }
 
   submit() {
-    this.ChatService.submitMessage(this.planId, this.msg).then(rdata => {
+    this.ChatService.submitMessage(this.msg).then(rdata => {
       this.msg = '';
     });
   }
