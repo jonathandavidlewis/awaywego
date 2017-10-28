@@ -22,10 +22,10 @@ class PromoteIdeaController {
     this.moment = moment;
     this.$onInit = this.$onInit.bind(this);
     this.formWarning = '';
-    this.birthday = '';
     this.formattedStartTime = '';
     this.formattedEndTime = '';
     this.onEndDateChange = this.onEndDateChange.bind(this);
+    this.onStartDateChange = this.onStartDateChange.bind(this);
   }
 
   $onInit() {
@@ -56,7 +56,7 @@ class PromoteIdeaController {
     }
   }
 
-  //todo: add calendar logic
+  //todo: add calendar limit for end time after start time.
 
   validateForm() {
     if (!this.event.title) {
@@ -83,7 +83,6 @@ const PromoteIdeaComponent = {
 
 const PromoteIdeaModule = angular.module('app.plan.planner.promoteIdea', ['moment-picker'])
   .component('promoteIdea', PromoteIdeaComponent)
-  .component('momentPicker', momentPicker)
   .service('EventService', EventService);
 
 export default PromoteIdeaModule.name;

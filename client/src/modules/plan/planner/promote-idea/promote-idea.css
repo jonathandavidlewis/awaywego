@@ -40,7 +40,3 @@ label {
   margin-top: 10px;
   margin-bottom: 0;
 }
-
-.form-control[readonly] {
-  background-color: var(--m3tr1);
-}
