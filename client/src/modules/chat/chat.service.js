@@ -13,12 +13,15 @@ export default class ChatService {
     console.log('Setting up client sockets');
     this.socket = socket('/');
     this.socket.emit('enter plan-chat', this.planId);
+    this.socket.on('new message', () => this.loadNewMessages());
   }
 
   submitMessage(message) {
     return this.$http.post(`/api/messages/${this.planId}`, {text: message})
-      .then(resp => resp.data)
-      .catch(err => console.log('Chat server error: ', err));
+      .then(resp => {
+        this.socket.emit('new message', this.planId);
+        return resp.data;
+      }).catch(err => console.log('Chat server error: ', err));
   }
 
   loadChat(planId) {

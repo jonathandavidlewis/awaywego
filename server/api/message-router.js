@@ -14,7 +14,7 @@ messageRouter.get('/:planId', (req, res) => {
   }).then(plan => {
     let msgs = Message.find({planId: oid(req.params.planId)});
     if (req.query.before) { msgs = msgs.where('createdAt').lt(req.query.before); }
-    if (req.query.after) { msgs = msgs.where('createdAt').lt(req.query.after); }
+    if (req.query.after) { msgs = msgs.where('createdAt').gt(req.query.after); }
     return msgs.sort('-createdAt').limit(30).populate('user', '-password').exec();
   }).then(msgs => res.status(200).json(msgs))
     .catch(err => {

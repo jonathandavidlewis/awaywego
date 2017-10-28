@@ -16,7 +16,7 @@ module.exports = (io) => {
 
     socket.on('new message', plan => {
       if (debug) { console.log('user submitted new message in plan: ', plan); }
-      io.in(plan).emit('refresh');
+      io.in(plan).emit('new message');
     });
 
     socket.on('started typing', plan => {
