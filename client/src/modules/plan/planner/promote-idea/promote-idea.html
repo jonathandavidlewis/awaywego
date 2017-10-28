@@ -6,7 +6,7 @@
         <div class="flex">
           <div class="flex-col flex-1">
             <label for="idea-start-time">Start time:</label>
-            <div class="awgl-form-input form-control" moment-picker="$ctrl.event.startTime" format="MM/DD/YYYY hh:mm A" change="$ctrl.onStartDateChange(newValue, oldValue)">
+            <div class="awgl-form-input form-control" moment-picker="$ctrl.event.startTime" format="MM/DD/YYYY hh:mm A" change="$ctrl.onStartDateChange(newValue, oldValue)" value="$ctrl.moment()">
               {{ $ctrl.formattedStartTime }}
             </div>
           </div>
@@ -16,7 +16,7 @@
         <div class="flex">
           <div class="flex-col flex-1">
             <label for="idea-end-time">End time:</label>
-            <div class="awgl-form-input form-control" moment-picker="$ctrl.event.endTime" format="MM/DD/YYYY hh:mm A" change="$ctrl.onEndDateChange(newValue, oldValue)">
+            <div class="awgl-form-input form-control" moment-picker="$ctrl.event.endTime" format="MM/DD/YYYY hh:mm A" change="$ctrl.onEndDateChange(newValue, oldValue)" value="$ctrl.moment()">
               {{ $ctrl.formattedEndTime}}
             </div>
           </div>
