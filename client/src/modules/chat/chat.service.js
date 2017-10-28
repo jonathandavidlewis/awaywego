@@ -15,7 +15,7 @@ export default class ChatService {
   constructor($http) {
     this.$inject = ['$http'];
     this.$http = $http;
-    this.messages = TEST_MSGS;
+    this.messages = [];
   }
 
   submitMessage(planId, message) {
@@ -25,7 +25,7 @@ export default class ChatService {
   }
 
   loadMessages(planId) {
-    return this.$http.post(`/api/messages/${planId}`, {text: message})
+    return this.$http.get(`/api/messages/${planId}`)
       .then(resp => this.messages = resp.data.reverse());
   }
 

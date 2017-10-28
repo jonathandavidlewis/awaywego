@@ -170,7 +170,12 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
   const chatState = {
     name: 'app.plan.chat',
     url: '/chat',
-    component: 'chat'
+    component: 'chat',
+    resolve: {
+      messagesLoaded: ['ChatService', 'PlanService', function(ChatService, PlanService) {
+        return ChatService.loadMessages(PlanService.currentPlan._id);
+      }]
+    }
   };
 
   // auth states
