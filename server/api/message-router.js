@@ -38,7 +38,7 @@ messageRouter.post('/:planId', (req, res) => {
     return plan;
   }).then(plan => {
     let newMsg = {planId: planId, user: userId, text: req.body.text};
-    return newMsg.save();
+    return Message.create(newMsg);
   }).then(newMsg => res.status(200).json({message: 'created', newMsg: newMsg}))
     .catch(err => {
       if (err.message === 'plan_not_found') {

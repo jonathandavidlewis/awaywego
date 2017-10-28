@@ -13,7 +13,7 @@ import './chat.css';
 class ChatController {
   constructor(ChatService, PlanService, UserService) {
     this.ChatService = ChatService;
-    this.PlanService = PlanService;
+    this.planId = PlanService.currentPlan._id;
     this.UserService = UserService;
 
     this.msg = '';
@@ -22,8 +22,10 @@ class ChatController {
   }
 
   submit() {
-    console.log(this.msg);
-    this.msg = '';
+    this.ChatService.submitMessage(this.planId, this.msg).then(rdata => {
+      console.log('Submitted message: ', this.msg, ' received: ', rdata);
+      this.msg = '';
+    });
   }
 }
 
