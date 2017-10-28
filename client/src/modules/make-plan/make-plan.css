@@ -40,11 +40,17 @@
 .make-plan-images {
   display: flex;
   flex-wrap: wrap;
-  border: 1px solid black;
+  justify-content: center;
 }
 
 .make-plan-images img {
-  flex: 1 1 50%;
+  width: 75px;
   height: auto;
   cursor: pointer;
+  margin: 5px;
+}
+
+.make-plan-images .highlight {
+  outline: 5px solid var(--dk3);
+  outline-offset: -5px;
 }
