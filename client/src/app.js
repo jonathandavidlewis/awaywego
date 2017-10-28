@@ -15,6 +15,7 @@ import ChatModule from './modules/chat/chat';
 // import global services
 import UserService from './services/user/user.service';
 import FriendService from './services/friend/friend.service';
+import MomentService from './services/moment/moment.service';
 
 // import global styles
 import './styles/forms.css';
@@ -51,5 +52,6 @@ angular.module('app', [
 ])
   .service('UserService', UserService)
   .service('FriendService', FriendService)
+  .service('MomentService', MomentService)
   .config(appRouting)
   .component('app', AppComponent);

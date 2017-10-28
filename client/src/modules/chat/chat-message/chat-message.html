@@ -1,5 +1,5 @@
 <div class="chat-message-container flex" ng-class="{'chat-self': $ctrl.self}">
-  <div class="chat-message-avatar-container">
+  <div class="chat-message-avatar-container flex-col">
     <div ng-if="$ctrl.message.user.profilePic !== ''" class="chat-message-avatar">
       <div class="chat-message-avatar-pic"
            ng-style="{'background-image':'url({{$ctrl.message.user.profilePic}})'}">
@@ -7,6 +7,11 @@
     </div>
     <div ng-if="$ctrl.message.user.profilePic === ''">
       <i class="material-icons">account_circle</i>
+    </div>
+    <div class="chat-message-timestamp">
+      <span>
+        {{$ctrl.moment($ctrl.message.createdAt).format('LT')}}
+      </span>
     </div>
   </div>
   <div class="chat-message-bubble">

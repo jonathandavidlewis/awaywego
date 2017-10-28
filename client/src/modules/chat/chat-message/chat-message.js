@@ -6,10 +6,11 @@ import template from './chat-message.html';
 import './chat-message.css';
 
 class ChatMessageController {
-  constructor() {
-    console.log(this);
+  constructor(MomentService) {
+    this.moment = MomentService.moment;
   }
 }
+ChatMessageController.$inject = ['MomentService'];
 
 const ChatMessageComponent = {
   restrict: 'E',

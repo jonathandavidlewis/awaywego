@@ -6,9 +6,9 @@ const TEST_PLAN = '59f249a062674182aa701853';
 
 const TEST_MSGS = [
   {planId: TEST_PLAN, user: USER1, text: 'Hello Bob!', createdAt: '2017-10-27T23:17:06.416Z'},
-  {planId: TEST_PLAN, user: USER2, text: 'Hello Jared!', createdAt: '2017-10-27T23:17:07.416Z'},
-  {planId: TEST_PLAN, user: USER2, text: 'Hows life?', createdAt: '2017-10-27T23:17:08.416Z'},
-  {planId: TEST_PLAN, user: USER1, text: 'Not bad, how about you?', createdAt: '2017-10-27T23:17:09.416Z'},
+  {planId: TEST_PLAN, user: USER2, text: 'Hello Jared!', createdAt: '2017-10-27T23:18:07.416Z'},
+  {planId: TEST_PLAN, user: USER2, text: 'Hows life?', createdAt: '2017-10-27T23:19:08.416Z'},
+  {planId: TEST_PLAN, user: USER1, text: 'Not bad, really enjoying learning AngularJS all over again, its so amazing, how many different lines of code to write something silly simple in React... lol... how about you?', createdAt: '2017-10-28T00:14:09.416Z'},
 ];
 
 

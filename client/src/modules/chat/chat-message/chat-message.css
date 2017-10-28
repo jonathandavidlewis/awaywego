@@ -1,9 +1,22 @@
+.chat-message-container {
+  margin: 10px 0;
+  align-items: center;
+}
+
 .chat-message-container.chat-self {
   justify-content: flex-end;
 }
 
+.chat-message-avatar-container {
+  align-self: flex-end;
+  margin-right: 10px;
+  padding: 2px 0;
+  align-items: center;
+}
+
 .chat-self .chat-message-avatar-container {
   order: 99;
+  margin-left: 10px;
 }
 
 .chat-message-avatar-pic {
@@ -12,4 +25,23 @@
   background-size: contain;
   background-position: center center;
   border-radius: 50%;
+}
+
+.chat-message-timestamp {
+  color: var(--da);
+  font-style: italic;
+  font-size: .7em;
+}
+
+.chat-message-bubble {
+  background-color: var(--m4);
+  color: white;
+  padding: 7px 10px;
+  border-radius: 10px;
+  max-width: 70%;
+}
+
+.chat-self .chat-message-bubble {
+  background-color: var(--dk3);
+  color: var(--lt);
 }
