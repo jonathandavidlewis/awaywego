@@ -36,3 +36,21 @@
 .make-idea-submit-button-container {
   width: 100%;
 }
+
+.make-idea-images {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.make-idea-images img {
+  width: 75px;
+  height: auto;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.make-idea-images .highlight {
+  outline: 5px solid var(--dk3);
+  outline-offset: -5px;
+}

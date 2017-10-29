@@ -5,7 +5,7 @@
       <div class="make-idea-input-block">
         <label for="idea-title">Give your idea a name:</label>
         <input class="awgl-form-input form-control" name="idea-title" ng-model="$ctrl.title"
-          type="text" placeholder="Idea name" />
+          type="text" placeholder="Idea name" ng-blur="$ctrl.imageSearch($ctrl.title)"/>
       </div>
       <div class="make-idea-input-block">
         <label for="description">What do you want to suggest?</label>
@@ -17,6 +17,11 @@
         <label for="idea-image">Last, how about a background picture?</label>
         <input class="awgl-form-input form-control" name="idea-image" ng-model="$ctrl.imageUrl"
           type="text" placeholder="Image url" />
+      </div>
+      <div class="make-idea-images">
+        <div ng-repeat="image in $ctrl.images">
+          <img ng-click="$ctrl.imageClick($event);" ng-src="{{ image }}" />
+        </div>
       </div>
       <div ng-if="$ctrl.formWarning" class="awgl-form-warning flex flex-center">
         <span>{{$ctrl.formWarning}}</span>

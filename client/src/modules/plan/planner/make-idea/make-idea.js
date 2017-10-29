@@ -2,21 +2,24 @@ import angular from 'angular';
 
 // import services for this modules
 import EventService from '../../../../services/event/event.service';
+import ImageSearchService from '../../../../services/images/image.search.service';
 
 // imports for this component
 import template from './make-idea.html';
 import './make-idea.css';
 
 class MakeIdeaController {
-  constructor($state, EventService, $stateParams) {
-    this.$inject = ['$state', 'EventService', '$stateParams'];
+  constructor($state, EventService, $stateParams, ImageSearchService) {
+    this.$inject = ['$state', 'EventService', '$stateParams', 'ImageSearchService'];
     this.$state = $state;
     this.EventService = EventService;
     this.$stateParams = $stateParams;
+    this.ImageSearchService = ImageSearchService;
     this.title = '';
     this.desc = '';
     this.imageUrl = '';
     this.formWarning = '';
+    this.images = [];
   }
 
   submit() {
@@ -43,6 +46,18 @@ class MakeIdeaController {
     }
     return true;
   }
+
+  imageSearch(query) {
+    this.ImageSearchService.imageSearch(query).then(resp => {
+      this.images = resp;
+    });
+  }
+
+  imageClick(e) {
+    this.imageUrl = e.target.currentSrc;
+    $('.make-plan-images img').removeClass('highlight');
+    $(e.target).addClass('highlight');
+  }
 }
 
 const MakeIdeaComponent = {
@@ -54,6 +69,7 @@ const MakeIdeaComponent = {
 
 const MakeIdeaModule = angular.module('app.plan.planner.makeIdea', [])
   .component('makeIdea', MakeIdeaComponent)
-  .service('EventService', EventService);
+  .service('EventService', EventService)
+  .service('ImageSearchService', ImageSearchService);
 
 export default MakeIdeaModule.name;
