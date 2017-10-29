@@ -16,6 +16,7 @@ class ChatController {
     this.UserService = UserService;
 
     this.msg = '';
+    this.othersTyping = [];
 
     this.submit = this.submit.bind(this);
   }
@@ -24,6 +25,10 @@ class ChatController {
     this.ChatService.submitMessage(this.msg).then(rdata => {
       this.msg = '';
     });
+  }
+
+  $onDestroy() {
+    this.ChatService.leaveChatRoom(this.planId);
   }
 }
 
