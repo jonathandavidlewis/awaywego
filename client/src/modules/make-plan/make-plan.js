@@ -2,17 +2,18 @@ import angular from 'angular';
 
 // import services for this modules
 import PlanService from '../../services/plan/plan.service';
+import ImageSearchService from '../../services/images/image.search.service';
 
 // imports for this component
 import template from './make-plan.html';
 import './make-plan.css';
 
 class MakePlanController {
-  constructor($state, PlanService, $http) {
+  constructor($state, PlanService, ImageSearchService) {
     this.$inject = ['$state', 'PlanService', '$http'];
     this.$state = $state;
     this.PlanService = PlanService;
-    this.$http = $http;
+    this.ImageSearchService = ImageSearchService;
     this.title = '';
     this.desc = '';
     this.imageUrl = '';
@@ -48,19 +49,8 @@ class MakePlanController {
   }
 
   imageSearch(query) {
-    return this.$http({
-      method: 'GET',
-      url: this.host + this.path + '?q=' + encodeURIComponent(query),
-      headers: {
-        'Ocp-Apim-Subscription-Key': this.subKey
-      }
-    }).then((resp) => {
-      let imageArray = resp.data.value;
-      this.images = [];
-      for (let i = 0; i < 6; i++) {
-        this.images.push(imageArray[i].thumbnailUrl);
-      }
-      console.log(resp.data.value);
+    this.ImageSearchService.imageSearch(query).then(resp => {
+      this.images = resp;
     });
   }
 
@@ -80,6 +70,7 @@ const MakePlanComponent = {
 
 const MakePlanModule = angular.module('app.makePlan', [])
   .component('makePlan', MakePlanComponent)
-  .service('PlanService', PlanService);
+  .service('PlanService', PlanService)
+  .service('ImageSearchService', ImageSearchService);
 
 export default MakePlanModule.name;
