@@ -43,9 +43,16 @@ class ExpensesAddController {
     this.renderCheckedMembers();
   }
 
+  createEqualTransactions() {
+    let numberOfPeople = Object.keys(this.checkedMembers).length;
+    let portion = this.amount / numberOfPeople;
+    for (let i = 0; i < numberOfPeople; i++) {
+
+    }
+  }
+
   renderCheckedMembers() {
-    this.displayCheckedMembers = Object.keys(this.checkedMembers);
-    console.log(this.displayCheckedMembers);
+    console.log('render checked members', this.displayCheckedMembers);
   }
 
 

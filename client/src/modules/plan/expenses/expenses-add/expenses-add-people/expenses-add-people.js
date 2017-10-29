@@ -6,9 +6,19 @@ import './expenses-add-people.css';
 
 class ExpensesAddPeopleController {
   constructor() {
-
+    this.share = 'equal';
 
   }
+
+  // TODO: Remove this later if not needed
+  // setShare(type) {
+  //   if (type === 'equal') {
+  //     this.share = 'equal';
+  //   } else if (type === 'percentage') {
+  //     this.share = 'percentage';
+  //   }
+  // }
+
 }
 
 ExpensesAddPeopleController.$inject = [];
@@ -19,6 +29,7 @@ const ExpensesAddPeopleComponent = {
     toggleMember: '<',
     members: '<',
     amount: '<',
+    selectedMembers: '<'
   },
   template: template,
   controller: ExpensesAddPeopleController,

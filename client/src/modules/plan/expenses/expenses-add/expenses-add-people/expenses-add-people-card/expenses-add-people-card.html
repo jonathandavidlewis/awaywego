@@ -8,13 +8,5 @@
     <div class="expenses-add-people-card-name">{{$ctrl.member.name}}</div>
     <div ng-if="$ctrl.selected === true">Selected</div>
   </div>
-  <div ng-if="!$ctrl.owner && !$ctrl.self" class="expenses-add-people-card-actions">
-    <div ng-if="$ctrl.type === 'member'" class="expenses-add-people-card-actions-icon-container">
-      <i class="material-icons">clear</i>
-    </div>
-    <div ng-if="$ctrl.type === 'select'" class="expenses-add-people-card-actions-icon-container">
-      <i ng-if="$ctrl.checked" class="material-icons">check_box</i>
-      <i ng-if="!$ctrl.checked" class="material-icons">check_box_outline_blank</i>
-    </div>
-  </div>
+
 </div>
