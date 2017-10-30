@@ -6,16 +6,11 @@ import './expenses-add-people-card.css';
 
 class ExpensesAddPeopleCardController {
   constructor() {
-    this.selected = false;
-    this.portion = 0;
   }
 
   clickPerson() {
     this.selected = !this.selected;
-    console.log('selected');
-    console.log(this.member);
     this.toggle(this.member);
-    console.log('Post toggle', this.selectedMembers);
   }
 
 

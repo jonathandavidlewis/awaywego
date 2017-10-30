@@ -13,6 +13,12 @@
         <input ng-change="$ctrl.updateTransactions()" onclass="awgl-form-input form-control" name="expense-amount" ng-model="$ctrl.amount"
           type="number" placeholder="Expense Amount" />
       </div>
+      <div class="expenses-add-people-share-option">
+        <label for="share">Share Equally</label>
+        <input  name="share" type="radio" ng-model="$ctrl.transactionType" value="equal"/>
+        <label for="share">Share Percentage</label>
+        <input  name="share" type="radio" ng-model="$ctrl.transactionType" value="percentage"/>
+      </div>
 
       <button ng-click="$ctrl.toggleShowAddPeople()" class="awgd-button"> Add friends to expense </button>
       <div ng-if="$ctrl.formWarning" class="awgl-form-warning flex flex-center">
@@ -33,6 +39,10 @@
 </div>
 
 
-<div ng-show="$ctrl.showAddPeople === true" class="ng-show expenses-add-container flex-col">
+<div ng-show="$ctrl.showAddPeople === true && $ctrl.payerToggle === false" class="ng-show expenses-add-container flex-col">
+  <expenses-add-people selected-members="$ctrl.transactions" toggle-member="$ctrl.toggleMember" members="$ctrl.members" amount="$ctrl.amount" />
+</div>
+
+<div ng-show="$ctrl.showAddPeople === true && $ctrl.payerToggle === true" class="ng-show expenses-add-container flex-col">
   <expenses-add-people selected-members="$ctrl.transactions" toggle-member="$ctrl.toggleMember" members="$ctrl.members" amount="$ctrl.amount" />
 </div>
