@@ -1,4 +1,4 @@
-import KEY from './image-search-key';
+import KEY from '../../../../keys.config';
 
 export default class ImageSearchService {
   constructor($http) {
