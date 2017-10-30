@@ -31,10 +31,3 @@
 .make-idea-submit-button-container {
   width: 100%;
 }
-
-.make-idea-images {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-bottom: 20px;
-}
