@@ -30,13 +30,15 @@ describe('Server and Authorization', function() {
 
   describe('/', function() {
     it('should return index.html on a get request', function(done) {
-      axios.get('http://localhost:8080/')
-        .then(function (response) {
-          expect(response.data).to.contain('ng-app');
-          done();
+      req.get('/')
+        .expect(200)
+        .expect((res) => {
+          expect(res.text).to.contain('ng-app');
         })
-        .catch(function (error) {
-          console.log(error);
+        .end(function(err, res) {
+          if (err) {
+            return done(err);
+          }
           done();
         });
     });
