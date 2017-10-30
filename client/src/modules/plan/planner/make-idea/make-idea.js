@@ -2,7 +2,6 @@ import angular from 'angular';
 
 // import services for this modules
 import EventService from '../../../../services/event/event.service';
-import ImageSearchService from '../../../../services/images/image.search.service';
 
 // imports for this component
 import template from './make-idea.html';
@@ -55,7 +54,6 @@ const MakeIdeaComponent = {
 
 const MakeIdeaModule = angular.module('app.plan.planner.makeIdea', [])
   .component('makeIdea', MakeIdeaComponent)
-  .service('EventService', EventService)
-  .service('ImageSearchService', ImageSearchService);
+  .service('EventService', EventService);
 
 export default MakeIdeaModule.name;

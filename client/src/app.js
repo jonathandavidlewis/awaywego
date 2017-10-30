@@ -16,6 +16,7 @@ import ChatModule from './modules/chat/chat';
 import UserService from './services/user/user.service';
 import FriendService from './services/friend/friend.service';
 import MomentService from './services/moment/moment.service';
+import ImageSearchService from './services/images/image.search.service';
 
 // import global styles
 import './styles/forms.css';
@@ -24,7 +25,6 @@ import './styles/forms.css';
 import appRouting from './app.routing';
 import template from './app.html';
 import './app.css';
-import PlanCardComponent from './modules/home/plan-card/plan-card';
 
 class AppController {
   constructor(UserService) {
@@ -53,5 +53,6 @@ angular.module('app', [
   .service('UserService', UserService)
   .service('FriendService', FriendService)
   .service('MomentService', MomentService)
+  .service('ImageSearchService', ImageSearchService)
   .config(appRouting)
   .component('app', AppComponent);

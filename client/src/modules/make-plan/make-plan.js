@@ -2,10 +2,8 @@ import angular from 'angular';
 
 // import services for this modules
 import PlanService from '../../services/plan/plan.service';
-import ImageSearchService from '../../services/images/image.search.service';
 
 // imports for this component
-import ImageSearchComponent from '../image-search/image-search';
 import template from './make-plan.html';
 import './make-plan.css';
 
@@ -54,8 +52,6 @@ const MakePlanComponent = {
 
 const MakePlanModule = angular.module('app.makePlan', [])
   .component('makePlan', MakePlanComponent)
-  .component('imageSearch', ImageSearchComponent)
-  .service('PlanService', PlanService)
-  .service('ImageSearchService', ImageSearchService);
+  .service('PlanService', PlanService);
 
 export default MakePlanModule.name;
