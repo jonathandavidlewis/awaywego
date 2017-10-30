@@ -40,16 +40,20 @@ module.exports = (io) => {
     });
 
     socket.on('started typing', plan => {
-      if (debug) { console.log('user started typing in plan: ', plan); }
-      chats[plan] && chats[plan].typing.push(socketUserMap[socket.id]);
-      socket.to(plan).emit('users typing', chats[plan].typing);
+      if (debug) { console.log('user: ', socketUserMap[socket.id], ' started typing in plan: ', plan); }
+      if (chats[plan] && chats[plan].typing) {
+        chats[plan].typing.push(socketUserMap[socket.id]);
+        socket.to(plan).emit('users typing', chats[plan].typing);
+      }
     });
 
     socket.on('stopped typing', plan => {
       if (debug) { console.log('user stopped typing in plan: ', plan); }
-      const chatTyping = chats[plan] && chats[plan].typing.findIndex(u => u && u.id === socketUserMap[socket.id].id);
-      if (chatTyping > -1) { chats[plan].typing.splice(chatTyping, 1); }
-      socket.to(plan).emit('users typing', chats[plan].typing);
+      if (chats[plan] && chats[plan].typing) {
+        const chatTyping = chats[plan] && chats[plan].typing.findIndex(u => u && u.id === socketUserMap[socket.id].id);
+        if (chatTyping > -1) { chats[plan].typing.splice(chatTyping, 1); }
+        socket.to(plan).emit('users typing', chats[plan].typing);
+      }
     });
 
     socket.on('disconnect', () => {

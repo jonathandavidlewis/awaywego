@@ -33,7 +33,7 @@ class ChatController {
     this.renderedMessages = this.renderedMessages.bind(this);
     this.handleTyping = this.handleTyping.bind(this);
 
-    this.debStopTyping = _.debounce(this.stopTyping.bind(this), 1000);
+    this.debStopTyping = _.debounce(this.stopTyping.bind(this), 1500);
   }
 
 
