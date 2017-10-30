@@ -1,5 +1,6 @@
 <div ng-show="$ctrl.showAddPeople === false" class="ng-show expenses-add-container flex-col">
-  <div class="expenses-add-header"><span>Awesome! <br /> Let's get started</span></div>
+  <div class="expenses-add-header"><span>Who Paid? <button ng-click="$ctrl.toggleShowAddPeople(true)">+</button></span></div>
+  <div class="expenses-add-payers" ng-repeat="payer in $ctrl.payers">{{payer.name}}</div>
   <div class="expenses-add-form-container">
     <form name="newExpense" ng-submit="$ctrl.submit()">
       <div class="expenses-add-input-block">
@@ -9,7 +10,7 @@
       </div>
       <div class="expenses-add-input-block">
         <label for="expense-amount">Amount</label>
-        <input class="awgl-form-input form-control" name="expense-amount" ng-model="$ctrl.amount"
+        <input ng-change="$ctrl.updateTransactions()" onclass="awgl-form-input form-control" name="expense-amount" ng-model="$ctrl.amount"
           type="number" placeholder="Expense Amount" />
       </div>
 

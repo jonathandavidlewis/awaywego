@@ -11,7 +11,8 @@ class ExpensesAddController {
     this.checkedMembers = {};
     this.displayCheckedMembers = [];
     this.amount = '';
-    this.payers = ['Dom'];
+    this.payerToggle = false;
+    this.payers = {};
 
     this.showAddPeople = false;
     this.transactionType = 'equal';
@@ -22,8 +23,20 @@ class ExpensesAddController {
     this.updateCheckedMembers = this.updateCheckedMembers.bind(this);
   }
 
-  toggleShowAddPeople() {
+  toggleShowAddPeople(payerToggle) {
     this.showAddPeople = !this.showAddPeople;
+    if (payerToggle) {
+      this.payerToggle = true;
+    } else {
+      this.payerToggle = false;
+    }
+
+  }
+
+  updateTransactions() {
+    if (this.transactionType === 'equal') {
+      this.createEqualTransactions();
+    }
   }
 
   createTransaction(from, to, amount) {
@@ -38,27 +51,35 @@ class ExpensesAddController {
   }
 
   toggleMember(member) {
-    if (this.checkedMembers[member.name]) {
-      delete this.checkedMembers[member.name];
-    } else {
-      this.checkedMembers[member.name] = member;
+    let checked = this.checkedMembers;
+    if (this.payerToggle) {
+      checked = this.payers;
     }
+    if (checked[member.name]) {
+      delete checked[member.name];
+    } else {
+      checked[member.name] = member;
+    }
+    console.log('toggled', this.checkedMembers);
 
     if (this.transactionType === 'equal') {
       this.createEqualTransactions();
     }
-    console.log('toggled', this.checkedMembers);
   }
 
   createEqualTransactions() {
+    console.log('These people paid: ', this.payers, this.payerToggle);
     let numberOfPeople = Object.keys(this.checkedMembers).length;
-    console.log('number of people: ', numberOfPeople);
-    let portion = this.amount / numberOfPeople;
+    let numberOfPayers = Object.keys(this.payers).length;
+    let portion = (this.amount / numberOfPeople) / numberOfPayers;
+    console.log('number of people: ', numberOfPeople, numberOfPayers);
     console.log('Equal transactions run', portion);
     let transactions = [];
     for (let member in this.checkedMembers) {
       for (let payer in this.payers) {
-        transactions.push(this.createTransaction(this.checkedMembers[member], this.payers[payer], portion / this.payers.length));
+        if (this.checkedMembers[member]._id !== this.payers[payer]._id) {
+          transactions.push(this.createTransaction(this.checkedMembers[member], this.payers[payer], portion));
+        }
       }
     }
     this.displayCheckedMembers = transactions;
