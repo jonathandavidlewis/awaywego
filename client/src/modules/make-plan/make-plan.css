@@ -24,13 +24,27 @@
   font-size: 1.1em;
 }
 
-.make-plan-input-block div {
+/*.make-plan-input-block div {
   margin-top: -.5rem;
   margin-bottom: .5rem;
 }
-
+*/
 .make-plan-input {
   width: 100%;
+}
+
+.make-plan-image-search-container {
+  display: flex;
+}
+
+.search-button {
+  flex-basis: 20%;
+  margin-left: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.1em;
+  cursor: pointer;
 }
 
 .make-plan-submit-button-container {
