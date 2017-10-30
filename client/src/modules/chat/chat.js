@@ -13,7 +13,7 @@ import template from './chat.html';
 import './chat.css';
 
 class ChatController {
-  constructor($scope, ChatService, PlanService, UserService, $element, $timeout, $interval) {
+  constructor(ChatService, PlanService, UserService, $element, $timeout, $interval) {
     // services
     this.ChatService = ChatService;
     this.PlanService = PlanService;
@@ -84,7 +84,7 @@ class ChatController {
   }
 
 }
-ChatController.$inject = ['$scope', 'ChatService', 'PlanService', 'UserService', '$element', '$timeout', '$interval'];
+ChatController.$inject = ['ChatService', 'PlanService', 'UserService', '$element', '$timeout'];
 
 const ChatComponent = {
   restrict: 'E',
