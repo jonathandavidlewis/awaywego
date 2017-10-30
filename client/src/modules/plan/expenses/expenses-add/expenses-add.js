@@ -20,7 +20,6 @@ class ExpensesAddController {
     this.toggleShowAddPeople = this.toggleShowAddPeople.bind(this);
     this.toggleMember = this.toggleMember.bind(this);
     this.createEqualTransactions = this.createEqualTransactions.bind(this);
-    this.updateCheckedMembers = this.updateCheckedMembers.bind(this);
   }
 
   toggleShowAddPeople(payerToggle) {
@@ -71,7 +70,7 @@ class ExpensesAddController {
     console.log('These people paid: ', this.payers, this.payerToggle);
     let numberOfPeople = Object.keys(this.checkedMembers).length;
     let numberOfPayers = Object.keys(this.payers).length;
-    let portion = (this.amount / numberOfPeople) / numberOfPayers;
+    let portion = this.amount / numberOfPayers / (numberOfPeople + numberOfPayers);
     console.log('number of people: ', numberOfPeople, numberOfPayers);
     console.log('Equal transactions run', portion);
     let transactions = [];
@@ -85,17 +84,6 @@ class ExpensesAddController {
     this.transactions = transactions;
   }
 
-  updateCheckedMembers() {
-    console.log('render checked members', this.transactions);
-
-  }
-
-  calculatePortion() {
-    console.log(this.selectedMembers, this.selectedMembers.length);
-    if (this.share === 'equal') {
-      this.portion = this.amount / this.selectedMembers.length;
-    }
-  }
 
 
 
