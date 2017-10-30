@@ -6,7 +6,7 @@ export default class ImageSearchService {
     this.$http = $http;
     this.host = 'https://api.cognitive.microsoft.com';
     this.path = '/bing/v7.0/images/search';
-    this.subKey = KEY.IMAGE_API_KEY;
+    this.subKey = process.env.IMAGE_API_KEY || KEY.IMAGE_API_KEY;
   }
 
   imageSearch(query) {
