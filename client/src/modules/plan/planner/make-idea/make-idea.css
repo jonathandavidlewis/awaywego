@@ -28,20 +28,6 @@
   width: 100%;
 }
 
-.make-idea-image-search-container {
-  display: flex;
-}
-
-.search-button {
-  flex-basis: 20%;
-  margin-left: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.1em;
-  cursor: pointer;
-}
-
 .make-idea-submit-button-container {
   width: 100%;
 }
@@ -51,22 +37,4 @@
   flex-wrap: wrap;
   justify-content: center;
   margin-bottom: 20px;
-}
-
-.make-idea-images img {
-  width: 75px;
-  height: auto;
-  cursor: pointer;
-  margin: 5px;
-}
-
-.loading-spinner {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
-.make-idea-images .highlight {
-  outline: 5px solid var(--dk3);
-  outline-offset: -5px;
 }

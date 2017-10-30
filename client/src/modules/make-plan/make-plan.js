@@ -9,12 +9,12 @@ import './make-plan.css';
 
 class MakePlanController {
   constructor($state, PlanService) {
-    this.$inject = ['$state', 'PlanService', '$http'];
+    this.$inject = ['$state', 'PlanService'];
     this.$state = $state;
     this.PlanService = PlanService;
     this.title = '';
     this.desc = '';
-    this.imageUrl = 'woo';
+    this.imageUrl = '';
     this.formWarning = '';
   }
 
