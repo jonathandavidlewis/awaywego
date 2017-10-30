@@ -37,6 +37,7 @@ describe('Server and Authorization', function() {
         })
         .end(function(err, res) {
           if (err) {
+            expect(error).to.not.exist;
             return done(err);
           }
           done();
@@ -65,6 +66,7 @@ describe('Server and Authorization', function() {
           done();
         })
         .catch(function (error) {
+          expect(error).to.not.exist;
           console.log(error);
           done();
         });
@@ -81,6 +83,7 @@ describe('Server and Authorization', function() {
           done();
         })
         .catch(function (error) {
+          expect(error).to.not.exist;
           console.log(error);
           done();
         });
@@ -94,6 +97,7 @@ describe('Server and Authorization', function() {
           done();
         })
         .catch(function (error) {
+          expect(error).to.not.exist;
           console.log(error);
           done();
         });
@@ -117,6 +121,11 @@ describe('Server and Authorization', function() {
           expect(response.body.token).to.exist;
           expect(response.statusCode).to.equal(201);
           done();
+        })
+        .catch(function(error) {
+          expect(error).to.not.exist;
+          console.log(error);
+          done();
         });
     });
 
@@ -129,6 +138,11 @@ describe('Server and Authorization', function() {
             .then((response) => {
               expect(response.body.token).to.not.exist;
               expect(response.statusCode).to.equal(422);
+              done();
+            })
+            .catch(function(error) {
+              expect(error).to.not.exist;
+              console.log(error);
               done();
             });
         });
@@ -143,6 +157,11 @@ describe('Server and Authorization', function() {
             .exec((err, user) => {
               if (err) { console.log(err); }
               expect(user.email).to.equal('test1@example.com');
+              done();
+            })
+            .catch(function(error) {
+              expect(error).to.not.exist;
+              console.log(error);
               done();
             });
         });
