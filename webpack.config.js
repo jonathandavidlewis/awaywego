@@ -33,9 +33,10 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'client/index.html',
-      inject: 'body',
-      hash: true
+      template: 'views/index.handlebars',
+      inject: 'div',
+      hash: true,
+      filename: 'index.handlebars'
     })
   ]
 };
