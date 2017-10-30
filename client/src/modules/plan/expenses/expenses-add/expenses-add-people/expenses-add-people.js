@@ -6,7 +6,7 @@ import './expenses-add-people.css';
 
 class ExpensesAddPeopleController {
   constructor() {
-    this.share = 'equal';
+
 
   }
 
@@ -18,6 +18,8 @@ class ExpensesAddPeopleController {
   //     this.share = 'percentage';
   //   }
   // }
+
+
 
 }
 

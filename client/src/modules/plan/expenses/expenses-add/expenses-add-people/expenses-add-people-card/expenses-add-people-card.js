@@ -16,15 +16,8 @@ class ExpensesAddPeopleCardController {
     console.log(this.member);
     this.toggle(this.member);
     console.log('Post toggle', this.selectedMembers);
-    this.calculatePortion();
   }
 
-  calculatePortion() {
-    console.log(this.selectedMembers, this.selectedMembers.length);
-    if (this.share === 'equal') {
-      this.portion = this.amount / this.selectedMembers.length;
-    }
-  }
 
 
 }
@@ -37,7 +30,6 @@ const ExpensesAddPeopleCardComponent = {
     member: '<',
     toggle: '<',
     amount: '<',
-    share: '<',
     selectedMembers: '<'
   },
   template: template,

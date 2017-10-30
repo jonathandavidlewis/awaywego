@@ -17,7 +17,7 @@
       <div ng-if="$ctrl.formWarning" class="awgl-form-warning flex flex-center">
         <span>{{$ctrl.formWarning}}</span>
       </div>
-      <div ng-repeat="member in $ctrl.displayCheckedMembers" class="expenses-added-people">{{member.from}} owes {{member.portion}} to {{member.to}}</div>
+      <div ng-repeat="member in $ctrl.displayCheckedMembers" class="expenses-added-people">{{member.from.name}} owes {{member.amount}} to {{member.to.name}}</div>
 
       <div class="expenses-add-controls">
         <a ui-sref="^.main" class="expenses-add-back-container">

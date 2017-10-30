@@ -11,12 +11,15 @@ class ExpensesAddController {
     this.checkedMembers = {};
     this.displayCheckedMembers = [];
     this.amount = '';
+    this.payers = ['Dom'];
 
     this.showAddPeople = false;
+    this.transactionType = 'equal';
 
-    this.toggleMember = this.toggleMember.bind(this);
-    this.renderCheckedMembers = this.renderCheckedMembers.bind(this);
     this.toggleShowAddPeople = this.toggleShowAddPeople.bind(this);
+    this.toggleMember = this.toggleMember.bind(this);
+    this.createEqualTransactions = this.createEqualTransactions.bind(this);
+    this.updateCheckedMembers = this.updateCheckedMembers.bind(this);
   }
 
   toggleShowAddPeople() {
@@ -24,6 +27,7 @@ class ExpensesAddController {
   }
 
   createTransaction(from, to, amount) {
+
     let transaction = {
       from: from,
       to: to,
@@ -39,22 +43,43 @@ class ExpensesAddController {
     } else {
       this.checkedMembers[member.name] = member;
     }
+
+    if (this.transactionType === 'equal') {
+      this.createEqualTransactions();
+    }
     console.log('toggled', this.checkedMembers);
-    this.renderCheckedMembers();
   }
 
   createEqualTransactions() {
     let numberOfPeople = Object.keys(this.checkedMembers).length;
+    console.log('number of people: ', numberOfPeople);
     let portion = this.amount / numberOfPeople;
-    for (let i = 0; i < numberOfPeople; i++) {
+    console.log('Equal transactions run', portion);
+    let transactions = [];
+    for (let member in this.checkedMembers) {
+      for (let payer in this.payers) {
+        transactions.push({
+          from: this.checkedMembers[member],
+          to: this.payers[payer],
+          amount: portion / this.payers.length
+        });
 
+      }
+    }
+    this.displayCheckedMembers = transactions;
+  }
+
+  updateCheckedMembers() {
+    console.log('render checked members', this.displayCheckedMembers);
+
+  }
+
+  calculatePortion() {
+    console.log(this.selectedMembers, this.selectedMembers.length);
+    if (this.share === 'equal') {
+      this.portion = this.amount / this.selectedMembers.length;
     }
   }
-
-  renderCheckedMembers() {
-    console.log('render checked members', this.displayCheckedMembers);
-  }
-
 
 
 
