@@ -11,7 +11,7 @@ module.exports = (io) => {
 
     socket.on('id user', user => {
       socketUserMap[socket.id] = user;
-      console.log('Connected users: ', socketUserMap);
+      if (debug) { console.log('Connected users: ', socketUserMap); }
     });
 
     socket.on('enter plan-chat', plan => { // entering a specific plan based on planid
@@ -24,8 +24,8 @@ module.exports = (io) => {
       } else {
         chats[plan] = {connected: [socketUserMap[socket.id]], typing: []};
       }
-      console.log('SocketPlans: ', socketPlanMap);
-      console.log('PlanChats: ', chats);
+      if (debug) { console.log('SocketPlans: ', socketPlanMap); }
+      if (debug) { console.log('PlanChats: ', chats); }
     });
 
     socket.on('leave plan-chat', plan => {
@@ -36,7 +36,7 @@ module.exports = (io) => {
 
     socket.on('new message', plan => {
       if (debug) { console.log('user submitted new message in plan: ', plan); }
-      io.in(plan).emit('new message');
+      io.of('/chat').in(plan).emit('new message');
     });
 
     socket.on('started typing', plan => {

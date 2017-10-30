@@ -3,6 +3,10 @@
   align-items: center;
 }
 
+.chat-message-container:first-child {
+  margin-top: 0;
+}
+
 .chat-message-container.chat-self {
   justify-content: flex-end;
 }

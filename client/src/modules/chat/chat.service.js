@@ -12,9 +12,12 @@ export default class ChatService {
 
   setupChatSockets() {
     this.socket = socket('/chat');
-    this.socket.emit('id user', {id: this.UserService.user.id, name: this.UserService.user.name});
+    this.socket.emit('id user', this.UserService.user);
     this.socket.emit('enter plan-chat', this.planId);
-    this.socket.on('new message', () => this.loadNewMessages());
+    this.socket.on('new message', () => {
+      console.log('received new message event from socket');
+      this.loadNewMessages();
+    });
   }
 
   leaveChatRoom(planId) {
@@ -39,14 +42,24 @@ export default class ChatService {
   loadNewMessages() {
     const latest = this.messages[this.messages.length - 1].createdAt;
     return this.$http.get(`/api/messages/${this.planId}?after=${latest}`)
-      .then(resp => this.messages = this.messages.concat(resp.data.reverse()))
+      .then(resp => {
+        let newMsgs = resp.data.reverse();
+        if (this.messages[this.messages.length - 1]._id !== newMsgs[newMsgs.length - 1]._id) {
+          this.messages = this.messages.concat(newMsgs);
+        }
+      })
       .catch(err => console.log('Chat server error: ', err));
   }
 
   loadOlderMessages() {
     const oldest = this.messages[0].createdAt;
     return this.$http.get(`/api/messages/${this.planId}?before=${oldest}`)
-      .then(resp => this.messages = resp.data.reverse().concat(this.messages))
+      .then(resp => {
+        let newMsgs = resp.data.reverse();
+        if (this.messages[0]._id !== newMsgs[0]._id) { // protect against repeats
+          this.messages = newMsgs.concat(this.messages);
+        }
+      })
       .catch(err => console.log('Chat server error: ', err));
   }
 
