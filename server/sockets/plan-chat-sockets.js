@@ -41,46 +41,41 @@ module.exports = (io) => {
 
     socket.on('started typing', plan => {
       if (debug) { console.log('user started typing in plan: ', plan); }
-      chats[plan].typing.push(socketUserMap[socket.id]);
-      socket.to(plan).emit('started typing');
+      chats[plan] && chats[plan].typing.push(socketUserMap[socket.id]);
+      socket.to(plan).emit('users typing', chats[plan].typing);
     });
 
     socket.on('stopped typing', plan => {
       if (debug) { console.log('user stopped typing in plan: ', plan); }
-      socket.to(plan).emit('stopped typing');
+      const chatTyping = chats[plan] && chats[plan].typing.findIndex(u => u && u.id === socketUserMap[socket.id].id);
+      if (chatTyping > -1) { chats[plan].typing.splice(chatTyping, 1); }
+      socket.to(plan).emit('users typing', chats[plan].typing);
     });
 
     socket.on('disconnect', () => {
       if (debug) { console.log('user disconnected...'); }
       cleanupSocket(socket);
-      let dcUser = socketUserMap[socket.id];
     });
   });
 
   const cleanupSocket = (socket) => {
-    console.log('cleaningup socket: ', socket.id);
-    let user = socketUserMap[socket.id];
-    console.log('Cleaning up user: ', user);
+    const user = socketUserMap[socket.id];
     delete socketUserMap[socket.id];
 
-    let plan = socketPlanMap[socket.id];
+    const plan = socketPlanMap[socket.id];
     delete socketPlanMap[socket.id];
 
     if (chats[plan] && chats[plan].typing && chats[plan].connected) {
-      let chatConnection = chats[plan].connected.findIndex(u => u.id === user.id);
+      const chatConnection = chats[plan].connected.findIndex(u => u && u.id === user.id);
       if (chatConnection > -1) { chats[plan].connected.splice(chatConnection, 1); }
 
-      let chatTyping = chats[plan].typing.findIndex(u => u.Id === user.id);
+      const chatTyping = chats[plan].typing.findIndex(u => u && u.id === user.id);
       if (chatTyping > -1) { chats[plan].typing.splice(chatTyping, 1); }
 
       if (chats[plan].connected.length === 0) {
-        console.log('All disconnected from plan: ', plan, ' deleting plan chat storage');
         delete chats[plan];
       }
     }
-    console.log('Sockets cleaned. SocketUsers: ', socketUserMap);
-    console.log('SocketPlans: ', socketPlanMap);
-    console.log('PlanChats: ', chats);
     return user;
   };
 

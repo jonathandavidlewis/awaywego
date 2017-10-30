@@ -14,6 +14,7 @@ const ChatInputComponent = {
   bindings: {
     'msg': '=',
     'submit': '<',
+    'handleTyping': '<',
   },
   template: template,
   controller: ChatInputController

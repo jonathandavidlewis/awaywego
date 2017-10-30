@@ -10,6 +10,6 @@
       message="message" >
     </chat-message>
   </div>
-  <div class="chat-status">Jim is typing</div>
-  <chat-input submit="$ctrl.submit" msg="$ctrl.msg"></chat-input>
+  <div class="chat-status">{{$ctrl.ChatService.usersTyping|chatTyping}}</div>
+  <chat-input handle-typing="$ctrl.handleTyping" submit="$ctrl.submit" msg="$ctrl.msg"></chat-input>
 </div>

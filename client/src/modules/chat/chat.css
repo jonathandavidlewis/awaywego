@@ -7,3 +7,18 @@
   overflow: auto;
   padding: 0 10px;
 }
+
+.chat-header {
+  font-size: 1.2em;
+  color: var(--dk3);
+  border-bottom: 1px solid var(--dk3);
+  padding: 10px 0 5px 10px;
+}
+
+.chat-status {
+  padding: 5px 0 0 30px;
+  color: var(--da);
+  font-size: .8em;
+  font-style: italic;
+  border-top: 1px solid var(--m1);
+}
