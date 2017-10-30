@@ -23,6 +23,7 @@ class MakePlanController {
     this.subKey = 'e8ae475ded96446c8641f0aa607e623b';
     this.search = '';
     this.images = [];
+    this.spinner = false;
   }
 
   submit() {
@@ -50,7 +51,10 @@ class MakePlanController {
   }
 
   imageSearch(query) {
+    this.images = [];
+    this.spinner = true;
     this.ImageSearchService.imageSearch(query).then(resp => {
+      this.spinner = false;
       this.images = resp;
     });
   }

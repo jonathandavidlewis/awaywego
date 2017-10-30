@@ -22,7 +22,10 @@
             <div class="search-button awgd-button" name="image-search" ng-click="$ctrl.imageSearch($ctrl.search)">Search</div>
         </div>
       </div>
-      <div class="make-plan-images">
+      <div class="loading-spinner" ng-if="$ctrl.spinner">
+        <img src="https://assets.dice.com/techpro/img/loading32px.gif">
+      </div>
+      <div class="make-plan-images" ng-if="$ctrl.images.length">
         <div ng-repeat="image in $ctrl.images">
           <img class="result-image" ng-click="$ctrl.imageClick($event);" ng-src="{{ image }}" />
         </div>

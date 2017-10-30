@@ -55,6 +55,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin-bottom: 20px;
 }
 
 .make-plan-images img {
@@ -62,6 +63,12 @@
   height: auto;
   cursor: pointer;
   margin: 5px;
+}
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
 }
 
 .make-plan-images .highlight {
