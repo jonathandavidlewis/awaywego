@@ -5,6 +5,7 @@ node_js:
 sudo: enabled
 services: mongodb
 script:
+  - npm run travis-pack
   - npm test
   - npm run karma
 env:
