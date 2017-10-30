@@ -14,8 +14,12 @@ export default class ChatService {
 
   setupChatSockets() {
     this.socket = socket('/chat');
-    this.socket.emit('id user', this.UserService.user);
-    this.socket.emit('enter plan-chat', this.planId);
+    this.socket.on('id yourself', () => {
+      this.socket.emit('id user', this.UserService.user);
+    });
+    this.socket.on('pick room', () => {
+      this.socket.emit('enter plan-chat', this.planId);
+    });
     this.socket.on('new message', () => this.loadNewMessages());
     this.socket.on('users typing', usersTyping => {
       this.usersTyping = usersTyping;
@@ -23,12 +27,10 @@ export default class ChatService {
     });
   }
 
-  leaveChatRoom(planId) {
-    this.socket.emit('leave plan-chat', planId);
-  }
+  closeChatSocket(planId) { this.socket.disconnect(); }
 
   startTyping() { this.socket.emit('started typing', this.planId); }
-  
+
   stopTyping() { this.socket.emit('stopped typing', this.planId); }
 
   submitMessage(message) {
