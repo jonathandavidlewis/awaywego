@@ -58,12 +58,7 @@ class ExpensesAddController {
     let transactions = [];
     for (let member in this.checkedMembers) {
       for (let payer in this.payers) {
-        transactions.push({
-          from: this.checkedMembers[member],
-          to: this.payers[payer],
-          amount: portion / this.payers.length
-        });
-
+        transactions.push(this.createTransaction(this.checkedMembers[member], this.payers[payer], portion / this.payers.length));
       }
     }
     this.displayCheckedMembers = transactions;
