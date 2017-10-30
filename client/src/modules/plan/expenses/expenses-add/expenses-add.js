@@ -9,7 +9,7 @@ class ExpensesAddController {
     this.PlanService = PlanService;
     this.members = PlanService.currentPlan.members;
     this.checkedMembers = {};
-    this.displayCheckedMembers = [];
+    this.transactions = [];
     this.amount = '';
     this.payerToggle = false;
     this.payers = {};
@@ -82,11 +82,11 @@ class ExpensesAddController {
         }
       }
     }
-    this.displayCheckedMembers = transactions;
+    this.transactions = transactions;
   }
 
   updateCheckedMembers() {
-    console.log('render checked members', this.displayCheckedMembers);
+    console.log('render checked members', this.transactions);
 
   }
 
