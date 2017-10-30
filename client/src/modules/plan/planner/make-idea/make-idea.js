@@ -9,19 +9,15 @@ import template from './make-idea.html';
 import './make-idea.css';
 
 class MakeIdeaController {
-  constructor($state, EventService, $stateParams, ImageSearchService) {
-    this.$inject = ['$state', 'EventService', '$stateParams', 'ImageSearchService'];
+  constructor($state, EventService, $stateParams) {
+    this.$inject = ['$state', 'EventService', '$stateParams'];
     this.$state = $state;
     this.EventService = EventService;
     this.$stateParams = $stateParams;
-    this.ImageSearchService = ImageSearchService;
     this.title = '';
     this.desc = '';
     this.imageUrl = '';
     this.formWarning = '';
-    this.search = '';
-    this.images = [];
-    this.spinner = false;
   }
 
   submit() {
@@ -47,21 +43,6 @@ class MakeIdeaController {
       return false;
     }
     return true;
-  }
-
-  imageSearch(query) {
-    this.images = [];
-    this.spinner = true;
-    this.ImageSearchService.imageSearch(query).then(resp => {
-      this.spinner = false;
-      this.images = resp;
-    });
-  }
-
-  imageClick(e) {
-    this.imageUrl = e.target.currentSrc;
-    $('.make-idea-images img').removeClass('highlight');
-    $(e.target).addClass('highlight');
   }
 }
 

@@ -5,25 +5,19 @@ import PlanService from '../../services/plan/plan.service';
 import ImageSearchService from '../../services/images/image.search.service';
 
 // imports for this component
+import ImageSearchComponent from '../image-search/image-search';
 import template from './make-plan.html';
 import './make-plan.css';
 
 class MakePlanController {
-  constructor($state, PlanService, ImageSearchService) {
+  constructor($state, PlanService) {
     this.$inject = ['$state', 'PlanService', '$http'];
     this.$state = $state;
     this.PlanService = PlanService;
-    this.ImageSearchService = ImageSearchService;
     this.title = '';
     this.desc = '';
-    this.imageUrl = '';
+    this.imageUrl = 'woo';
     this.formWarning = '';
-    this.host = 'https://api.cognitive.microsoft.com';
-    this.path = '/bing/v7.0/images/search';
-    this.subKey = 'e8ae475ded96446c8641f0aa607e623b';
-    this.search = '';
-    this.images = [];
-    this.spinner = false;
   }
 
   submit() {
@@ -49,21 +43,6 @@ class MakePlanController {
     }
     return true;
   }
-
-  imageSearch(query) {
-    this.images = [];
-    this.spinner = true;
-    this.ImageSearchService.imageSearch(query).then(resp => {
-      this.spinner = false;
-      this.images = resp;
-    });
-  }
-
-  imageClick(e) {
-    this.imageUrl = e.target.currentSrc;
-    $('.make-plan-images img').removeClass('highlight');
-    $(e.target).addClass('highlight');
-  }
 }
 
 const MakePlanComponent = {
@@ -75,6 +54,7 @@ const MakePlanComponent = {
 
 const MakePlanModule = angular.module('app.makePlan', [])
   .component('makePlan', MakePlanComponent)
+  .component('imageSearch', ImageSearchComponent)
   .service('PlanService', PlanService)
   .service('ImageSearchService', ImageSearchService);
 

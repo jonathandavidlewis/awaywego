@@ -1,0 +1,47 @@
+.search-input-block {
+  margin-bottom: 20px;
+}
+
+.search-input-block label {
+  color: var(--dk3);
+  font-size: 1.1em;
+}
+
+.search-image-container {
+  display: flex;
+}
+
+.search-button {
+  flex-basis: 20%;
+  margin-left: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.1em;
+  cursor: pointer;
+}
+
+.search-images {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.search-images img {
+  width: 75px;
+  height: auto;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.search-images .highlight {
+  outline: 5px solid var(--dk3);
+  outline-offset: -5px;
+}
