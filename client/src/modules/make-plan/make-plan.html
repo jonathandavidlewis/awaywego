@@ -18,7 +18,6 @@
         <div class="make-plan-image-search-container">
           <input class="awgl-form-input form-control" name="plan-image"
             type="text" placeholder="Image search" ng-model="$ctrl.search"/>
-            <plan-card delete-plan="$ctrl.deletePlan" plan="plan" ng-repeat="plan in $ctrl.plans"></plan-card>
             <div class="search-button awgd-button" name="image-search" ng-click="$ctrl.imageSearch($ctrl.search)">Search</div>
         </div>
       </div>

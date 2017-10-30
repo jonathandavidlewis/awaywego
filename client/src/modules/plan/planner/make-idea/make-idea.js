@@ -19,7 +19,9 @@ class MakeIdeaController {
     this.desc = '';
     this.imageUrl = '';
     this.formWarning = '';
+    this.search = '';
     this.images = [];
+    this.spinner = false;
   }
 
   submit() {
@@ -48,7 +50,10 @@ class MakeIdeaController {
   }
 
   imageSearch(query) {
+    this.images = [];
+    this.spinner = true;
     this.ImageSearchService.imageSearch(query).then(resp => {
+      this.spinner = false;
       this.images = resp;
     });
   }
