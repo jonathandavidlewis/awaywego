@@ -51,3 +51,7 @@
 .signup-other-container a {
   color: var(--m1);
 }
+
+.google-button-label {
+  margin-left: 5px;
+}
