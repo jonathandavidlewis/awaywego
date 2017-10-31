@@ -14,7 +14,6 @@ class IdeasController {
   constructor(EventService, PlanService) {
     this.EventService = EventService;
     this.planId = PlanService.currentPlan._id;
-    this.ideas = EventService.ideas;
 
     this.deleteEvent = this.deleteEvent.bind(this);
     this.promoteEvent = this.promoteEvent.bind(this);
