@@ -11,6 +11,7 @@ import MakePlanModule from './modules/make-plan/make-plan';
 import FriendsModule from './modules/friends/friends';
 import PeopleModule from './modules/plan/people/people';
 import ChatModule from './modules/chat/chat';
+import CommentsModule from './modules/comments/comments';
 
 // import global services
 import UserService from './services/user/user.service';
@@ -48,7 +49,8 @@ angular.module('app', [
   MakePlanModule,
   FriendsModule,
   PeopleModule,
-  ChatModule
+  ChatModule,
+  CommentsModule
 ])
   .service('UserService', UserService)
   .service('FriendService', FriendService)
