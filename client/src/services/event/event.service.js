@@ -12,11 +12,7 @@ export default class EventService {
     return this.http.get(`/api/event/inplan/${planId}`).then(resp => {
       resp.data.forEach(event => this.events[event._id] = event);
       // don't wait on loading comments to consider events loaded
-      for (const eventId in this.events) {
-        this.http.get(`/api/comments/${eventId}`).then(resp => {
-          this.events[eventId].comments = resp.data;
-        });
-      }
+      for (const eventId in this.events) { this.getCommentsForEvent(eventId); }
     });
   }
 
@@ -42,8 +38,34 @@ export default class EventService {
 
   upvoteEvent(eventId) { return this.http.put(`api/event/${eventId}/upvote`); }
 
-//=========== COMMENT LOGIC ===========\\
+  //=========== COMMENT LOGIC ===========\\
 
+  getCommentsForEvent(eventId) {
+    return this.http.get(`/api/comments/${eventId}`).then(resp => {
+      this.events[eventId].comments = resp.data.reverse();
+    });
+  }
 
+  postCommentForEvent(eventId, comment) {
+    return this.http.post(`/api/comments/${eventId}`, comment).then(resp => {
+      this.events[eventId].comments.push(resp.data);
+    });
+  }
 
+  updateCommentForEvent(eventId, commentId, newText) {
+    return this.http.put(`/api/comments/${eventId}/${commentId}`, {text: newText})
+      .then(resp => {
+        const newComment = resp.data;
+        const oldComment = this.events[eventId].comments.find(c => c._id === commentId);
+        oldComment.text = newComment.text;
+        oldComment.updatedAt = newComment.updatedAt;
+      });
+  }
+
+  removeCommentForEvent(eventId, commentId) {
+    return this.http.delete(`/api/comments/${eventId}/${commentId}`).then(resp => {
+      const toRemove = this.events[eventId].comments.findIndex(c => c._id === commentId);
+      this.events[eventId].splice(toRemove, 1);
+    });
+  }
 }
