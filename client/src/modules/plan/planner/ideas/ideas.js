@@ -22,13 +22,13 @@ class IdeasController {
 
   deleteEvent(eventId) {
     this.EventService.deleteEvent(eventId).then(() => {
-      this.EventService.loadEventsByPlanId(this.$stateParams.planId).then(this.loadEvents);
+      this.EventService.loadEventsByPlanId(this.planId);
     });
   }
 
   promoteEvent(eventId) {
     this.EventService.promoteEvent(eventId).then(() => {
-      this.EventService.loadEventsByPlanId(this.$stateParams.planId).then(this.loadEvents);
+      this.EventService.loadEventsByPlanId(this.planId);
     });
   }
 }
