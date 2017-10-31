@@ -1,0 +1,15 @@
+.expenses-summary-bar-container {
+  display: flex;
+  background-color: var(--lt);
+  justify-content: space-around;
+  height: 40px;
+  border-top: 1px solid var(--da);
+  border-bottom: 1px solid var(--da);
+}
+
+
+.expenses-summary-bar-item-container {
+  flex: 1 0 0;
+  border-right: 1px solid var(--da);
+  font-size: .9em;
+}
