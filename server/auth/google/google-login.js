@@ -17,7 +17,6 @@ const loginGoogleUser = (req, res) => {
 
   User.findOne({email: email}).then((user) => {
     if (user) {
-      //todo: res.render(login) and give message 'User already exists. Try logging in with your password'
       console.log('ARRIVED_ERR');
       const token = jwt.sign({name: user.name, userId: user._id, email: user.email}, jwtOptions.secretOrKey);
       console.log(token, typeof token);
