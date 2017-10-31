@@ -53,7 +53,7 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
     url: '/plan/{planId}',
     component: 'plan',
     resolve: {
-      events: ['$stateParams', 'EventService', function($stateParams, EventService) {
+      loadEvents: ['$stateParams', 'EventService', function($stateParams, EventService) {
         return EventService.loadEventsByPlanId($stateParams.planId);
       }],
       loadPlan: ['$stateParams', 'PlanService', function($stateParams, PlanService) {

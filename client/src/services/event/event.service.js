@@ -1,17 +1,21 @@
 export default class EventService {
-  constructor($http) {
-    this.$inject = ['$http'];
+  constructor($http, $rootScope) {
+    this.$inject = ['$http', '$rootScope'];
     this.http = $http;
+    this.rootScope = $rootScope;
     this.events = {};
+    this.ideas = [];
+    this.feed = [];
   }
-
 
   //===========  EVENT LOGIC ===========\\
 
   loadEventsByPlanId(planId) {
     return this.http.get(`/api/event/inplan/${planId}`).then(resp => {
-      resp.data.forEach(event => this.events[event._id] = event);
-      // don't wait on loading comments to consider events loaded
+      resp.data.forEach(event => {
+        this.events[event._id] = event;
+        if (event.status === 'idea') { this.ideas.push(event); }
+      });
       for (const eventId in this.events) { this.getCommentsForEvent(eventId); }
     });
   }
@@ -65,7 +69,7 @@ export default class EventService {
   removeCommentForEvent(eventId, commentId) {
     return this.http.delete(`/api/comments/${eventId}/${commentId}`).then(resp => {
       const toRemove = this.events[eventId].comments.findIndex(c => c._id === commentId);
-      this.events[eventId].splice(toRemove, 1);
+      this.events[eventId].comments.splice(toRemove, 1);
     });
   }
 }

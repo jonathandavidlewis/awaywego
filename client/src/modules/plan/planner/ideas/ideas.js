@@ -1,29 +1,23 @@
 import angular from 'angular';
+import _ from 'lodash';
 
 // import child dependencies
 import IdeasCardComponent from './ideas-card/ideas-card.js';
 import NewIdeaButtonComponent from './new-idea-button/new-idea-button';
-
 
 // imports for this component
 import EventService from '../../../../services/event/event.service';
 import template from './ideas.html';
 import './ideas.css';
 
-
-
 class IdeasController {
-  constructor(EventService, $stateParams) {
+  constructor(EventService, PlanService) {
     this.EventService = EventService;
-    this.$stateParams = $stateParams;
-    this.loadEvents = this.loadEvents.bind(this);
+    this.planId = PlanService.currentPlan._id;
+    this.ideas = EventService.ideas;
+
     this.deleteEvent = this.deleteEvent.bind(this);
     this.promoteEvent = this.promoteEvent.bind(this);
-    this.$onInit = this.$onInit.bind(this);
-  }
-
-  loadEvents(events) {
-    this.events = events.filter((event) => event.status === 'idea');
   }
 
   deleteEvent(eventId) {
@@ -37,12 +31,8 @@ class IdeasController {
       this.EventService.loadEventsByPlanId(this.$stateParams.planId).then(this.loadEvents);
     });
   }
-
-  $onInit() {
-    this.EventService.loadEventsByPlanId(this.$stateParams.planId).then(this.loadEvents);
-  }
 }
-IdeasController.$inject = ['EventService', '$stateParams'];
+IdeasController.$inject = ['EventService', 'PlanService'];
 
 const IdeasComponent = {
   restrict: 'E',
