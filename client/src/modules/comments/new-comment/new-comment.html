@@ -1,0 +1,10 @@
+<div class="new-comment-container">
+  <form class="comment-input-container" name="newCommentForm" ng-submit="$ctrl.submit()">
+    <textarea class="comment-input awgl-form-input awg-form-input-narrow"
+      maxlength=200 ng-keypress="$ctrl.handleTyping($event)"
+      ng-model="$ctrl.comment" required></textarea>
+    <button ng-disabled="newCommentForm.$invalid" type="submit" class="comment-submit">
+      <i class="material-icons">send</i>
+    </button>
+  </form>
+</div>

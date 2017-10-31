@@ -5,13 +5,32 @@ import template from './new-comment.html';
 import './new-comment.css';
 
 class NewCommentController {
-  constructor() {
+  constructor(EventService) {
+    this.EventService = EventService;
+    this.comment = '';
   }
+
+  handleTyping(event) {
+    if (event.key === 'Enter' && this.comment.length) {
+      this.submit();
+    }
+  }
+
+  submit() {
+    this.EventService.postCommentForEvent(this.eventId, this.comment)
+      .then(() => {
+        this.comment = '';
+      });
+  }
+
 }
+NewCommentController.$inject = ['EventService'];
 
 const NewCommentComponent = {
   restrict: 'E',
-  bindings: {},
+  bindings: {
+    eventId: '<'
+  },
   template: template,
   controller: NewCommentController
 };
