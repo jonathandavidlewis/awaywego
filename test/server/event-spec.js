@@ -76,7 +76,7 @@ describe('/api', function() {
           .set(AUTH)
           .expect(201)
           .then((response) => {
-            PlanEvent.findOne({_id: response.body.eventId}).then((planEvent) => {
+            PlanEvent.findOne({_id: response.body._id}).then((planEvent) => {
               expect(planEvent).to.exist;
               done();
             });
@@ -86,7 +86,7 @@ describe('/api', function() {
 
     describe('GET', function() {
       it('should get all events for a particular planId', function(done) {
-        req.get('/api/event/' + TEST_EVENT.planId)
+        req.get('/api/event/inplan/' + TEST_EVENT.planId)
           .set(AUTH)
           .expect(200)
           .then((response) => {
@@ -100,7 +100,7 @@ describe('/api', function() {
       let EVENT_ID;
 
       before(function(done) {
-        req.get('/api/event/' + TEST_EVENT.planId)
+        req.get('/api/event/inplan/' + TEST_EVENT.planId)
           .set(AUTH)
           .expect(200)
           .then((response) => {
@@ -231,7 +231,7 @@ describe('/api', function() {
 
     describe('DELETE', function() {
       it('should delete an event by id', function(done) {
-        req.get(`/api/event/${TEST_EVENT.planId}`)
+        req.get(`/api/event/inplan/${TEST_EVENT.planId}`)
           .set(AUTH)
           .expect(200)
           .then((response) => {
