@@ -182,7 +182,7 @@ export default class EventService {
   }
 
   postCommentForEvent(eventId, comment) {
-    return this.http.post(`/api/comments/${eventId}`, comment).then(resp => {
+    return this.http.post(`/api/comments/${eventId}`, {text: comment}).then(resp => {
       this.events[eventId].comments.push(resp.data);
     });
   }
