@@ -7,8 +7,9 @@ const Promise = require('bluebird');
 let userSchema = new Schema({
   name: {type: String, required: true},
   email: {type: String, required: true, unique: true},
-  password: {type: String, required: true},
-  profilePic: String
+  password: {type: String, required: false},
+  profilePic: String,
+  googleId: Number
 });
 
 userSchema.methods.comparePassword = function(pwd) {
@@ -16,10 +17,17 @@ userSchema.methods.comparePassword = function(pwd) {
 };
 
 userSchema.pre('save', function(next) {
-  return bcrypt.hash(this.password, 10).then(hash => {
-    this.password = hash;
+  if (this.password) {
+    return bcrypt.hash(this.password, 10).then(hash => {
+      this.password = hash;
+      next();
+    });
+  } else if (this.googleId) {
     next();
-  });
+  } else {
+    throw new Error('Password or Oauth required');
+  }
+
 });
 
 var User = mongoose.model('User', userSchema);

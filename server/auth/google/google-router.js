@@ -8,6 +8,7 @@ const debug = process.env.DEBUG || false;
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET} = require('../../../keys.config.js');
 const passport = require('passport');
+const { loginGoogleUser } = require('./google-utils');
 
 
 passport.use(new GoogleStrategy({
@@ -46,13 +47,20 @@ googleRouter.get( '/callback', passport.authenticate('google', {
   //successRedirect: '/',
   failureRedirect: '/error/',
   session: false
-}), function(req, res) {
-  console.log('USER IS______________', req.user);
-  console.log(JSON.stringify(req.user.emails[0].value));
-  //req.user is the profile...
-  var token = jwtAuth.encode(req.user);
-  res.redirect('/home?token=' + token);
-});
+}), loginGoogleUser);
 
 
 module.exports = googleRouter;
+
+
+
+
+
+var extra = function(req, res) {
+  console.log('USER IS______________', req.user);
+  console.log(JSON.stringify(req.user.emails[0].value));
+  console.log('REQUEST BODY:_________', JSON.stringify(req.body));
+  //req.user is the profile...
+  var token = jwtAuth.encode(req.user);
+  res.redirect('/home?token=' + token);
+}
