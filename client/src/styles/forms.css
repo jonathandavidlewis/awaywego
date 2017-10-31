@@ -19,6 +19,11 @@
   border-radius: 0 !important;
 }
 
+.awg-form-input-narrow {
+  padding: .3em .4em !important;
+  font-size: 1em;
+}
+
 /* #### DARK FORM & BUTTON COLOR SCHEME - AWGD #### */
 /* Basic input field styling */
 .awgd-form-input {
