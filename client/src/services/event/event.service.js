@@ -183,17 +183,21 @@ export default class EventService {
 
   postCommentForEvent(eventId, comment) {
     return this.http.post(`/api/comments/${eventId}`, {text: comment}).then(resp => {
-      this.events[eventId].comments.push(resp.data);
+      this.events[eventId].comments.push(resp.data.newComment);
+      this.eventSocket.emit('updated event in plan',
+        {plan: this.events[eventId].planId, event: this.events[eventId]});
     });
   }
 
   updateCommentForEvent(eventId, commentId, newText) {
     return this.http.put(`/api/comments/${eventId}/${commentId}`, {text: newText})
       .then(resp => {
-        const newComment = resp.data;
+        const newComment = resp.data.updatedComment;
         const oldComment = this.events[eventId].comments.find(c => c._id === commentId);
         oldComment.text = newComment.text;
         oldComment.updatedAt = newComment.updatedAt;
+        this.eventSocket.emit('updated event in plan',
+          {plan: this.events[eventId].planId, event: this.events[eventId]});
       });
   }
 
@@ -201,6 +205,8 @@ export default class EventService {
     return this.http.delete(`/api/comments/${eventId}/${commentId}`).then(resp => {
       const toRemove = this.events[eventId].comments.findIndex(c => c._id === commentId);
       this.events[eventId].comments.splice(toRemove, 1);
+      this.eventSocket.emit('updated event in plan',
+        {plan: this.events[eventId].planId, event: this.events[eventId]});
     });
   }
 }
