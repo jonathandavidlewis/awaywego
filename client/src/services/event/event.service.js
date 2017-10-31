@@ -30,6 +30,12 @@ export default class EventService {
     });
   }
 
+  refreshEvent(eventId) {
+    return this.http.get(`/api/event/${eventId}`).then(resp => {
+      this.events[eventId] = resp.data;
+    });
+  }
+
   getEvent(eventId) { return this.events[eventId]; }
 
   submitNewEvent(event) { return this.http.post('/api/event', event); }
