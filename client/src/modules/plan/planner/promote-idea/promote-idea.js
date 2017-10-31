@@ -83,6 +83,14 @@ class PromoteIdeaController {
     }
     return true;
   }
+
+  findLocation() {
+    this.AddressService.findLocation((src) => {
+      let img = new Image();
+      img.src = src;
+      document.getElementById('address').appendChild(img);
+    });
+  }
 }
 
 PromoteIdeaController.$inject = ['EventService', '$stateParams', '$state', 'AddressService'];
