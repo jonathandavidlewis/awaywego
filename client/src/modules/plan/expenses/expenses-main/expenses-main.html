@@ -1,9 +1,10 @@
-<div>Summary Bar</div>
-<div> This is expenses Main </div>
 
-<div class="expenses-card" ng-repeat="expense in $ctrl.expenses">Amount: {{expense.amount}}, Description: {{expense.description}}</div>
-<div class="expenses-main-add-button-container">
-  <a ui-sref="^.add">
-    <button class="awgd-button">Add Expense</button>
-  </a>
+<div class="expenses-main-container">
+  <expenses-summary-bar />
+  <div class="expenses-card" ng-repeat="expense in $ctrl.expenses">Amount: {{expense.amount}}, Description: {{expense.description}}</div>
+  <div class="expenses-main-add-button-container">
+    <a ui-sref="^.add">
+      <button class="awgd-button">Add Expense</button>
+    </a>
+  </div>
 </div>

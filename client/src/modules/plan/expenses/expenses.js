@@ -9,7 +9,7 @@ import ExpensesMainComponent from './expenses-main/expenses-main';
 import ExpensesAddComponent from './expenses-add/expenses-add';
 import ExpensesAddPeopleComponent from './expenses-add/expenses-add-people/expenses-add-people';
 import ExpensesAddPeopleCardComponent from './expenses-add/expenses-add-people/expenses-add-people-card/expenses-add-people-card';
-
+import ExpensesSummaryBarComponent from './expenses-main/expenses-summary-bar/expenses-summary-bar';
 // imports for this component
 import template from './expenses.html';
 import './expenses.css';
@@ -34,6 +34,7 @@ const ExpensesModule = angular.module('app.plan.expenses', [])
   .component('expensesAdd', ExpensesAddComponent)
   .component('expensesAddPeople', ExpensesAddPeopleComponent)
   .component('expensesAddPeopleCard', ExpensesAddPeopleCardComponent)
+  .component('expensesSummaryBar', ExpensesSummaryBarComponent)
   .service('PlanService', PlanService)
   .service('ExpensesService', ExpensesService);
 export default ExpensesModule.name;

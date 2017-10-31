@@ -3,7 +3,7 @@ const Expense = require('../../db/models/expense.js');
 const Transaction = require('../../db/models/transaction.js');
 
 expensesRouter.post('/', (req, res) => {
-  let transactions = req.body.transactions;
+  let newTransactions = req.body.transactions;
 
   const newExpense = {
     userId: req.user._id,
@@ -18,7 +18,7 @@ expensesRouter.post('/', (req, res) => {
       transactions[i].expenseId = expense._id;
     }
 
-    Transaction.create(transactions).then((transactions) => {
+    Transaction.create(newTransactions).then((transactions) => {
       for (let i = 0; i < transactions.length; i++) {
         expense.transactions.push(transactions[i]._id);
       }
