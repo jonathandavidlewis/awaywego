@@ -5,6 +5,7 @@ const Schema = mongoose.Schema;
 
 const expenseSchema = new Schema({
   userId: { type: Schema.ObjectId, ref: 'User', required: true },
+  planId: { type: Schema.ObjectId, ref: 'Plan', required: true },
   description: String,
   transactions: [{type: Schema.ObjectId, ref: 'Transaction'}]
 }, { timestamps: true });
