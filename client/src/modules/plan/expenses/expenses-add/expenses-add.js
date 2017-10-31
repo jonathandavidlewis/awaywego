@@ -92,7 +92,7 @@ class ExpensesAddController {
   createEqualTransactions() {
     let numberOfPeople = Object.keys(this.checkedMembers).length;
     let numberOfPayers = Object.keys(this.payers).length;
-    let portion = this.amount / numberOfPayers / (numberOfPeople + numberOfPayers);
+    let portion = this.roundMoney(this.amount / numberOfPayers / (numberOfPeople + numberOfPayers));
     let transactions = [];
     for (let member in this.checkedMembers) {
       for (let payer in this.payers) {
@@ -119,6 +119,10 @@ class ExpensesAddController {
     }).catch(err => {
       console.log('Server error: ', err);
     });
+  }
+
+  roundMoney(value) {
+    return Number(Math.round(value + 'e+2') + 'e-2');
   }
 
 }
