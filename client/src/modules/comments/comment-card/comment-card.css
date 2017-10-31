@@ -1,0 +1,7 @@
+.comment-avatar-pic {
+  width: 30px;
+  height: 30px;
+  background-size: contain;
+  background-position: center center;
+  border-radius: 50%;
+}
