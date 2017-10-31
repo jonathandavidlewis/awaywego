@@ -7,7 +7,12 @@
     </div>
   </div>
   <div ng-show="$ctrl.isOpen" class="comments-drawer">
-    <span>Comment drawer goes here!</span>
+    <div class="comments-list-container">
+      <comment-card
+        ng-repeat="comment in $ctrl.EventService.events[$ctrl.eventId].comments"
+        comment="comment">
+      </comment-card>
+    </div>
     <div class="comments-drawer-new-comment">
       <new-comment event-id="$ctrl.eventId"></new-comment>
     </div>
