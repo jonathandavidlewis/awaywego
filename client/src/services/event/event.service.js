@@ -6,6 +6,14 @@ export default class EventService {
     this.events = {};
     this.ideas = [];
     this.feed = [];
+
+    // HELPER METHODS to debug, remove when done!
+    // window.evs = this;
+    // window.triggerDigest = () => this.rootScope.$apply();
+    // window.upvoteEvent = (userId) => {
+    //   this.events['59f27698be6a1c024291e684'].upVotes.push(userId);
+    //   window.triggerDigest();
+    // };
   }
 
   //===========  EVENT LOGIC ===========\\
@@ -40,9 +48,17 @@ export default class EventService {
 
   demoteEvent(eventId) { return this.http.put(`api/event/${eventId}/demote`); }
 
-  downvoteEvent(eventId) { return this.http.put(`api/event/${eventId}/downvote`); }
+  downvoteEvent(eventId) {
+    return this.http.put(`api/event/${eventId}/downvote`).then(resp => {
+      this.events[eventId] = resp.data;
+    });
+  }
 
-  upvoteEvent(eventId) { return this.http.put(`api/event/${eventId}/upvote`); }
+  upvoteEvent(eventId) {
+    return this.http.put(`api/event/${eventId}/upvote`).then(resp => {
+      this.events[eventId] = resp.data;
+    });
+  }
 
   //=========== COMMENT LOGIC ===========\\
 

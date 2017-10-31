@@ -6,9 +6,10 @@ import template from './ideas-card.html';
 import './ideas-card.css';
 
 class IdeasCardController {
-  constructor(EventService) {
+  constructor(EventService, UserService) {
     this.EventService = EventService;
-    this.totalVotes = 0;
+    this.userId = UserService.user.id;
+
     this.upVote = this.upVote.bind(this);
     this.downVote = this.downVote.bind(this);
     this.handleDeleteClick = this.handleDeleteClick.bind(this);
@@ -16,49 +17,28 @@ class IdeasCardController {
   }
 
   handleDeleteClick() {
-    this.deleteEvent(this.event._id);
+    this.deleteEvent(this.eventId);
   }
 
   handlePromoteClick() {
-    this.promoteEvent(this.event._id);
-  }
-
-  $onInit() {
-    this.totalVotes = this.sumVotes();
-  }
-
-  sumVotes() {
-    let sum = this.event.upVotes.length - this.event.downVotes.length;
-    if (sum > 0) {
-      return '+ ' + sum;
-    } else {
-      return sum;
-    }
+    this.promoteEvent(this.eventId);
   }
 
   upVote() {
-    this.EventService.upvoteEvent(this.event._id).then((event) => {
-      this.event.upVotes = event.data.upVotes;
-      this.event.downVotes = event.data.downVotes;
-      this.totalVotes = this.sumVotes();
-    });
+    this.EventService.upvoteEvent(this.eventId);
   }
 
   downVote() {
-    this.EventService.downvoteEvent(this.event._id).then((event) => {
-      this.event.upVotes = event.data.upVotes;
-      this.event.downVotes = event.data.downVotes;
-      this.totalVotes = this.sumVotes();
-    });
+    this.EventService.downvoteEvent(this.eventId);
   }
 }
 
-IdeasCardController.$inject = ['EventService'];
+IdeasCardController.$inject = ['EventService', 'UserService'];
 
 const IdeasCardComponent = {
   restrict: 'E',
   bindings: {
-    event: '<',
+    eventId: '<',
     deleteEvent: '<',
     promoteEvent: '<'
   },

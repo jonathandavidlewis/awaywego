@@ -71,6 +71,10 @@
 .ideas-card-likes {
   width: 50px;
   text-align: center;
+  font-size: 1.1em;
+  font-weight: bold;
+  font-style: italic;
+  color: var(--dk3);
 }
 
 .ideas-card-vote,
@@ -80,6 +84,19 @@
 
 .ideas-card-vote:hover {
   color: var(--m3);
+}
+
+.ideas-card-vote.upvoted,
+.ideas-card-vote.downvoted {
+  cursor: default;
+}
+
+.ideas-card-vote.upvoted {
+  color: var(--m3);
+}
+
+.ideas-card-vote.downvoted {
+  color: red;
 }
 
 .ideas-card-actions a {
