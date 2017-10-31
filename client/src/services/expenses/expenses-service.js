@@ -15,14 +15,12 @@ export default class ExpensesService {
   }
 
   getExpenses(planId) {
-    return this.http.get(`/api/expenses/${planId}`).then((expenses) => this.expenses = expenses);
+    return this.http.get('/api/expenses').then((expenses) => this.expenses = expenses);
   }
-
 
   addTransaction(expenseId) {
     return this.http.put(`/api/expenses/add/${expenseId}`).then(() => this.getExpenses());
   }
-
 
   removeTransaction(transactionId) {
     return this.http.delete(`/api/expenses/remove/${transactionId}`);

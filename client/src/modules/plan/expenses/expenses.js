@@ -18,6 +18,7 @@ class ExpensesController {
   constructor() {
   }
 }
+
 ExpensesController.$inject = [];
 
 const ExpensesComponent = {
