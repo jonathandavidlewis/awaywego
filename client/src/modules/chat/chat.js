@@ -39,7 +39,7 @@ class ChatController {
 
   //==== chat room comms ====\\
   submit() { this.ChatService.submitMessage(this.msg).then(() => this.msg = ''); }
-  $onDestroy() { this.ChatService.closeChatSocket(this.planId); }
+  $onDestroy() { this.ChatService.closeChatSocket(); }
 
   handleTyping(event) {
     if (event.key === 'Enter') {

@@ -9,7 +9,7 @@ export default class ChatService {
     this.messages = [];
     this.usersTyping = [];
     this.planId = '';
-    this.chatSocket = null;
+    this.socket = null;
   }
 
   setupChatSockets() {
@@ -27,7 +27,7 @@ export default class ChatService {
     });
   }
 
-  closeChatSocket(planId) { this.socket.disconnect(); }
+  closeChatSocket() { this.socket.disconnect(); }
 
   startTyping() { this.socket.emit('started typing', this.planId); }
 
