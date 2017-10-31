@@ -27,6 +27,7 @@ commentRouter.post('/:planEventId', (req, res) => {
     text: req.body.text
   };
   Comment.create(newComment)
+    .then(newComment => newComment.populate('user', '-password').execPopulate())
     .then(newComment => res.status(201).json({message: 'created', newComment}))
     .catch(err => handleError(req, res, err));
 });
