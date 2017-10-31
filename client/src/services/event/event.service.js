@@ -1,11 +1,15 @@
+import socket from 'socket.io-client';
+
 export default class EventService {
-  constructor($http, $rootScope) {
-    this.$inject = ['$http', '$rootScope'];
+  constructor($http, $rootScope, UserService) {
+    this.$inject = ['$http', '$rootScope', 'UserService'];
+    this.user = UserService.user;
     this.http = $http;
     this.rootScope = $rootScope;
     this.events = {};
     this.ideas = [];
     this.feed = [];
+    this.eventSocket = null;
 
     // HELPER METHODS to debug, remove when done!
     // window.evs = this;
@@ -16,9 +20,68 @@ export default class EventService {
     // };
   }
 
+  //===========  SOCKET LOGIC ===========\\
+
+  setupEventSocket(planId) {
+    if (this.eventSocket) { this.eventSocket.disconnect(); }
+    this.eventSocket = socket('/events');
+    this.eventSocket.on('id yourself', () => {
+      this.eventSocket.emit('id user', user);
+    });
+    this.eventSocket.on('pick room', () => {
+      this.eventSocket.emit('enter plan-events', planId);
+    });
+
+    this.eventSocket.on('new event', event => this.handleNewEvent(event));
+    this.eventSocket.on('update event', event => this.handleUpdateEvent(event));
+    this.eventSocket.on('scheduled event', event => this.handleUpdateEvent(event));
+    this.eventSocket.on('unscheduled event', event => this.handleUpdateEvent(event));
+  }
+
+  handleNewEvent(event) {
+    if (this.events[event._id]) { // we already have it, need to update instead!
+      this.handleUpdateEvent(event);
+    } else {
+      this.events[event._id] = event;
+      if (event.status === 'idea') {
+        this.ideas.push(event);
+      } else if (event.status === 'feed') {
+        this.feed.push(event);
+      }
+    }
+    this.rootScope.$apply();
+  }
+
+  handleUpdateEvent(event) {
+    if (!this.events[event._id]) {
+      this.handleNewEvent(event);
+    } else {
+      this.events[event._id] = event;
+      const ideaIndex = this.ideas.findIndex(ev => ev._id === event._id);
+      const feedIndex = this.feed.findIndex(ev => ev._id === event._id);
+      if (event.status === 'idea') {
+        if (ideaIndex > -1) {
+          this.ideas[ideaIndex] = event;
+        } else {
+          this.ideas.push(event);
+        }
+        if (feedIndex > -1) { this.feed.splice(feedIndex, 1); }
+      } else if (event.status === 'feed') {
+        if (feedIndex > -1) {
+          this.feed[feedIndex] = event;
+        } else {
+          this.feed.push(event);
+        }
+        if (ideaIndex > -1) { this.ideas.splice(ideaIndex, 1); }
+      }
+    }
+    this.rootScope.$apply();
+  }
+
   //===========  EVENT LOGIC ===========\\
 
   loadEventsByPlanId(planId) {
+    this.setupEventSocket(planId);
     return this.http.get(`/api/event/inplan/${planId}`).then(resp => {
       this.ideas = [];
       this.feed = [];
@@ -38,21 +101,42 @@ export default class EventService {
 
   getEvent(eventId) { return this.events[eventId]; }
 
-  submitNewEvent(event) { return this.http.post('/api/event', event); }
+  submitNewEvent(event) {
+    return this.http.post('/api/event', event).then(resp => {
+      this.eventSocket.emit('new event in plan',
+        {plan: event.planId, event: event});
+    });
+  }
 
   updateEvent(eventId, updatedEvent) {
     if (typeof eventId === 'object' && updatedEvent === undefined) {
       updatedEvent = eventId;
       eventId = updatedEvent._id;
     }
-    return this.http.put(`/api/event/${eventId}`, updatedEvent);
+    return this.http.put(`/api/event/${eventId}`, updatedEvent)
+      .then(updatedEvent => {
+        this.eventSocket.emit('updated event in plan',
+          {plan: updatedEvent.planId, event: updatedEvent});
+      });
   }
 
   deleteEvent(eventId) { return this.http.delete(`/api/event/${eventId}`); }
 
-  promoteEvent(event) { return this.http.put(`api/event/${event._id}/promote`, event); }
+  promoteEvent(event) {
+    return this.http.put(`api/event/${event._id}/promote`, event)
+      .then(updatedEvent => {
+        this.eventSocket.emit('updated event in plan',
+          {plan: updatedEvent.planId, event: updatedEvent});
+      });
+  }
 
-  demoteEvent(eventId) { return this.http.put(`api/event/${eventId}/demote`); }
+  demoteEvent(eventId) {
+    return this.http.put(`api/event/${eventId}/demote`)
+      .then(updatedEvent => {
+        this.eventSocket.emit('updated event in plan',
+          {plan: updatedEvent.planId, event: updatedEvent});
+      });
+  }
 
   downvoteEvent(eventId) {
     return this.http.put(`api/event/${eventId}/downvote`).then(resp => {
