@@ -12,6 +12,8 @@ export default class EventService {
 
   loadEventsByPlanId(planId) {
     return this.http.get(`/api/event/inplan/${planId}`).then(resp => {
+      this.ideas = [];
+      this.feed = [];
       resp.data.forEach(event => {
         this.events[event._id] = event;
         if (event.status === 'idea') { this.ideas.push(event); }
