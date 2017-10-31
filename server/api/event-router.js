@@ -81,7 +81,7 @@ eventRouter.put('/:eventId/downvote', (req, res) => {
 });
 
 eventRouter.delete('/:eventId', (req, res) => {
-  PlanEvent.findByIdAndRemove({_id: req.params.eventId}).then(() => res.status(200).send('Deleted'))
+  PlanEvent.findByIdAndRemove({_id: req.params.eventId}).then(event => res.status(200).json(event))
     .catch(err => res.status(500).json({'Server error': err}));
 });
 
