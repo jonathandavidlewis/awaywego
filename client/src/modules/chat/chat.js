@@ -4,9 +4,9 @@ import _ from 'lodash';
 // components for this module
 import ChatMessageComponent from './chat-message/chat-message';
 import ChatInputComponent from './chat-input/chat-input';
-import ChatService from './chat.service';
-import RepeatCompleteDirective from './repeat-complete.directive';
-import ChatTypingFilter from './chat-typing.filter';
+import ChatService from './chat-utilities/chat.service';
+import RepeatCompleteDirective from './chat-utilities/repeat-complete.directive';
+import ChatTypingFilter from './chat-utilities/chat-typing.filter';
 
 // imports for this component
 import template from './chat.html';
