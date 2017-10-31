@@ -6,7 +6,7 @@ const passport = require('passport');
 const { loginGoogleUser } = require('./google-login');
 
 passport.use(new GoogleStrategy({
-  clientID: process.env.GOOGLE_CLIENT_ID || process.env.GOOGLE_CLIENT_ID,
+  clientID: process.env.GOOGLE_CLIENT_ID || GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET || GOOGLE_CLIENT_SECRET,
   callbackURL: '/auth/google/callback'
 }, function(req, accessToken, refreshToken, profile, done) {
