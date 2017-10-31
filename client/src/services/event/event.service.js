@@ -9,7 +9,7 @@ export default class EventService {
   //===========  EVENT LOGIC ===========\\
 
   loadEventsByPlanId(planId) {
-    return this.http.get(`/api/event/${planId}`).then(resp => {
+    return this.http.get(`/api/event/inplan/${planId}`).then(resp => {
       resp.data.forEach(event => this.events[event._id] = event);
       // don't wait on loading comments to consider events loaded
       for (const eventId in this.events) {
@@ -43,7 +43,6 @@ export default class EventService {
   upvoteEvent(eventId) { return this.http.put(`api/event/${eventId}/upvote`); }
 
 //=========== COMMENT LOGIC ===========\\
-
 
 
 
