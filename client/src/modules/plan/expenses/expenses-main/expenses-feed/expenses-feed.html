@@ -1,0 +1,7 @@
+<div class="expenses-feed-container">
+  <div class="expenses-feed-header flex">
+    <div class="expenses-feed-description"><b>Description</b></div>
+    <div class="expenses-feed-amount"><b>Amount</b></div>
+  </div>
+  <expenses-feed-card ng-repeat="expense in $ctrl.expenses" expense="expense" />
+</div>

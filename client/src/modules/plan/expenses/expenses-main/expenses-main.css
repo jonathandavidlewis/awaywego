@@ -1,4 +1,9 @@
+.expenses-main-container {
+  overflow: auto;
+}
+
 .expenses-main-add-button-container {
   margin: 20px auto 0 auto;
   width: 50%;
+
 }

@@ -1,0 +1,7 @@
+.expenses-feed-container {
+  overflow: auto;
+}
+
+.expenses-feed-header {
+  justify-content: space-between;
+}

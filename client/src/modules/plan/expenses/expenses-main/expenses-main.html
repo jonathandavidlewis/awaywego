@@ -1,7 +1,7 @@
 
-<div class="expenses-main-container h100">
+<div class="expenses-main-container h100 flex-col">
   <expenses-summary-bar />
-  <div class="expenses-card" ng-repeat="expense in $ctrl.expenses">Amount: {{expense.amount}}, Description: {{expense.description}}</div>
+  <expenses-feed class="flex-1" expenses="$ctrl.expenses" />
   <div class="expenses-main-add-button-container">
     <a ui-sref="^.add">
       <button class="awgd-button">Add Expense</button>
