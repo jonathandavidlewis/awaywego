@@ -6,21 +6,7 @@ import './expenses-add-people.css';
 
 class ExpensesAddPeopleController {
   constructor() {
-
-
   }
-
-  // TODO: Remove this later if not needed
-  // setShare(type) {
-  //   if (type === 'equal') {
-  //     this.share = 'equal';
-  //   } else if (type === 'percentage') {
-  //     this.share = 'percentage';
-  //   }
-  // }
-
-
-
 }
 
 ExpensesAddPeopleController.$inject = [];

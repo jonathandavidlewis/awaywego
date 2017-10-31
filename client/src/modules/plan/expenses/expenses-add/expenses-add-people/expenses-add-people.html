@@ -1,13 +1,11 @@
 <div class="expenses-add-people-container">
   <div class="expenses-add-people-header"> Total Amount: {{$ctrl.amount}} </div>
-
   <expenses-add-people-card
     toggle="$ctrl.toggleMember"
     amount="$ctrl.amount"
     ng-repeat="member in $ctrl.members"
     member="member"
    />
-
   <div class="expenses-add-controls">
     <a ng-click="$ctrl.expensesAddCtrl.toggleShowAddPeople()" class="expenses-add-back-container">
       <button class="awgd-button"><i class="material-icons">arrow_back</i></button>

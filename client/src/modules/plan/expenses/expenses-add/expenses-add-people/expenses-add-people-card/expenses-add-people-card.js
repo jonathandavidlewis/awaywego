@@ -12,9 +12,6 @@ class ExpensesAddPeopleCardController {
     this.selected = !this.selected;
     this.toggle(this.member);
   }
-
-
-
 }
 
 ExpensesAddPeopleCardController.$inject = [];

@@ -6,15 +6,29 @@ import './expenses-add.css';
 
 class ExpensesAddController {
   constructor(PlanService) {
+    // Brings in PlanService to get current plan's members
     this.PlanService = PlanService;
     this.members = PlanService.currentPlan.members;
-    this.checkedMembers = {};
-    this.transactions = [];
+
+    // Total bill amount
     this.amount = '';
-    this.payerToggle = false;
+
+    // This is recalculated every time there is a change to amount, owers, or payers
+    this.transactions = [];
+
+    // Object for storing selected payers
     this.payers = {};
 
+    // Object for storing selected owers
+    this.checkedMembers = {};
+
+    // Toggle for displaying add people screen
     this.showAddPeople = false;
+
+    // This allows us to reuse expenses-add-people for both adding payers and owers
+    this.payerToggle = false;
+
+    // Currently defaults to equal. TODO: Make transactions able to have custom input.
     this.transactionType = 'equal';
 
     this.toggleShowAddPeople = this.toggleShowAddPeople.bind(this);
@@ -83,13 +97,8 @@ class ExpensesAddController {
     }
     this.transactions = transactions;
   }
-
-
-
-
-
-
 }
+
 ExpensesAddController.$inject = ['PlanService'];
 
 const ExpensesAddComponent = {

@@ -2,6 +2,7 @@ import angular from 'angular';
 
 // import services
 import PlanService from '../../../services/plan/plan.service';
+import ExpensesService from '../../../services/expenses/expenses-service';
 
 // import child Modules
 import ExpensesMainComponent from './expenses-main/expenses-main';
@@ -15,9 +16,6 @@ import './expenses.css';
 
 class ExpensesController {
   constructor() {
-    this.description = '';
-    this.amount = '';
-
   }
 }
 ExpensesController.$inject = [];
@@ -35,11 +33,6 @@ const ExpensesModule = angular.module('app.plan.expenses', [])
   .component('expensesAdd', ExpensesAddComponent)
   .component('expensesAddPeople', ExpensesAddPeopleComponent)
   .component('expensesAddPeopleCard', ExpensesAddPeopleCardComponent)
-
-  .service('PlanService', PlanService);
-
-
-
-
-
+  .service('PlanService', PlanService)
+  .service('ExpensesService', ExpensesService);
 export default ExpensesModule.name;
