@@ -1,70 +1,50 @@
-// let TEST_DATA = [
-//   {
-//     planId: 'hg5687h5834657h6',
-//     title: 'John\'s best BBQ',
-//     startTime: '2016-05-18T16:00:00Z',
-//     endTime: '2016-05-18T16:00:00Z',
-//     description: 'We will have a ton of fun at this park...',
-//     imageUrl: 'https://d36tnp772eyphs.cloudfront.net/blogs/1/2014/08/Smith-Rock-940x595.jpg',
-//     status: 'itinerary'
-//   },
-//   {
-//     planId: 'hg5687h5834657h6',
-//     title: 'John\'s second best BBQ',
-//     startTime: '2016-05-18T16:00:00Z',
-//     description: 'We will have a ton of fun at this park...',
-//     imageUrl: 'https://d36tnp772eyphs.cloudfront.net/blogs/1/2014/08/Smith-Rock-940x595.jpg',
-//     status: 'itinerary'
-//   },
-//   {
-//     planId: 'hg5687h5834657h6',
-//     title: 'John\'s third best BBQ',
-//     startTime: '2016-05-18T16:00:00Z',
-//     endTime: '2016-05-18T16:00:00Z',
-//     description: 'We will have a ton of fun at this park...',
-//     imageUrl: 'https://d36tnp772eyphs.cloudfront.net/blogs/1/2014/08/Smith-Rock-940x595.jpg',
-//     status: 'idea'
-//   },
-//   {
-//     planId: 'hg5687h5834657h6',
-//     title: 'John\'s fourth best BBQ',
-//     startTime: '2016-05-18T16:00:00Z',
-//     endTime: '2016-05-18T16:00:00Z',
-//     description: 'We will have a ton of fun at this park...',
-//     imageUrl: 'https://d36tnp772eyphs.cloudfront.net/blogs/1/2014/08/Smith-Rock-940x595.jpg',
-//     status: 'idea',
-//   }
-// ];
-
-
 export default class EventService {
   constructor($http) {
     this.$inject = ['$http'];
-    this.$http = $http;
+    this.http = $http;
+    this.events = {};
   }
 
-  loadEventsByPlanId(planId) { return this.$http.get(`/api/event/${planId}`).then(response => this.events = response.data); }
 
-  getEvent(eventId) { return this.events.find(event => event._id === eventId); }
+  //===========  EVENT LOGIC ===========\\
 
-  submitNewEvent(event) { return this.$http.post('/api/event', event); }
+  loadEventsByPlanId(planId) {
+    return this.http.get(`/api/event/${planId}`).then(resp => {
+      resp.data.forEach(event => this.events[event._id] = event);
+      // don't wait on loading comments to consider events loaded
+      for (const eventId in this.events) {
+        this.http.get(`/api/comments/${eventId}`).then(resp => {
+          this.events[eventId].comments = resp.data;
+        });
+      }
+    });
+  }
+
+  getEvent(eventId) { return this.events[eventId]; }
+
+  submitNewEvent(event) { return this.http.post('/api/event', event); }
 
   updateEvent(eventId, updatedEvent) {
     if (typeof eventId === 'object' && updatedEvent === undefined) {
       updatedEvent = eventId;
       eventId = updatedEvent._id;
     }
-    return this.$http.put(`/api/event/${eventId}`, updatedEvent);
+    return this.http.put(`/api/event/${eventId}`, updatedEvent);
   }
 
-  deleteEvent(eventId) { return this.$http.delete(`/api/event/${eventId}`); }
+  deleteEvent(eventId) { return this.http.delete(`/api/event/${eventId}`); }
 
-  promoteEvent(event) { return this.$http.put(`api/event/${event._id}/promote`, event); }
+  promoteEvent(event) { return this.http.put(`api/event/${event._id}/promote`, event); }
 
-  demoteEvent(eventId) { return this.$http.put(`api/event/${eventId}/demote`); }
+  demoteEvent(eventId) { return this.http.put(`api/event/${eventId}/demote`); }
 
-  downvoteEvent(eventId) { return this.$http.put(`api/event/${eventId}/downvote`); }
+  downvoteEvent(eventId) { return this.http.put(`api/event/${eventId}/downvote`); }
 
-  upvoteEvent(eventId) { return this.$http.put(`api/event/${eventId}/upvote`); }
+  upvoteEvent(eventId) { return this.http.put(`api/event/${eventId}/upvote`); }
+
+//=========== COMMENT LOGIC ===========\\
+
+
+
 
 }
