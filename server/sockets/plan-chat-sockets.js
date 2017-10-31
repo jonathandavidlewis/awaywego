@@ -62,8 +62,7 @@ module.exports = (io) => {
 
     socket.on('disconnect', () => {
       if (debug) { console.log('user disconnected...'); }
-      const user = socketUserMap[socket.id];
-      cleanupSocket(socket, user);
+      cleanupSocket(socket);
     });
   });
 
