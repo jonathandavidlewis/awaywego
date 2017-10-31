@@ -1,23 +1,23 @@
-<div class="comment-card-container">
-  <div class="comment-card-header">
-    <div class="comment-card-header-user">
+<div class="comment-card-container flex">
+  <div class="comment-card-header flex-col">
+    <div class="comment-card-header-user flex flex-align-center">
       <div ng-if="$ctrl.comment.user.profilePic !== ''" class="comment-avatar">
         <div class="comment-avatar-pic"
              ng-style="{'background-image':'url({{$ctrl.comment.user.profilePic}})'}">
         </div>
       </div>
-      <div ng-if="$ctrl.comment.user.profilePic === ''">
+      <div ng-if="$ctrl.comment.user.profilePic === ''" class="comment-avatar comment-avatar-icon">
         <i class="material-icons">account_circle</i>
       </div>
       <div class="comment-user-name">
-        <span>{{$ctrl.user.name}}</span>
+        <span>{{$ctrl.comment.user.name}}</span>
       </div>
     </div>
-    <div class="comment-card-header-time">
+    <div class="comment-time flex">
       <span>{{$ctrl.moment($ctrl.comment.createdAt).calendar()}}</span>
     </div>
   </div>
-  <div class="comment-card-text">
+  <div class="comment-card-text flex flex-align-center">
     <span>{{$ctrl.comment.text}}</span>
   </div>
 </div>

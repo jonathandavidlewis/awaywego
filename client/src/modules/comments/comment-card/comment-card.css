@@ -1,7 +1,46 @@
+.comment-card-container {
+  padding: 8px 10px 8px 0;
+  border-bottom: 1px solid var(--la);
+}
+
+.comment-card-header {
+  flex: 0 0 120px;
+}
+
+.comment-avatar {
+  margin: 0 10px;
+  display: flex;
+}
+
+.comment-avatar-icon {
+  margin: -1px 9px;
+}
+
 .comment-avatar-pic {
   width: 30px;
   height: 30px;
   background-size: contain;
   background-position: center center;
   border-radius: 50%;
+}
+
+.comment-user-name {
+  color: var(--dk3);
+}
+
+.comment-time {
+  color: var(--da);
+  font-style: italic;
+  font-size: .7em;
+  margin-left: 10px;
+}
+
+.comment-avatar .material-icons {
+  font-size: 33px;
+}
+
+.comment-card-text {
+  width: auto;
+  font-size: .9em;
+  color: var(--dk4);
 }

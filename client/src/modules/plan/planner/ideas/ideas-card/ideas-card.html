@@ -1,38 +1,41 @@
-<div class="ideas-card flex-col">
-  <div class="ideas-card-main-container flex-col">
-    <a class="ideas-card-header" ui-sref="^.idea({ideaId: $ctrl.EventService.events[$ctrl.eventId]._id})">{{$ctrl.EventService.events[$ctrl.eventId].title}}</a>
-    <div class="ideas-card-image-container">
-      <img class="ideas-card-image" ng-src="{{$ctrl.EventService.events[$ctrl.eventId].imageUrl}}" alt="EventPicture"/>
-    </div>
-    <div class="ideas-card-content-container flex-col">
-      <div class="ideas-card-details-desc">
-        <span>{{$ctrl.EventService.events[$ctrl.eventId].description | limitTo:250}}</span>
-        <span ng-if="$ctrl.EventService.events[$ctrl.eventId].description.length > 250"><a ui-sref="^.idea({ideaId: $ctrl.EventService.events[$ctrl.eventId]._id})">{{' read more'}}</a></span>
+<div class="ideas-card">
+  <div class="ideas-card-event-container flex-col">
+    <div class="ideas-card-main-container flex-col">
+      <a class="ideas-card-header" ui-sref="^.idea({ideaId: $ctrl.EventService.events[$ctrl.eventId]._id})">{{$ctrl.EventService.events[$ctrl.eventId].title}}</a>
+      <div class="ideas-card-image-container">
+        <img class="ideas-card-image" ng-src="{{$ctrl.EventService.events[$ctrl.eventId].imageUrl}}" alt="EventPicture"/>
+      </div>
+      <div class="ideas-card-content-container flex-col">
+        <div class="ideas-card-details-desc">
+          <span>{{$ctrl.EventService.events[$ctrl.eventId].description | limitTo:250}}</span>
+          <span ng-if="$ctrl.EventService.events[$ctrl.eventId].description.length > 250"><a ui-sref="^.idea({ideaId: $ctrl.EventService.events[$ctrl.eventId]._id})">{{' read more'}}</a></span>
+        </div>
+      </div>
+      <div ng-click="$ctrl.handleDeleteClick()" class="ideas-card-admin-delete-container">
+        <i class="material-icons">delete</i>
       </div>
     </div>
-    <div ng-click="$ctrl.handleDeleteClick()" class="ideas-card-admin-delete-container">
-      <i class="material-icons">delete</i>
+    <div class="ideas-card-footer flex">
+      <div class="ideas-card-likes-wrapper flex">
+        <div ng-click="$ctrl.upVote()"
+          ng-class="{'upvoted': $ctrl.EventService.events[$ctrl.eventId].upVotes.indexOf($ctrl.userId) > -1}"
+          class="ideas-card-vote flex"
+          >
+          <i class="material-icons">thumb_up</i>
+        </div>
+        <div class="ideas-card-likes">{{$ctrl.EventService.events[$ctrl.eventId].upVotes.length - $ctrl.EventService.events[$ctrl.eventId].downVotes.length}}</div>
+        <div ng-click="$ctrl.downVote()"
+          ng-class="{'downvoted':$ctrl.EventService.events[$ctrl.eventId].downVotes.indexOf($ctrl.userId) > -1}"
+          class="ideas-card-vote flex">
+          <i class="material-icons">thumb_down</i>
+        </div>
+      </div>
+      <div class="ideas-card-actions flex">
+        <a ui-sref="app.plan.planner.promoteIdea({eventId: $ctrl.EventService.events[$ctrl.eventId]._id})">Schedule</a>
+      </div>
     </div>
   </div>
-  <div class="ideas-card-footer flex">
-    <div class="ideas-card-likes-wrapper flex">
-      <div ng-click="$ctrl.upVote()"
-        ng-class="{'upvoted': $ctrl.EventService.events[$ctrl.eventId].upVotes.indexOf($ctrl.userId) > -1}"
-        class="ideas-card-vote flex">
-        <i class="material-icons">thumb_up</i>
-      </div>
-      <div class="ideas-card-likes">{{$ctrl.EventService.events[$ctrl.eventId].upVotes.length - $ctrl.EventService.events[$ctrl.eventId].downVotes.length}}</div>
-      <div ng-click="$ctrl.downVote()"
-        ng-class="{'downvoted':$ctrl.EventService.events[$ctrl.eventId].downVotes.indexOf($ctrl.userId) > -1}"
-        class="ideas-card-vote flex">
-        <i class="material-icons">thumb_down</i>
-      </div>
-    </div>
-    <div class="ideas-card-actions flex">
-      <a ui-sref="app.plan.planner.promoteIdea({eventId: $ctrl.EventService.events[$ctrl.eventId]._id})">Schedule</a>
-    </div>
-  </div>
-  <div class="ideas-card-comment-wrapper flex">
+  <div class="ideas-card-comment-container flex">
     <comments event-id="$ctrl.eventId"></comments>
   </div>
 </div>

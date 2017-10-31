@@ -27,6 +27,7 @@ html, body {
 
   /* light accent base: #B1A8B2;*/
   --la: hsla(294, 0%, 68%, 1);
+  --lla: hsla(294, 0%, 92%, 1);
 
   /* primary color, m3 base: #73C2F1;*/
   --m0: hsla(203, 30%, 88%, 1);

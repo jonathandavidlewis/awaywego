@@ -1,3 +1,28 @@
 comments {
   width: 100%;
+  background-color: var(--lla);
+}
+
+.comments-header {
+  padding: 5px;
+  border-bottom: 1px solid var(--la);
+}
+
+.comments-show-hide .material-icons {
+  font-size: 1.2em;
+  margin-left: 5px;
+}
+
+.comments-show-hide {
+  margin-right: 10px;
+  color: var(--dk3);
+  cursor: pointer;
+}
+
+.comments-show-hide:hover {
+  color: var(--dk1);
+}
+
+.comments-drawer-new-comment {
+  padding: 8px 5px;
 }

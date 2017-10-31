@@ -2,24 +2,25 @@
   display: flex;
 }
 
-
 .comment-input-container .comment-input {
   flex: 1 0 auto;
-  height: 45px;
+  height: 35px;
   border-radius: 8px !important;
   border-color: var(--m3tr5);
   font-size: 1em;
+  background-color: var(--tr2);
 }
 
 .comment-submit {
   flex: 0 0 40px;
-  margin-left: 10px;
+  margin-left: 5px;
   border: none;
-  background-color: var(--m5);
-  color: white;
+  color: var(--m5);
+  background-color: var(--lla);
   display: flex;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+}
+
+.comment-submit:hover {
+  color: var(--dk5);
 }
