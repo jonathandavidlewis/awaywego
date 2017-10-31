@@ -25,7 +25,9 @@ CommentsController.$inject = ['UserService', 'EventService'];
 
 const CommentsComponent = {
   restrict: 'E',
-  bindings: {},
+  bindings: {
+    eventId: '<'
+  },
   template: template,
   controller: CommentsController
 };

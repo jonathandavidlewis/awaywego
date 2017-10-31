@@ -1,12 +1,15 @@
 <div class="comments-container">
   <div class="comments-header">
-    <div class="comments-show-hide flex flex-end">
-      <span ng-click="$ctrl.toggleDrawer()" ng-show="!$ctrl.isOpen">Show Comments</span>
-      <span ng-click="$ctrl.toggleDrawer()" ng-show="$ctrl.isOpen">Hide Comments</span>
+    <div class="comments-show-hide flex flex-end" ng-click="$ctrl.toggleDrawer()">
+      <span ng-show="!$ctrl.isOpen">Show Comments</span>
+      <span ng-show="$ctrl.isOpen">Hide Comments</span>
       <i class="material-icons">comment</i>
     </div>
   </div>
   <div ng-show="$ctrl.isOpen" class="comments-drawer">
     <span>Comment drawer goes here!</span>
+    <div class="comments-drawer-new-comment">
+      <new-comment event-id="$ctrl.eventId"></new-comment>
+    </div>
   </div>
 </div>
