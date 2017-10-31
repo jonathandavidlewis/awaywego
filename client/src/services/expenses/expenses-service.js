@@ -3,7 +3,7 @@ export default class ExpensesService {
     this.$inject = ['$http', 'UserService'];
     this.http = $http;
     this.UserService = UserService;
-    this.expenses = {};
+    this.expenses = [];
 
   }
 
@@ -11,11 +11,13 @@ export default class ExpensesService {
   returnExpenses() { return this.expenses; }
 
   newExpense(expense) {
-    return this.http.post('/api/expenses', expense).then(() => this.getExpenses());
+    return this.http.post('/api/expenses', expense);
   }
 
   getExpenses(planId) {
-    return this.http.get('/api/expenses').then((expenses) => this.expenses = expenses);
+    return this.http.get(`/api/expenses/${planId}`).then((res) => {
+      this.expenses = res.data;
+    });
   }
 
   addTransaction(expenseId) {

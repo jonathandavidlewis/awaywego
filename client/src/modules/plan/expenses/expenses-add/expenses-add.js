@@ -112,6 +112,7 @@ class ExpensesAddController {
     let expense = {
       planId: this.stateParams.planId,
       description: this.description,
+      amount: this.amount,
       transactions: this.transactions
     };
     this.ExpensesService.newExpense(expense).then(() => {
