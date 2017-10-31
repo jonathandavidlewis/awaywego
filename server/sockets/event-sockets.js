@@ -41,12 +41,17 @@ module.exports = (io) => {
 
     socket.on('scheduled event in plan', ({plan, event}) => {
       if (debug) { console.log('scheduled event in plan: ', plan, ', event: ', event); }
-      socket.io(plan).emit('scheduled event', event);
+      socket.to(plan).emit('scheduled event', event);
     });
 
     socket.on('unscheduled event in plan', ({plan, event}) => {
       if (debug) { console.log('unscheduled event in plan: ', plan, ', event: ', event); }
-      socket.io(plan).emit('unscheduled event', event);
+      socket.to(plan).emit('unscheduled event', event);
+    });
+
+    socket.on('removed event in plan', ({plan, event}) => {
+      if (debug) { console.log('removed event in plan: ', plan, ', event: ', event); }
+      socket.to(plan).emit('removed event', event);
     });
 
     socket.on('disconnect', () => {

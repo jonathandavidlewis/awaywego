@@ -12,12 +12,12 @@ export default class EventService {
     this.eventSocket = null;
 
     // HELPER METHODS to debug, remove when done!
-    // window.evs = this;
-    // window.triggerDigest = () => this.rootScope.$apply();
-    // window.upvoteEvent = (userId) => {
-    //   this.events['59f27698be6a1c024291e684'].upVotes.push(userId);
-    //   window.triggerDigest();
-    // };
+    window.evs = this;
+    window.triggerDigest = () => this.rootScope.$apply();
+    window.upvoteEvent = (userId) => {
+      this.events['59f27698be6a1c024291e684'].upVotes.push(userId);
+      window.triggerDigest();
+    };
   }
 
   //===========  SOCKET LOGIC ===========\\
@@ -26,19 +26,20 @@ export default class EventService {
     if (this.eventSocket) { this.eventSocket.disconnect(); }
     this.eventSocket = socket('/events');
     this.eventSocket.on('id yourself', () => {
-      this.eventSocket.emit('id user', user);
+      this.eventSocket.emit('id user', this.user);
     });
     this.eventSocket.on('pick room', () => {
       this.eventSocket.emit('enter plan-events', planId);
     });
 
-    this.eventSocket.on('new event', event => this.handleNewEvent(event));
-    this.eventSocket.on('update event', event => this.handleUpdateEvent(event));
-    this.eventSocket.on('scheduled event', event => this.handleUpdateEvent(event));
-    this.eventSocket.on('unscheduled event', event => this.handleUpdateEvent(event));
+    this.eventSocket.on('new event', event => this.handleNewEvent(event, true));
+    this.eventSocket.on('update event', event => this.handleUpdateEvent(event, true));
+    this.eventSocket.on('scheduled event', event => this.handleUpdateEvent(event, true));
+    this.eventSocket.on('unscheduled event', event => this.handleUpdateEvent(event, true));
+    this.eventSocket.on('removed event', event => this.handleRemoveEvent(event, true));
   }
 
-  handleNewEvent(event) {
+  handleNewEvent(event, digest) {
     if (this.events[event._id]) { // we already have it, need to update instead!
       this.handleUpdateEvent(event);
     } else {
@@ -49,10 +50,10 @@ export default class EventService {
         this.feed.push(event);
       }
     }
-    this.rootScope.$apply();
+    if (digest) { this.rootScope.$apply(); }
   }
 
-  handleUpdateEvent(event) {
+  handleUpdateEvent(event, digest) {
     if (!this.events[event._id]) {
       this.handleNewEvent(event);
     } else {
@@ -75,7 +76,18 @@ export default class EventService {
         if (ideaIndex > -1) { this.ideas.splice(ideaIndex, 1); }
       }
     }
-    this.rootScope.$apply();
+    if (digest) { this.rootScope.$apply(); }
+  }
+
+  handleRemoveEvent(event, digest) {
+    if (this.events[event._id]) {
+      const ideaIndex = this.ideas.findIndex(ev => ev._id === event._id);
+      if (ideaIndex > -1) { this.ideas.splice(ideaIndex, 1); }
+      const feedIndex = this.feed.findIndex(ev => ev._id === event._id);
+      if (feedIndex > -1) { this.feed.splice(feedIndex, 1); }
+      delete this.events[event._id];
+      if (digest) { this.rootScope.$apply(); }
+    }
   }
 
   //===========  EVENT LOGIC ===========\\
@@ -83,6 +95,7 @@ export default class EventService {
   loadEventsByPlanId(planId) {
     this.setupEventSocket(planId);
     return this.http.get(`/api/event/inplan/${planId}`).then(resp => {
+      this.events = {};
       this.ideas = [];
       this.feed = [];
       resp.data.forEach(event => {
@@ -103,8 +116,9 @@ export default class EventService {
 
   submitNewEvent(event) {
     return this.http.post('/api/event', event).then(resp => {
+      this.handleNewEvent(resp.data, false);
       this.eventSocket.emit('new event in plan',
-        {plan: event.planId, event: event});
+        {plan: resp.data.planId, event: resp.data});
     });
   }
 
@@ -114,39 +128,48 @@ export default class EventService {
       eventId = updatedEvent._id;
     }
     return this.http.put(`/api/event/${eventId}`, updatedEvent)
-      .then(updatedEvent => {
+      .then(resp => {
         this.eventSocket.emit('updated event in plan',
-          {plan: updatedEvent.planId, event: updatedEvent});
+          {plan: resp.data.planId, event: resp.data});
       });
   }
 
-  deleteEvent(eventId) { return this.http.delete(`/api/event/${eventId}`); }
+  deleteEvent(eventId) {
+    return this.http.delete(`/api/event/${eventId}`).then(resp => {
+      this.eventSocket.emit('removed event in plan',
+        {plan: resp.data.planId, event: resp.data});
+    });
+  }
 
   promoteEvent(event) {
     return this.http.put(`api/event/${event._id}/promote`, event)
-      .then(updatedEvent => {
-        this.eventSocket.emit('updated event in plan',
-          {plan: updatedEvent.planId, event: updatedEvent});
+      .then(resp => {
+        this.eventSocket.emit('scheduled event in plan',
+          {plan: resp.data.planId, event: resp.data});
       });
   }
 
   demoteEvent(eventId) {
     return this.http.put(`api/event/${eventId}/demote`)
-      .then(updatedEvent => {
-        this.eventSocket.emit('updated event in plan',
-          {plan: updatedEvent.planId, event: updatedEvent});
+      .then(resp => {
+        this.eventSocket.emit('unscheduled event in plan',
+          {plan: resp.data.planId, event: resp.data});
       });
   }
 
   downvoteEvent(eventId) {
     return this.http.put(`api/event/${eventId}/downvote`).then(resp => {
       this.events[eventId] = resp.data;
+      this.eventSocket.emit('updated event in plan',
+        {plan: resp.data.planId, event: resp.data});
     });
   }
 
   upvoteEvent(eventId) {
     return this.http.put(`api/event/${eventId}/upvote`).then(resp => {
       this.events[eventId] = resp.data;
+      this.eventSocket.emit('updated event in plan',
+        {plan: resp.data.planId, event: resp.data});
     });
   }
 
