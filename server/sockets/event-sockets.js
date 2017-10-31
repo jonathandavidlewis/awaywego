@@ -29,19 +29,23 @@ module.exports = (io) => {
       socketPlanMap[socket.id] = plan;
     });
 
-    socket.on('new event in plan', (plan, event) => {
+    socket.on('new event in plan', ({plan, event}) => {
+      if (debug) { console.log('new event in plan: ', plan, ', event: ', event); }
       socket.to(plan).emit('new event', event);
     });
 
-    socket.on('updated event in plan', (plan, event) => {
+    socket.on('updated event in plan', ({plan, event}) => {
+      if (debug) { console.log('updated event in plan: ', plan, ', event: ', event); }
       socket.to(plan).emit('update event', event);
     });
 
-    socket.on('scheduled event in plan', (plan, event) => {
+    socket.on('scheduled event in plan', ({plan, event}) => {
+      if (debug) { console.log('scheduled event in plan: ', plan, ', event: ', event); }
       socket.io(plan).emit('scheduled event', event);
     });
 
-    socket.on('unscheduled event in plan', (plan, event) => {
+    socket.on('unscheduled event in plan', ({plan, event}) => {
+      if (debug) { console.log('unscheduled event in plan: ', plan, ', event: ', event); }
       socket.io(plan).emit('unscheduled event', event);
     });
 

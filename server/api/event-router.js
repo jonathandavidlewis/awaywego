@@ -24,7 +24,7 @@ eventRouter.post('/', (req, res) => {
   newEvent.upVotes = [];
   newEvent.downVotes = [];
 
-  PlanEvent.create(newEvent).then(planEvent => res.status(201).json({eventId: planEvent._id}))
+  PlanEvent.create(newEvent).then(planEvent => res.status(201).json(planEvent))
     .catch(err => res.status(500).json({'Server error': err}));
 });
 
