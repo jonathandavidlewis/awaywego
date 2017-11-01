@@ -1,12 +1,11 @@
 import angular from 'angular';
 
 // import services for this modules
+
 //import moment from 'moment';
 import EventService from '../../../../services/event/event.service';
-import AddressService from '../../../../services/address/address.service';
 import momentPicker from 'angular-moment-picker';
 import moment from 'moment';
-
 
 //import DatetimePickerComponent from '../../../common/datetime-picker/datetime-picker-config';
 
@@ -16,11 +15,10 @@ import template from './promote-idea.html';
 import './promote-idea.css';
 
 class PromoteIdeaController {
-  constructor(EventService, $stateParams, $state, AddressService) {
+  constructor(EventService, $stateParams, $state) {
     this.EventService = EventService;
     this.$stateParams = $stateParams;
     this.$state = $state;
-    this.AddressService = AddressService;
     this.moment = moment;
     this.$onInit = this.$onInit.bind(this);
     this.formWarning = '';
@@ -99,7 +97,7 @@ class PromoteIdeaController {
   }
 }
 
-PromoteIdeaController.$inject = ['EventService', '$stateParams', '$state', 'AddressService'];
+PromoteIdeaController.$inject = ['EventService', '$stateParams', '$state'];
 
 const PromoteIdeaComponent = {
   restrict: 'E',
@@ -111,7 +109,6 @@ const PromoteIdeaComponent = {
 const PromoteIdeaModule = angular.module('app.plan.planner.promoteIdea', ['moment-picker'])
   .component('promoteIdea', PromoteIdeaComponent)
   .component('addressSearch', AddressSearchComponent)
-  .service('EventService', EventService)
-  .service('AddressService', AddressService);
+  .service('EventService', EventService);
 
 export default PromoteIdeaModule.name;

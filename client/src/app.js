@@ -18,7 +18,6 @@ import UserService from './services/user/user.service';
 import FriendService from './services/friend/friend.service';
 import MomentService from './services/moment/moment.service';
 import ImageSearchService from './services/images/image.search.service';
-import AddressService from './services/address/address.service';
 
 // import global styles
 import './styles/forms.css';
@@ -57,6 +56,5 @@ angular.module('app', [
   .service('FriendService', FriendService)
   .service('MomentService', MomentService)
   .service('ImageSearchService', ImageSearchService)
-  .service('AddressService', AddressService)
   .config(appRouting)
   .component('app', AppComponent);

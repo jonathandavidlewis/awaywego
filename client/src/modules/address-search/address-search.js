@@ -5,8 +5,7 @@ import template from './address-search.html';
 import './address-search.css';
 
 class AddressSearchController {
-  constructor(AddressService) {
-    this.AddressService = AddressService;
+  constructor() {
   }
 
   $onInit() {
@@ -39,7 +38,7 @@ class AddressSearchController {
   }
 }
 
-AddressSearchController.$inject = ['AddressService'];
+AddressSearchController.$inject = [];
 
 const AddressSearchComponent = {
   restrict: 'E',
