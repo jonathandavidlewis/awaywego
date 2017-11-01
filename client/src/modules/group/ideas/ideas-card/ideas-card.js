@@ -1,7 +1,6 @@
 import angular from 'angular';
 
 // imports for this component
-import EventService from '../../../../../services/event/event.service';
 import template from './ideas-card.html';
 import './ideas-card.css';
 
