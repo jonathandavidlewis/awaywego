@@ -4,5 +4,5 @@
     <div class="expenses-feed-amount"><b>Amount</b></div>
     <div class="expenses-feed-actions"><b>Actions</b></div>
   </div>
-  <expenses-feed-card ui-sref="^.^.main.expense({expenseId: expense._id})" ng-repeat="expense in $ctrl.expenses" expense="expense" remove-expense="$ctrl.removeExpense" />
+  <expenses-feed-card ng-repeat="expense in $ctrl.expenses" expense="expense" remove-expense="$ctrl.removeExpense" />
 </div>
