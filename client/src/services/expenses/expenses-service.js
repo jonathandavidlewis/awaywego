@@ -53,10 +53,9 @@ export default class ExpensesService {
     return this.http.post('/api/expenses', expense);
   }
 
-  getExpenses(planId) {
-    return this.http.get(`/api/expenses/${planId}`).then((res) => {
+  getExpenses(groupId) {
+    return this.http.get(`/api/expenses/${groupId}`).then((res) => {
       this.expenses = res.data;
-      console.log('get expenses', this.expenses);
     });
   }
 
