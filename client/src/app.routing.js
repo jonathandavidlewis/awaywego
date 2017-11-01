@@ -103,19 +103,19 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
 
 
   const peopleState = {
-    name: 'app.plan.people',
+    name: 'app.group.people',
     abstract: true,
     component: 'people'
   };
 
   const peopleListState = {
-    name: 'app.plan.people.list',
+    name: 'app.group.people.list',
     url: '/people',
     component: 'peopleList'
   };
 
   const peopleAddState = {
-    name: 'app.plan.people.add',
+    name: 'app.group.people.add',
     url: '/people/add',
     component: 'peopleAdd'
   };
@@ -137,13 +137,13 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
   };
 
   const expensesState = {
-    name: 'app.plan.expenses',
+    name: 'app.group.expenses',
     url: '/expenses',
     component: 'expenses'
   };
 
   const expensesMainState = {
-    name: 'app.plan.expenses.main',
+    name: 'app.group.expenses.main',
     url: '/main',
     component: 'expensesMain'
   };
@@ -180,18 +180,18 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
 
 
   const expensesAddState = {
-    name: 'app.plan.expenses.add',
+    name: 'app.group.expenses.add',
     url: '/add',
     component: 'expensesAdd'
   };
 
   const chatState = {
-    name: 'app.plan.chat',
+    name: 'app.group.chat',
     url: '/chat',
     component: 'chat',
     resolve: {
-      messagesLoaded: ['ChatService', 'PlanService', function(ChatService, PlanService) {
-        return ChatService.loadChat(PlanService.currentPlan._id);
+      messagesLoaded: ['ChatService', 'GroupService', function(ChatService, GroupService) {
+        return ChatService.loadChat(GroupService.currentGroup._id);
       }]
     }
   };
