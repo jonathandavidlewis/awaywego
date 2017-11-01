@@ -7,39 +7,21 @@ import './address-search.css';
 class AddressSearchController {
   constructor(AddressService) {
     this.AddressService = AddressService;
-    this.search = '';
-    this.images = [];
-    this.spinner = false;
+    this.autocomplete = {};
+    this.$onInit = this.$onInit.bind(this);
+    this.geolocate = this.geolocate.bind(this);
   }
 
   $onInit() {
-    autocomplete = new google.maps.places.Autocomplete(
+    console.log(this);
+    this.autocomplete = new google.maps.places.Autocomplete(
       /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
       {types: ['geocode']});
 
     // When the user selects an address from the dropdown, populate the address
     // fields in the form.
-    autocomplete.addListener('place_changed', fillInAddress);
-  }
-
-  fillInAddress() {
-    // Get the place details from the autocomplete object.
-    var place = autocomplete.getPlace();
-
-    for (var component in componentForm) {
-      document.getElementById(component).value = '';
-      document.getElementById(component).disabled = false;
-    }
-
-    // Get each component of the address from the place details
-    // and fill the corresponding field on the form.
-    for (var i = 0; i < place.address_components.length; i++) {
-      var addressType = place.address_components[i].types[0];
-      if (componentForm[addressType]) {
-        var val = place.address_components[i][componentForm[addressType]];
-        document.getElementById(addressType).value = val;
-      }
-    }
+    // this.autocomplete.addListener('place_changed', this.fillInAddress);
+    console.log(this.autocomplete);
   }
 
   geolocate() {
@@ -53,24 +35,10 @@ class AddressSearchController {
           center: geolocation,
           radius: position.coords.accuracy
         });
-        autocomplete.setBounds(circle.getBounds());
-      });
+        this.autocomplete.setBounds(circle.getBounds());
+      }.bind(this));
     }
   }
-  // imageSearch(query) {
-  //   this.images = [];
-  //   this.spinner = true;
-  //   this.AddressService.imageSearch(query).then(resp => {
-  //     this.spinner = false;
-  //     this.images = resp;
-  //   });
-  // }
-
-  // imageClick(e) {
-  //   this.imageUrl = e.target.currentSrc;
-  //   $('.make-plan-images img').removeClass('highlight');
-  //   $(e.target).addClass('highlight');
-  // }
 }
 
 AddressSearchController.$inject = ['AddressService'];
