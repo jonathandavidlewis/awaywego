@@ -12,6 +12,8 @@ class AddressSearchController {
   $onInit() {
     this.autocomplete = new google.maps.places.Autocomplete((document.getElementById('autocomplete')),
       {types: []});
+
+    this.autocomplete.addListener('place_changed', this.getLocation.bind(this));
   }
 
   geolocate() {
@@ -30,9 +32,10 @@ class AddressSearchController {
     }
   }
 
-  click() {
-    this.addressText = 'text';
-    this.addressLink = 'link';
+  getLocation() {
+    let location = this.autocomplete.getPlace();
+    this.addressText = location.formatted_address;
+    this.addressLink = location.url;
   }
 }
 
