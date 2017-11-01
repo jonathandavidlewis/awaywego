@@ -1,6 +1,6 @@
 <div class="people-add-container h100">
   <div class="people-add-header">
-    <span>Add your friends to {{$ctrl.PlanService.currentPlan.title}}</span>
+    <span>Add your friends to {{$ctrl.GroupService.currentGroup.title}}</span>
   </div>
   <div class="people-search-container flex header-shadow">
     <input class="awgl-form-input form-control" name="search" type="text"
@@ -16,7 +16,7 @@
       <button class="awgd-button"><i class="material-icons">arrow_back</i></button>
     </a>
     <div class="people-add-save-container">
-      <button ng-click="$ctrl.addToPlan()" class="awgd-button">Add to Plan</button>
+      <button ng-click="$ctrl.addToGroup()" class="awgd-button">Add to Group</button>
     </div>
   </div>
 </div>

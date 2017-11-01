@@ -1,7 +1,7 @@
 import angular from 'angular';
 
 // services for this module
-import PlanService from '../../../services/group/group.service';
+import GroupService from '../../../services/group/group.service';
 
 // components for this module
 import PeopleAddComponent from './people-add/people-add';
@@ -13,8 +13,7 @@ import template from './people.html';
 import './people.css';
 
 class PeopleController {
-  constructor(PlanService) {
-    this.title = 'This is a plan title';
+  constructor(GroupService) {
   }
 }
 
@@ -25,11 +24,11 @@ const PeopleComponent = {
   controller: PeopleController
 };
 
-const PeopleModule = angular.module('app.plan.people', [])
+const PeopleModule = angular.module('app.group.people', [])
   .component('people', PeopleComponent)
   .component('peopleList', PeopleListComponent)
   .component('peopleAdd', PeopleAddComponent)
   .component('peopleCard', PeopleCardComponent)
-  .service('PlanService', PlanService);
+  .service('GroupService', GroupService);
 
 export default PeopleModule.name;

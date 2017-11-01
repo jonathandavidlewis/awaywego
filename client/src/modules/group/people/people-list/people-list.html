@@ -1,18 +1,18 @@
 <div class="people-list-container h100">
   <div class="people-section-header header-shadow">
-    <span>People in {{$ctrl.PlanService.currentPlan.title}}</span>
+    <span>People in {{$ctrl.GroupService.currentGroup.title}}</span>
   </div>
-  <people-card ng-if="$ctrl.planOwner === $ctrl.UserService.user.id"
-    ng-repeat="user in $ctrl.planMembers"
+  <people-card ng-if="$ctrl.groupOwner === $ctrl.UserService.user.id"
+    ng-repeat="user in $ctrl.groupMembers"
     user="user" type="member" self="$ctrl.UserService.user.id === user._id"
-    owner="$ctrl.planOwner === user._id"
+    owner="$ctrl.groupOwner === user._id"
     remove="$ctrl.remove"
   ></people-card>
-  <people-card ng-if="$ctrl.planOwner !== $ctrl.UserService.user.id"
-    ng-repeat="user in $ctrl.planMembers"
+  <people-card ng-if="$ctrl.groupOwner !== $ctrl.UserService.user.id"
+    ng-repeat="user in $ctrl.groupMembers"
     user="user"
   ></people-card>
-  <div ng-if="$ctrl.planMembers.length === 0" class="no-people">
+  <div ng-if="$ctrl.groupMembers.length === 0" class="no-people">
     <span>Aww - no members yet, why don't you add somebody?</span>
   </div>
   <div class="people-list-add-button-container">

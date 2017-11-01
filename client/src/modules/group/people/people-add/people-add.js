@@ -6,17 +6,17 @@ import template from './people-add.html';
 import './people-add.css';
 
 class PeopleAddController {
-  constructor(PlanService, FriendService, $state) {
+  constructor(GroupService, FriendService, $state) {
     this.search = '';
-    this.PlanService = PlanService;
+    this.GroupService = GroupService;
     this.$state = $state;
-    this.members = PlanService.currentPlan.members;
+    this.members = GroupService.currentGroup.members;
     this.friends = FriendService.friendships.map(fr => fr.to);
     this.availableFriends = this.getFriendsNotInGroup();
 
     this.toggleSelect = this.toggleSelect.bind(this);
     this.filterFriends = this.filterFriends.bind(this);
-    this.addToPlan = this.addToPlan.bind(this);
+    this.addToGroup = this.addToGroup.bind(this);
   }
 
   getFriendsNotInGroup() {
@@ -40,19 +40,19 @@ class PeopleAddController {
     }
   }
 
-  addToPlan() {
+  addToGroup() {
     let toAdd = this.availableFriends.reduce((res, fr) => {
       if (fr.status) { res.push(fr.user._id); }
       return res;
     }, []);
     if (toAdd.length === 0) { return; }
-    this.PlanService.addMembersToCurrentPlan(toAdd).then(() => {
+    this.GroupService.addMembersToCurrentGroup(toAdd).then(() => {
       this.$state.go('^.list');
     });
   }
 
 }
-PeopleAddController.$inject = ['PlanService', 'FriendService', '$state'];
+PeopleAddController.$inject = ['GroupService', 'FriendService', '$state'];
 
 const PeopleAddComponent = {
   restrict: 'E',
