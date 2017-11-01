@@ -1,4 +1,5 @@
 const googleRouter = require('express').Router();
+const oid = require('mongoose').Types.ObjectId;
 const debug = process.env.DEBUG || false;
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET} = require('../../../keys.config.js');
@@ -17,30 +18,31 @@ passport.use(new GoogleStrategy({
   const userEmail = profile.emails[0].value;
   const googleId = profile.id;
   const name = profile.displayName;
-  const user = {
+  const newUser = {
     name: name,
     email: userEmail,
     googleId: googleId,
     googleAccessToken: accessToken
   };
-  if (req.user.photos && req.user.photos[0]) {
-    newUser.profilePic = req.user.photos[0].value;
+  let profilePic = null;
+  if (profile.photos && profile.photos[0]) {
+    profilePic = profile.photos[0].value;
+    newUser.profilePic = profilePic;
   }
 
-  User.findOne({ googleId: googleId }).then((err, user) => {
+  User.findOne({ googleId: googleId }).then((user) => {
     if (user) {
-      user.update({googleAccessToken: accessToken}).then(() => done(null, profile));
+      user.update({googleAccessToken: accessToken}).then((user) => done(null, profile));
     } else {
-      User.findOne({ email: userEmail }).then((err, user) => {
+      User.findOne({ email: userEmail }).then((user) => {
         if (user) {
-          user.update({googleAccessToken: accessToken, googleId: googleId }).then(done(null, profile));
+          var googleUser = {googleId: googleId, googleAccessToken: accessToken};
+          if (!user.profilePic && profilePic) {
+            googleUser.profilePic = profilePic;
+          }
+          user.update(googleUser).then((user) => done(null, profile));
         } else {
-          User.create({
-            name: name,
-            email: userEmail,
-            googleId: googleId,
-            googleAccessToken: accessToken
-          }).then(() => {
+          User.create(newUser).then((user) => {
 
             // once signed up - see if anyone has invited this user
             Friend.update({toEmail: user.email}, {toEmail: '', to: oid(user._id)})
