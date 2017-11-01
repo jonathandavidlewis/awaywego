@@ -11,5 +11,5 @@ let groupSchema = new Schema({
   members: [{type: Schema.ObjectId, ref: 'User'}]
 }, {timestamps: true});
 
-var Group = mongoose.model('Group', groupSchema);
+const Group = mongoose.model('Group', groupSchema);
 module.exports = Group;

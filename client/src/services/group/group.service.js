@@ -6,7 +6,11 @@ export default class GroupService {
     this.currentGroup = null;
   }
 
-  submitNewGroup(group) { return this.$http.post('/api/group', group); }
+  submitNewGroup(group) {
+    return this.$http.post('/api/group', group).then(resp => {
+      this.groups.push(resp.data);
+    });
+  }
 
   loadGroupById(groupId) {
     if (this.groups.length) {
