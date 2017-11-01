@@ -36,7 +36,7 @@ export default class ExpensesService {
       });
 
     }
-    return {owed: owed, debt: debt, balance: this.roundMoney(owed - debt)};
+    return {owed: this.roundMoney(owed), debt: this.roundMoney(debt), balance: this.roundMoney(owed - debt)};
   }
 
   sortTransactions(transactions) {
