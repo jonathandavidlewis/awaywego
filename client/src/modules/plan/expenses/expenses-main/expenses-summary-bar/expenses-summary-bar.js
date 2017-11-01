@@ -5,11 +5,24 @@ import template from './expenses-summary-bar.html';
 import './expenses-summary-bar.css';
 
 class ExpensesSummaryBarController {
-  constructor() {
+  constructor(ExpensesService) {
+    this.ExpensesService = ExpensesService;
+    this.owed = '';
+    this.debt = '';
+    this.balance = '';
 
   }
+
+  $onInit() {
+    let debts = this.ExpensesService.calculateDebts();
+    this.owed = debts.owed;
+    this.debt = debts.debt;
+    this.balance = debts.balance;
+  }
+
+
 }
-ExpensesSummaryBarController.$inject = [];
+ExpensesSummaryBarController.$inject = ['ExpensesService'];
 
 const ExpensesSummaryBarComponent = {
   restrict: 'E',

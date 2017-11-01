@@ -16,6 +16,8 @@ expensesRouter.post('/', (req, res) => {
   Expense.create(newExpense).then((expense) => {
     for (let i = 0; i < newTransactions.length; i++) {
       newTransactions[i].expenseId = expense._id;
+      newTransactions[i].planId = req.body.planId;
+      newTransactions[i].status = 'open';
     }
 
     Transaction.create(newTransactions).then((transactions) => {
@@ -32,17 +34,16 @@ expensesRouter.post('/', (req, res) => {
 
 
 expensesRouter.get('/:planId', (req, res) => {
-  console.log('get planId for expenses', req.params.planId);
   Expense.find({planId: req.params.planId}).then((expenses) => {
     let ledger = {
       expenses: expenses,
-      transactions: {}
+      transactions: []
     };
-    expenses.forEach((expense) => {
-      
-    });
 
-    res.status(200).json(expenses);
+    Transaction.find({planId: req.params.planId}).then((transactions) => {
+      ledger.transactions = transactions;
+      res.status(200).json(ledger);
+    });
   }).catch(err => res.status(500).json({'Server error': err}));
 });
 

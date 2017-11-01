@@ -1,6 +1,8 @@
 <div ng-show="$ctrl.showAddPeople === false" class="ng-show expenses-add-container flex-col">
   <div class="expenses-add-header"><span>Who Paid? <button ng-click="$ctrl.toggleShowAddPeople(true)">+</button></span></div>
   <div class="expenses-add-payers" ng-repeat="payer in $ctrl.payers">{{payer.name}}</div>
+  <span>Who owes money?<button ng-click="$ctrl.toggleShowAddPeople()">+</button></span>
+  <div class="expenses-add-owers" ng-repeat="member in $ctrl.transactions">{{member.from.name}}</div>
   <div class="expenses-add-form-container">
     <form name="newExpense" ng-submit="$ctrl.submit()">
       <div class="expenses-add-input-block">
@@ -20,7 +22,6 @@
         <input  name="share" type="radio" ng-model="$ctrl.transactionType" value="percentage"/>
       </div>
 
-      <button ng-click="$ctrl.toggleShowAddPeople()" class="awgd-button"> Add friends to expense </button>
       <div ng-if="$ctrl.formWarning" class="awgl-form-warning flex flex-center">
         <span>{{$ctrl.formWarning}}</span>
       </div>
