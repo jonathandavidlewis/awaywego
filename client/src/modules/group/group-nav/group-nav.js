@@ -1,22 +1,22 @@
 import angular from 'angular';
 
 // imports for this component
-import template from './plan-nav.html';
-import './plan-nav.css';
+import template from './group-nav.html';
+import './group-nav.css';
 
-class PlanNavController {
+class GroupNavController {
   constructor($state) {
     this.$state = $state;
   }
 }
-PlanNavController.$inject = ['$state'];
+GroupNavController.$inject = ['$state'];
 
-const PlanNavComponent = {
+const GroupNavComponent = {
   restrict: 'E',
   bindings: {},
   template: template,
-  controller: PlanNavController
+  controller: GroupNavController
 };
 
 
-export default PlanNavComponent;
+export default GroupNavComponent;

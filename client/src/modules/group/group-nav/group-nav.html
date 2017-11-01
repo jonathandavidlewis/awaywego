@@ -1,30 +1,30 @@
-<div class="plan-nav-container">
-  <div class="plan-nav-item-container" ng-class="{'plan-nav-active': $ctrl.$state.includes('app.plan.feed')}">
-    <a class="plan-nav-button" ui-sref="app.plan.feed">
+<div class="group-nav-container">
+  <div class="group-nav-item-container" ng-class="{'group-nav-active': $ctrl.$state.includes('app.group.feed')}">
+    <a class="group-nav-button" ui-sref="app.group.feed">
       <i class="material-icons">subject</i>
       <span>Feed</span>
     </a>
   </div>
-  <div class="plan-nav-item-container" ng-class="{'plan-nav-active': $ctrl.$state.includes('app.plan.planner')}">
-    <a class="plan-nav-button" ui-sref="app.plan.planner.itinerary">
+  <!-- <div class="group-nav-item-container" ng-class="{'group-nav-active': $ctrl.$state.includes('app.group.groupner')}">
+    <a class="group-nav-button" ui-sref="app.group.groupner.itinerary">
       <i class="material-icons">book</i>
       <span>Planner</span>
     </a>
-  </div>
-  <div class="plan-nav-item-container" ng-class="{'plan-nav-active': $ctrl.$state.includes('app.plan.chat')}">
-    <a class="plan-nav-button" ui-sref="app.plan.chat">
+  </div> -->
+  <div class="group-nav-item-container" ng-class="{'group-nav-active': $ctrl.$state.includes('app.group.chat')}">
+    <a class="group-nav-button" ui-sref="app.group.chat">
       <i class="material-icons">chat</i>
       <span>Chat</span>
     </a>
   </div>
-  <div class="plan-nav-item-container" ng-class="{'plan-nav-active': $ctrl.$state.includes('app.plan.expenses')}">
-    <a class="plan-nav-button" ui-sref="app.plan.expenses.main.feed">
+  <div class="group-nav-item-container" ng-class="{'group-nav-active': $ctrl.$state.includes('app.group.expenses')}">
+    <a class="group-nav-button" ui-sref="app.group.expenses.main">
       <i class="material-icons">attach_money</i>
       <span>Expenses</span>
     </a>
   </div>
-  <div class="plan-nav-item-container" ng-class="{'plan-nav-active': $ctrl.$state.includes('app.plan.people')}">
-    <a class="plan-nav-button" ui-sref="app.plan.people.list">
+  <div class="group-nav-item-container" ng-class="{'group-nav-active': $ctrl.$state.includes('app.group.people')}">
+    <a class="group-nav-button" ui-sref="app.group.people.list">
       <i class="material-icons">people</i>
       <span>People</span>
     </a>

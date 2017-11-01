@@ -4,35 +4,33 @@ import angular from 'angular';
 import GroupService from '../../services/group/group.service';
 import EventService from '../../services/event/event.service';
 
-import PlanNavComponent from './plan-nav/plan-nav';
+import GroupNavComponent from './group-nav/group-nav';
 import FeedModule from './feed/feed';
-import PlannerModule from './planner/planner';
 import ExpensesModule from './expenses/expenses';
 // imports for this component
-import template from './plan.html';
-import './plan.css';
+import template from './group.html';
+import './group.css';
 
-class PlanController {
+class GroupController {
   constructor() {
   }
 }
-PlanController.$inject = [];
+GroupController.$inject = [];
 
-const PlanComponent = {
+const GroupComponent = {
   restrict: 'E',
   bindings: {},
   template: template,
-  controller: PlanController
+  controller: GroupController
 };
 
-const PlanModule = angular.module('app.plan', [
+const GroupModule = angular.module('app.group', [
   FeedModule,
-  PlannerModule,
   ExpensesModule
 ])
-  .component('plan', PlanComponent)
-  .component('planNav', PlanNavComponent)
+  .component('group', GroupComponent)
+  .component('groupNav', GroupNavComponent)
   .service('GroupService', GroupService)
   .service('EventService', EventService);
 
-export default PlanModule.name;
+export default GroupModule.name;
