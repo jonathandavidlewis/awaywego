@@ -22,6 +22,6 @@ const GroupHomeComponent = {
 };
 
 const GroupHomeModule = angular.module('app.group.home', [])
-  .component('group-home', GroupHomeComponent);
+  .component('groupHome', GroupHomeComponent);
 
 export default GroupHomeModule.name;

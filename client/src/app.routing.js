@@ -53,22 +53,22 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
 
   const groupState = {
     name: 'app.group',
-    url: '/plan/{groupId}',
+    url: '/group/{groupId}',
     component: 'group',
     resolve: {
       eventsLoaded: ['$stateParams', 'EventService', function($stateParams, EventService) {
         return EventService.loadEventsByGroupId($stateParams.groupId);
       }],
-      groupLoaded: ['$stateParams', 'PlanService', function($stateParams, PlanService) {
+      groupLoaded: ['$stateParams', 'GroupService', function($stateParams, GroupService) {
         return GroupService.loadGroupById($stateParams.groupId);
       }]
     }
   };
 
-  const feedState = {
-    name: 'app.plan.feed',
-    url: '/feed',
-    component: 'feed'
+  const groupHomeState = {
+    name: 'app.group.home',
+    url: '/home',
+    component: 'groupHome'
   };
 
   const plannerState = {
@@ -233,8 +233,8 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
 
   // plan states
   $stateProvider.state(makeGroupState);
-  $stateProvider.state(planState);
-  $stateProvider.state(feedState);
+  $stateProvider.state(groupState);
+  $stateProvider.state(groupHomeState);
   $stateProvider.state(plannerState);
   $stateProvider.state(plannerItineraryState);
   $stateProvider.state(plannerIdeasState);

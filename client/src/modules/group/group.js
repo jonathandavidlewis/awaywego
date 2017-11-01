@@ -23,10 +23,9 @@ const GroupComponent = {
   template: template,
   controller: GroupController
 };
-
+// TODO: add back in ExpensesModule
 const GroupModule = angular.module('app.group', [
-  GroupHomeModule,
-  ExpensesModule
+  GroupHomeModule
 ])
   .component('group', GroupComponent)
   .component('groupNav', GroupNavComponent)

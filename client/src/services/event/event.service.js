@@ -121,7 +121,7 @@ export default class EventService {
 
   //===========  EVENT LOGIC ===========\\
 
-  loadEventsById(groupId) {
+  loadEventsByGroupId(groupId) {
     this.setupEventSocket(groupId);
     return this.http.get(`/api/event/group/${groupId}`).then(resp => {
       this.events = {};
