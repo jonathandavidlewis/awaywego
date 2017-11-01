@@ -9,7 +9,7 @@ import SignupModule from './modules/login/signup';
 import GroupModule from './modules/group/group';
 import MakeGroupModule from './modules/make-group/make-group';
 import FriendsModule from './modules/friends/friends';
-import PeopleModule from './modules/plan/people/people';
+import PeopleModule from './modules/group/people/people';
 import ChatModule from './modules/chat/chat';
 import CommentsModule from './modules/comments/comments';
 import ImportContactsModule from './modules/import-contacts/import-contacts';
