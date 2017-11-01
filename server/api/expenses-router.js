@@ -38,34 +38,20 @@ expensesRouter.get('/:planId', (req, res) => {
       path: 'transactions',
       populate: {
         path: 'to',
-        model: 'User'
+        model: 'User',
+        select: 'name'
       }
     }).populate({
       path: 'transactions',
       populate: {
         path: 'from',
-        model: 'User'
+        model: 'User',
+        select: 'name'
       }
     }).exec().then((expenses) => {
       console.log('get route ', expenses);
       res.status(200).json(expenses);
     }).catch(err => res.status(500).json({'Server error': err}));
-
-
-
-
-
-  // then((expenses) => {
-  //   let ledger = {
-  //     expenses: expenses,
-  //     transactions: []
-  //   };
-  //
-  //   Transaction.find({planId: req.params.planId}).then((transactions) => {
-  //     ledger.transactions = transactions;
-  //     res.status(200).json(ledger);
-  //   });
-  // }).catch(err => res.status(500).json({'Server error': err}));
 });
 
 

@@ -4,11 +4,8 @@ export default class ExpensesService {
     this.http = $http;
     this.UserService = UserService;
     this.expenses = [];
-    this.transactions = {};
-
 
     this.calculateDebts = this.calculateDebts.bind(this);
-    // this.sortTransactions = this.sortTransactions.bind(this);
     this.getExpenses = this.getExpenses.bind(this);
     this.roundMoney = this.roundMoney.bind(this);
     this.filterUserTransactions = this.filterUserTransactions.bind(this);
@@ -17,18 +14,17 @@ export default class ExpensesService {
   // ExpensesService data access methods
   returnExpenses() { return this.expenses; }
 
-  returnTransactions(expenseId) { return this.transactions[expenseId]; }
 
   filterUserTransactions() {
     let result = [];
-    console.log('inside filter', this.transactions);
-    for (let id in this.transactions) {
-      this.transactions[id].forEach((transaction) => {
-        if (transaction.to === this.UserService.user.id || transaction.from === this.UserService.user.id) {
+    this.expenses.forEach((expense) => {
+      expense.transactions.forEach((transaction) => {
+        if (transaction.to._id === this.UserService.user.id || transaction.from._id === this.UserService.user.id) {
           result.push(transaction);
         }
       });
-    }
+    });
+
     return result;
   }
 
@@ -38,9 +34,9 @@ export default class ExpensesService {
     this.expenses.forEach((expense) => {
       expense.transactions.forEach((transaction) => {
         console.log('transaction id', transaction);
-        if (transaction.to._id.toString() === this.UserService.user.id.toString()) {
+        if (transaction.to._id === this.UserService.user.id) {
           owed += transaction.amount;
-        } else if (transaction.from._id.toString() === this.UserService.user.id.toString()) {
+        } else if (transaction.from._id === this.UserService.user.id) {
           debt += transaction.amount;
         }
       });
