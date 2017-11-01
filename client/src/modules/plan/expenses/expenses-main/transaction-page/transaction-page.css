@@ -1,0 +1,7 @@
+.transaction-page-container {
+  padding: 10px;
+}
+
+.transaction-page-header {
+  justify-content: space-between;
+}

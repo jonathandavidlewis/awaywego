@@ -1,4 +1,4 @@
 <div class="expenses-feed-card flex">
   <div class="expenses-feed-description">{{$ctrl.expense.description}}</div>
-  <div class="expenses-feed-amount">${{$ctrl.expense.amount}}</div>
+  <div class="expenses-feed-amount">{{$ctrl.expense.amount | currency:"$"}}</div>
 </div>

@@ -2,5 +2,5 @@
   <div class="transaction-card-description">{{$ctrl.transaction.description}}</div>
   <div class="transaction-card-from">{{$ctrl.transaction.from.name}}</div>
   <div class="transaction-card-to">{{$ctrl.transaction.to.name}}</div>
-  <div class="transaction-card-amount">${{$ctrl.transaction.amount}}</div>
+  <div class="transaction-card-amount">{{$ctrl.transaction.amount | currency:"$"}}</div>
 </div>
