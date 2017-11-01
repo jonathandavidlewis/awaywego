@@ -55,3 +55,11 @@
 .google-button-label {
   margin-left: 5px;
 }
+
+a:hover {
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}

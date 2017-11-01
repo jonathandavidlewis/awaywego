@@ -31,7 +31,7 @@
           <button type="submit" class="awgl-button" id="login" ng-disabled="loginForm.$invalid">Sign in</button>
         </div>
       </div>
-      <div class="g-signin2 awgl-button" ng-click="$ctrl.googleLogin()">
+      <a href="../auth/google" target="_self"><div class="g-signin2 awgl-button">
         <div>
           <div class="flex flex-center">
               <div  class="google-icon-container">
@@ -48,7 +48,7 @@
               <span class="google-button-label"> Sign in with Google</span>
           </div>
         </div>
-      </div>
+      </div></a>
       <div ng-if="$ctrl.formWarning" class="awgl-form-warning flex flex-center">
         <span>{{$ctrl.formWarning}}</span>
       </div>
