@@ -5,8 +5,8 @@
       <div class="group-card-title" ui-sref="app.group.feed({groupId: $ctrl.group._id})" ><span>{{$ctrl.group.title}}</span></div>
       <div class="group-card-description"><span>{{$ctrl.group.description}}</span></div>
     </div>
-    <a ng-if="$ctrl.UserService.user.id === $ctrl.group.userId" 
-      class="group-card-delete" ng-click="$ctrl.handleDeleteClick()">
+    <a ng-if="$ctrl.UserService.user.id === $ctrl.group.userId"
+      class="group-card-delete" ng-click="$ctrl.deleteGroup($ctrl.group._id)">
       <i class="material-icons">clear</i>
     </a>
   </div>

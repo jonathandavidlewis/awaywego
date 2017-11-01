@@ -7,7 +7,7 @@ import HomeModule from './modules/home/home';
 import LoginModule from './modules/login/login';
 import SignupModule from './modules/login/signup';
 import PlanModule from './modules/plan/plan';
-import MakePlanModule from './modules/make-plan/make-plan';
+import MakeGroupModule from './modules/make-group/make-group';
 import FriendsModule from './modules/friends/friends';
 import PeopleModule from './modules/plan/people/people';
 import ChatModule from './modules/chat/chat';
@@ -47,7 +47,7 @@ angular.module('app', [
   LoginModule,
   SignupModule,
   PlanModule,
-  MakePlanModule,
+  MakeGroupModule,
   FriendsModule,
   PeopleModule,
   ChatModule,
