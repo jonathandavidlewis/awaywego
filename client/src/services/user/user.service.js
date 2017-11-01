@@ -23,6 +23,7 @@ export default class UserService {
     this.user.name = payload.name;
     this.user.id = payload.userId;
     this.user.email = payload.email;
+    this.user.profilePic = payload.profilePic;
     this.isLoggedIn = true;
     return true;
   }

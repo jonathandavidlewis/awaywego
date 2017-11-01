@@ -1,0 +1,53 @@
+.people-add-container {
+  overflow: scroll;
+  background-color: var(--m0);
+}
+
+.people-add-header {
+  padding: 5px 10px;
+  font-size: 1.3em;
+  color: var(--m5);
+  background-color: var(--lt);
+  border-bottom: 1px solid var(--la);
+}
+
+.people-search-container {
+  background-color: var(--lt);
+  margin-bottom: 10px;
+}
+
+.people-search-container .awgl-form-input {
+  padding: 8px;
+  font-size: 1em;
+  border: none;
+}
+
+.people-add-controls {
+  position: fixed;
+  bottom: 90px;
+  left: 50%;
+  margin-left: -134px;
+  /*transform: translate(-50%, 0);*/
+  display: flex;
+  justify-content: space-between;
+}
+
+.people-add-save-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.people-add-save-container .awgd-button {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.people-add-back-container {
+  margin-right: 30px;
+}
+
+.people-add-controls .material-icons {
+  display: flex;
+}
