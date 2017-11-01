@@ -1,27 +1,23 @@
 import angular from 'angular';
 
 // imports for this component
-import template from './plan-card.html';
-import './plan-card.css';
+import template from './group-card.html';
+import './group-card.css';
 
-class PlanCardController {
-  constructor() {
-    this.handleDeleteClick = this.handleDeleteClick.bind(this);
-  }
-
-  handleDeleteClick() {
-    this.deletePlan(this.plan._id);
+class GroupCardController {
+  constructor(UserService) {
+    this.UserService = UserService;
   }
 }
 
-const PlanCardComponent = {
+const GroupCardComponent = {
   restrict: 'E',
   bindings: {
-    plan: '<',
-    deletePlan: '<'
+    group: '<',
+    deleteGroup: '<'
   },
   template: template,
-  controller: PlanCardController
+  controller: GroupCardController
 };
 
-export default PlanCardComponent;
+export default GroupCardComponent;

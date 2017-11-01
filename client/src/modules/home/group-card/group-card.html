@@ -1,14 +1,17 @@
-<div class="plan-card-container flex-col">
-  <div class="plan-card-main-container">
-    <img class="plan-card-image" ng-src={{$ctrl.plan.imageUrl}} alt=""/>
-    <div class="plan-card-info-container">
-      <div class="plan-card-title" ui-sref="app.plan.feed({planId: $ctrl.plan._id})" ><span>{{$ctrl.plan.title}}</span></div>
-      <div class="plan-card-description"><span>{{$ctrl.plan.description}}</span></div>
+<div class="group-card-container flex-col">
+  <div class="group-card-main-container">
+    <img class="group-card-image" ng-src={{$ctrl.group.imageUrl}} alt=""/>
+    <div class="group-card-info-container">
+      <div class="group-card-title" ui-sref="app.group.feed({groupId: $ctrl.group._id})" ><span>{{$ctrl.group.title}}</span></div>
+      <div class="group-card-description"><span>{{$ctrl.group.description}}</span></div>
     </div>
-    <a class="plan-card-delete" ng-click="$ctrl.handleDeleteClick()"><i class="material-icons">delete</i></a>
+    <a ng-if="$ctrl.UserService.user.id === $ctrl.group.userId" 
+      class="group-card-delete" ng-click="$ctrl.handleDeleteClick()">
+      <i class="material-icons">clear</i>
+    </a>
   </div>
-  <div class="plan-card-bottom-menu">
-      <a class="plan-card-more-details" href = "" ui-sref="app.plan.feed({planId: $ctrl.plan._id})">
+  <div class="group-card-bottom-menu">
+      <a class="group-card-more-details" href = "" ui-sref="app.group.feed({groupId: $ctrl.group._id})">
         <span>More Details</span>
       </a>
   </div>

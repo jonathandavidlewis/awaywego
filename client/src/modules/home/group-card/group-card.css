@@ -1,4 +1,4 @@
-.plan-card-container {
+.group-card-container {
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),
     0 3px 1px -2px rgba(0,0,0,0.12),
     0 1px 5px 0 rgba(0,0,0,0.2) !important;
@@ -8,13 +8,13 @@
   padding: 10px;
 }
 
-.plan-card-main-container {
+.group-card-main-container {
   display: flex;
   border-bottom: 1px solid var(--la);
   padding-bottom: 10px;
   align-items: flex-start;
 }
-.plan-card-info-container {
+.group-card-info-container {
   padding-left: 10px;
   display: flex;
   flex-direction: column;
@@ -22,40 +22,40 @@
   flex: 1 1 auto;
 }
 
-.plan-card-title {
+.group-card-title {
   font-size: 1.3em;
   color: var(--dk3);
   text-decoration: none !important;
   cursor: pointer;
 }
 
-.plan-card-delete {
+.group-card-delete {
   flex: 0 0 30px;
   cursor: pointer;
 }
 
-.plan-card-delete i:hover,
-.plan-card-more-details:hover,
-.plan-card-title:hover {
+.group-card-delete i:hover,
+.group-card-more-details:hover,
+.group-card-title:hover {
   color: var(--m3);
 }
 
-.plan-card-bottom-menu {
+.group-card-bottom-menu {
   display: flex;
   flex: 1 0 auto;
   justify-content: center;
   align-items: center;
 }
-.plan-card-bottom-menu a {
+.group-card-bottom-menu a {
   text-decoration: none;
 }
 
-.plan-card-more-details {
+.group-card-more-details {
   display: flex;
   margin-top: 10px;
 }
 
-.plan-card-image {
+.group-card-image {
   flex: 0 0 auto;
   width: 150px;
   height: 150px;
