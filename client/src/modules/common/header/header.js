@@ -10,6 +10,10 @@ class HeaderController {
     this.UserService = UserService;
   }
 
+  $onInit() {
+    console.log(this.UserService.user.profilePic);
+  }
+
   logout() { this.UserService.logout(); }
 }
 HeaderController.$inject = ['UserService'];
