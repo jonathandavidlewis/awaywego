@@ -5,12 +5,12 @@ import template from './expenses-add.html';
 import './expenses-add.css';
 
 class ExpensesAddController {
-  constructor(PlanService, ExpensesService, $state, $stateParams) {
+  constructor(GroupService, ExpensesService, $state, $stateParams) {
     this.state = $state;
     this.stateParams = $stateParams;
-    // Brings in PlanService to get current plan's members
-    this.PlanService = PlanService;
-    this.members = PlanService.currentPlan.members;
+    // Brings in GroupService to get current group's members
+    this.GroupService = GroupService;
+    this.members = GroupService.currentGroup.members;
 
     // Brings in Expenses service to make POST API calls.
     this.ExpensesService = ExpensesService;
@@ -110,13 +110,13 @@ class ExpensesAddController {
       return;
     }
     let expense = {
-      planId: this.stateParams.planId,
+      groupId: this.stateParams.groupId,
       description: this.description,
       amount: this.amount,
       transactions: this.transactions
     };
     this.ExpensesService.newExpense(expense).then(() => {
-      this.state.go('app.plan.expenses.main');
+      this.state.go('app.group.expenses.main');
     }).catch(err => {
       console.log('Server error: ', err);
     });
@@ -128,7 +128,7 @@ class ExpensesAddController {
 
 }
 
-ExpensesAddController.$inject = ['PlanService', 'ExpensesService', '$state', '$stateParams'];
+ExpensesAddController.$inject = ['GroupService', 'ExpensesService', '$state', '$stateParams'];
 
 const ExpensesAddComponent = {
   restrict: 'E',

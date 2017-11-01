@@ -1,7 +1,7 @@
 import angular from 'angular';
 
 // import services
-import PlanService from '../../../services/plan/plan.service';
+import GroupService from '../../../services/group/group.service';
 import ExpensesService from '../../../services/expenses/expenses-service';
 
 // import child Modules
@@ -33,7 +33,7 @@ const ExpensesComponent = {
   controller: ExpensesController
 };
 
-const ExpensesModule = angular.module('app.plan.expenses', [])
+const ExpensesModule = angular.module('app.group.expenses', [])
   .component('expenses', ExpensesComponent)
   .component('expensesMain', ExpensesMainComponent)
   .component('transactionPage', TransactionPageComponent)
@@ -44,6 +44,6 @@ const ExpensesModule = angular.module('app.plan.expenses', [])
   .component('expensesSummaryBar', ExpensesSummaryBarComponent)
   .component('expensesFeed', ExpensesFeedComponent)
   .component('expensesFeedCard', ExpensesFeedCardComponent)
-  .service('PlanService', PlanService)
+  .service('GroupService', GroupService)
   .service('ExpensesService', ExpensesService);
 export default ExpensesModule.name;
