@@ -1,7 +1,7 @@
 import angular from 'angular';
 
 // services for this module
-import PlanService from '../../../services/plan/plan.service';
+import PlanService from '../../../services/group/group.service';
 
 // components for this module
 import PeopleAddComponent from './people-add/people-add';
