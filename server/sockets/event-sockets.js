@@ -3,8 +3,8 @@ const debug = process.env.DEBUG || true;
 module.exports = (io) => {
 
   socketUserMap = {}; // maps sockets to users
-  socketPlanMap = {}; // maps sockets to plans/groups
-  //                     plans/groups will be 1:1 with rooms
+  socketGroupMap = {}; // maps sockets to groups/groups
+  //                     groups/groups will be 1:1 with rooms
   io.of('/events').on('connection', socket => {
     if (debug) { console.log('socket connected: ', socket.id); }
 
@@ -13,7 +13,7 @@ module.exports = (io) => {
       socket.emit('id yourself');
     }
 
-    if (!socketPlanMap[socket]) {
+    if (!socketGroupMap[socket]) {
       socket.emit('pick room');
     }
 
@@ -22,51 +22,51 @@ module.exports = (io) => {
       if (debug) { console.log('Connected users: ', socketUserMap); }
     });
 
-    socket.on('enter plan-events', plan => {
-      if (debug) { console.log('user entered plan: ', plan); }
+    socket.on('enter group-events', group => {
+      if (debug) { console.log('user entered group: ', group); }
       const user = socketUserMap[socket.id];
-      socket.join(plan);
-      socketPlanMap[socket.id] = plan;
+      socket.join(group);
+      socketGroupMap[socket.id] = group;
     });
 
-    socket.on('new event in plan', ({plan, event}) => {
-      if (debug) { console.log('new event in plan: ', plan, ', event: ', event); }
-      socket.to(plan).emit('new event', event);
+    socket.on('new event in group', ({group, event}) => {
+      if (debug) { console.log('new event in group: ', group, ', event: ', event); }
+      socket.to(group).emit('new event', event);
     });
 
-    socket.on('updated event in plan', ({plan, event}) => {
-      if (debug) { console.log('updated event in plan: ', plan, ', event: ', event); }
-      socket.to(plan).emit('update event', event);
+    socket.on('updated event in group', ({group, event}) => {
+      if (debug) { console.log('updated event in group: ', group, ', event: ', event); }
+      socket.to(group).emit('update event', event);
     });
 
-    socket.on('scheduled event in plan', ({plan, event}) => {
-      if (debug) { console.log('scheduled event in plan: ', plan, ', event: ', event); }
-      socket.to(plan).emit('scheduled event', event);
+    socket.on('scheduled event in group', ({group, event}) => {
+      if (debug) { console.log('scheduled event in group: ', group, ', event: ', event); }
+      socket.to(group).emit('scheduled event', event);
     });
 
-    socket.on('unscheduled event in plan', ({plan, event}) => {
-      if (debug) { console.log('unscheduled event in plan: ', plan, ', event: ', event); }
-      socket.to(plan).emit('unscheduled event', event);
+    socket.on('unscheduled event in group', ({group, event}) => {
+      if (debug) { console.log('unscheduled event in group: ', group, ', event: ', event); }
+      socket.to(group).emit('unscheduled event', event);
     });
 
-    socket.on('removed event in plan', ({plan, event}) => {
-      if (debug) { console.log('removed event in plan: ', plan, ', event: ', event); }
-      socket.to(plan).emit('removed event', event);
+    socket.on('removed event in group', ({group, event}) => {
+      if (debug) { console.log('removed event in group: ', group, ', event: ', event); }
+      socket.to(group).emit('removed event', event);
     });
 
-    socket.on('new comment in plan', ({plan, comment}) => {
+    socket.on('new comment in group', ({group, comment}) => {
       if (debug) { console.log('new comment: ', comment); }
-      socket.to(plan).emit('new comment', comment);
+      socket.to(group).emit('new comment', comment);
     });
 
-    socket.on('updated comment in plan', ({plan, comment}) => {
+    socket.on('updated comment in group', ({group, comment}) => {
       if (debug) { console.log('updated comment: ', comment); }
-      socket.to(plan).emit('updated comment', comment);
+      socket.to(group).emit('updated comment', comment);
     });
 
-    socket.on('removed comment in plan', ({plan, eventId, commentId}) => {
+    socket.on('removed comment in group', ({group, eventId, commentId}) => {
       if (debug) { console.log('removed comment: ', commentId); }
-      socket.to(plan).emit('removed comment', {eventId, commentId});
+      socket.to(group).emit('removed comment', {eventId, commentId});
     });
 
     socket.on('disconnect', () => {
@@ -79,8 +79,8 @@ module.exports = (io) => {
     const user = socketUserMap[socket.id];
     delete socketUserMap[socket.id];
 
-    const plan = socketPlanMap[socket.id];
-    delete socketPlanMap[socket.id];
+    const group = socketGroupMap[socket.id];
+    delete socketGroupMap[socket.id];
   };
 
 };

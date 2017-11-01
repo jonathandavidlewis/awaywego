@@ -24,14 +24,14 @@ export default class EventService {
 
   //===========  SOCKET LOGIC ===========\\
 
-  setupEventSocket(planId) {
+  setupEventSocket(groupId) {
     if (this.eventSocket) { this.eventSocket.disconnect(); }
     this.eventSocket = socket('/events');
     this.eventSocket.on('id yourself', () => {
       this.eventSocket.emit('id user', this.user);
     });
     this.eventSocket.on('pick room', () => {
-      this.eventSocket.emit('enter plan-events', planId);
+      this.eventSocket.emit('enter group-events', groupId);
     });
 
     this.eventSocket.on('new event', event => this.handleNewEvent(event, true));
@@ -121,9 +121,9 @@ export default class EventService {
 
   //===========  EVENT LOGIC ===========\\
 
-  loadEventsByPlanId(planId) {
-    this.setupEventSocket(planId);
-    return this.http.get(`/api/event/inplan/${planId}`).then(resp => {
+  loadEventsById(groupId) {
+    this.setupEventSocket(groupId);
+    return this.http.get(`/api/event/group/${groupId}`).then(resp => {
       this.events = {};
       this.ideas = [];
       this.feed = [];
@@ -146,8 +146,8 @@ export default class EventService {
   submitNewEvent(event) {
     return this.http.post('/api/event', event).then(resp => {
       this.handleNewEvent(resp.data, false);
-      this.eventSocket.emit('new event in plan',
-        {plan: resp.data.planId, event: resp.data});
+      this.eventSocket.emit('new event in group',
+        {group: resp.data.groupId, event: resp.data});
     });
   }
 
@@ -158,47 +158,47 @@ export default class EventService {
     }
     return this.http.put(`/api/event/${eventId}`, updatedEvent)
       .then(resp => {
-        this.eventSocket.emit('updated event in plan',
-          {plan: resp.data.planId, event: resp.data});
+        this.eventSocket.emit('updated event in group',
+          {group: resp.data.groupId, event: resp.data});
       });
   }
 
   deleteEvent(eventId) {
     return this.http.delete(`/api/event/${eventId}`).then(resp => {
-      this.eventSocket.emit('removed event in plan',
-        {plan: resp.data.planId, event: resp.data});
+      this.eventSocket.emit('removed event in group',
+        {group: resp.data.groupId, event: resp.data});
     });
   }
 
   promoteEvent(event) {
     return this.http.put(`api/event/${event._id}/promote`, event)
       .then(resp => {
-        this.eventSocket.emit('scheduled event in plan',
-          {plan: resp.data.planId, event: resp.data});
+        this.eventSocket.emit('scheduled event in group',
+          {group: resp.data.groupId, event: resp.data});
       });
   }
 
   demoteEvent(eventId) {
     return this.http.put(`api/event/${eventId}/demote`)
       .then(resp => {
-        this.eventSocket.emit('unscheduled event in plan',
-          {plan: resp.data.planId, event: resp.data});
+        this.eventSocket.emit('unscheduled event in group',
+          {group: resp.data.groupId, event: resp.data});
       });
   }
 
   downvoteEvent(eventId) {
     return this.http.put(`api/event/${eventId}/downvote`).then(resp => {
       this.events[eventId] = resp.data;
-      this.eventSocket.emit('updated event in plan',
-        {plan: resp.data.planId, event: resp.data});
+      this.eventSocket.emit('updated event in group',
+        {group: resp.data.groupId, event: resp.data});
     });
   }
 
   upvoteEvent(eventId) {
     return this.http.put(`api/event/${eventId}/upvote`).then(resp => {
       this.events[eventId] = resp.data;
-      this.eventSocket.emit('updated event in plan',
-        {plan: resp.data.planId, event: resp.data});
+      this.eventSocket.emit('updated event in group',
+        {group: resp.data.groupId, event: resp.data});
     });
   }
 
@@ -213,8 +213,8 @@ export default class EventService {
   postCommentForEvent(eventId, comment) {
     return this.http.post(`/api/comments/${eventId}`, {text: comment}).then(resp => {
       this.comments[eventId].push(resp.data.newComment);
-      this.eventSocket.emit('new comment in plan',
-        {plan: this.events[eventId].planId, comment});
+      this.eventSocket.emit('new comment in group',
+        {group: this.events[eventId].groupId, comment});
     });
   }
 
@@ -222,16 +222,16 @@ export default class EventService {
     return this.http.put(`/api/comments/${eventId}/${commentId}`, {text: newText})
       .then(resp => {
         this.handleUpdateComment(resp.data, false);
-        this.eventSocket.emit('updated comment in plan',
-          {plan: this.events[eventId].planId, comment});
+        this.eventSocket.emit('updated comment in group',
+          {group: this.events[eventId].groupId, comment});
       });
   }
 
   removeCommentForEvent(eventId, commentId) {
     return this.http.delete(`/api/comments/${eventId}/${commentId}`).then(resp => {
       this.handleRemoveComment(eventId, commentId, false);
-      this.eventSocket.emit('removed comment in plan',
-        {plan: this.events[eventId].planId, eventId, commentId});
+      this.eventSocket.emit('removed comment in group',
+        {group: this.events[eventId].groupId, eventId, commentId});
     });
   }
 }
