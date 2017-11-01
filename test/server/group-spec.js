@@ -2,7 +2,6 @@ const expect = require('chai').expect;
 const axios = require('axios');
 const request = require('supertest');
 const User = require('../../db/models/user');
-const PlanEvent = require('../../db/models/event');
 
 require('../../server'); //gets the app started
 req = request('http://localhost:8080');
@@ -17,7 +16,7 @@ const TEST_USER_EMAIL = {
   email: 'test1@example.com'
 };
 
-const TEST_PLAN = {
+const TEST_GROUP = {
   title: 'Test Plan Ever',
 };
 
@@ -44,12 +43,12 @@ describe('/api', function() {
     User.remove(TEST_USER_EMAIL).then(() => done());
   });
 
-  xdescribe('/plan', function() {
+  xdescribe('post -> /group', function() {
     after(function(done) {
-      User.remove(TEST_PLAN).then(() => done());
+      User.remove(TEST_USER_EMAIL).then(() => done());
     });
 
-    it('should create a plan on a post request', function(done) {
+    it('should create a group on a post request', function(done) {
 
     });
   });

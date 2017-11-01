@@ -2,7 +2,8 @@ const expect = require('chai').expect;
 const axios = require('axios');
 const request = require('supertest');
 const User = require('../../db/models/user');
-const PlanEvent = require('../../db/models/event');
+const Event = require('../../db/models/event');
+const Group = require('../../db/models/group');
 
 require('../../server'); //gets the app started
 req = request('http://localhost:8080');
@@ -17,8 +18,8 @@ const TEST_USER_EMAIL = {
   email: 'test1@example.com'
 };
 
-const TEST_PLAN = {
-  title: 'Test Plan Ever',
+const TEST_GROUP = {
+  title: 'Test Group Ever',
 };
 
 
@@ -49,24 +50,25 @@ describe('/api', function() {
     const TEST_EVENT = {
       title: 'John"s best BBQ',
       description: 'We will have a ton of fun at this park...',
-      planId: 'undefined',
+      groupId: 'undefined',
       startTime: '2016-05-18T16:00:00Z',
       endTime: '2016-05-18T16:00:00Z',
     };
 
-    // Makes a plan and updates planId
+    // Makes a group and updates groupId
     before(function(done) {
-      req.post('/api/plan')
-        .send(TEST_PLAN)
+      req.post('/api/group')
+        .send(TEST_GROUP)
         .set(AUTH)
         .then((response) => {
-          TEST_EVENT.planId = response.body._id;
+          TEST_EVENT.groupId = response.body._id;
           done();
         });
     });
 
     after(function(done) {
-      PlanEvent.remove(TEST_EVENT).then(() => done());
+      Event.remove(TEST_EVENT).then(() => Group.findByIdAndRemove(TEST_EVENT.groupId))
+        .then(() => done());
     });
 
     describe('POST', function() {
@@ -76,8 +78,8 @@ describe('/api', function() {
           .set(AUTH)
           .expect(201)
           .then((response) => {
-            PlanEvent.findOne({_id: response.body._id}).then((planEvent) => {
-              expect(planEvent).to.exist;
+            Event.findOne({_id: response.body._id}).then((groupEvent) => {
+              expect(groupEvent).to.exist;
               done();
             });
           });
@@ -85,8 +87,8 @@ describe('/api', function() {
     });
 
     describe('GET', function() {
-      it('should get all events for a particular planId', function(done) {
-        req.get('/api/event/inplan/' + TEST_EVENT.planId)
+      it('should get all events for a particular groupId', function(done) {
+        req.get('/api/event/group/' + TEST_EVENT.groupId)
           .set(AUTH)
           .expect(200)
           .then((response) => {
@@ -100,7 +102,7 @@ describe('/api', function() {
       let EVENT_ID;
 
       before(function(done) {
-        req.get('/api/event/inplan/' + TEST_EVENT.planId)
+        req.get('/api/event/group/' + TEST_EVENT.groupId)
           .set(AUTH)
           .expect(200)
           .then((response) => {
@@ -110,11 +112,11 @@ describe('/api', function() {
       });
 
       beforeEach(function(done) {
-        PlanEvent.remove({EVENT_ID}).then(() => done());
+        Event.remove({EVENT_ID}).then(() => done());
       });
 
       after(function(done) {
-        PlanEvent.remove({EVENT_ID}).then(() => done());
+        Event.remove({EVENT_ID}).then(() => done());
       });
 
       it('should allow updating by eventId', function(done) {
@@ -126,8 +128,8 @@ describe('/api', function() {
           .expect(200)
           .then((response) => {
             expect(response.body.title).to.equal(UPDATED_EVENT.title);
-            PlanEvent.findOne({_id: EVENT_ID}).then((planEvent) => {
-              expect(planEvent.title).to.equal(UPDATED_EVENT.title);
+            Event.findOne({_id: EVENT_ID}).then((groupEvent) => {
+              expect(groupEvent.title).to.equal(UPDATED_EVENT.title);
               done();
             });
           });
@@ -140,8 +142,8 @@ describe('/api', function() {
           .expect(200)
           .then((response) => {
             expect(response.body.status).to.equal('itinerary');
-            PlanEvent.findOne({_id: EVENT_ID}).then((planEvent) => {
-              expect(planEvent.status).to.equal('itinerary');
+            Event.findOne({_id: EVENT_ID}).then((groupEvent) => {
+              expect(groupEvent.status).to.equal('itinerary');
               done();
             });
           });
@@ -153,8 +155,8 @@ describe('/api', function() {
           .expect(200)
           .then((response) => {
             expect(response.body.status).to.equal('idea');
-            PlanEvent.findOne({_id: EVENT_ID}).then((planEvent) => {
-              expect(planEvent.status).to.equal('idea');
+            Event.findOne({_id: EVENT_ID}).then((groupEvent) => {
+              expect(groupEvent.status).to.equal('idea');
               done();
             });
           });
@@ -166,10 +168,10 @@ describe('/api', function() {
           .expect(200)
           .then((response) => {
             expect(response.body.upVotes.length).to.equal(1);
-            PlanEvent.findOne({_id: EVENT_ID}).then((planEvent) => {
-              expect(planEvent.upVotes.length).to.equal(1);
+            Event.findOne({_id: EVENT_ID}).then((groupEvent) => {
+              expect(groupEvent.upVotes.length).to.equal(1);
               User.findOne(TEST_USER_EMAIL).then((user) => {
-                expect(planEvent.upVotes).to.contain(user._id);
+                expect(groupEvent.upVotes).to.contain(user._id);
                 done();
               });
             });
@@ -182,10 +184,10 @@ describe('/api', function() {
           .expect(200)
           .then((response) => {
             expect(response.body.downVotes.length).to.equal(1);
-            PlanEvent.findOne({_id: EVENT_ID}).then((planEvent) => {
-              expect(planEvent.downVotes.length).to.equal(1);
+            Event.findOne({_id: EVENT_ID}).then((groupEvent) => {
+              expect(groupEvent.downVotes.length).to.equal(1);
               User.findOne(TEST_USER_EMAIL).then((user) => {
-                expect(planEvent.downVotes).to.contain(user._id);
+                expect(groupEvent.downVotes).to.contain(user._id);
                 done();
               });
             });
@@ -198,12 +200,12 @@ describe('/api', function() {
           .expect(200)
           .then((response) => {
             expect(response.body.upVotes.length).to.equal(1);
-            PlanEvent.findOne({_id: EVENT_ID}).then((planEvent) => {
-              expect(planEvent.downVotes.length).to.equal(0);
-              expect(planEvent.upVotes.length).to.equal(1);
+            Event.findOne({_id: EVENT_ID}).then((groupEvent) => {
+              expect(groupEvent.downVotes.length).to.equal(0);
+              expect(groupEvent.upVotes.length).to.equal(1);
               User.findOne(TEST_USER_EMAIL).then((user) => {
-                expect(planEvent.downVotes).to.not.contain(user._id);
-                expect(planEvent.upVotes).to.contain(user._id);
+                expect(groupEvent.downVotes).to.not.contain(user._id);
+                expect(groupEvent.upVotes).to.contain(user._id);
                 done();
               });
             });
@@ -216,12 +218,12 @@ describe('/api', function() {
           .expect(200)
           .then((response) => {
             expect(response.body.downVotes.length).to.equal(1);
-            PlanEvent.findOne({_id: EVENT_ID}).then((planEvent) => {
-              expect(planEvent.upVotes.length).to.equal(0);
-              expect(planEvent.downVotes.length).to.equal(1);
+            Event.findOne({_id: EVENT_ID}).then((groupEvent) => {
+              expect(groupEvent.upVotes.length).to.equal(0);
+              expect(groupEvent.downVotes.length).to.equal(1);
               User.findOne(TEST_USER_EMAIL).then((user) => {
-                expect(planEvent.downVotes).to.contain(user._id);
-                expect(planEvent.upVotes).to.not.contain(user._id);
+                expect(groupEvent.downVotes).to.contain(user._id);
+                expect(groupEvent.upVotes).to.not.contain(user._id);
                 done();
               });
             });
@@ -231,7 +233,7 @@ describe('/api', function() {
 
     describe('DELETE', function() {
       it('should delete an event by id', function(done) {
-        req.get(`/api/event/inplan/${TEST_EVENT.planId}`)
+        req.get(`/api/event/group/${TEST_EVENT.groupId}`)
           .set(AUTH)
           .expect(200)
           .then((response) => {
@@ -240,8 +242,8 @@ describe('/api', function() {
               .set(AUTH)
               .expect(200)
               .then(() => {
-                PlanEvent.findOne({_id: EVENT_ID}).then((planEvent) => {
-                  expect(planEvent).to.not.exist;
+                Event.findOne({_id: EVENT_ID}).then((groupEvent) => {
+                  expect(groupEvent).to.not.exist;
                   done();
                 });
               });

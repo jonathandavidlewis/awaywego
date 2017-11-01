@@ -3,7 +3,6 @@ const axios = require('axios');
 const request = require('supertest');
 const jwt = require('jsonwebtoken');
 const User = require('../../db/models/user');
-const PlanEvent = require('../../db/models/event');
 
 require('../../server'); //gets the app started
 req = request('http://localhost:8080');
