@@ -1,7 +1,7 @@
 import angular from 'angular';
 
 // import services for this modules
-import PlanService from '../../services/plan/plan.service';
+import PlanService from '../../services/group/group.service';
 
 // imports for this component
 import template from './make-plan.html';
