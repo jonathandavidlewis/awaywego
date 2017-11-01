@@ -4,6 +4,8 @@ const Schema = mongoose.Schema;
 
 let eventSchema = new Schema({
   title: {type: String, required: true},
+  addressText: {type: String, required: false},
+  addressLink: {type: String, required: false},
   description: {type: String, required: false},
   planId: {type: Schema.ObjectId, ref: 'Plan', required: true },
   startTime: {type: String, required: false},
