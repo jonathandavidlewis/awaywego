@@ -13,7 +13,7 @@ const loginGoogleUser = (req, res) => {
 
   User.findOne({googleId: googleId}).then((user) => {
     if (user) {
-      const token = jwt.sign({name: user.name, userId: user._id, email: user.email}, jwtOptions.secretOrKey);
+      const token = jwt.sign({name: user.name, userId: user._id, email: user.email, profilePic: user.profilePic}, jwtOptions.secretOrKey);
       res.locals.newToken = token;
       res.locals.googleAccessToken = user.googleAccessToken;
       res.render('index');
