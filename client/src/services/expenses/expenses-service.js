@@ -10,6 +10,7 @@ export default class ExpensesService {
     this.calculateDebts = this.calculateDebts.bind(this);
     this.sortTransactions = this.sortTransactions.bind(this);
     this.getExpenses = this.getExpenses.bind(this);
+    this.roundMoney = this.roundMoney.bind(this);
   }
 
   // ExpensesService data access methods
@@ -35,7 +36,7 @@ export default class ExpensesService {
       });
 
     }
-    return {owed: owed, debt: debt, balance: owed - debt};
+    return {owed: owed, debt: debt, balance: this.roundMoney(owed - debt)};
   }
 
   sortTransactions(transactions) {
@@ -66,6 +67,10 @@ export default class ExpensesService {
 
   removeTransaction(transactionId) {
     return this.http.delete(`/api/expenses/remove/${transactionId}`);
+  }
+
+  roundMoney(value) {
+    return Number(Math.round(value + 'e+2') + 'e-2').toFixed(2);
   }
 
 
