@@ -11,6 +11,7 @@ import moment from 'moment';
 //import DatetimePickerComponent from '../../../common/datetime-picker/datetime-picker-config';
 
 // imports for this component
+import AddressSearchComponent from '../../../address-search/address-search';
 import template from './promote-idea.html';
 import './promote-idea.css';
 
@@ -104,6 +105,7 @@ const PromoteIdeaComponent = {
 
 const PromoteIdeaModule = angular.module('app.plan.planner.promoteIdea', ['moment-picker'])
   .component('promoteIdea', PromoteIdeaComponent)
+  .component('addressSearch', AddressSearchComponent)
   .service('EventService', EventService)
   .service('AddressService', AddressService);
 
