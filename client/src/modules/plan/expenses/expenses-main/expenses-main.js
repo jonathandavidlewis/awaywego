@@ -14,13 +14,10 @@ class ExpensesMainController {
   }
 
   $onInit() {
-    console.log('init triggered', this.expenses);
-    console.log('planId: ', this.stateParams.planId);
     this.ExpensesService.getExpenses(this.stateParams.planId).then(() => {
       this.expenses = this.ExpensesService.returnExpenses();
       this.summary = this.ExpensesService.calculateDebts();
     });
-    console.log('after init triggered', this.expenses);
   }
 
 

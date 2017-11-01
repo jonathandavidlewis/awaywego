@@ -1,5 +1,6 @@
 .expenses-feed-container {
   overflow: auto;
+  padding: 10px;
 }
 
 .expenses-feed-header {

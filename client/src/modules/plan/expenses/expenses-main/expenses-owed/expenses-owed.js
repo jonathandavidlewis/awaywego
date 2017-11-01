@@ -7,6 +7,12 @@ import './expenses-owed.css';
 class ExpensesOwedController {
   constructor(ExpensesService) {
     this.ExpensesService = ExpensesService;
+    this.transactions = '';
+  }
+
+  $onInit() {
+    this.transactions = this.ExpensesService.filterUserTransactions();
+    console.log('Expenses OWED', this.transactions);
   }
 }
 
@@ -14,9 +20,7 @@ ExpensesOwedController.$inject = ['ExpensesService'];
 
 const ExpensesOwedComponent = {
   restrict: 'E',
-  bindings: {
-    summary: '<'
-  },
+  bindings: {},
   template: template,
   controller: ExpensesOwedController
 };

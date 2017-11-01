@@ -6,12 +6,15 @@ import ExpensesService from '../../../services/expenses/expenses-service';
 
 // import child Modules
 import ExpensesMainComponent from './expenses-main/expenses-main';
+import ExpensesOwedComponent from './expenses-main/expenses-owed/expenses-owed';
+import TransactionCardComponent from './expenses-main/transaction-card/transaction-card';
 import ExpensesAddComponent from './expenses-add/expenses-add';
 import ExpensesAddPeopleComponent from './expenses-add/expenses-add-people/expenses-add-people';
 import ExpensesAddPeopleCardComponent from './expenses-add/expenses-add-people/expenses-add-people-card/expenses-add-people-card';
 import ExpensesSummaryBarComponent from './expenses-main/expenses-summary-bar/expenses-summary-bar';
 import ExpensesFeedComponent from './expenses-main/expenses-feed/expenses-feed';
 import ExpensesFeedCardComponent from './expenses-main/expenses-feed/expenses-feed-card/expenses-feed-card';
+
 // imports for this component
 import template from './expenses.html';
 import './expenses.css';
@@ -33,6 +36,8 @@ const ExpensesComponent = {
 const ExpensesModule = angular.module('app.plan.expenses', [])
   .component('expenses', ExpensesComponent)
   .component('expensesMain', ExpensesMainComponent)
+  .component('expensesOwed', ExpensesOwedComponent)
+  .component('transactionCard', TransactionCardComponent)
   .component('expensesAdd', ExpensesAddComponent)
   .component('expensesAddPeople', ExpensesAddPeopleComponent)
   .component('expensesAddPeopleCard', ExpensesAddPeopleCardComponent)

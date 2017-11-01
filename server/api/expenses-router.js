@@ -25,7 +25,6 @@ expensesRouter.post('/', (req, res) => {
         expense.transactions.push(transactions[i]._id);
       }
       expense.save().then(() => {
-        console.log('expense', expense);
         res.status(201).json(expense);
       });
     }).catch(err => res.status(500).json({'Server error': err}));
@@ -34,17 +33,39 @@ expensesRouter.post('/', (req, res) => {
 
 
 expensesRouter.get('/:planId', (req, res) => {
-  Expense.find({planId: req.params.planId}).then((expenses) => {
-    let ledger = {
-      expenses: expenses,
-      transactions: []
-    };
+  Expense.find({planId: req.params.planId})
+    .populate({
+      path: 'transactions',
+      populate: {
+        path: 'to',
+        model: 'User'
+      }
+    }).populate({
+      path: 'transactions',
+      populate: {
+        path: 'from',
+        model: 'User'
+      }
+    }).exec().then((expenses) => {
+      console.log('get route ', expenses);
+      res.status(200).json(expenses);
+    }).catch(err => res.status(500).json({'Server error': err}));
 
-    Transaction.find({planId: req.params.planId}).then((transactions) => {
-      ledger.transactions = transactions;
-      res.status(200).json(ledger);
-    });
-  }).catch(err => res.status(500).json({'Server error': err}));
+
+
+
+
+  // then((expenses) => {
+  //   let ledger = {
+  //     expenses: expenses,
+  //     transactions: []
+  //   };
+  //
+  //   Transaction.find({planId: req.params.planId}).then((transactions) => {
+  //     ledger.transactions = transactions;
+  //     res.status(200).json(ledger);
+  //   });
+  // }).catch(err => res.status(500).json({'Server error': err}));
 });
 
 

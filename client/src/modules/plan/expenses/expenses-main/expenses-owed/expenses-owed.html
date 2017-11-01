@@ -1,0 +1,10 @@
+<div class="expenses-owed-container">
+  <div class="expenses-owed-header flex">
+    <div class="expenses-owed-description"><b>Description</b></div>
+    <div class="expenses-owed-from"><b>From</b></div>
+    <div class="expenses-owed-to"><b>To</b></div>
+    <div class="expenses-owed-amount"><b>Amount</b></div>
+  </div>
+  <transaction-card ng-repeat="transaction in $ctrl.transactions" transaction="transaction"/>
+
+</div>

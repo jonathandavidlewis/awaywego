@@ -8,46 +8,57 @@ export default class ExpensesService {
 
 
     this.calculateDebts = this.calculateDebts.bind(this);
-    this.sortTransactions = this.sortTransactions.bind(this);
+    // this.sortTransactions = this.sortTransactions.bind(this);
     this.getExpenses = this.getExpenses.bind(this);
     this.roundMoney = this.roundMoney.bind(this);
+    this.filterUserTransactions = this.filterUserTransactions.bind(this);
   }
 
   // ExpensesService data access methods
   returnExpenses() { return this.expenses; }
 
-  returnTransactions() { return this.transactions; }
+  returnTransactions(expenseId) { return this.transactions[expenseId]; }
+
+  filterUserTransactions() {
+    let result = [];
+    console.log('inside filter', this.transactions);
+    for (let id in this.transactions) {
+      this.transactions[id].forEach((transaction) => {
+        if (transaction.to === this.UserService.user.id || transaction.from === this.UserService.user.id) {
+          result.push(transaction);
+        }
+      });
+    }
+    return result;
+  }
 
   calculateDebts() {
     let owed = 0;
     let debt = 0;
-    console.log('Calculate debts', this.transactions);
-    for (let id in this.transactions) {
-      console.log('inside for loop of calc debts', id, this.transactions);
-      this.transactions[id].forEach((transaction) => {
-        console.log('transactionId, userid', transaction.to, this.UserService.user.id);
-        if (transaction.to === this.UserService.user.id) {
-          console.log('to fired');
+    this.expenses.forEach((expense) => {
+      expense.transactions.forEach((transaction) => {
+        console.log('transaction id', transaction);
+        if (transaction.to._id.toString() === this.UserService.user.id.toString()) {
           owed += transaction.amount;
-        } else if (transaction.from === this.UserService.user.id) {
-          console.log('from fired');
+        } else if (transaction.from._id.toString() === this.UserService.user.id.toString()) {
           debt += transaction.amount;
         }
       });
+    });
 
-    }
+
     return {owed: this.roundMoney(owed), debt: this.roundMoney(debt), balance: this.roundMoney(owed - debt)};
   }
 
-  sortTransactions(transactions) {
-    this.transactions = {};
-    transactions.forEach((transaction) => {
-      if (!this.transactions[transaction.expenseId]) {
-        this.transactions[transaction.expenseId] = [];
-      }
-      this.transactions[transaction.expenseId].push(transaction);
-    });
-  }
+  // sortTransactions(transactions) {
+  //   this.transactions = {};
+  //   transactions.forEach((transaction) => {
+  //     if (!this.transactions[transaction.expenseId]) {
+  //       this.transactions[transaction.expenseId] = [];
+  //     }
+  //     this.transactions[transaction.expenseId].push(transaction);
+  //   });
+  // }
 
   newExpense(expense) {
     return this.http.post('/api/expenses', expense);
@@ -55,9 +66,9 @@ export default class ExpensesService {
 
   getExpenses(planId) {
     return this.http.get(`/api/expenses/${planId}`).then((res) => {
-      this.expenses = res.data.expenses;
+      this.expenses = res.data;
       console.log('get expenses', this.expenses);
-      this.sortTransactions(res.data.transactions);
+      // this.sortTransactions(res.data.transactions);
     });
   }
 
