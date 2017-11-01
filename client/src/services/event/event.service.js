@@ -1,12 +1,14 @@
 import socket from 'socket.io-client';
 
 export default class EventService {
-  constructor($http, $rootScope, UserService) {
-    this.$inject = ['$http', '$rootScope', 'UserService'];
+  constructor($http, $rootScope, UserService, MomentService) {
+    this.$inject = ['$http', '$rootScope', 'UserService', 'MomentService'];
     this.user = UserService.user;
+    this.moment = MomentService.moment;
     this.http = $http;
     this.rootScope = $rootScope;
     this.events = {};
+    this.comments = {};
     this.ideas = [];
     this.feed = [];
     this.eventSocket = null;
@@ -37,6 +39,9 @@ export default class EventService {
     this.eventSocket.on('scheduled event', event => this.handleUpdateEvent(event, true));
     this.eventSocket.on('unscheduled event', event => this.handleUpdateEvent(event, true));
     this.eventSocket.on('removed event', event => this.handleRemoveEvent(event, true));
+    this.eventSocket.on('new comment', comment => this.handleNewComment(comment, true));
+    this.eventSocket.on('updated comment', comment => this.handleUpdateComment(comment, true));
+    this.eventSocket.on('removed comment', ({eventId, commentId}) => this.handleRemoveComment(eventId, commentId, true));
   }
 
   handleNewEvent(event, digest) {
@@ -86,9 +91,33 @@ export default class EventService {
       const feedIndex = this.feed.findIndex(ev => ev._id === event._id);
       if (feedIndex > -1) { this.feed.splice(feedIndex, 1); }
       delete this.events[event._id];
+      delete this.comments[event._id];
       if (digest) { this.rootScope.$apply(); }
     }
   }
+
+  handleNewComment(comment, digest) {
+    this.comments[comment.eventId].push(comment);
+    if (digest) { this.rootScope.$apply(); }
+  }
+
+  handleUpdateComment(comment, digest) {
+    const updates = comment;
+    let toUpdate = this.comments[comment.eventId].find(c => c._id === commentId);
+    toUpdate.text = updates.text;
+    toUpdate.updatedAt = updates.updatedAt;
+    if (digest) { this.rootScope.$apply(); }
+  }
+
+  handleRemoveComment(eventId, commentId, digest) {
+    const commentIndex = this.comments[eventId].findIndex(c => c._id === commentId);
+    if (commentIndex > -1) {
+      this.comments[eventId].splice(commentIndex, 1);
+    }
+    if (digest) { this.rootScope.$apply(); }
+  }
+
+
 
   //===========  EVENT LOGIC ===========\\
 
@@ -177,36 +206,32 @@ export default class EventService {
 
   getCommentsForEvent(eventId) {
     return this.http.get(`/api/comments/${eventId}`).then(resp => {
-      this.events[eventId].comments = resp.data.reverse();
+      this.comments[eventId] = resp.data.reverse();
     });
   }
 
   postCommentForEvent(eventId, comment) {
     return this.http.post(`/api/comments/${eventId}`, {text: comment}).then(resp => {
-      this.events[eventId].comments.push(resp.data.newComment);
-      this.eventSocket.emit('updated event in plan',
-        {plan: this.events[eventId].planId, event: this.events[eventId]});
+      this.comments[eventId].push(resp.data.newComment);
+      this.eventSocket.emit('new comment in plan',
+        {plan: this.events[eventId].planId, comment});
     });
   }
 
   updateCommentForEvent(eventId, commentId, newText) {
     return this.http.put(`/api/comments/${eventId}/${commentId}`, {text: newText})
       .then(resp => {
-        const newComment = resp.data.updatedComment;
-        const oldComment = this.events[eventId].comments.find(c => c._id === commentId);
-        oldComment.text = newComment.text;
-        oldComment.updatedAt = newComment.updatedAt;
-        this.eventSocket.emit('updated event in plan',
-          {plan: this.events[eventId].planId, event: this.events[eventId]});
+        this.handleUpdateComment(resp.data, false);
+        this.eventSocket.emit('updated comment in plan',
+          {plan: this.events[eventId].planId, comment});
       });
   }
 
   removeCommentForEvent(eventId, commentId) {
     return this.http.delete(`/api/comments/${eventId}/${commentId}`).then(resp => {
-      const toRemove = this.events[eventId].comments.findIndex(c => c._id === commentId);
-      this.events[eventId].comments.splice(toRemove, 1);
-      this.eventSocket.emit('updated event in plan',
-        {plan: this.events[eventId].planId, event: this.events[eventId]});
+      this.handleRemoveComment(eventId, commentId, false);
+      this.eventSocket.emit('removed comment in plan',
+        {plan: this.events[eventId].planId, eventId, commentId});
     });
   }
 }

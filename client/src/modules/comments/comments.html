@@ -9,7 +9,7 @@
   <div ng-show="$ctrl.isOpen" class="comments-drawer">
     <div class="comments-list-container">
       <comment-card
-        ng-repeat="comment in $ctrl.EventService.events[$ctrl.eventId].comments"
+        ng-repeat="comment in $ctrl.EventService.comments[$ctrl.eventId]"
         comment="comment">
       </comment-card>
     </div>

@@ -54,6 +54,21 @@ module.exports = (io) => {
       socket.to(plan).emit('removed event', event);
     });
 
+    socket.on('new comment in plan', ({plan, comment}) => {
+      if (debug) { console.log('new comment: ', comment); }
+      socket.to(plan).emit('new comment', comment);
+    });
+
+    socket.on('updated comment in plan', ({plan, comment}) => {
+      if (debug) { console.log('updated comment: ', comment); }
+      socket.to(plan).emit('updated comment', comment);
+    });
+
+    socket.on('removed comment in plan', ({plan, eventId, commentId}) => {
+      if (debug) { console.log('removed comment: ', commentId); }
+      socket.to(plan).emit('removed comment', {eventId, commentId});
+    });
+
     socket.on('disconnect', () => {
       if (debug) { console.log('user disconnected...'); }
       cleanupSocket(socket);
