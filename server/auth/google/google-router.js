@@ -10,6 +10,16 @@ passport.use(new GoogleStrategy({
   clientSecret: process.env.GOOGLE_CLIENT_SECRET || GOOGLE_CLIENT_SECRET,
   callbackURL: '/auth/google/callback'
 }, function(req, accessToken, refreshToken, profile, done) {
+
+  /* User.findOrCreate({ googleId: profile.id }, function (err, user) {
+   return done(err, user);
+ });*/
+  console.log("ACCESS:", accessToken);
+  console.log("REFRESH:", refreshToken);
+  console.log("PROFILE:___:", profile);
+  //add userAccessTokenToUser
+  // googleAccessToken
+
   return done(null, profile);
 }
 ));
