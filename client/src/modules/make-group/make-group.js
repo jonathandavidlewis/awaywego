@@ -1,17 +1,17 @@
 import angular from 'angular';
 
 // import services for this modules
-import PlanService from '../../services/group/group.service';
+import GroupService from '../../services/group/group.service';
 
 // imports for this component
-import template from './make-plan.html';
-import './make-plan.css';
+import template from './make-group.html';
+import './make-group.css';
 
-class MakePlanController {
-  constructor($state, PlanService) {
-    this.$inject = ['$state', 'PlanService'];
+class MakeGroupController {
+  constructor($state, GroupService) {
+    this.$inject = ['$state', 'GroupService'];
     this.$state = $state;
-    this.PlanService = PlanService;
+    this.GroupService = GroupService;
     this.title = '';
     this.desc = '';
     this.imageUrl = '';
@@ -20,12 +20,12 @@ class MakePlanController {
 
   submit() {
     if (this.validateForm()) {
-      let newPlan = {
+      let newGroup = {
         title: this.title,
         description: this.desc,
         imageUrl: this.imageUrl
       };
-      this.PlanService.submitNewPlan(newPlan).then(resp => {
+      this.GroupService.submitNewGroup(newGroup).then(resp => {
         this.$state.go('app.home');
       }).catch(err => {
         console.log('Server error: ', err);
@@ -43,15 +43,15 @@ class MakePlanController {
   }
 }
 
-const MakePlanComponent = {
+const MakeGroupComponent = {
   restrict: 'E',
   bindings: {},
   template: template,
-  controller: MakePlanController
+  controller: MakeGroupController
 };
 
-const MakePlanModule = angular.module('app.makePlan', [])
-  .component('makePlan', MakePlanComponent)
-  .service('PlanService', PlanService);
+const MakeGroupModule = angular.module('app.makeGroup', [])
+  .component('makeGroup', MakeGroupComponent)
+  .service('GroupService', GroupService);
 
-export default MakePlanModule.name;
+export default MakeGroupModule.name;

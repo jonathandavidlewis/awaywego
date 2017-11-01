@@ -1,25 +1,25 @@
-<div class="make-plan-container flex-col flex-start flex-align-stretch">
-  <div class="make-plan-header"><span>Awesome! <br /> Let's get started</span></div>
-  <div class="make-plan-form-container">
+<div class="make-group-container flex-col flex-start flex-align-stretch">
+  <div class="make-group-header"><span>Awesome! <br /> Let's get started</span></div>
+  <div class="make-group-form-container">
     <form name="newPlan" ng-submit="$ctrl.submit()">
-      <div class="make-plan-input-block">
-        <label for="plan-title">First, give your plan a name:</label>
-        <input class="awgl-form-input form-control" name="plan-title" ng-model="$ctrl.title"
+      <div class="make-group-input-block">
+        <label for="group-title">First, give your group a name:</label>
+        <input class="awgl-form-input form-control" name="group-title" ng-model="$ctrl.title"
           type="text" placeholder="Plan name" />
       </div>
-      <div class="make-plan-input-block">
+      <div class="make-group-input-block">
         <label for="description">Next, what you want to do?</label>
-        <div class="make-plan-input-block-small"><small>(if you don't know yet, that's totally fine)</small></div>
-        <textarea class="awgl-form-input form-control" name="plan-desc" ng-model="$ctrl.desc"
+        <div class="make-group-input-block-small"><small>(if you don't know yet, that's totally fine)</small></div>
+        <textarea class="awgl-form-input form-control" name="group-desc" ng-model="$ctrl.desc"
           type="text" rows=2></textarea>
       </div>
       <image-search image-url="$ctrl.imageUrl"></image-search>
       <div ng-if="$ctrl.formWarning" class="awgl-form-warning flex flex-center">
         <span>{{$ctrl.formWarning}}</span>
       </div>
-      <div class="make-plan-submit-container flex flex-center">
-        <div class="make-plan-submit-button-container">
-          <button type="submit" class="awgl-button" name="make-plan-submit">Start Planning</button>
+      <div class="make-group-submit-container flex flex-center">
+        <div class="make-group-submit-button-container">
+          <button type="submit" class="awgl-button" name="make-group-submit">Start Planning</button>
         </div>
       </div>
     </form>

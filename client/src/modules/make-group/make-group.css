@@ -1,33 +1,33 @@
-.make-plan-container {
+.make-group-container {
   height: 100%;
   padding: 20px 50px;
   background: linear-gradient(white, var(--m1));
   overflow: auto;
 }
 
-.make-plan-header {
+.make-group-header {
   margin: 10px 0 20px 0;
   text-align: center;
 }
 
-.make-plan-header span {
+.make-group-header span {
   font-size: 1.7em;
   color: var(--dk4);
 }
 
-.make-plan-input-block {
+.make-group-input-block {
   margin-bottom: 20px;
 }
 
-.make-plan-input-block label {
+.make-group-input-block label {
   color: var(--dk3);
   font-size: 1.1em;
 }
 
-.make-plan-input {
+.make-group-input {
   width: 100%;
 }
 
-.make-plan-submit-button-container {
+.make-group-submit-button-container {
   width: 100%;
 }
