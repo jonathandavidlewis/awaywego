@@ -20,4 +20,9 @@
   <div class="comment-card-text flex flex-align-center">
     <span>{{$ctrl.comment.text}}</span>
   </div>
+  <div class="comment-delete-container"
+    ng-if="$ctrl.comment.user._id === $ctrl.user.id"
+    ng-click="$ctrl.handleDeleteClick()">
+    <i class="material-icons">clear</i>
+  </div>
 </div>

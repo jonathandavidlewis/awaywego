@@ -10,6 +10,7 @@
     <div class="comments-list-container">
       <comment-card
         ng-repeat="comment in $ctrl.EventService.comments[$ctrl.eventId]"
+        event-id="$ctrl.eventId"
         comment="comment">
       </comment-card>
     </div>

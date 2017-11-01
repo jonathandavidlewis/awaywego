@@ -5,16 +5,25 @@ import template from './comment-card.html';
 import './comment-card.css';
 
 class CommentCardController {
-  constructor(MomentService) {
+  constructor(UserService, MomentService, EventService) {
+    this.user = UserService.user;
     this.moment = MomentService.moment;
+    this.EventService = EventService;
+    this.handleDeleteClick = this.handleDeleteClick.bind(this);
   }
+
+  handleDeleteClick() {
+    this.EventService.removeCommentForEvent(this.eventId, this.comment._id);
+  }
+
 }
-CommentCardController.$inject = ['MomentService'];
+CommentCardController.$inject = ['UserService', 'MomentService', 'EventService'];
 
 const CommentCardComponent = {
   restrict: 'E',
   bindings: {
-    'comment': '<'
+    'comment': '<',
+    'eventId': '<'
   },
   template: template,
   controller: CommentCardController
