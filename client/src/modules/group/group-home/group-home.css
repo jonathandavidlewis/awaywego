@@ -1,4 +1,4 @@
-.feed-container {
+.group-home-container {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -8,7 +8,7 @@
   overflow: auto;
 }
 
-.feed-card {
+.group-home-card {
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),
     0 3px 1px -2px rgba(0,0,0,0.12),
     0 1px 5px 0 rgba(0,0,0,0.2) !important;
@@ -24,7 +24,7 @@
   overflow: auto;
 }
 
-.feed-main {
+.group-home-main {
   display: flex;
   flex-direction: column;
   padding-bottom: 10px;
@@ -34,7 +34,7 @@
 }
 
 
-.feed-card img {
+.group-home-card img {
   padding: 10px;
   width: 95%;
   height: 95%;
@@ -42,13 +42,13 @@
   align-self: center;
 }
 
-.feed-title {
+.group-home-title {
   font-size: 1.6em;
   color: var(--dk3);
   align-self: center;
 }
 
-.feed-description {
+.group-home-description {
   align-self: flex-start;
   padding-left: 20px;
 }

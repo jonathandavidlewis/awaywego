@@ -1,28 +1,27 @@
 import angular from 'angular';
 // components used by this module
 
-import PlanService from '../../../services/group/group.service';
+import GroupService from '../../../services/group/group.service';
 // imports for this component
-import template from './feed.html';
-import './feed.css';
+import template from './group-home.html';
+import './group-home.css';
 
-class FeedController {
-  constructor($stateParams, PlanService) {
-    this.$stateParams = $stateParams;
-    this.plan = PlanService.currentPlan;
+class GroupHomeController {
+  constructor(GroupService) {
+    this.GroupService = GroupService;
   }
 }
 
-FeedController.$inject = ['$stateParams', 'PlanService'];
+GroupHomeController.$inject = ['GroupService'];
 
-const FeedComponent = {
+const GroupHomeComponent = {
   restrict: 'E',
   bindings: {},
   template: template,
-  controller: FeedController
+  controller: GroupHomeController
 };
 
-const FeedModule = angular.module('app.plan.feed', [])
-  .component('feed', FeedComponent);
+const GroupHomeModule = angular.module('app.group.home', [])
+  .component('group-home', GroupHomeComponent);
 
-export default FeedModule.name;
+export default GroupHomeModule.name;

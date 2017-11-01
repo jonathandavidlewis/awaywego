@@ -1,12 +1,12 @@
 import angular from 'angular';
 
-// services for this module
+// services and other module dependencies
 import GroupService from '../../services/group/group.service';
 import EventService from '../../services/event/event.service';
-
 import GroupNavComponent from './group-nav/group-nav';
-import FeedModule from './feed/feed';
-import ExpensesModule from './expenses/expenses';
+import GroupHomeModule from './group-home/group-home';
+// import ExpensesModule from './expenses/expenses';
+
 // imports for this component
 import template from './group.html';
 import './group.css';
@@ -25,7 +25,7 @@ const GroupComponent = {
 };
 
 const GroupModule = angular.module('app.group', [
-  FeedModule,
+  GroupHomeModule,
   ExpensesModule
 ])
   .component('group', GroupComponent)
