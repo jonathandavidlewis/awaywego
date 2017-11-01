@@ -1,9 +1,13 @@
 <div class="home-container">
-  <div class="home-title">My Plans</div>
+  <div class="home-title">Groups</div>
   <div class=home-container-window>
-    <plan-card delete-plan="$ctrl.deletePlan" plan="plan" ng-repeat="plan in $ctrl.plans"></plan-card>
+    <group-card group="group" ng-repeat="group in $ctrl.GroupService.groups"
+      delete-group="$ctrl.GroupService.deleteGroupById(group._id)" >
+    </group-card>
   </div>
-  <div class="new-plan-button-container">
-    <button class="awgd-button" ui-sref="app.makePlan">Make a plan</button>
+  <div class="new-group-button-container">
+    <button class="awgd-button" ui-sref="app.makeGroup">
+      <i class="material-icons">add</i>
+    </button>
   </div>
 </div>

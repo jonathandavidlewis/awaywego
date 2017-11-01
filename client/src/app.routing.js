@@ -32,6 +32,9 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
       protect: redirectIfNotAuthed,
       friendsLoaded: ['FriendService', function(FriendService) {
         return FriendService.loadFriends();
+      }],
+      groupsLoaded: ['GroupService', function(GroupService) {
+        return GroupService.getAllGroups();
       }]
     }
   };

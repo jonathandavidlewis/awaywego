@@ -23,7 +23,10 @@ export default class GroupService {
   }
 
   deleteGroupById(groupId) {
-    return this.$http.delete(`/api/group/${groupId}`);
+    return this.$http.delete(`/api/group/${groupId}`).then(() => {
+      const ind = this.groups.findIndex(g => g._id === groupId);
+      if (ind > -1) { this.groups.splice(ind, 1); }
+    });
   }
 
   getAllGroups() {

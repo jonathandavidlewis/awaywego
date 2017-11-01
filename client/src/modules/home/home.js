@@ -1,38 +1,20 @@
 import angular from 'angular';
 // components used by this module
-import PlanCardComponent from './plan-card/plan-card';
+import GroupCardComponent from './group-card/group-card';
 import ImageSearchComponent from '../image-search/image-search';
 
-import PlanService from '../../services/plan/plan.service';
+import GroupService from '../../services/group/group.service';
 // imports for this component
 import template from './home.html';
 import './home.css';
 
 class HomeController {
-  constructor(PlanService) {
-    this.PlanService = PlanService;
-    this.loadPlans = this.loadPlans.bind(this);
-    this.deletePlan = this.deletePlan.bind(this);
-    this.$onInit = this.$onInit.bind(this);
+  constructor(GroupService) {
+    this.GroupService = GroupService;
   }
-
-  loadPlans(plans) {
-    this.plans = plans;
-  }
-
-  deletePlan(planId) {
-    this.PlanService.deletePlanById(planId).then(
-      this.PlanService.getAllPlans().then(this.loadPlans)
-    );
-  }
-
-  $onInit() {
-    this.PlanService.getAllPlans().then(this.loadPlans);
-  }
-
 }
 
-HomeController.$inject = ['PlanService'];
+HomeController.$inject = ['GroupService'];
 
 const HomeComponent = {
   restrict: 'E',
@@ -43,8 +25,8 @@ const HomeComponent = {
 
 const HomeModule = angular.module('app.home', [])
   .component('home', HomeComponent)
-  .component('planCard', PlanCardComponent)
+  .component('groupCard', GroupCardComponent)
   .component('imageSearch', ImageSearchComponent)
-  .service('PlanService', PlanService);
+  .service('GroupService', GroupService);
 
 export default HomeModule.name;
