@@ -9,6 +9,7 @@ class ExpensesMainController {
     this.ExpensesService = ExpensesService;
     this.stateParams = $stateParams;
     this.expenses = [];
+    this.summary = '';
 
   }
 
@@ -17,6 +18,7 @@ class ExpensesMainController {
     console.log('planId: ', this.stateParams.planId);
     this.ExpensesService.getExpenses(this.stateParams.planId).then(() => {
       this.expenses = this.ExpensesService.returnExpenses();
+      this.summary = this.ExpensesService.calculateDebts();
     });
     console.log('after init triggered', this.expenses);
   }

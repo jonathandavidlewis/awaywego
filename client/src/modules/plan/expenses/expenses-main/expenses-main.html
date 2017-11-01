@@ -1,6 +1,6 @@
 
 <div class="expenses-main-container h100 flex-col">
-  <expenses-summary-bar />
+  <expenses-summary-bar summary="$ctrl.summary" />
   <expenses-feed class="flex-1" expenses="$ctrl.expenses" />
   <div class="expenses-main-add-button-container">
     <a ui-sref="^.add">
