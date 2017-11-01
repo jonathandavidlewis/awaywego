@@ -40,3 +40,4 @@ stories/index.js
 .idea/
 ignore
 keys.config.js
+keys.config.bak
