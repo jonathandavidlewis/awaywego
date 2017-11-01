@@ -71,39 +71,15 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
     component: 'groupHome'
   };
 
-  const plannerState = {
-    name: 'app.plan.planner',
-    url: '/planner',
-    component: 'planner'
-  };
-
-  const plannerItineraryState = {
-    name: 'app.plan.planner.itinerary',
-    url: '/itinerary',
-    component: 'itinerary'
-  };
-
-  const plannerIdeasState = {
-    name: 'app.plan.planner.ideas',
+  const groupIdeasState = {
+    name: 'app.group.ideas',
     url: '/ideas',
     component: 'ideas'
   };
 
-  const plannerMakeIdeaState = {
-    name: 'app.plan.planner.makeIdea',
-    url: '/new/idea',
-    component: 'makeIdea'
-  };
-
-  const plannerPromoteIdeaState = {
-    name: 'app.plan.planner.promoteIdea',
-    url: '/idea/{eventId}/promote',
-    component: 'promoteIdea'
-  };
-
-  const plannerIdeaState = {
-    name: 'app.plan.planner.idea',
-    url: '/idea/{ideaId}',
+  const groupIdeaState = {
+    name: 'app.plan.ideas.idea',
+    url: '/{ideaId}',
     component: 'idea',
     resolve: {
       ideaId: ['$stateParams', function($stateParams) {
@@ -112,11 +88,19 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
     }
   };
 
-  const plannerAvailabilityState = {
-    name: 'app.plan.planner.availability',
-    url: '/availability',
-    component: 'availability'
+  const groupMakeIdeaState = {
+    name: 'app.plan.ideas.makeIdea',
+    url: '/new',
+    component: 'makeIdea'
   };
+
+  const groupPromoteIdeaState = {
+    name: 'app.group.ideas.promoteIdea',
+    url: '/{eventId}/promote',
+    component: 'promoteIdea'
+  };
+
+
 
   const peopleState = {
     name: 'app.plan.people',
@@ -231,17 +215,14 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
   $stateProvider.state(friendsListState);
   $stateProvider.state(importContactsState);
 
-  // plan states
+  // group states
   $stateProvider.state(makeGroupState);
   $stateProvider.state(groupState);
   $stateProvider.state(groupHomeState);
-  $stateProvider.state(plannerState);
-  $stateProvider.state(plannerItineraryState);
-  $stateProvider.state(plannerIdeasState);
-  $stateProvider.state(plannerMakeIdeaState);
-  $stateProvider.state(plannerIdeaState);
-  $stateProvider.state(plannerAvailabilityState);
-  $stateProvider.state(plannerPromoteIdeaState);
+  $stateProvider.state(groupIdeasState);
+  $stateProvider.state(groupIdeaState);
+  $stateProvider.state(groupMakeIdeaState);
+  $stateProvider.state(groupPromoteIdeaState);
   $stateProvider.state(chatState);
 
   // expenses states

@@ -1,13 +1,7 @@
 import angular from 'angular';
 
 // import services for this modules
-
-//import moment from 'moment';
-import EventService from '../../../../services/event/event.service';
 import momentPicker from 'angular-moment-picker';
-import moment from 'moment';
-
-//import DatetimePickerComponent from '../../../common/datetime-picker/datetime-picker-config';
 
 // imports for this component
 import AddressSearchComponent from '../../../address-search/address-search';
@@ -15,11 +9,11 @@ import template from './promote-idea.html';
 import './promote-idea.css';
 
 class PromoteIdeaController {
-  constructor(EventService, $stateParams, $state) {
+  constructor(EventService, $stateParams, $state, MomentService) {
     this.EventService = EventService;
     this.$stateParams = $stateParams;
     this.$state = $state;
-    this.moment = moment;
+    this.moment = MomentService.moment;
     this.$onInit = this.$onInit.bind(this);
     this.formWarning = '';
     this.formattedStartTime = '';
@@ -32,13 +26,9 @@ class PromoteIdeaController {
 
   $onInit() {
     this.event = this.EventService.getEvent(this.$stateParams.eventId);
-    if (!this.event.startTime) {
-      this.event.startTime = this.moment().format('MM/DD/YYYY hh:mm A');
-    }
+    if (!this.event.startTime) { this.event.startTime = this.moment(); }
     this.formattedStartTime = this.moment(this.event.startTime).format('MM/DD/YYYY hh:mm A');
-    if (!this.event.endTime) {
-      this.event.endTime = this.moment().format('MM/DD/YYYY hh:mm A');
-    }
+    if (!this.event.endTime) { this.event.endTime = this.moment(); }
     this.formattedEndTime = this.moment(this.event.endTime).format('MM/DD/YYYY hh:mm A');
   }
 
@@ -58,7 +48,7 @@ class PromoteIdeaController {
       promotedIdea.addressText = this.addressText;
       promotedIdea.addressLink = this.addressLink;
       this.EventService.promoteEvent(promotedIdea).then(resp => {
-        this.$state.go('app.plan.planner.ideas');
+        this.$state.go('app.group.ideas');
       }).catch(err => {
         console.log('Server error: ', err);
         this.formWarning = 'Error: please try again or contact a server admin';
@@ -84,7 +74,7 @@ class PromoteIdeaController {
   }
 }
 
-PromoteIdeaController.$inject = ['EventService', '$stateParams', '$state'];
+PromoteIdeaController.$inject = ['EventService', '$stateParams', '$state', 'MomentService'];
 
 const PromoteIdeaComponent = {
   restrict: 'E',
@@ -95,7 +85,6 @@ const PromoteIdeaComponent = {
 
 const PromoteIdeaModule = angular.module('app.plan.planner.promoteIdea', ['moment-picker'])
   .component('promoteIdea', PromoteIdeaComponent)
-  .component('addressSearch', AddressSearchComponent)
-  .service('EventService', EventService);
+  .component('addressSearch', AddressSearchComponent);
 
 export default PromoteIdeaModule.name;

@@ -1,16 +1,13 @@
 import angular from 'angular';
 
-// import services for this modules
-import EventService from '../../../../services/event/event.service';
-
 // imports for this component
 import template from './make-idea.html';
 import './make-idea.css';
 
 class MakeIdeaController {
-  constructor($state, EventService, $stateParams) {
-    this.$inject = ['$state', 'EventService', '$stateParams'];
+  constructor($state, EventService, GroupService) {
     this.$state = $state;
+    this.groupId = GroupService.currentGroup._id;
     this.EventService = EventService;
     this.$stateParams = $stateParams;
     this.title = '';
@@ -25,10 +22,10 @@ class MakeIdeaController {
         title: this.title,
         description: this.desc,
         imageUrl: this.imageUrl,
-        planId: this.$stateParams.planId
+        groupId: this.groupId,
       };
       this.EventService.submitNewEvent(newIdea).then(resp => {
-        this.$state.go('app.plan.planner.ideas');
+        this.$state.go('app.group.ideas');
       }).catch(err => {
         console.log('Server error: ', err);
         this.formWarning = 'Error: please try again or contact a server admin';
@@ -44,6 +41,7 @@ class MakeIdeaController {
     return true;
   }
 }
+MakeIdeaController.$inject = ['$state', 'EventService', 'GroupService'];
 
 const MakeIdeaComponent = {
   restrict: 'E',
@@ -52,8 +50,4 @@ const MakeIdeaComponent = {
   controller: MakeIdeaController
 };
 
-const MakeIdeaModule = angular.module('app.plan.planner.makeIdea', [])
-  .component('makeIdea', MakeIdeaComponent)
-  .service('EventService', EventService);
-
-export default MakeIdeaModule.name;
+export default MakeIdeaComponent;
