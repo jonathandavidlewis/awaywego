@@ -5,11 +5,10 @@
       <div class="make-group-input-block">
         <label for="group-title">First, give your group a name:</label>
         <input class="awgl-form-input form-control" name="group-title" ng-model="$ctrl.title"
-          type="text" placeholder="Plan name" />
+          type="text" placeholder="Group name" />
       </div>
       <div class="make-group-input-block">
-        <label for="description">Next, what you want to do?</label>
-        <div class="make-group-input-block-small"><small>(if you don't know yet, that's totally fine)</small></div>
+        <label for="description">Next, a short description if you'd like:</label>
         <textarea class="awgl-form-input form-control" name="group-desc" ng-model="$ctrl.desc"
           type="text" rows=2></textarea>
       </div>
@@ -19,7 +18,7 @@
       </div>
       <div class="make-group-submit-container flex flex-center">
         <div class="make-group-submit-button-container">
-          <button type="submit" class="awgl-button" name="make-group-submit">Start Planning</button>
+          <button type="submit" class="awgl-button" name="make-group-submit">Create Group</button>
         </div>
       </div>
     </form>
