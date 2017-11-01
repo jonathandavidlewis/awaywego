@@ -7,7 +7,7 @@ let eventSchema = new Schema({
   addressText: {type: String, required: false},
   addressLink: {type: String, required: false},
   description: {type: String, required: false},
-  planId: {type: Schema.ObjectId, ref: 'Plan', required: true },
+  groupId: {type: Schema.ObjectId, ref: 'Group', required: true },
   startTime: {type: String, required: false},
   endTime: {type: String, required: false},
   status: {type: String, required: true},
@@ -17,5 +17,5 @@ let eventSchema = new Schema({
   tags: [String],
 }, {timestamps: true});
 
-var PlanEvent = mongoose.model('PlanEvent', eventSchema);
-module.exports = PlanEvent;
+var Event = mongoose.model('Event', eventSchema);
+module.exports = Event;
