@@ -1,9 +1,7 @@
 <div class="home-container">
   <div class="home-title">Groups</div>
   <div class=home-container-window>
-    <group-card group="group" ng-repeat="group in $ctrl.GroupService.groups"
-      delete-group="$ctrl.GroupService.deleteGroupById" >
-    </group-card>
+    <group-card group="group" ng-repeat="group in $ctrl.GroupService.groups"></group-card>
   </div>
   <div class="new-group-button-container">
     <button class="awgd-button" ui-sref="app.makeGroup">
