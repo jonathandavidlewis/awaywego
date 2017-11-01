@@ -19,6 +19,9 @@
   {{#if googleAccessToken}}
     <script type="text/javascript">localStorage.setItem('awg_google_access_token', "{{googleAccessToken}}");</script>
   {{/if}}
+  {{#if newUser}}
+    <script type="text/javascript">localStorage.setItem('new_user', "true");</script>
+  {{/if}}
 </head>
 <body>
   {{{body}}}

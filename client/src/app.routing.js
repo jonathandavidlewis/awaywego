@@ -178,6 +178,12 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
     }
   };
 
+  const importContactsState = {
+    name: 'app.import',
+    url: '/import',
+    component: 'importContacts'
+  };
+
   // auth states
   $stateProvider.state(loginState);
   $stateProvider.state(signupState);
@@ -189,6 +195,7 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
   // friends states
   $stateProvider.state(friendsState);
   $stateProvider.state(friendsListState);
+  $stateProvider.state(importContactsState);
 
   // plan states
   $stateProvider.state(makePlanState);

@@ -12,6 +12,7 @@ import FriendsModule from './modules/friends/friends';
 import PeopleModule from './modules/plan/people/people';
 import ChatModule from './modules/chat/chat';
 import CommentsModule from './modules/comments/comments';
+import ImportContactsModule from './modules/import-contacts/import-contacts';
 
 // import global services
 import UserService from './services/user/user.service';
@@ -50,7 +51,8 @@ angular.module('app', [
   FriendsModule,
   PeopleModule,
   ChatModule,
-  CommentsModule
+  CommentsModule,
+  ImportContactsModule
 ])
   .service('UserService', UserService)
   .service('FriendService', FriendService)
