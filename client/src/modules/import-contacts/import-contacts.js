@@ -2,28 +2,36 @@ import angular from 'angular';
 import _ from 'lodash';
 
 // imports for this component
+import FriendCardComponent from '../friends/friend-card/friend-card';
+import FriendService from '../../services/friend/friend.service';
+
 import template from './import-contacts.html';
-import './people-add.css';
+import './import-contacts.css';
 
 class ImportContactsController {
   constructor(FriendService, $state, $http) {
+    this.http = $http;
     this.googleAccessToken = localStorage.getItem('awg_google_access_token');
     this.search = '';
     this.$state = $state;
     this.friends = FriendService.friendships.map(fr => fr.to);
-    this.availableFriends = [];
+    this.availableFriends = [1, 2, 3, 4];
+    this.allContacts = [];
 
+    this.filterGoogleContacts = this.filterGoogleContacts.bind(this);
+    this.getGoogleContacts = this.getGoogleContacts.bind(this);
     this.toggleSelect = this.toggleSelect.bind(this);
     this.filterFriends = this.filterFriends.bind(this);
     this.addToPlan = this.addToPlan.bind(this);
   }
 
-  getGoogleContacts() {
-    googleAccessToken = localStorage.getItem('awg_google_access_token');
+  $onInit() {
+    this.getGoogleContacts();
+    console.log('SENT FOR GOOGLE CONTACTS');
+  }
 
-    console.log("ACCESS:", accessToken);
-    console.log("REFRESH:", refreshToken);
-    console.log("PROFILE:___:", profile);
+  getGoogleContacts() {
+    console.log("ACCESS:", this.googleAccessToken);
 
     var req = {
       method: 'GET',
@@ -31,53 +39,41 @@ class ImportContactsController {
       headers: {
         'Authorization': 'Bearer ' + this.googleAccessToken,
         'Content-Type': 'application/json'
-      },
-      data: { test: 'test' }
-    }
-
-    $http(req).then(function(){...}, function(){...});
-
-
-
-    $http.get({
-      url: 'https://people.googleapis.com/v1/people/me/connections?personFields=names,emailAddresses&pageSize=2000',
-      headers: {
-        'Authorization': 'Bearer ' + refreshToken.access_token,
-        'Content-Type': 'application/json'
-      },
-      //qs: qs,//Optional to get limit, max results etc
-      method: 'GET'
-    }, function (err, response, body) {
-      if (err) {
-        console.log(err);
       }
-      console.log('RESPONSE:____');
-      console.log('BODY:____');
-      console.log(typeof body);
-      console.log(Array.isArray(JSON.parse(body).connections));
-      const contactList = [];
+    };
 
-      const loadContacts = function (contacts) {
-        contacts.forEach((connection) => {
-          if (connection.emailAddresses) {
-            contactList.push(connection.emailAddresses[0].value);
-          }
-        });
-      };
+    const handleError = function (response) {
+      console.log('There was an error', response);
+    };
+    //$http(req).then(function(){...}, function(){...});
+    this.http(req).then((handleError, this.filterGoogleContacts));
 
-      let responseBody = body;
-
-      loadContacts(JSON.parse(body).connections);
-
-      //while (responseBody.nextPageToken) {   }
-      console.log(contactList);
-      console.log(req);
-
-    });
   }
 
-  $onInit() {
+  filterGoogleContacts(response) {
 
+    console.log("DATATYPE", typeof response.data);
+
+    const loadContacts = function (contacts) {
+      return contacts.reduce((filteredContacts, contact) => {
+        if (contact.emailAddresses) {
+          filteredContacts[contact.emailAddresses[0].value] = contact.emailAddresses[0].value;
+        }
+        return filteredContacts;
+      }, {});
+    };
+
+    this.allContacts = loadContacts(Object.keys(response.data.connections));
+    this.pages = [];
+    let page = 0;
+    for (let i = 0; i < this.allContacts.length;) {
+      this.pages[page] = [];
+      for (let j = 0; j < 20; j++) {
+        this.pages[page].push(this.allContacts[i]);
+        i++;
+      }
+      page++;
+    }
   }
 
   getFriendsNotInGroup() {
@@ -113,7 +109,7 @@ class ImportContactsController {
   }
 
 }
-ImportContactsComponent.$inject = ['FriendService', '$state', '$http'];
+ImportContactsController.$inject = ['FriendService', '$state', '$http'];
 
 const ImportContactsComponent = {
   restrict: 'E',
@@ -122,4 +118,7 @@ const ImportContactsComponent = {
   controller: ImportContactsController
 };
 
-export default ImportContactsComponent;
+const ImportContactsModule = angular.module('app.importContacts', [])
+  .component('importContacts', ImportContactsComponent);
+
+export default ImportContactsModule.name;
