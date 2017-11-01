@@ -1,48 +1,46 @@
-export default class PlanService {
+export default class GroupService {
   constructor($http) {
     this.$inject = ['$http'];
     this.$http = $http;
-    this.plans = [];
-    this.currentPlan = null;
+    this.groups = [];
+    this.currentGroup = null;
   }
 
-  submitNewPlan(plan) { return this.$http.post('/api/plan', plan); }
+  submitNewGroup(group) { return this.$http.post('/api/group', group); }
 
-  loadPlanById(planId) {
-    if (this.plans.length) {
-      this.currentPlan = this.plans.find(plan => plan._id === planId);
-      if (this.currentPlan) {
-        return this.currentPlan;
-      }
+  loadGroupById(groupId) {
+    if (this.groups.length) {
+      this.currentGroup = this.groups.find(group => group._id === groupId);
+      if (this.currentGroup) { return this.currentGroup; }
     } else {
-      return this.getPlanById(planId).then(plan => this.currentPlan = plan);
+      return this.getGroupById(groupId).then(group => this.currentGroup = group);
     }
 
   }
 
-  getPlanById(planId) {
-    return this.$http.get(`/api/plan/${planId}`).then(resp => resp.data);
+  getGroupById(groupId) {
+    return this.$http.get(`/api/group/${groupId}`).then(resp => resp.data);
   }
 
-  deletePlanById(planId) {
-    return this.$http.delete(`/api/plan/${planId}`);
+  deleteGroupById(groupId) {
+    return this.$http.delete(`/api/group/${groupId}`);
   }
 
-  getAllPlans() {
-    return this.$http.get('/api/plan/').then((response => {
-      this.plans = response.data;
+  getAllGroups() {
+    return this.$http.get('/api/group/').then((response => {
+      this.groups = response.data;
       return response.data;
     }));
   }
 
-  removeMemberFromCurrentPlan(userId) {
-    return this.$http.put(`/api/plan/${this.currentPlan._id}/members/remove/${userId}`)
-      .then(resp => this.currentPlan = resp.data);
+  removeMemberFromCurrentGroup(userId) {
+    return this.$http.put(`/api/group/${this.currentGroup._id}/members/remove/${userId}`)
+      .then(resp => this.currentGroup = resp.data);
   }
 
-  addMembersToCurrentPlan(members) {
-    return this.$http.put(`/api/plan/${this.currentPlan._id}/members/add`, {members})
-      .then(resp => this.currentPlan = resp.data);
+  addMembersToCurrentGroup(members) {
+    return this.$http.put(`/api/group/${this.currentGroup._id}/members/add`, {members})
+      .then(resp => this.currentGroup = resp.data);
   }
 
 }
