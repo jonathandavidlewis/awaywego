@@ -7,21 +7,11 @@ import './address-search.css';
 class AddressSearchController {
   constructor(AddressService) {
     this.AddressService = AddressService;
-    this.autocomplete = {};
-    this.$onInit = this.$onInit.bind(this);
-    this.geolocate = this.geolocate.bind(this);
   }
 
   $onInit() {
-    console.log(this);
-    this.autocomplete = new google.maps.places.Autocomplete(
-      /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
-      {types: ['geocode']});
-
-    // When the user selects an address from the dropdown, populate the address
-    // fields in the form.
-    // this.autocomplete.addListener('place_changed', this.fillInAddress);
-    console.log(this.autocomplete);
+    this.autocomplete = new google.maps.places.Autocomplete((document.getElementById('autocomplete')),
+      {types: []});
   }
 
   geolocate() {
