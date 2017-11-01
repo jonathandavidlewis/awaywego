@@ -61,7 +61,6 @@ class PromoteIdeaController {
       promotedIdea.endTime = new Date(promotedIdea.endTime);
       promotedIdea.addressText = this.addressText;
       promotedIdea.addressLink = this.addressLink;
-      console.log(promotedIdea);
       this.EventService.promoteEvent(promotedIdea).then(resp => {
         this.$state.go('app.plan.planner.ideas');
       }).catch(err => {
@@ -86,14 +85,6 @@ class PromoteIdeaController {
       return false;
     }
     return true;
-  }
-
-  findLocation() {
-    this.AddressService.findLocation((src) => {
-      let img = new Image();
-      img.src = src;
-      document.getElementById('address').appendChild(img);
-    });
   }
 }
 
