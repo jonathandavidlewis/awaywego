@@ -41,3 +41,4 @@ stories/index.js
 ignore
 keys.config.js
 keys.config.bak
+./keys.config.js

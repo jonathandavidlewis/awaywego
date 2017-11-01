@@ -149,13 +149,13 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
   };
 
   const expensesMainFeedState = {
-    name: 'app.plan.expenses.main.feed',
+    name: 'app.group.expenses.main.feed',
     url: '/feed',
     component: 'expensesFeed'
   };
 
   const expensesTransactionState = {
-    name: 'app.plan.expenses.main.transactions',
+    name: 'app.group.expenses.main.transactions',
     url: '/transactions/{filterState}',
     component: 'transactionPage',
     resolve: {
@@ -166,7 +166,7 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
   };
 
   const expenseState = {
-    name: 'app.plan.expenses.main.expense',
+    name: 'app.group.expenses.main.expense',
     url: '/expense/{expenseId}',
     component: 'transactionPage',
     resolve: {
