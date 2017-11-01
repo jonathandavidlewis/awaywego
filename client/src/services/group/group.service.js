@@ -27,9 +27,9 @@ export default class GroupService {
   }
 
   getAllGroups() {
-    return this.$http.get('/api/group/').then((response => {
-      this.groups = response.data;
-      return response.data;
+    return this.$http.get('/api/group/').then((resp => {
+      this.groups = resp.data;
+      return resp.data;
     }));
   }
 
