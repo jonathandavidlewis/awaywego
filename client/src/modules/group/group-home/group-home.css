@@ -52,19 +52,3 @@
   align-self: flex-start;
   padding-left: 20px;
 }
-
-.feed-body {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding-bottom: 10px;
-  flex: 0 1 auto
-}
-.feed-body-scroll {
-  overflow: auto;
-}
-
-.feed-body-title {
-  font-size: 1.3em;
-  color: var(--dk3);
-}

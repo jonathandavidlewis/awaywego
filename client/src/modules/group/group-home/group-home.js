@@ -1,7 +1,7 @@
 import angular from 'angular';
 // components used by this module
 
-import PlanService from '../../../services/plan/plan.service';
+import PlanService from '../../../services/group/group.service';
 // imports for this component
 import template from './feed.html';
 import './feed.css';
