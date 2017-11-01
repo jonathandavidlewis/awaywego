@@ -1,8 +1,16 @@
 .expenses-feed-container {
   overflow: auto;
   padding: 10px;
+  display: flex;
+  flex-direction: column;
 }
 
 .expenses-feed-header {
-  justify-content: space-between;
+  text-align: center;
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+.expenses-feed-item {
+  padding-right: 10px;
 }

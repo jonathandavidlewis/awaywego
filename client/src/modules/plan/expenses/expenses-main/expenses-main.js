@@ -44,9 +44,7 @@ class ExpensesMainController {
   }
 
   removeTransaction(transactionId) {
-    console.log('Remove triggered');
     this.ExpensesService.removeTransaction(transactionId).then((res) => {
-      console.log('After expenses service', res.data);
       this.updateExpenses();
     });
   }

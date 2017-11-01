@@ -11,6 +11,7 @@ class TransactionPageController {
     this.stateParams = $stateParams;
     this.UserService = UserService;
     this.userId = this.UserService.user.id;
+    this.filterTitle = '';
 
     this.filterByState = this.filterByState.bind(this);
     this.filterByOwed = this.filterByOwed.bind(this);
@@ -32,10 +33,13 @@ class TransactionPageController {
 
   filterByState(transaction) {
     if (this.stateParams.filterState === 'balance') {
+      this.filterTitle = 'All';
       return true;
     } else if (this.stateParams.filterState === 'owed') {
+      this.filterTitle = 'Money you are owed';
       return this.filterByOwed(transaction);
     } else if (this.stateParams.filterState === 'owedTo') {
+      this.filterTitle = 'Money you owe';
       return this.filterByOwedTo(transaction);
     }
   }

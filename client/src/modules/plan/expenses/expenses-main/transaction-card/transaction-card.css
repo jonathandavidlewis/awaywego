@@ -7,6 +7,13 @@
   padding: 10px;
   margin-bottom: 15px;
   display: flex;
+}
 
 
+.transaction-card-detail-item {
+  padding: 5px;
+}
+
+.transaction-card-menu-item {
+  padding: 5px;
 }

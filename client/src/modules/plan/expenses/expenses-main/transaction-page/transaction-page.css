@@ -2,6 +2,10 @@
   padding: 10px;
 }
 
-.transaction-page-header {
+.transaction-page-label-container {
   justify-content: space-between;
+}
+
+.transaction-page-label-item {
+  padding-right: 10px;
 }
