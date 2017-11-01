@@ -50,10 +50,6 @@ class PromoteIdeaController {
     this.formattedEndTime = newValue.format('MM/DD/YYYY hh:mm A');
   }
 
-  findLocation() {
-    this.AddressService.findLocation();
-  }
-
   submit() {
     if (this.validateForm()) {
       let promotedIdea = this.event;
