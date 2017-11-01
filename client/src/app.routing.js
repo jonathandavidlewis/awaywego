@@ -178,6 +178,18 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
     }
   };
 
+  const expenseState = {
+    name: 'app.plan.expenses.main.expense',
+    url: '/expense/{expenseId}',
+    component: 'transactionPage',
+    resolve: {
+      expenseId: ['$stateParams', function($stateParams) {
+        return $stateParams.expenseId;
+      }]
+    }
+  };
+
+
 
 
   const expensesAddState = {
@@ -228,6 +240,7 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
   $stateProvider.state(expensesAddState);
   $stateProvider.state(expensesMainFeedState);
   $stateProvider.state(expensesTransactionState);
+  $stateProvider.state(expenseState);
   // people states
   $stateProvider.state(peopleState);
   $stateProvider.state(peopleListState);

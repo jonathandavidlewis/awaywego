@@ -15,12 +15,15 @@ class TransactionPageController {
     this.filterByState = this.filterByState.bind(this);
     this.filterByOwed = this.filterByOwed.bind(this);
     this.filterByOwedTo = this.filterByOwedTo.bind(this);
+    this.filterByExpenseId = this.filterByExpenseId.bind(this);
   }
 
   $onInit() {
     this.filteredTransactions = this.filter('filter')(this.transactions, (transaction) => {
       if (this.stateParams.filterState) {
         return this.filterByState(transaction);
+      } else if (this.stateParams.expenseId) {
+        return this.filterByExpenseId(transaction);
       }
     });
   }
@@ -51,6 +54,13 @@ class TransactionPageController {
     }
   }
 
+  filterByExpenseId(transaction) {
+    if (transaction.expenseId === this.stateParams.expenseId) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
 
 
