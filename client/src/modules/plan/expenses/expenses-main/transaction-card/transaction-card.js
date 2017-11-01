@@ -8,6 +8,10 @@ class TransactionCardController {
   constructor() {
 
   }
+
+  settleTransaction() {
+    
+  }
 }
 
 TransactionCardController.$inject = [];

@@ -1,8 +1,15 @@
 <div ng-show="$ctrl.showAddPeople === false" class="ng-show expenses-add-container flex-col">
-  <div class="expenses-add-header"><span>Who Paid? <button ng-click="$ctrl.toggleShowAddPeople(true)">+</button></span></div>
-  <div class="expenses-add-payers" ng-repeat="payer in $ctrl.payers">{{payer.name}}</div>
-  <span>Who owes money?<button ng-click="$ctrl.toggleShowAddPeople()">+</button></span>
-  <div class="expenses-add-owers" ng-repeat="member in $ctrl.transactions">{{member.from.name}}</div>
+
+  <div class="expenses-added-people-container">
+    <div class="expenses-added-people-area">
+      <div class="expenses-add-payer-description"><span>Who Paid? <button ng-click="$ctrl.toggleShowAddPeople(true)">+</button></span></div>
+      <div class="expenses-add-names-card" ng-repeat="payer in $ctrl.payers">{{payer.name}}</div>
+    </div>
+    <div class="expenses-added-people-area">
+      <div class="expenes-add-owers-description">Who owes money?<button ng-click="$ctrl.toggleShowAddPeople()">+</button></div>
+      <div class="expenses-add-names-card" ng-repeat="member in $ctrl.transactions">{{member.from.name}}</div>
+    </div>
+  </div>
   <div class="expenses-add-form-container">
     <form name="newExpense" ng-submit="$ctrl.submit()">
       <div class="expenses-add-input-block">
@@ -18,7 +25,7 @@
       <div class="expenses-add-people-share-option">
         <label for="share">Share Equally</label>
         <input  name="share" type="radio" ng-model="$ctrl.transactionType" value="equal"/>
-        <label for="share">Share Percentage</label>
+        <label for="share">Share Custom(Not yet available)</label>
         <input  name="share" type="radio" ng-model="$ctrl.transactionType" value="percentage"/>
       </div>
 
