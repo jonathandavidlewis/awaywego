@@ -60,13 +60,12 @@ expensesRouter.put('/transaction/:transactionId/settle', (req, res) => {
   }).catch(err => res.status(500).json({'Server error': err}));
 });
 
-expensesRouter.delete('/expense/:expenseId', (req, res) => {
+expensesRouter.delete('/:expenseId/remove', (req, res) => {
   Expense.findByIdAndRemove(req.params.expenseId).exec().then(() => res.status(200).json({'Message': 'Deleted'}))
     .catch(err => res.status(500).json({'Server error': err}));
 });
 
-expensesRouter.delete('/transaction/:transactionId', (req, res) => {
-  console.log('Delete route run');
+expensesRouter.delete('/transaction/:transactionId/remove', (req, res) => {
   Transaction.findByIdAndRemove(req.params.transactionId).exec().then(() => res.status(200).json({'Message': 'Deleted'}))
     .catch(err => res.status(500).json({'Server error': err}));
 });

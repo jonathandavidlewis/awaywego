@@ -15,6 +15,7 @@ class ExpensesMainController {
     this.updateExpenses = this.updateExpenses.bind(this);
     this.settleTransaction = this.settleTransaction.bind(this);
     this.removeTransaction = this.removeTransaction.bind(this);
+    this.removeExpense = this.removeExpense.bind(this);
 
   }
 
@@ -27,6 +28,12 @@ class ExpensesMainController {
       this.expenses = this.ExpensesService.returnExpenses();
       this.summary = this.ExpensesService.calculateDebts();
       this.transactions = this.ExpensesService.filterUserTransactions();
+    });
+  }
+
+  removeExpense(expenseId) {
+    this.ExpensesService.removeExpense(expenseId).then(() => {
+      this.updateExpenses();
     });
   }
 

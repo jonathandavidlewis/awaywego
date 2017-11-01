@@ -14,7 +14,8 @@ ExpensesFeedCardController.$inject = [];
 const ExpensesFeedCardComponent = {
   restrict: 'E',
   bindings: {
-    expense: '<'
+    expense: '<',
+    removeExpense: '<'
   },
   template: template,
   controller: ExpensesFeedCardController

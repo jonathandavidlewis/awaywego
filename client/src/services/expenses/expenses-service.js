@@ -60,17 +60,22 @@ export default class ExpensesService {
     });
   }
 
-  addTransaction(expenseId) {
-    return this.http.put(`/api/expenses/add/${expenseId}`).then(() => this.getExpenses());
+  addTransaction(expenseId, transaction) {
+    return this.http.put(`/api/expenses/${expenseId}/add`, transaction).then(() => this.getExpenses());
   }
 
   removeTransaction(transactionId) {
     console.log('remove service', transactionId);
-    return this.http.delete(`/api/expenses/transaction/${transactionId}`);
+    return this.http.delete(`/api/expenses/transaction/${transactionId}/remove`);
   }
 
   settleTransaction(transactionId) {
     return this.http.put(`/api/expenses/transaction/${transactionId}/settle`);
+  }
+
+  removeExpense(expenseId) {
+    console.log('remove expense service', expenseId);
+    return this.http.delete(`/api/expenses/${expenseId}/remove`);
   }
 
   roundMoney(value) {
