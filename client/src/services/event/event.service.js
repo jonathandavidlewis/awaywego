@@ -205,13 +205,15 @@ export default class EventService {
   //=========== COMMENT LOGIC ===========\\
 
   getCommentsForEvent(eventId) {
-    return this.http.get(`/api/comments/${eventId}`).then(resp => {
-      this.comments[eventId] = resp.data.reverse();
+    return this.http.get(`/api/comments/event/${eventId}`).then(resp => {
+      if (resp.data.length) {
+        this.comments[eventId] = resp.data.reverse();
+      }
     });
   }
 
   postCommentForEvent(eventId, comment) {
-    return this.http.post(`/api/comments/${eventId}`, {text: comment}).then(resp => {
+    return this.http.post(`/api/comments/event/${eventId}`, {text: comment}).then(resp => {
       this.comments[eventId].push(resp.data.newComment);
       this.eventSocket.emit('new comment in group',
         {group: this.events[eventId].groupId, comment});
@@ -219,7 +221,7 @@ export default class EventService {
   }
 
   updateCommentForEvent(eventId, commentId, newText) {
-    return this.http.put(`/api/comments/${eventId}/${commentId}`, {text: newText})
+    return this.http.put(`/api/comments/${commentId}`, {text: newText})
       .then(resp => {
         this.handleUpdateComment(resp.data, false);
         this.eventSocket.emit('updated comment in group',
@@ -228,7 +230,7 @@ export default class EventService {
   }
 
   removeCommentForEvent(eventId, commentId) {
-    return this.http.delete(`/api/comments/${eventId}/${commentId}`).then(resp => {
+    return this.http.delete(`/api/comments/${commentId}`).then(resp => {
       this.handleRemoveComment(eventId, commentId, false);
       this.eventSocket.emit('removed comment in group',
         {group: this.events[eventId].groupId, eventId, commentId});

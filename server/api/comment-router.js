@@ -6,7 +6,7 @@ const oid = require('mongoose').Types.ObjectId;
 const debug = process.env.DEBUG || true;
 
 commentRouter.all('/event/:eventId', (req, res, next) => {
-  permissionsCheck(req.user._id, req.params.eventId)
+  eventPermissionsCheck(req.user._id, req.params.eventId)
     .then(() => next())
     .catch(err => handleError(req, res, err));
 });
@@ -32,6 +32,12 @@ commentRouter.post('/event/:eventId', (req, res) => {
     .catch(err => handleError(req, res, err));
 });
 
+commentRouter.all('/:commentId', (req, res, next) => {
+  commentPermissionsCheck(req.user._id, req.params.commentId)
+    .then(() => next())
+    .catch(err => handleError(req, res, err));
+});
+
 commentRouter.put('/:commentId', (req, res) => {
   if (debug) { console.log('Comment update received for event: ', req.params.eventId, ' comment: ', req.params.commentId, ', body: ', req.body); }
   Comment.findByIdAndUpdate(req.params.commentId, {text: req.body.text})
@@ -50,7 +56,7 @@ commentRouter.delete('/:commentId', (req, res) => {
 
 // check if user is part of the group the event is in
 // if no, throw an error, if yes let it through
-const permissionsCheck = (userId, eventId) => {
+const eventPermissionsCheck = (userId, eventId) => {
   return Event.findById(eventId).then(event => {
     if (!event) { throw new Error('event_not_found'); }
     return Group.findById(event.groupId).then(group => {
@@ -60,12 +66,20 @@ const permissionsCheck = (userId, eventId) => {
   });
 };
 
+const commentPermissionsCheck = (userId, commentId) => {
+  return Comment.findById(commentId).then(comment => {
+    if (!comment) { throw new Error('comment_not_found'); }
+    if (!comment.user.equals(userId)) { throw new Error('not_users_comment'); }
+  });
+};
+
 const handleError = (req, res, err) => {
   if (err.message === 'event_not_found' ||
       err.message === 'group_not_found' ||
       err.message === 'comment_not_found') {
     res.status(404).send();
-  } else if (err.message === 'not_member') {
+  } else if (err.message === 'not_member' ||
+             err.message === 'not_users_comment') {
     res.status(401).send();
   } else if (err.message === 'bad_request') {
     res.status(400).send('bad request');
