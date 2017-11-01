@@ -51,16 +51,16 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
     component: 'makeGroup',
   };
 
-  const planState = {
-    name: 'app.plan',
-    url: '/plan/{planId}',
-    component: 'plan',
+  const groupState = {
+    name: 'app.group',
+    url: '/plan/{groupId}',
+    component: 'group',
     resolve: {
-      loadEvents: ['$stateParams', 'EventService', function($stateParams, EventService) {
-        return EventService.loadEventsByPlanId($stateParams.planId);
+      eventsLoaded: ['$stateParams', 'EventService', function($stateParams, EventService) {
+        return EventService.loadEventsByGroupId($stateParams.groupId);
       }],
-      loadPlan: ['$stateParams', 'PlanService', function($stateParams, PlanService) {
-        return PlanService.loadPlanById($stateParams.planId);
+      groupLoaded: ['$stateParams', 'PlanService', function($stateParams, PlanService) {
+        return GroupService.loadGroupById($stateParams.groupId);
       }]
     }
   };

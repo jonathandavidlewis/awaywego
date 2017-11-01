@@ -6,7 +6,7 @@ import CommonModule from './modules/common/common';
 import HomeModule from './modules/home/home';
 import LoginModule from './modules/login/login';
 import SignupModule from './modules/login/signup';
-import PlanModule from './modules/plan/plan';
+import GroupModule from './modules/group/group';
 import MakeGroupModule from './modules/make-group/make-group';
 import FriendsModule from './modules/friends/friends';
 import PeopleModule from './modules/plan/people/people';
@@ -46,7 +46,7 @@ angular.module('app', [
   HomeModule,
   LoginModule,
   SignupModule,
-  PlanModule,
+  GroupModule,
   MakeGroupModule,
   FriendsModule,
   PeopleModule,
