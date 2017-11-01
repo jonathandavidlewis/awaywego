@@ -1,10 +1,10 @@
 import angular from 'angular';
 
 // imports for this component
-import template from './expenses-owed.html';
-import './expenses-owed.css';
+import template from './transaction-page.html';
+import './transaction-page.css';
 
-class ExpensesOwedController {
+class TransactionPageController {
   constructor(ExpensesService, UserService) {
     this.ExpensesService = ExpensesService;
     this.UserService = UserService;
@@ -20,14 +20,14 @@ class ExpensesOwedController {
   }
 }
 
-ExpensesOwedController.$inject = ['ExpensesService', 'UserService'];
+TransactionPageController.$inject = ['ExpensesService', 'UserService'];
 
-const ExpensesOwedComponent = {
+const TransactionPageComponent = {
   restrict: 'E',
   bindings: {},
   template: template,
-  controller: ExpensesOwedController
+  controller: TransactionPageController
 };
 
 
-export default ExpensesOwedComponent;
+export default TransactionPageComponent;

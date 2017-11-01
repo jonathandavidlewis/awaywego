@@ -1,0 +1,10 @@
+<div class="transaction-page-container">
+  <div class="transaction-page-header flex">
+    <div class="transaction-page-description"><b>Description</b></div>
+    <div class="transaction-page-from"><b>From</b></div>
+    <div class="transaction-page-to"><b>To</b></div>
+    <div class="transaction-page-amount"><b>Amount</b></div>
+  </div>
+  <transaction-card ng-repeat="transaction in $ctrl.transactions" transaction="transaction"/>
+
+</div>

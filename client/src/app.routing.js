@@ -167,10 +167,10 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
     component: 'expensesFeed'
   };
 
-  const expensesMainOwedState = {
-    name: 'app.plan.expenses.main.owed',
-    url: '/owed',
-    component: 'expensesOwed'
+  const expensesTransactionState = {
+    name: 'app.plan.expenses.main.transactions',
+    url: '/transactions',
+    component: 'transactionPage'
   };
 
   const expensesAddState = {
@@ -220,7 +220,7 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
   $stateProvider.state(expensesMainState);
   $stateProvider.state(expensesAddState);
   $stateProvider.state(expensesMainFeedState);
-  $stateProvider.state(expensesMainOwedState);
+  $stateProvider.state(expensesTransactionState);
 
   // people states
   $stateProvider.state(peopleState);

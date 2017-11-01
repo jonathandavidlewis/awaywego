@@ -6,7 +6,7 @@ import ExpensesService from '../../../services/expenses/expenses-service';
 
 // import child Modules
 import ExpensesMainComponent from './expenses-main/expenses-main';
-import ExpensesOwedComponent from './expenses-main/expenses-owed/expenses-owed';
+import TransactionPageComponent from './expenses-main/transaction-page/transaction-page';
 import TransactionCardComponent from './expenses-main/transaction-card/transaction-card';
 import ExpensesAddComponent from './expenses-add/expenses-add';
 import ExpensesAddPeopleComponent from './expenses-add/expenses-add-people/expenses-add-people';
@@ -36,7 +36,7 @@ const ExpensesComponent = {
 const ExpensesModule = angular.module('app.plan.expenses', [])
   .component('expenses', ExpensesComponent)
   .component('expensesMain', ExpensesMainComponent)
-  .component('expensesOwed', ExpensesOwedComponent)
+  .component('transactionPage', TransactionPageComponent)
   .component('transactionCard', TransactionCardComponent)
   .component('expensesAdd', ExpensesAddComponent)
   .component('expensesAddPeople', ExpensesAddPeopleComponent)
