@@ -1,6 +1,6 @@
 <div class="chat-container flex-col h100">
   <div class="chat-header">
-    <span>Chat for {{$ctrl.PlanService.currentPlan.title}}</span>
+    <span>Chat for {{$ctrl.GroupService.currentGroup.title}}</span>
   </div>
   <div class="chat-messages-container" ng-cloak>
     <chat-message ng-repeat="message in $ctrl.ChatService.messages track by message._id"

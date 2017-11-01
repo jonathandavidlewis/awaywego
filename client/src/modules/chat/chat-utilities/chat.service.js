@@ -8,7 +8,7 @@ export default class ChatService {
     this.UserService = UserService;
     this.messages = [];
     this.usersTyping = [];
-    this.planId = '';
+    this.groupId = '';
     this.socket = null;
   }
 
@@ -18,7 +18,7 @@ export default class ChatService {
       this.socket.emit('id user', this.UserService.user);
     });
     this.socket.on('pick room', () => {
-      this.socket.emit('enter plan-chat', this.planId);
+      this.socket.emit('enter group-chat', this.groupId);
     });
     this.socket.on('new message', () => this.loadNewMessages());
     this.socket.on('users typing', usersTyping => {
@@ -29,28 +29,28 @@ export default class ChatService {
 
   closeChatSocket() { this.socket.disconnect(); }
 
-  startTyping() { this.socket.emit('started typing', this.planId); }
+  startTyping() { this.socket.emit('started typing', this.groupId); }
 
-  stopTyping() { this.socket.emit('stopped typing', this.planId); }
+  stopTyping() { this.socket.emit('stopped typing', this.groupId); }
 
   submitMessage(message) {
-    return this.http.post(`/api/messages/${this.planId}`, {text: message})
+    return this.http.post(`/api/messages/group/${this.groupId}`, {text: message})
       .then(resp => {
-        this.socket.emit('new message', this.planId);
+        this.socket.emit('new message', this.groupId);
         return resp.data;
       }).catch(err => console.log('Chat server error: ', err));
   }
 
-  loadChat(planId) {
-    this.planId = planId;
+  loadChat(groupId) {
+    this.groupId = groupId;
     this.setupChatSockets();
-    return this.http.get(`/api/messages/${this.planId}`)
+    return this.http.get(`/api/messages/group/${this.groupId}`)
       .then(resp => this.messages = resp.data.reverse());
   }
 
   loadNewMessages() {
     const latest = this.messages[this.messages.length - 1].createdAt;
-    return this.http.get(`/api/messages/${this.planId}?after=${latest}`)
+    return this.http.get(`/api/messages/group/${this.groupId}?after=${latest}`)
       .then(resp => {
         let newMsgs = resp.data.reverse();
         if (this.messages[this.messages.length - 1]._id !== newMsgs[newMsgs.length - 1]._id) {
@@ -61,7 +61,7 @@ export default class ChatService {
 
   loadOlderMessages() {
     const oldest = this.messages[0].createdAt;
-    return this.http.get(`/api/messages/${this.planId}?before=${oldest}`)
+    return this.http.get(`/api/messages/group/${this.groupId}?before=${oldest}`)
       .then(resp => {
         if (resp.data.length) {
           let newMsgs = resp.data.reverse();

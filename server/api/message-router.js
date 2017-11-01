@@ -7,7 +7,7 @@ messageRouter.get('/group/:groupId', (req, res) => {
   const userId = req.user._id;
   const groupId = req.params.groupId;
 
-  Plan.findById(groupId).then(group => {
+  Group.findById(groupId).then(group => {
     if (!group) { throw new Error('group_not_found'); }
     if (group.members.indexOf(userId) === -1) { throw new Error('not_member'); }
     return group;
@@ -32,7 +32,7 @@ messageRouter.post('/group/:groupId', (req, res) => {
   const userId = req.user._id;
   const groupId = req.params.groupId;
 
-  Plan.findById(groupId).then(group => {
+  Group.findById(groupId).then(group => {
     if (!group) { throw new Error('group_not_found'); }
     if (group.members.indexOf(userId) === -1) { throw new Error('not_member'); }
     return group;
