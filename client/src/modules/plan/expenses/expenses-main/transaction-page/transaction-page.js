@@ -20,7 +20,9 @@ class TransactionPageController {
 
   $onInit() {
     this.filteredTransactions = this.filter('filter')(this.transactions, (transaction) => {
-      if (this.stateParams.filterState) {
+      if (transaction.status !== 'open') {
+        return false;
+      } else if (this.stateParams.filterState) {
         return this.filterByState(transaction);
       } else if (this.stateParams.expenseId) {
         return this.filterByExpenseId(transaction);
