@@ -7,7 +7,7 @@ describe('HomeModule', function() {
 
   beforeEach(angular.mock.inject(($rootScope, $compile, $httpBackend) => {
 
-    $httpBackend.whenGET("/api/plan/").respond([]);
+    $httpBackend.whenGET('/api/group/').respond([]);
 
     scope = $rootScope.$new();
     element = angular.element('<home></home>');
