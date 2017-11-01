@@ -48,15 +48,6 @@ export default class ExpensesService {
     return {owed: this.roundMoney(owed), debt: this.roundMoney(debt), balance: this.roundMoney(owed - debt)};
   }
 
-  // sortTransactions(transactions) {
-  //   this.transactions = {};
-  //   transactions.forEach((transaction) => {
-  //     if (!this.transactions[transaction.expenseId]) {
-  //       this.transactions[transaction.expenseId] = [];
-  //     }
-  //     this.transactions[transaction.expenseId].push(transaction);
-  //   });
-  // }
 
   newExpense(expense) {
     return this.http.post('/api/expenses', expense);
@@ -66,7 +57,6 @@ export default class ExpensesService {
     return this.http.get(`/api/expenses/${planId}`).then((res) => {
       this.expenses = res.data;
       console.log('get expenses', this.expenses);
-      // this.sortTransactions(res.data.transactions);
     });
   }
 
@@ -75,11 +65,12 @@ export default class ExpensesService {
   }
 
   removeTransaction(transactionId) {
-    return this.http.delete(`/api/expenses/remove/${transactionId}`);
+    console.log('remove service', transactionId);
+    return this.http.delete(`/api/expenses/transaction/${transactionId}`);
   }
 
   settleTransaction(transactionId) {
-    return this.http.put(`/api/expenses/settle/${transactionId}`);
+    return this.http.put(`/api/expenses/transaction/${transactionId}/settle`);
   }
 
   roundMoney(value) {

@@ -20,7 +20,8 @@ const TransactionCardComponent = {
   restrict: 'E',
   bindings: {
     transaction: '<',
-    settleTransaction: '<'
+    settleTransaction: '<',
+    removeTransaction: '<'
   },
   template: template,
   controller: TransactionCardController

@@ -14,6 +14,7 @@ class ExpensesMainController {
 
     this.updateExpenses = this.updateExpenses.bind(this);
     this.settleTransaction = this.settleTransaction.bind(this);
+    this.removeTransaction = this.removeTransaction.bind(this);
 
   }
 
@@ -35,6 +36,13 @@ class ExpensesMainController {
     });
   }
 
+  removeTransaction(transactionId) {
+    console.log('Remove triggered');
+    this.ExpensesService.removeTransaction(transactionId).then((res) => {
+      console.log('After expenses service', res.data);
+      this.updateExpenses();
+    });
+  }
 
 }
 ExpensesMainController.$inject = ['ExpensesService', '$stateParams'];

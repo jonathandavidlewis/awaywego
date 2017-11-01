@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const db = require('../config.js');
 const Schema = mongoose.Schema;
+const Transaction = require('./transaction');
 
 
 const expenseSchema = new Schema({
@@ -10,6 +11,10 @@ const expenseSchema = new Schema({
   amount: {type: Number, required: true},
   transactions: [{type: Schema.ObjectId, ref: 'Transaction'}]
 }, { timestamps: true });
+
+expenseSchema.pre('remove', function(next) {
+  Transaction.deleteMany({expenseId: this._id}).exec().then(() => next());
+});
 
 var Expense = mongoose.model('Expense', expenseSchema);
 module.exports = Expense;

@@ -7,7 +7,7 @@
     <div class="transaction-page-amount"><b>Settle</b></div>
     <div class="transaction-page-amount"><b>Delete</b></div>
   </div>
-  <transaction-card ng-repeat="transaction in $ctrl.filteredTransactions" transaction="transaction" settle-transaction="$ctrl.settleTransaction"/>
+  <transaction-card ng-repeat="transaction in $ctrl.filteredTransactions" transaction="transaction" settle-transaction="$ctrl.settleTransaction" remove-transaction="$ctrl.removeTransaction" />
   <div class="transaction-page-empty" ng-if="$ctrl.filteredTransactions.length === 0">No open transactions are available</div>
   <div class="expenses-add-controls">
     <a ui-sref="^.^.main.feed" class="expenses-add-back-container">
