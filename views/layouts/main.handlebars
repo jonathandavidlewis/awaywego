@@ -17,6 +17,9 @@
   {{#if newToken}}
     <script type="text/javascript">localStorage.setItem('awg_jwt', "{{newToken}}");</script>
   {{/if}}
+  {{#if googleAccessToken}}
+    <script type="text/javascript">localStorage.setItem('awg_google_access_token', "{{googleAccessToken}}");</script>
+  {{/if}}
 </head>
 <body>
   {{{body}}}
