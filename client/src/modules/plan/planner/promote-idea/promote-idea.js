@@ -26,6 +26,8 @@ class PromoteIdeaController {
     this.formWarning = '';
     this.formattedStartTime = '';
     this.formattedEndTime = '';
+    this.addressText = '';
+    this.addressLink = '';
     this.onEndDateChange = this.onEndDateChange.bind(this);
     this.onStartDateChange = this.onStartDateChange.bind(this);
   }
@@ -59,6 +61,9 @@ class PromoteIdeaController {
       let promotedIdea = this.event;
       promotedIdea.startTime = new Date(promotedIdea.startTime);
       promotedIdea.endTime = new Date(promotedIdea.endTime);
+      promotedIdea.addressText = this.addressText;
+      promotedIdea.addressLink = this.addressLink;
+      console.log(promotedIdea);
       this.EventService.promoteEvent(promotedIdea).then(resp => {
         this.$state.go('app.plan.planner.ideas');
       }).catch(err => {

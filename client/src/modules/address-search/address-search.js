@@ -29,13 +29,21 @@ class AddressSearchController {
       }.bind(this));
     }
   }
+
+  click() {
+    this.addressText = 'text';
+    this.addressLink = 'link';
+  }
 }
 
 AddressSearchController.$inject = ['AddressService'];
 
 const AddressSearchComponent = {
   restrict: 'E',
-  bindings: {},
+  bindings: {
+    addressText: '=',
+    addressLink: '='
+  },
   template: template,
   controller: AddressSearchController
 };
