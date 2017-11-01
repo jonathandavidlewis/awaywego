@@ -1,7 +1,7 @@
 import angular from 'angular';
 
 // services for this module
-import PlanService from '../../services/plan/plan.service';
+import GroupService from '../../services/group/group.service';
 import EventService from '../../services/event/event.service';
 
 import PlanNavComponent from './plan-nav/plan-nav';
@@ -32,7 +32,7 @@ const PlanModule = angular.module('app.plan', [
 ])
   .component('plan', PlanComponent)
   .component('planNav', PlanNavComponent)
-  .service('PlanService', PlanService)
+  .service('GroupService', GroupService)
   .service('EventService', EventService);
 
 export default PlanModule.name;
