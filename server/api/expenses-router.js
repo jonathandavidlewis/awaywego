@@ -7,7 +7,7 @@ expensesRouter.post('/', (req, res) => {
 
   const newExpense = {
     userId: req.user._id,
-    planId: req.body.planId,
+    groupId: req.body.groupId,
     description: req.body.description,
     amount: req.body.amount,
     transactions: []
@@ -16,7 +16,7 @@ expensesRouter.post('/', (req, res) => {
   Expense.create(newExpense).then((expense) => {
     for (let i = 0; i < newTransactions.length; i++) {
       newTransactions[i].expenseId = expense._id;
-      newTransactions[i].planId = req.body.planId;
+      newTransactions[i].groupId = req.body.groupId;
       newTransactions[i].status = 'open';
     }
 
@@ -32,8 +32,8 @@ expensesRouter.post('/', (req, res) => {
 });
 
 
-expensesRouter.get('/:planId', (req, res) => {
-  Expense.find({planId: req.params.planId})
+expensesRouter.get('/:groupId', (req, res) => {
+  Expense.find({groupId: req.params.groupId})
     .populate({
       path: 'transactions',
       populate: {

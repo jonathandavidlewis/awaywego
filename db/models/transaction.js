@@ -9,7 +9,7 @@ const transactionSchema = new Schema({
   to: { type: Schema.ObjectId, ref: 'User', required: true },
   amount: Number,
   expenseId: { type: Schema.ObjectId, ref: 'Expense', required: true },
-  planId: { type: Schema.ObjectId, ref: 'Plan', required: true },
+  groupId: { type: Schema.ObjectId, ref: 'Group', required: true },
   status: String
 }, { timestamps: true });
 

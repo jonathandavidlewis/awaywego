@@ -24,7 +24,7 @@ class ExpensesMainController {
   }
 
   updateExpenses() {
-    this.ExpensesService.getExpenses(this.stateParams.planId).then(() => {
+    this.ExpensesService.getExpenses(this.stateParams.groupId).then(() => {
       this.expenses = this.ExpensesService.returnExpenses();
       this.summary = this.ExpensesService.calculateDebts();
       this.transactions = this.ExpensesService.filterUserTransactions();

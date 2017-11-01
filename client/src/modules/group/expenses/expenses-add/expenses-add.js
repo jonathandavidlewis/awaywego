@@ -116,7 +116,7 @@ class ExpensesAddController {
       transactions: this.transactions
     };
     this.ExpensesService.newExpense(expense).then(() => {
-      this.state.go('app.group.expenses.main');
+      this.state.go('app.group.expenses.main.feed');
     }).catch(err => {
       console.log('Server error: ', err);
     });
