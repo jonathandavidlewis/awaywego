@@ -3,9 +3,7 @@
   <div class=home-container-window>
     <group-card group="group" ng-repeat="group in $ctrl.GroupService.groups"></group-card>
   </div>
-  <div class="new-group-button-container">
-    <button class="awgd-button" ui-sref="app.makeGroup">
-      <i class="material-icons">add</i>
-    </button>
-  </div>
+  <button class="new-group-button awgd-button" ui-sref="app.makeGroup">
+    <i class="material-icons">add</i>
+  </button>
 </div>
