@@ -20,6 +20,7 @@ export default class ExpensesService {
     this.expenses.forEach((expense) => {
       expense.transactions.forEach((transaction) => {
         if (transaction.to._id === this.UserService.user.id || transaction.from._id === this.UserService.user.id) {
+          transaction.description = expense.description;
           result.push(transaction);
         }
       });

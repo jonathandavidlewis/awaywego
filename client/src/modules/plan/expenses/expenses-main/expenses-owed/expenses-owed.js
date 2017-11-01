@@ -5,9 +5,13 @@ import template from './expenses-owed.html';
 import './expenses-owed.css';
 
 class ExpensesOwedController {
-  constructor(ExpensesService) {
+  constructor(ExpensesService, UserService) {
     this.ExpensesService = ExpensesService;
+    this.UserService = UserService;
+    this.userId = this.UserService.user.id;
     this.transactions = '';
+    this.filteredTransactions = '';
+
   }
 
   $onInit() {
@@ -16,7 +20,7 @@ class ExpensesOwedController {
   }
 }
 
-ExpensesOwedController.$inject = ['ExpensesService'];
+ExpensesOwedController.$inject = ['ExpensesService', 'UserService'];
 
 const ExpensesOwedComponent = {
   restrict: 'E',
