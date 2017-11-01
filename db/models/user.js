@@ -9,7 +9,8 @@ let userSchema = new Schema({
   email: {type: String, required: true, unique: true},
   password: {type: String, required: false},
   profilePic: String,
-  googleId: {type: Number, unique: true}
+  googleId: {type: Number, unique: true},
+  googleAccessToken: {type: String, unique: true}
 });
 
 userSchema.methods.comparePassword = function(pwd) {
