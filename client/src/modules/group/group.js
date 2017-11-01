@@ -6,7 +6,7 @@ import EventService from '../../services/event/event.service';
 import GroupNavComponent from './group-nav/group-nav';
 import GroupHomeModule from './group-home/group-home';
 import IdeasModule from './ideas/ideas';
-// import ExpensesModule from './expenses/expenses';
+import ExpensesModule from './expenses/expenses';
 
 // imports for this component
 import template from './group.html';
@@ -27,7 +27,8 @@ const GroupComponent = {
 // TODO: add back in ExpensesModule
 const GroupModule = angular.module('app.group', [
   GroupHomeModule,
-  IdeasModule
+  IdeasModule,
+  ExpensesModule
 ])
   .component('group', GroupComponent)
   .component('groupNav', GroupNavComponent)
