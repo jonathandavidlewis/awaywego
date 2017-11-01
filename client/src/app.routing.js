@@ -78,8 +78,8 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
   };
 
   const groupIdeaState = {
-    name: 'app.plan.ideas.idea',
-    url: '/{ideaId}',
+    name: 'app.group.idea',
+    url: '/idea/{ideaId}',
     component: 'idea',
     resolve: {
       ideaId: ['$stateParams', function($stateParams) {
@@ -89,14 +89,14 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
   };
 
   const groupMakeIdeaState = {
-    name: 'app.plan.ideas.makeIdea',
-    url: '/new',
+    name: 'app.group.makeIdea',
+    url: '/idea/new',
     component: 'makeIdea'
   };
 
   const groupPromoteIdeaState = {
-    name: 'app.group.ideas.promoteIdea',
-    url: '/{eventId}/promote',
+    name: 'app.group.promoteIdea',
+    url: '/idea/{eventId}/promote',
     component: 'promoteIdea'
   };
 

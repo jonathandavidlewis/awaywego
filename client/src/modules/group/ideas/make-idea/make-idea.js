@@ -9,7 +9,6 @@ class MakeIdeaController {
     this.$state = $state;
     this.groupId = GroupService.currentGroup._id;
     this.EventService = EventService;
-    this.$stateParams = $stateParams;
     this.title = '';
     this.desc = '';
     this.imageUrl = '';
