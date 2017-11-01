@@ -5,7 +5,7 @@
     <div class="transaction-page-to"><b>To</b></div>
     <div class="transaction-page-amount"><b>Amount</b></div>
   </div>
-  <transaction-card ng-repeat="transaction in $ctrl.filteredTransactions" transaction="transaction"/>
+  <transaction-card ng-repeat="transaction in $ctrl.filteredTransactions" ng-if="transaction.status === 'open'" transaction="transaction" settle-transaction="$ctrl.settleTransaction"/>
   <div class="expenses-add-controls">
     <a ui-sref="^.^.main.feed" class="expenses-add-back-container">
       <button class="awgd-button"><i class="material-icons">arrow_back</i></button>

@@ -54,6 +54,11 @@ expensesRouter.get('/:planId', (req, res) => {
     }).catch(err => res.status(500).json({'Server error': err}));
 });
 
+expensesRouter.put('/settle/:transactionId', (req, res) => {
+  Transaction.findByIdAndUpdate(req.params.transactionId, {status: 'settled'}).then((transaction) => {
+    res.status(200).json(transaction);
+  }).catch(err => res.status(500).json({'Server error': err}));
+});
 
 
 module.exports = expensesRouter;

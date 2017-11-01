@@ -34,11 +34,12 @@ export default class ExpensesService {
     let debt = 0;
     this.expenses.forEach((expense) => {
       expense.transactions.forEach((transaction) => {
-        console.log('transaction id', transaction);
-        if (transaction.to._id === this.UserService.user.id) {
-          owed += transaction.amount;
-        } else if (transaction.from._id === this.UserService.user.id) {
-          debt += transaction.amount;
+        if (transaction.status === 'open') {
+          if (transaction.to._id === this.UserService.user.id) {
+            owed += transaction.amount;
+          } else if (transaction.from._id === this.UserService.user.id) {
+            debt += transaction.amount;
+          }
         }
       });
     });
@@ -75,6 +76,10 @@ export default class ExpensesService {
 
   removeTransaction(transactionId) {
     return this.http.delete(`/api/expenses/remove/${transactionId}`);
+  }
+
+  settleTransaction(transactionId) {
+    return this.http.put(`/api/expenses/settle/${transactionId}`);
   }
 
   roundMoney(value) {

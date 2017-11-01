@@ -10,7 +10,7 @@ class TransactionCardController {
   }
 
   settleTransaction() {
-    
+
   }
 }
 
@@ -19,7 +19,8 @@ TransactionCardController.$inject = [];
 const TransactionCardComponent = {
   restrict: 'E',
   bindings: {
-    transaction: '<'
+    transaction: '<',
+    settleTransaction: '<'
   },
   template: template,
   controller: TransactionCardController

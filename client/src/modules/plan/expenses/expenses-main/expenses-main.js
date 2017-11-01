@@ -12,13 +12,26 @@ class ExpensesMainController {
     this.summary = '';
     this.transactions = '';
 
+    this.updateExpenses = this.updateExpenses.bind(this);
+    this.settleTransaction = this.settleTransaction.bind(this);
+
   }
 
   $onInit() {
+    this.updateExpenses();
+  }
+
+  updateExpenses() {
     this.ExpensesService.getExpenses(this.stateParams.planId).then(() => {
       this.expenses = this.ExpensesService.returnExpenses();
       this.summary = this.ExpensesService.calculateDebts();
       this.transactions = this.ExpensesService.filterUserTransactions();
+    });
+  }
+
+  settleTransaction(transactionId) {
+    this.ExpensesService.settleTransaction(transactionId).then(() => {
+      this.updateExpenses();
     });
   }
 
