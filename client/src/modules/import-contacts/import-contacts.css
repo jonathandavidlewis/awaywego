@@ -52,7 +52,23 @@
   display: flex;
 }
 
-.floating-center-button.awgl-button {
-  margin-top: 50px;
-  width:50%;
+.floating-center-button {
+  margin-top: 20px;
+  width:85%;
+}
+
+.info-text {
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  background-color: var(--lt);
+  padding:10px;
+}
+
+.w50 {
+  width: 50%;
+}
+
+.min-line-height {
+  min-height: 1.5rem;
 }

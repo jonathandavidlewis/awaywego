@@ -6,7 +6,14 @@ import './friend-card.css';
 
 class FriendCardController {
   constructor() {
+    this.handleInvite = this.handleInvite.bind(this);
   }
+
+  handleInvite(email) {
+    this.invite(email);
+    this.type = "import_invite";
+  }
+
 }
 
 /*

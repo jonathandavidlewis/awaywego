@@ -1,4 +1,4 @@
-<div class="friend-card-container">
+<div ng-if="$ctrl.type" class="friend-card-container">
   <div class="friend-card-avatar">
     <i class="material-icons">account_circle</i>
   </div>
@@ -22,8 +22,13 @@
       </button>
     </div>
     <div ng-if="$ctrl.type === 'invite'" class="friend-card-friend-actions">
-      <button class="awgd-button" ng-click="$ctrl.invite($ctrl.user.name)">
+      <button class="awgd-button" ng-click="$ctrl.handleInvite($ctrl.user.email)">
         <span>Invite</span>
+      </button>
+    </div>
+    <div ng-if="$ctrl.type === 'import_invite'" class="friend-card-friend-actions">
+      <button disabled class="awgl-button">
+        <i class="material-icons friend-card-checked">check</i>
       </button>
     </div>
   </div>
