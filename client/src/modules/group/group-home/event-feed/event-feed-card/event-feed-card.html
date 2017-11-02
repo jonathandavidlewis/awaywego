@@ -19,7 +19,7 @@
             </span>
             <span class="event-feed-card-end-time"
               ng-if="$ctrl.event.endTime && !$ctrl.moment($ctrl.event.startTime).isSame($ctrl.event.endTime, 'minute')">
-              {{' - ' + $ctrl.moment($ctrl.event.endTime).format('LT')}}
+              &nbsp- {{$ctrl.moment($ctrl.event.endTime).format('LT')}}
             </span>
           </div>
         </div>
@@ -33,7 +33,7 @@
             <span>{{$ctrl.event.addressName}}</span>
           </div>
           <div class="event-feed-card-address-details">
-            <a href={{$ctrl.event.addressLink}}>{{$ctrl.event.addressText}}</a>
+            <a ng-href={{$ctrl.event.addressLink}} target="_blank">{{$ctrl.event.addressText}}</a>
           </div>
         </div>
       </div>

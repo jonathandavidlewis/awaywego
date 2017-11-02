@@ -36,3 +36,7 @@
 .event-feed-card-address-container {
   flex: 1 1 170px;
 }
+
+.event-feed-card-address-details {
+  font-size: .9em;
+}
