@@ -11,6 +11,7 @@ import './import-contacts.css';
 class ImportContactsController {
   constructor(FriendService, $state, $http) {
     this.http = $http;
+    this.FriendService = FriendService;
     this.googleAccessToken = localStorage.getItem('awg_google_access_token');
     this.search = '';
     this.$state = $state;
@@ -24,6 +25,16 @@ class ImportContactsController {
     this.getGoogleContacts = this.getGoogleContacts.bind(this);
     this.toggleSelect = this.toggleSelect.bind(this);
     this.filterFriends = this.filterFriends.bind(this);
+
+    this.requestFriend = this.requestFriend.bind(this);
+    this.inviteFriend = this.inviteFriend.bind(this);
+    this.cancelFriend = this.cancelFriend.bind(this);
+    this.acceptFriend = this.acceptFriend.bind(this);
+    this.rejectFriend = this.rejectFriend.bind(this);
+
+    this.acceptFriend = this.acceptFriend.bind(this);
+    this.rejectFriend = this.rejectFriend.bind(this);
+    this.cancelFriend = this.cancelFriend.bind(this);
   }
 
   getGoogleContacts() {
@@ -93,6 +104,42 @@ class ImportContactsController {
       return true;
     }
   }
+
+
+  toggleForm($event) {
+    $event.stopPropagation();
+    this.newFriendOpen = !this.newFriendOpen;
+  }
+
+  acceptFriend(frId) {
+    this.FriendService.acceptFriendRequest(frId);
+  }
+
+  rejectFriend(frId) {
+    this.FriendService.rejectFriendRequest(frId);
+  }
+
+  cancelFriend(frId) {
+    this.FriendService.cancelFriendRequest(frId);
+  }
+
+
+  requestFriend(friendId) {
+    this.FriendService.newFriendRequest(friendId).then(() => {
+      this.resetResults();
+      this.closeForm();
+    });
+  }
+
+  inviteFriend(email) {
+    this.FriendService.inviteFriend(email).then(() => {
+      this.type = 'sent';
+    });
+  }
+
+
+
+
 
 }
 ImportContactsController.$inject = ['FriendService', '$state', '$http'];
