@@ -5,16 +5,24 @@ import template from './event-feed.html';
 import './event-feed.css';
 
 class EventFeedController {
-  constructor() {
+  constructor(EventService, MomentService) {
+    this.EventService = EventService;
+    this.moment = MomentService.moment;
+    this.eventPastDuration = this.moment.duration(1, 'days');
+    this.eventFutureDuration = this.moment.duration(1, 'weeks');
+  }
+
+  filterFeed(event) {
+    let min = this.moment().subtract(this.eventPastDuration);
+    let max = this.moment().add(this.eventFutureDuration);
+    return this.moment(event.startTime).isBetween(min, max, 'day', '[]');
   }
 }
 EventFeedController.$inject = [];
 
 const EventFeedComponent = {
   restrict: 'E',
-  bindings: {
-    groupId: '<'
-  },
+  bindings: {},
   template: template,
   controller: EventFeedController
 };
