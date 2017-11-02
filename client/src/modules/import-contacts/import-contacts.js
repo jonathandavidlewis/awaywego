@@ -24,7 +24,6 @@ class ImportContactsController {
     this.getGoogleContacts = this.getGoogleContacts.bind(this);
     this.toggleSelect = this.toggleSelect.bind(this);
     this.filterFriends = this.filterFriends.bind(this);
-    this.addToPlan = this.addToPlan.bind(this);
   }
 
   getGoogleContacts() {
