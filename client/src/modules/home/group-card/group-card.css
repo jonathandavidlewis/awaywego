@@ -10,8 +10,6 @@
 
 .group-card-main-container {
   display: flex;
-  border-bottom: 1px solid var(--la);
-  padding-bottom: 10px;
   align-items: flex-start;
 }
 .group-card-info-container {

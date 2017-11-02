@@ -15,12 +15,11 @@
   margin-bottom: 10px;
 }
 
-.group-pinned-feed-container {
-  border-bottom: 1px solid var(--la);
-  padding-bottom: 10px;
-  margin-bottom: 10px;
+.group-home-buttons-container {
+  flex-wrap: wrap;
 }
 
 .group-home-buttons-container .awgd-button {
   width: 160px;
+  margin-bottom: 10px;
 }
