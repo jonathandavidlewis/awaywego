@@ -1,0 +1,38 @@
+.event-feed-card-wrapper {
+  margin-bottom: 10px;
+}
+
+.event-feed-card-container {
+  background-color: var(--lt);
+  padding: 10px;
+  border-bottom: 1px solid var(--la);
+}
+
+.event-feed-card-title {
+  color: var(--dk3);
+  font-size: 1.1em;
+  margin-bottom: 3px;
+}
+
+.event-feed-card-main-container {
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+
+.event-feed-card-main-container .material-icons {
+  color: var(--m3);
+  margin-right: 5px;
+}
+
+.event-feed-card-datetime-container {
+  margin-right: 20px;
+}
+
+.event-feed-card-date-container,
+.event-feed-card-time-container {
+  margin-bottom: 7px;
+}
+
+.event-feed-card-address-container {
+  flex: 1 1 200px;
+}

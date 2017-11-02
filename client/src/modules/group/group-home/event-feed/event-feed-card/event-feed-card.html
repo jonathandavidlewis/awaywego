@@ -1,38 +1,43 @@
-<div class="event-feed-card-container flex-col">
-  <div class="event-feed-card-title">
-    <span>{{$ctrl.event.title}}</span>
-  </div>
-  <div class="event-feed-card-time-container">
-    <div class="event-feed-card-date-container flex">
-      <i class="material-icons">date_range</i>
-      <span class="event-feed-card-date">
-        {{$ctrl.moment($ctrl.event.startTime).format('ddd - MMM D')}}
-      </span>
+<div class="event-feed-card-wrapper flex-col card-shadow">
+  <div class="event-feed-card-container flex-col">
+    <div class="event-feed-card-title">
+      <span>{{$ctrl.event.title}}</span>
     </div>
-    <div class="event-feed-card-time-container flex">
-      <i class="material-icons">schedule</i>
-      <div class="event-feed-card-time-range-container flex">
-        <span class="event-feed-card-start-time">
-          {{$ctrl.moment($ctrl.event.startTime).format('LT')}}
-        </span>
-        <span class="event-feed-card-end-time"
-          ng-if="$ctrl.event.endTime && !$ctrl.moment($ctrl.event.startTime).isSame($ctrl.event.endTime, 'minute')">
-          {{' - ' + $ctrl.moment($ctrl.event.endTime).format('LT')}}
-        </span>
+    <div class="event-feed-card-main-container flex">
+      <div class="event-feed-card-datetime-container flex-col">
+        <div class="event-feed-card-date-container flex flex-align-center">
+          <i class="material-icons">date_range</i>
+          <span class="event-feed-card-date">
+            {{$ctrl.moment($ctrl.event.startTime).format('ddd - MMM D')}}
+          </span>
+        </div>
+        <div class="event-feed-card-time-container flex flex-align-center">
+          <i class="material-icons">schedule</i>
+          <div class="event-feed-card-time-range-container flex">
+            <span class="event-feed-card-start-time">
+              {{$ctrl.moment($ctrl.event.startTime).format('LT')}}
+            </span>
+            <span class="event-feed-card-end-time"
+              ng-if="$ctrl.event.endTime && !$ctrl.moment($ctrl.event.startTime).isSame($ctrl.event.endTime, 'minute')">
+              {{' - ' + $ctrl.moment($ctrl.event.endTime).format('LT')}}
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="event-feed-card-address-container flex">
+        <div class="event-feed-card-address-icon">
+          <i class="material-icons">location_on</i>
+        </div>
+        <div class="event-feed-card-address-text flex-col">
+          <div class="event-feed-card-address-name">
+            <span>{{$ctrl.event.addressName}}</span>
+          </div>
+          <div class="event-feed-card-address-details">
+            <a href={{$ctrl.event.addressLink}}>{{$ctrl.event.addressText}}</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  <div class="event-feed-card-address-container flex">
-    <div class="event-feed-card-address-icon">
-      <i class="material-icons">location_on</i>
-    </div>
-    <div class="event-feed-card-address-text flex-col">
-      <div class="event-feed-card-address-name">
-        <span>{{$ctrl.event.addressName}}</span>
-      </div>
-      <div class="event-feed-card-address-details">
-        <a href={{$ctrl.event.addressLink}}>{{$ctrl.event.addressText}}</a>
-      </div>
-    </div>
-  </div>
+  <comments event-id="$ctrl.event._id"></comments>
 </div>
