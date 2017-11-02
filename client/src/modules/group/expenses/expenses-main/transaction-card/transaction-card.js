@@ -6,11 +6,6 @@ import './transaction-card.css';
 
 class TransactionCardController {
   constructor() {
-
-  }
-
-  settleTransaction() {
-
   }
 }
 
@@ -21,7 +16,9 @@ const TransactionCardComponent = {
   bindings: {
     transaction: '<',
     settleTransaction: '<',
-    removeTransaction: '<'
+    removeTransaction: '<',
+    filterState: '<',
+    user: '<'
   },
   template: template,
   controller: TransactionCardController

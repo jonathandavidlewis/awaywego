@@ -12,8 +12,17 @@
 
 .transaction-card-detail-item {
   padding: 5px;
+  color: var(--dk4);
 }
 
 .transaction-card-menu-item {
   padding: 5px;
+}
+
+.transaction-card-positive {
+  color: green;
+}
+
+.transaction-card-negative {
+  color: palevioletred;
 }

@@ -1,14 +1,15 @@
 <div class="transaction-page-container">
-  <div class="expenses-feed-header">{{$ctrl.filterTitle}}</div>
+  <div ng-if="$ctrl.stateParams.filterState" class="expenses-feed-header">{{$ctrl.filterTitle}}</div>
+  <div ng-if="$ctrl.stateParams.expenseId" class="expenses-feed-header">Transactions for {{$ctrl.filteredTransactions[0].description}}</div>
   <div class="transaction-page-label-container flex">
-    <div class="transaction-page-label-item"><b>Desc.</b></div>
+    <div ng-if="$ctrl.stateParams.filterState" class="transaction-page-label-item"><b>Desc.</b></div>
     <div class="transaction-page-label-item"><b>From</b></div>
     <div class="transaction-page-label-item"><b>To</b></div>
     <div class="transaction-page-label-item"><b>Amount</b></div>
     <div class="transaction-page-label-item"><b>Settle</b></div>
     <div class="transaction-page-label-item"><b>Delete</b></div>
   </div>
-  <transaction-card ng-repeat="transaction in $ctrl.filteredTransactions" transaction="transaction" settle-transaction="$ctrl.settleTransaction" remove-transaction="$ctrl.removeTransaction" />
+  <transaction-card ng-repeat="transaction in $ctrl.filteredTransactions" filter-state="$ctrl.stateParams.filterState" transaction="transaction" settle-transaction="$ctrl.settleTransaction" remove-transaction="$ctrl.removeTransaction" user="$ctrl.userId" />
   <div class="transaction-page-empty" ng-if="$ctrl.filteredTransactions.length === 0">No open transactions are available</div>
 
 </div>

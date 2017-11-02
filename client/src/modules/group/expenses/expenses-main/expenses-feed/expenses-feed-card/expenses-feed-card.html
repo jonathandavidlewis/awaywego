@@ -1,5 +1,6 @@
 <div class="expenses-feed-card flex">
   <div class="expenses-feed-card-item flex-1" ui-sref="^.^.main.expense({expenseId: $ctrl.expense._id})">{{$ctrl.expense.description}}</div>
-  <div class="expenses-feed-card-item">{{$ctrl.expense.amount | currency:"$"}}</div>
+  <div
+  class="expenses-feed-card-item">{{$ctrl.expense.amount | currency:"$"}}</div>
   <div class="expenses-feed-card-item" ng-click="$ctrl.removeExpense($ctrl.expense._id)"><i class="material-icons">delete</i></div>
 </div>

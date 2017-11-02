@@ -8,6 +8,9 @@
   cursor: pointer;
 }
 
+.expenses-summary-bar-item-container:hover {
+  background-color: var(--m1);
+}
 
 .expenses-summary-bar-item-container {
   flex: 1 0 0;
