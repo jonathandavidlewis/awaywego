@@ -32,7 +32,7 @@ class ExpensesAddController {
     this.checkedMembers = {};
 
     // Toggle for displaying add people screen
-    this.showAddPeople = false;
+    this.owerToggle = false;
 
     // This allows us to reuse expenses-add-people for both adding payers and owers
     this.payerToggle = false;
@@ -40,20 +40,19 @@ class ExpensesAddController {
     // Currently defaults to equal. TODO: Make transactions able to have custom input.
     this.transactionType = 'equal';
 
-    this.toggleShowAddPeople = this.toggleShowAddPeople.bind(this);
-    this.toggleMember = this.toggleMember.bind(this);
+    this.toggleCards = this.toggleCards.bind(this);
+    this.toggleOwer = this.toggleOwer.bind(this);
+    this.togglePayer = this.togglePayer.bind(this);
     this.createEqualTransactions = this.createEqualTransactions.bind(this);
     this.addExpense = this.addExpense.bind(this);
   }
 
-  toggleShowAddPeople(payerToggle) {
-    this.showAddPeople = !this.showAddPeople;
+  toggleCards(payerToggle) {
     if (payerToggle) {
-      this.payerToggle = true;
+      this.payerToggle = !this.payerToggle;
     } else {
-      this.payerToggle = false;
+      this.owerToggle = !this.owerToggle;
     }
-
   }
 
   updateTransactions() {
@@ -71,13 +70,8 @@ class ExpensesAddController {
     return transaction;
   }
 
-  toggleMember(member) {
+  toggleOwer(member) {
     let checked = this.checkedMembers;
-
-    // If payer toggle is true, work with this.payers instead
-    if (this.payerToggle) {
-      checked = this.payers;
-    }
     if (checked[member.name]) {
       delete checked[member.name];
     } else {
@@ -88,6 +82,20 @@ class ExpensesAddController {
       this.createEqualTransactions();
     }
   }
+
+  togglePayer(member) {
+    let checked = this.payers;
+    if (checked[member.name]) {
+      delete checked[member.name];
+    } else {
+      checked[member.name] = member;
+    }
+
+    if (this.transactionType === 'equal') {
+      this.createEqualTransactions();
+    }
+  }
+
 
   createEqualTransactions() {
     let numberOfPeople = Object.keys(this.checkedMembers).length;

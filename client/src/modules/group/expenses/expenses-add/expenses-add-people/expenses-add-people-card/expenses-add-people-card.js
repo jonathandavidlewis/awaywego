@@ -6,12 +6,16 @@ import './expenses-add-people-card.css';
 
 class ExpensesAddPeopleCardController {
   constructor() {
+    this.checked = false;
   }
 
   clickPerson() {
-    this.selected = !this.selected;
+    this.checked = !this.checked;
+    console.log('card', this.member);
     this.toggle(this.member);
   }
+
+
 }
 
 ExpensesAddPeopleCardController.$inject = [];

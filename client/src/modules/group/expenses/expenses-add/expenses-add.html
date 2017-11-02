@@ -1,55 +1,59 @@
-<div ng-show="$ctrl.showAddPeople === false" class="ng-show expenses-add-container flex-col">
+<div class="expenses-add-container flex-col">
 
-  <div class="expenses-added-people-container">
-    <div class="expenses-added-people-area">
-      <div class="expenses-add-payer-description"><span>Who Paid? <button ng-click="$ctrl.toggleShowAddPeople(true)">+</button></span></div>
-      <div class="expenses-add-names-card" ng-repeat="payer in $ctrl.payers">{{payer.name}}</div>
-    </div>
-    <div class="expenses-added-people-area">
-      <div class="expenes-add-owers-description">Who owes money?<button ng-click="$ctrl.toggleShowAddPeople()">+</button></div>
-      <div class="expenses-add-names-card" ng-repeat="member in $ctrl.transactions">{{member.from.name}}</div>
-    </div>
-  </div>
   <div class="expenses-add-form-container">
-    <form name="newExpense" ng-submit="$ctrl.submit()">
-      <div class="expenses-add-input-block">
-        <label for="expense-description">Describe your expense</label>
-        <input class="awgl-form-input form-control" name="expense-description" ng-model="$ctrl.description"
-          type="text" placeholder="Expense Description" />
-      </div>
-      <div class="expenses-add-input-block">
-        <label for="expense-amount">Amount</label>
-        <input ng-change="$ctrl.updateTransactions()" class="awgl-form-input form-control" name="expense-amount" ng-model="$ctrl.amount"
-          type="number" placeholder="Expense Amount" />
-      </div>
-      <div class="expenses-add-people-share-option">
-        <label for="share">Share Equally</label>
-        <input  name="share" type="radio" ng-model="$ctrl.transactionType" value="equal"/>
-        <label for="share">Share Custom(Not yet available)</label>
-        <input  name="share" type="radio" ng-model="$ctrl.transactionType" value="percentage"/>
-      </div>
+    <div class="expenses-add-input-block">
+      <input class="awgl-form-input form-control" name="expense-description" ng-model="$ctrl.description"
+        type="text" placeholder="Describe your Expense" />
+    </div>
+    <div class="expenses-add-input-block">
+      <input ng-change="$ctrl.updateTransactions()" class="awgl-form-input form-control" name="expense-amount" ng-model="$ctrl.amount"
+        type="number" placeholder="What was the total?" />
+    </div>
+    <div class="expenses-add-people-share-option">
+      <label for="share">Share Equally</label>
+      <input  name="share" type="radio" ng-model="$ctrl.transactionType" value="equal"/>
+      <label for="share">Share Custom(Not yet available)</label>
+      <input  name="share" type="radio" ng-model="$ctrl.transactionType" value="percentage"/>
+    </div>
 
-      <div ng-if="$ctrl.formWarning" class="awgl-form-warning flex flex-center">
-        <span>{{$ctrl.formWarning}}</span>
-      </div>
-      <div ng-repeat="member in $ctrl.transactions" class="expenses-added-people">{{member.from.name}} owes {{member.amount}} to {{member.to.name}}</div>
-
-      <div class="expenses-add-controls">
-        <a ui-sref="^.main.feed" class="expenses-add-back-container">
-          <button class="awgd-button"><i class="material-icons">arrow_back</i></button>
-        </a>
-        <div class="expenses-add-save-container">
-          <button ng-click="$ctrl.addExpense()" class="awgd-button">Add to expense</button>
+    <div class="expenses-added-people-container">
+      <div class="expenses-added-people-area">
+        <div class="expenses-add-payer-description"><button class="awgd-button" ng-click="$ctrl.toggleCards(true)">Who Paid? </button></div>
+        <div ng-show="$ctrl.payerToggle === true" class="ng-show flex-col">
+          <expenses-add-people-card
+          toggle="$ctrl.togglePayer"
+          amount="$ctrl.amount"
+          ng-repeat="member in $ctrl.members"
+          member="member"
+          />
         </div>
       </div>
-    </form>
+
+      <div class="expenses-added-people-area">
+        <div class="expenes-add-owers-description"><button class="awgd-button" ng-click="$ctrl.toggleCards()">Who Owes?</button></div>
+        <div ng-show="$ctrl.owerToggle === true" class="ng-show flex-col">
+          <expenses-add-people-card
+          toggle="$ctrl.toggleOwer"
+          amount="$ctrl.amount"
+          ng-repeat="member in $ctrl.members"
+          member="member"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div ng-if="$ctrl.formWarning" class="awgl-form-warning flex flex-center">
+      <span>{{$ctrl.formWarning}}</span>
+    </div>
+    <div ng-repeat="member in $ctrl.transactions" class="expenses-added-people">{{member.from.name}} owes {{member.amount}} to {{member.to.name}}</div>
+
+    <div class="expenses-add-controls">
+      <a ui-sref="^.main.feed" class="expenses-add-back-container">
+        <button class="awgd-button"><i class="material-icons">arrow_back</i></button>
+      </a>
+      <div class="expenses-add-save-container">
+        <button ng-click="$ctrl.addExpense()" class="awgd-button">Save Expense</button>
+      </div>
+    </div>
   </div>
-</div>
-
-<div ng-show="$ctrl.showAddPeople === true && $ctrl.payerToggle === false" class="ng-show expenses-add-container flex-col">
-  <expenses-add-people selected-members="$ctrl.transactions" toggle-member="$ctrl.toggleMember" members="$ctrl.members" amount="$ctrl.amount" />
-</div>
-
-<div ng-show="$ctrl.showAddPeople === true && $ctrl.payerToggle === true" class="ng-show expenses-add-container flex-col">
-  <expenses-add-people selected-members="$ctrl.transactions" toggle-member="$ctrl.toggleMember" members="$ctrl.members" amount="$ctrl.amount" />
 </div>

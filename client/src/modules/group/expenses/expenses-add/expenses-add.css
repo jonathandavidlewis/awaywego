@@ -1,5 +1,8 @@
 .expenses-add-container {
   padding: 10px;
+  height: 100%;
+  padding-bottom: 70px;
+  overflow: auto;
 }
 
 .expenses-added-people-container {
@@ -10,6 +13,8 @@
 .expenses-added-people-area {
   display: flex;
   flex-direction: column;
+  flex: 1 1 50%;
+  padding: 5px;
 }
 
 .expenses-add-names-card {
