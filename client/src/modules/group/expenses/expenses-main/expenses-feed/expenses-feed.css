@@ -9,8 +9,10 @@
   text-align: center;
   font-size: 1.3em;
   font-weight: bold;
+  color: var(--dk3);
 }
 
 .expenses-feed-item {
   padding-right: 10px;
+  color: var(--dk3);
 }

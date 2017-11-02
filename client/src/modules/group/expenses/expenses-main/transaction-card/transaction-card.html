@@ -4,5 +4,5 @@
   <div class="transaction-card-detail-item">{{$ctrl.transaction.to.name}}</div>
   <div class="transaction-card-detail-item">{{$ctrl.transaction.amount | currency:"$"}}</div>
   <div class="transaction-card-menu-item" ng-click="$ctrl.settleTransaction($ctrl.transaction._id)">Settle</div>
-  <div class="transaction-card-menu-item" ng-click="$ctrl.removeTransaction($ctrl.transaction._id)">Delete</div>
+  <div class="transaction-card-menu-item" ng-click="$ctrl.removeTransaction($ctrl.transaction._id)"><i class="material-icons">delete</i></div>
 </div>
