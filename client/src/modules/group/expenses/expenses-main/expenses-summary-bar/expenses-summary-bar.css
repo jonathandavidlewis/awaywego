@@ -1,15 +1,38 @@
 .expenses-summary-bar-container {
   display: flex;
-  background-color: var(--lt);
+  background-color: var(--lla);
   justify-content: space-around;
   height: 40px;
-  border-top: 1px solid var(--da);
-  border-bottom: 1px solid var(--da);
+  border-top: 1px solid var(--dk3);
+  border-bottom: 1px solid var(--dk3);
+  cursor: pointer;
 }
 
 
 .expenses-summary-bar-item-container {
   flex: 1 0 0;
-  border-right: 1px solid var(--da);
+  border-right: 1px solid var(--dk3);
   font-size: .9em;
+  color: var(--dk3);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.expenses-summary-item-label {
+  font-size: 0.9em;
+}
+
+
+.expenses-summary-item-value {
+  color: var(--dk5);
+}
+
+.expenses-summary-positive {
+  color: green;
+}
+
+.expenses-summary-negative {
+  color: palevioletred;
 }
