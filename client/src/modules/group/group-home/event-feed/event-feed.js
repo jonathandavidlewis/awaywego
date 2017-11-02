@@ -12,7 +12,9 @@ EventFeedController.$inject = [];
 
 const EventFeedComponent = {
   restrict: 'E',
-  bindings: {},
+  bindings: {
+    groupId: '<'
+  },
   template: template,
   controller: EventFeedController
 };
