@@ -33,7 +33,7 @@ class TransactionPageController {
 
   filterByState(transaction) {
     if (this.stateParams.filterState === 'balance') {
-      this.filterTitle = 'All Transactions';
+      this.filterTitle = 'All';
       return true;
     } else if (this.stateParams.filterState === 'owed') {
       this.filterTitle = 'Money you are owed';

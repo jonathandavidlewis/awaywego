@@ -1,28 +1,11 @@
 <div class="expenses-summary-bar-container">
   <div ui-sref="^.main.transactions({filterState: 'owedTo'})" class="expenses-summary-bar-item-container">
-    <div class="expenses-summary-item-label">
-      <span>I owe: </span>
-    </div>
-    <div
-    class="expenses-summary-item-value"
-    ng-class="{'expenses-summary-negative': $ctrl.summary.debt > 0}">{{$ctrl.summary.debt | currency:"$"}}</div>
+    <div class="expenses-summary-owe"><span>I owe: {{$ctrl.summary.debt | currency:"$"}}</span></div>
   </div>
-
   <div ui-sref="^.main.transactions({filterState: 'owed'})" class="expenses-summary-bar-item-container">
-    <div class="expenses-summary-item-label">
-      <span>I am owed: </span>
-    </div>
-    <div
-    class="expenses-summary-item-value"
-    ng-class="{'expenses-summary-positive': $ctrl.summary.owed > 0}">{{$ctrl.summary.owed | currency:"$"}}</div>
+    <div class="expenses-summary-owed"><span>I am owed: {{$ctrl.summary.owed | currency:"$"}}</span></div>
   </div>
-
   <div ui-sref="^.main.transactions({filterState: 'balance'})" class="expenses-summary-bar-item-container">
-    <div class="expenses-summary-item-label">
-      <span>Balance: </span>
-    </div>
-    <div
-    class="expenses-summary-item-value"
-    ng-class="{'expenses-summary-positive': $ctrl.summary.balance > 0, 'expenses-summary-negative': $ctrl.summary.balance < 0}">{{$ctrl.summary.balance | currency:"$"}}</div>
+    <div class="expenses-summary-balance"><span>Balance: {{$ctrl.summary.balance | currency:"$"}}</span></div>
   </div>
 </div>

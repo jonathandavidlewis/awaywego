@@ -1,19 +1,11 @@
 .transaction-page-container {
   padding: 10px;
-  padding-bottom: 70px;
-  height: 100%
 }
 
 .transaction-page-label-container {
-  justify-content: space-around;
-
+  justify-content: space-between;
 }
 
 .transaction-page-label-item {
-  padding: 0 5px;
-  color: var(--dk3);
-  font-size: 0.9em;
-  flex: 1 1 20%;
-  display: flex;
-  justify-content: center;
+  padding-right: 10px;
 }

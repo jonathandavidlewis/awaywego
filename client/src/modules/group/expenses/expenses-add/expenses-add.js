@@ -32,7 +32,7 @@ class ExpensesAddController {
     this.checkedMembers = {};
 
     // Toggle for displaying add people screen
-    this.owerToggle = false;
+    this.showAddPeople = false;
 
     // This allows us to reuse expenses-add-people for both adding payers and owers
     this.payerToggle = false;
@@ -40,19 +40,20 @@ class ExpensesAddController {
     // Currently defaults to equal. TODO: Make transactions able to have custom input.
     this.transactionType = 'equal';
 
-    this.toggleCards = this.toggleCards.bind(this);
-    this.toggleOwer = this.toggleOwer.bind(this);
-    this.togglePayer = this.togglePayer.bind(this);
+    this.toggleShowAddPeople = this.toggleShowAddPeople.bind(this);
+    this.toggleMember = this.toggleMember.bind(this);
     this.createEqualTransactions = this.createEqualTransactions.bind(this);
     this.addExpense = this.addExpense.bind(this);
   }
 
-  toggleCards(payerToggle) {
+  toggleShowAddPeople(payerToggle) {
+    this.showAddPeople = !this.showAddPeople;
     if (payerToggle) {
-      this.payerToggle = !this.payerToggle;
+      this.payerToggle = true;
     } else {
-      this.owerToggle = !this.owerToggle;
+      this.payerToggle = false;
     }
+
   }
 
   updateTransactions() {
@@ -70,8 +71,13 @@ class ExpensesAddController {
     return transaction;
   }
 
-  toggleOwer(member) {
+  toggleMember(member) {
     let checked = this.checkedMembers;
+
+    // If payer toggle is true, work with this.payers instead
+    if (this.payerToggle) {
+      checked = this.payers;
+    }
     if (checked[member.name]) {
       delete checked[member.name];
     } else {
@@ -82,20 +88,6 @@ class ExpensesAddController {
       this.createEqualTransactions();
     }
   }
-
-  togglePayer(member) {
-    let checked = this.payers;
-    if (checked[member.name]) {
-      delete checked[member.name];
-    } else {
-      checked[member.name] = member;
-    }
-
-    if (this.transactionType === 'equal') {
-      this.createEqualTransactions();
-    }
-  }
-
 
   createEqualTransactions() {
     let numberOfPeople = Object.keys(this.checkedMembers).length;
@@ -113,10 +105,10 @@ class ExpensesAddController {
   }
 
   addExpense() {
-    if (!this.validateForm()) {
+    if (Object.keys(this.payers).length === 0 || Object.keys(this.checkedMembers).length === 0) {
+      console.log('Payers or owers is empty, cannot submit');
       return;
     }
-
     let expense = {
       groupId: this.stateParams.groupId,
       description: this.description,
@@ -134,20 +126,6 @@ class ExpensesAddController {
     return Number(Math.round(value + 'e+2') + 'e-2');
   }
 
-  validateForm() {
-    if (!this.amount || !this.description) {
-      this.formWarning = 'Please enter at least both a description and an amount';
-      return false;
-    } else if (Object.keys(this.payers).length === 0) {
-      this.formWarning = 'Please add a payer';
-      return false;
-    } else if (Object.keys(this.checkedMembers).length === 0) {
-      this.formWarning = 'Please add an ower';
-      return false;
-    } else {
-      return true;
-    }
-  }
 }
 
 ExpensesAddController.$inject = ['GroupService', 'ExpensesService', '$state', '$stateParams'];

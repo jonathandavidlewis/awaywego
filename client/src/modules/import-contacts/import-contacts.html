@@ -1,0 +1,32 @@
+<div class="people-add-container h100">
+  <div class="people-add-header text-center">
+    <span>Import your contacts</span>
+  </div>
+  <div class="text-center" ng-if="$ctrl.allContacts.length"> We found {{$ctrl.allContacts.length}} contacts. Invite them below</div>
+
+  <div class="text-center min-line-height" ng-if="$ctrl.allContacts.length === 0">
+    <span ng-if="$ctrl.loadingContacts">
+      Loading your contacts...
+    </span>
+  </div>
+  <div ng-if="$ctrl.allContacts.length === 0" class="flex flex-col flex-align-center h100">
+    <div class="info-text header-shadow">
+      <span>
+        Welcome! To help you get started quickly you can access your Google contacts and invite friends from there or see who's already joined.
+      </span>
+    </div>
+    <div class="flex floating-center-button space-between flex-align-stretch">
+      <button type="submit" class="awgd-button" name="get-contacts" ng-click="$ctrl.getGoogleContacts()">Import contacts</button>
+      <div class ="w50"> </div>
+      <button type="submit" class="awgd-button" name="get-contacts">Skip</button>
+    </div>
+
+  </div>
+
+  <friend-card ng-repeat="friend in $ctrl.availableFriends"  | filter="$ctrl.filterFriends"
+  user="friend" type="invite" checked="friend.status" invite="$ctrl.inviteFriend"
+  toggle="$ctrl.toggleSelect" cancel="$ctrl.cancelFriend"></friend-card>
+
+  <!--  -->
+</div>
+

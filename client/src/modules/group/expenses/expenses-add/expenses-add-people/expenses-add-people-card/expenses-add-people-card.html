@@ -1,16 +1,11 @@
-<div class="expense-add-people-card-container"
-  ng-class="{'expense-add-people-card-selected': !!$ctrl.checked}"
+<div class="expenses-add-people-card-container"
+  ng-class="{'expenses-add-people-card-owner': !!$ctrl.owner, 'expenses-add-people-card-self': !!$ctrl.self, 'expenses-add-people-card-selected': !!$ctrl.checked}"
   ng-click="$ctrl.clickPerson()">
-  <div class="expense-add-people-card-avatar">
+  <div class="expenses-add-people-card-avatar">
     <i class="material-icons">account_circle</i>
   </div>
-  <div class="expense-add-people-card-content">
-    <div class="expense-add-people-card-name">{{$ctrl.member.name}}</div>
-  </div>
-  <div class="expense-add-people-card-actions">
-    <div class="expense-add-people-card-actions-icon-container">
-      <i ng-if="$ctrl.checked" class="material-icons">check_box</i>
-      <i ng-if="!$ctrl.checked" class="material-icons">check_box_outline_blank</i>
-    </div>
+  <div class="expenses-add-people-card-content">
+    <div class="expenses-add-people-card-name">{{$ctrl.member.name}}</div>
+    <div ng-if="$ctrl.selected === true">Selected</div>
   </div>
 </div>

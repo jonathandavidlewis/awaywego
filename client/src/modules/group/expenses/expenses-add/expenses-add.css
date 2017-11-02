@@ -1,8 +1,5 @@
 .expenses-add-container {
   padding: 10px;
-  height: 100%;
-  padding-bottom: 70px;
-  overflow: auto;
 }
 
 .expenses-added-people-container {
@@ -10,28 +7,9 @@
   justify-content: space-between;
 }
 
-.expenses-add-form-header {
-  font-size: 1.3em;
-  color: var(--dk3);
-  text-align: center;
-}
-
-.expenses-add-people-share-option {
-  color: var(--dk3);
-  display: flex;
-  justify-content: space-around;
-}
-
-.expenes-add-people-share-option {
-  display: flex;
-  flex: 1 1 auto;
-}
-
 .expenses-added-people-area {
   display: flex;
   flex-direction: column;
-  flex: 1 1 50%;
-  padding: 5px;
 }
 
 .expenses-add-names-card {

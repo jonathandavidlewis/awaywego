@@ -51,7 +51,7 @@ export default class EventService {
       this.events[event._id] = event;
       if (event.status === 'idea') {
         this.ideas.push(event);
-      } else if (event.status === 'event') {
+      } else if (event.status === 'feed') {
         this.feed.push(event);
       }
     }
@@ -70,14 +70,14 @@ export default class EventService {
           this.ideas[ideaIndex] = event;
         } else {
           this.ideas.push(event);
-        } // remove from feed if now an unscheduled idea
+        }
         if (feedIndex > -1) { this.feed.splice(feedIndex, 1); }
-      } else if (event.status === 'event') {
+      } else if (event.status === 'feed') {
         if (feedIndex > -1) {
           this.feed[feedIndex] = event;
         } else {
           this.feed.push(event);
-        } // remove from ideas if now a scheduled event
+        }
         if (ideaIndex > -1) { this.ideas.splice(ideaIndex, 1); }
       }
     }
@@ -134,7 +134,6 @@ export default class EventService {
       resp.data.forEach(event => {
         this.events[event._id] = event;
         if (event.status === 'idea') { this.ideas.push(event); }
-        if (event.status === 'event') { this.feed.push(event); }
       });
       for (const eventId in this.events) { this.getCommentsForEvent(eventId); }
     });

@@ -1,18 +1,9 @@
 <div class="group-home-container">
-  <div class="group-home-title">
-    <span>{{$ctrl.GroupService.currentGroup.title}}</span>
-  </div>
-  <div class="group-pinned-feed-container">
-    <div class="group-event-feed-container">
-      <event-feed></event-feed>
+  <div class="group-home-card">
+    <div class="group-home-main">
+      <div class="group-home-title"><span>{{$ctrl.group.title}}</span></div>
+      <div class="group-home-description"><span>{{$ctrl.group.description}}</span></div>
+      <img ng-src={{$ctrl.group.imageUrl}} alt=""/>
     </div>
-    <div class="group-poll-feed-container">
-    </div>
-    <div class="group-home-buttons-container flex space-around">
-      <button class="awgd-button" ui-sref="app.group.makeIdea">Make a suggestion</button>
-      <button class="awgd-button">Ask the group</button>
-    </div>
-  </div>
-  <div class="group-activity-feed-container">
   </div>
 </div>

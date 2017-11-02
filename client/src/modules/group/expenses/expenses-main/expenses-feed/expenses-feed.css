@@ -3,17 +3,14 @@
   padding: 10px;
   display: flex;
   flex-direction: column;
-  padding-bottom: 70px;
 }
 
 .expenses-feed-header {
   text-align: center;
   font-size: 1.3em;
   font-weight: bold;
-  color: var(--dk3);
 }
 
 .expenses-feed-item {
   padding-right: 10px;
-  color: var(--dk3);
 }

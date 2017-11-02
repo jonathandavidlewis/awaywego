@@ -3,23 +3,52 @@
   flex-direction: column;
   justify-content: flex-start;
   height: 100%;
-  padding: 10px;
+  padding: 10px 20px;
   background-color: var(--m0);
   overflow: auto;
 }
 
-.group-home-title {
-  font-size: 1.4em;
-  color: var(--dk3);
+.group-home-card {
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),
+    0 3px 1px -2px rgba(0,0,0,0.12),
+    0 1px 5px 0 rgba(0,0,0,0.2) !important;
+  border-radius: 3px;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  background-color: var(--lt);
+  flex: 0 0 auto;
+  padding: 10px;
+  overflow: auto;
+}
+
+.group-home-main {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10px;
   border-bottom: 1px solid var(--la);
-  margin-bottom: 10px;
+  overflow: auto;
+  justify-content: center;
 }
 
-.group-home-buttons-container {
-  flex-wrap: wrap;
+
+.group-home-card img {
+  padding: 10px;
+  width: 95%;
+  height: 95%;
+  border-radius: 3px;
+  align-self: center;
 }
 
-.group-home-buttons-container .awgd-button {
-  width: 160px;
-  margin-bottom: 10px;
+.group-home-title {
+  font-size: 1.6em;
+  color: var(--dk3);
+  align-self: center;
+}
+
+.group-home-description {
+  align-self: flex-start;
+  padding-left: 20px;
 }
