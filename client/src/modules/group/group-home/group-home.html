@@ -1,9 +1,5 @@
 <div class="group-home-container">
-  <div class="group-home-card">
-    <div class="group-home-main">
-      <div class="group-home-title"><span>{{$ctrl.group.title}}</span></div>
-      <div class="group-home-description"><span>{{$ctrl.group.description}}</span></div>
-      <img ng-src={{$ctrl.group.imageUrl}} alt=""/>
-    </div>
+  <div class="group-home-title">
+    <span>{{$ctrl.GroupService.currentGroup.title}}</span>
   </div>
 </div>

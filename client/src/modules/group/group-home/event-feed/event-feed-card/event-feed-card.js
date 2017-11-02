@@ -2,7 +2,7 @@ import angular from 'angular';
 
 // imports for this component
 import template from './event-feed-card.html';
-import 'event-feed-card.css';
+import './event-feed-card.css';
 
 class EventFeedCardController {
   constructor() {
