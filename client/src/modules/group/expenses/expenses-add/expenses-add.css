@@ -74,3 +74,25 @@
 .expenses-add-controls .material-icons {
   display: flex;
 }
+
+.expenses-added-transactions-header {
+  color: var(--dk3);
+  text-align: center;
+  font-size: 1.3em;
+}
+
+.expenses-added-transactions-card {
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),
+      0 3px 1px -2px rgba(0,0,0,0.12),
+      0 1px 5px 0 rgba(0,0,0,0.2) !important;
+  background-color: var(--lt);
+  padding: 2.5px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  text-align: center;
+  color: var(--dk);
+}
+
+.expenses-input {
+  background-color: var(--lt) !important;
+}

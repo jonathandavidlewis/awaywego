@@ -3,11 +3,11 @@
   <div class="expenses-add-form-container">
     <div class="expenses-add-form-header">Create An Expense</div>
     <div class="expenses-add-input-block">
-      <input class="awgl-form-input form-control" name="expense-description" ng-model="$ctrl.description"
+      <input class="awgl-form-input form-control expenses-input" name="expense-description" ng-model="$ctrl.description"
         type="text" placeholder="Describe your Expense" />
     </div>
     <div class="expenses-add-input-block">
-      <input ng-change="$ctrl.updateTransactions()" class="awgl-form-input form-control" name="expense-amount" ng-model="$ctrl.amount"
+      <input ng-change="$ctrl.updateTransactions()" class="awgl-form-input form-control expenses-input" name="expense-amount" ng-model="$ctrl.amount"
         type="number" placeholder="What was the total?" />
     </div>
     <div class="expenses-add-people-share-option">
@@ -50,7 +50,9 @@
     <div ng-if="$ctrl.formWarning" class="awgl-form-warning flex flex-center">
       <span>{{$ctrl.formWarning}}</span>
     </div>
-    <div ng-repeat="member in $ctrl.transactions" class="expenses-added-people">{{member.from.name}} owes {{member.amount}} to {{member.to.name}}</div>
+
+    <div ng-if="$ctrl.transactions.length > 0" class="expenses-added-transactions-header">Added Transactions</div>
+    <div ng-repeat="member in $ctrl.transactions" class="expenses-added-transactions-card">{{member.from.name}} owes {{member.amount | currency:"$"}} to {{member.to.name}}</div>
 
     <div class="expenses-add-controls">
       <a ui-sref="^.main.feed" class="expenses-add-back-container">
