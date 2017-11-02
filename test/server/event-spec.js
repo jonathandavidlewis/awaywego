@@ -136,20 +136,20 @@ describe('/api', function() {
 
       });
 
-      it('should allow promoting an idea to itinerary', function(done) {
+      it('should allow promoting an idea to event', function(done) {
         req.put(`/api/event/${EVENT_ID}/promote`)
           .set(AUTH)
           .expect(200)
           .then((response) => {
-            expect(response.body.status).to.equal('itinerary');
+            expect(response.body.status).to.equal('event');
             Event.findOne({_id: EVENT_ID}).then((groupEvent) => {
-              expect(groupEvent.status).to.equal('itinerary');
+              expect(groupEvent.status).to.equal('event');
               done();
             });
           });
       });
 
-      it('should allow demoting an itinerary to idea', function(done) {
+      it('should allow demoting an event to idea', function(done) {
         req.put(`/api/event/${EVENT_ID}/demote`)
           .set(AUTH)
           .expect(200)
