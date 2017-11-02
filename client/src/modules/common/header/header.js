@@ -6,7 +6,7 @@ import './header.css';
 
 class HeaderController {
   constructor(UserService) {
-    this.header = 'AwayWeGo';
+    this.header = 'StartSomething';
     this.UserService = UserService;
   }
 
