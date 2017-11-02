@@ -100,8 +100,6 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
     component: 'promoteIdea'
   };
 
-
-
   const peopleState = {
     name: 'app.group.people',
     abstract: true,
@@ -175,9 +173,6 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
       }]
     }
   };
-
-
-
 
   const expensesAddState = {
     name: 'app.group.expenses.add',
