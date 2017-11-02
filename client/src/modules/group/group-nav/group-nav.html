@@ -5,7 +5,11 @@
       <span>Home</span>
     </a>
   </div>
-  <div class="group-nav-item-container" ng-class="{'group-nav-active': $ctrl.$state.includes('app.group.ideas')}">
+  <div class="group-nav-item-container"
+    ng-class="{'group-nav-active':
+                $ctrl.$state.includes('app.group.ideas') ||
+                $ctrl.$state.includes('app.group.makeIdea') ||
+                $ctrl.$state.includes('app.group.promoteIdea')}">
     <a class="group-nav-button" ui-sref="app.group.ideas">
       <i class="material-icons">lightbulb_outline</i>
       <span>Ideas</span>
