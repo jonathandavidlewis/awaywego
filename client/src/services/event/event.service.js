@@ -97,7 +97,11 @@ export default class EventService {
   }
 
   handleNewComment(comment, digest) {
-    this.comments[comment.eventId].push(comment);
+    if (!this.comments[comment.eventId]) {
+      this.comments[comment.eventId] = [comment];
+    } else {
+      this.comments[comment.eventId].push(comment);
+    }
     if (digest) { this.rootScope.$apply(); }
   }
 
@@ -214,7 +218,11 @@ export default class EventService {
 
   postCommentForEvent(eventId, comment) {
     return this.http.post(`/api/comments/event/${eventId}`, {text: comment}).then(resp => {
-      this.comments[eventId].push(resp.data.newComment);
+      if (!this.comments[eventId]) {
+        this.comments[eventId] = [resp.data.newComment];
+      } else {
+        this.comments[eventId].push(resp.data.newComment);
+      }
       this.eventSocket.emit('new comment in group',
         {group: this.events[eventId].groupId, comment});
     });

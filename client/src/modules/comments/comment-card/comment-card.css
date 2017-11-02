@@ -52,13 +52,8 @@
   top: 10px;
   right: 10px;
   cursor: pointer;
-  visibility: hidden;
 }
 
 .comment-delete-container .material-icons {
   font-size: 1em;
-}
-
-.comment-card-container:hover .comment-delete-container {
-  visibility: visible;
 }
