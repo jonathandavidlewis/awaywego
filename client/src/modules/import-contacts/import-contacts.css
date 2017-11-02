@@ -51,3 +51,8 @@
 .people-add-controls .material-icons {
   display: flex;
 }
+
+.floating-center-button.awgl-button {
+  margin-top: 50px;
+  width:50%;
+}
