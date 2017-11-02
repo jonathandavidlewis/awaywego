@@ -1,6 +1,8 @@
 <div class="event-feed-container">
   <event-feed-card
-    ng-repeat="event in $ctrl.EventService.feed | filter:$ctrl.filterFeed"
+    ng-repeat="event in $ctrl.EventService.feed |
+                filter:$ctrl.filterFeed |
+                orderBy: 'startTime'"
     event="event">
   </event-feed-card>
 </div>
