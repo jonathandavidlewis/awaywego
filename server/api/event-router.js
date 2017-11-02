@@ -37,7 +37,7 @@ eventRouter.put('/:eventId', (req, res) => {
 
 eventRouter.put('/:eventId/promote', (req, res) => {
   const promotedEvent = req.body;
-  promotedEvent.status = 'itinerary';
+  promotedEvent.status = 'event';
   if (promotedEvent._id) {
     delete promotedEvent._id;
   }

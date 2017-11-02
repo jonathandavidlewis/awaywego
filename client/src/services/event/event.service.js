@@ -51,7 +51,7 @@ export default class EventService {
       this.events[event._id] = event;
       if (event.status === 'idea') {
         this.ideas.push(event);
-      } else if (event.status === 'feed') {
+      } else if (event.status === 'event') {
         this.feed.push(event);
       }
     }
@@ -72,7 +72,7 @@ export default class EventService {
           this.ideas.push(event);
         }
         if (feedIndex > -1) { this.feed.splice(feedIndex, 1); }
-      } else if (event.status === 'feed') {
+      } else if (event.status === 'event') {
         if (feedIndex > -1) {
           this.feed[feedIndex] = event;
         } else {
