@@ -48,7 +48,13 @@ export default class ChatService {
       .then(resp => this.messages = resp.data.reverse());
   }
 
+  getMessages() {
+    return this.http.get(`/api/messages/group/${this.groupId}`)
+      .then(resp => this.messages = resp.data.reverse());
+  }
+
   loadNewMessages() {
+    if (!this.messages.length) { return this.getMessages(); }
     const latest = this.messages[this.messages.length - 1].createdAt;
     return this.http.get(`/api/messages/group/${this.groupId}?after=${latest}`)
       .then(resp => {

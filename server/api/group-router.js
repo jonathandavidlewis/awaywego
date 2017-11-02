@@ -15,7 +15,9 @@ groupRouter.post('/', (req, res) => {
   }
   newGroup.userId = req.user._id;
   newGroup.members = [req.user._id];
-  Group.create(newGroup).then(group => res.status(201).json(group))
+  Group.create(newGroup)
+    .then(group => group.populate('members', '-password').execPopulate())
+    .then(group => res.status(201).json(group))
     .catch(err => res.status(500).send('Server error: ', err));
 });
 
