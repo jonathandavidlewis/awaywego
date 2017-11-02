@@ -15,8 +15,9 @@ class ImportContactsController {
     this.search = '';
     this.$state = $state;
     this.friends = FriendService.friendships.map(fr => fr.to);
-    this.availableFriends = [1, 2, 3, 4];
+    this.availableFriends = [];
     this.allContacts = [];
+    this.loadingContacts = false;
 
     this.filterGoogleContacts = this.filterGoogleContacts.bind(this);
     this.getGoogleContacts = this.getGoogleContacts.bind(this);
@@ -26,12 +27,10 @@ class ImportContactsController {
   }
 
   $onInit() {
-    this.getGoogleContacts();
-    console.log('SENT FOR GOOGLE CONTACTS');
   }
 
   getGoogleContacts() {
-    console.log("ACCESS:", this.googleAccessToken);
+    this.loadingContacts = true;
 
     var req = {
       method: 'GET',
@@ -52,28 +51,42 @@ class ImportContactsController {
 
   filterGoogleContacts(response) {
 
-    console.log("DATATYPE", typeof response.data);
+    console.log("DATATYPE", Array.isArray(response.data.connections));
 
     const loadContacts = function (contacts) {
+
       return contacts.reduce((filteredContacts, contact) => {
         if (contact.emailAddresses) {
-          filteredContacts[contact.emailAddresses[0].value] = contact.emailAddresses[0].value;
+          let thisContact = {email: contact.emailAddresses[0].value};
+          if (contact.names) {
+            thisContact.name = contact.names[0].displayName;
+            filteredContacts[contact.emailAddresses[0].value] = thisContact;
+          }
         }
         return filteredContacts;
       }, {});
     };
+    const contactObject = loadContacts(response.data.connections);
+    const contactList = [];
+    for (let key in contactObject) {
+      contactList.push(contactObject[key]);
+    }
 
-    this.allContacts = loadContacts(Object.keys(response.data.connections));
+    this.allContacts = contactList;
+    console.log(this.allContacts);
     this.pages = [];
     let page = 0;
     for (let i = 0; i < this.allContacts.length;) {
       this.pages[page] = [];
-      for (let j = 0; j < 20; j++) {
+      for (let j = 0; j < 60; j++) {
         this.pages[page].push(this.allContacts[i]);
         i++;
       }
       page++;
     }
+    this.availableFriends = this.pages[0];
+    console.log(this.pages[0]);
+    this.loadingContacts = false;
   }
 
   getFriendsNotInGroup() {
