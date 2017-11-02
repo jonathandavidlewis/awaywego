@@ -46,7 +46,7 @@ class FriendsAddController {
           this.frCard = {_id: null, to: user};
         } else if (email) {
           this.searchStatus = 'invite';
-          this.frCard = {_id: null, to: {name: email}};
+          this.frCard = {_id: null, to: {email: email}};
         }
       });
     }

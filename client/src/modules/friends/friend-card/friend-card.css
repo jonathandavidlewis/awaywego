@@ -84,3 +84,8 @@ friend-card:last-child .friend-card-container {
 .friend-card-actions .material-icons {
   margin-left: 10px;
 }
+
+.friend-card-checked {
+  margin-left: 0 !important;
+  color: green;
+}
