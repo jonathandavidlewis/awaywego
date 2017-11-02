@@ -6,6 +6,6 @@
   class="transaction-card-detail-item"
   ng-class="{'transaction-card-positive': $ctrl.transaction.to._id === $ctrl.user, 'transaction-card-negative': $ctrl.transaction.from._id === $ctrl.user}"
   >{{$ctrl.transaction.amount | currency:"$"}}</div>
-  <div class="transaction-card-menu-item" ng-click="$ctrl.settleTransaction($ctrl.transaction._id)">Settle</div>
-  <div class="transaction-card-menu-item" ng-click="$ctrl.removeTransaction($ctrl.transaction._id)"><i class="material-icons">delete</i></div>
+  <div class="transaction-card-detail-item" ng-click="$ctrl.settleTransaction($ctrl.transaction._id)">Settle</div>
+  <div class="transaction-card-detail-item" ng-click="$ctrl.removeTransaction($ctrl.transaction._id)"><i class="material-icons">delete</i></div>
 </div>
