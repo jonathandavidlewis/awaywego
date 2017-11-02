@@ -1,3 +1,6 @@
 <div class="event-feed-container">
-  Event Feed: {{$ctrl.groupId}}
+  <event-feed-card
+    ng-repeat="event in $ctrl.EventService.feed | filter:$ctrl.filterFeed"
+    event="event">
+  </event-feed-card>
 </div>

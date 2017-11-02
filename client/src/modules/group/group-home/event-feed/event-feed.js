@@ -6,10 +6,13 @@ import './event-feed.css';
 
 class EventFeedController {
   constructor(EventService, MomentService) {
+    console.log('init event feed');
     this.EventService = EventService;
     this.moment = MomentService.moment;
     this.eventPastDuration = this.moment.duration(1, 'days');
     this.eventFutureDuration = this.moment.duration(1, 'weeks');
+
+    this.filterFeed = this.filterFeed.bind(this);
   }
 
   filterFeed(event) {
@@ -18,7 +21,7 @@ class EventFeedController {
     return this.moment(event.startTime).isBetween(min, max, 'day', '[]');
   }
 }
-EventFeedController.$inject = [];
+EventFeedController.$inject = ['EventService', 'MomentService'];
 
 const EventFeedComponent = {
   restrict: 'E',

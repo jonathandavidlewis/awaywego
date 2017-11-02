@@ -5,15 +5,17 @@ import template from './event-feed-card.html';
 import './event-feed-card.css';
 
 class EventFeedCardController {
-  constructor() {
-
+  constructor(MomentService) {
+    this.moment = MomentService.moment;
   }
 }
-EventFeedCardController.$inject = [];
+EventFeedCardController.$inject = ['MomentService'];
 
 const EventFeedCardComponent = {
   restrict: 'E',
-  bindings: {},
+  bindings: {
+    event: '<'
+  },
   template: template,
   controller: EventFeedCardController
 };
