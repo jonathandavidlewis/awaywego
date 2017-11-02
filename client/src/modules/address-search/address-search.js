@@ -33,6 +33,7 @@ class AddressSearchController {
 
   getLocation() {
     let location = this.autocomplete.getPlace();
+    this.addressName = location.name;
     this.addressText = location.formatted_address;
     this.addressLink = location.url;
   }
@@ -43,6 +44,7 @@ AddressSearchController.$inject = [];
 const AddressSearchComponent = {
   restrict: 'E',
   bindings: {
+    addressName: '=',
     addressText: '=',
     addressLink: '='
   },
