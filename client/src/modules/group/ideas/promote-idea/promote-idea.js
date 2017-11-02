@@ -50,7 +50,7 @@ class PromoteIdeaController {
       promotedIdea.addressText = this.addressText;
       promotedIdea.addressLink = this.addressLink;
       this.EventService.promoteEvent(promotedIdea).then(resp => {
-        this.$state.go('app.group.ideas');
+        this.$state.go('app.group.home');
       }).catch(err => {
         console.log('Server error: ', err);
         this.formWarning = 'Error: please try again or contact a server admin';

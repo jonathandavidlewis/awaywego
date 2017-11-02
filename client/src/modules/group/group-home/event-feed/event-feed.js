@@ -6,7 +6,6 @@ import './event-feed.css';
 
 class EventFeedController {
   constructor(EventService, MomentService) {
-    console.log('init event feed');
     this.EventService = EventService;
     this.moment = MomentService.moment;
     this.eventPastDuration = this.moment.duration(1, 'days');

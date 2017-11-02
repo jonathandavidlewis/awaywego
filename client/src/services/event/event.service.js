@@ -46,7 +46,7 @@ export default class EventService {
 
   handleNewEvent(event, digest) {
     if (this.events[event._id]) { // we already have it, need to update instead!
-      this.handleUpdateEvent(event);
+      this.handleUpdateEvent(event, true);
     } else {
       this.events[event._id] = event;
       if (event.status === 'idea') {
@@ -54,13 +54,13 @@ export default class EventService {
       } else if (event.status === 'event') {
         this.feed.push(event);
       }
+      if (digest) { this.rootScope.$apply(); }
     }
-    if (digest) { this.rootScope.$apply(); }
   }
 
   handleUpdateEvent(event, digest) {
     if (!this.events[event._id]) {
-      this.handleNewEvent(event);
+      this.handleNewEvent(event, true);
     } else {
       this.events[event._id] = event;
       const ideaIndex = this.ideas.findIndex(ev => ev._id === event._id);
@@ -80,8 +80,8 @@ export default class EventService {
         } // remove from ideas if now a scheduled event
         if (ideaIndex > -1) { this.ideas.splice(ideaIndex, 1); }
       }
+      if (digest) { this.rootScope.$apply(); }
     }
-    if (digest) { this.rootScope.$apply(); }
   }
 
   handleRemoveEvent(event, digest) {
@@ -142,7 +142,7 @@ export default class EventService {
 
   refreshEvent(eventId) {
     return this.http.get(`/api/event/${eventId}`).then(resp => {
-      this.events[eventId] = resp.data;
+      this.handleUpdateEvent(resp.data, false);
     });
   }
 
@@ -163,6 +163,7 @@ export default class EventService {
     }
     return this.http.put(`/api/event/${eventId}`, updatedEvent)
       .then(resp => {
+        this.handleUpdateEvent(resp.data, false);
         this.eventSocket.emit('updated event in group',
           {group: resp.data.groupId, event: resp.data});
       });
@@ -170,6 +171,7 @@ export default class EventService {
 
   deleteEvent(eventId) {
     return this.http.delete(`/api/event/${eventId}`).then(resp => {
+      this.handleRemoveEvent(resp.data, false);
       this.eventSocket.emit('removed event in group',
         {group: resp.data.groupId, event: resp.data});
     });
@@ -178,6 +180,7 @@ export default class EventService {
   promoteEvent(event) {
     return this.http.put(`api/event/${event._id}/promote`, event)
       .then(resp => {
+        this.handleUpdateEvent(resp.data, false);
         this.eventSocket.emit('scheduled event in group',
           {group: resp.data.groupId, event: resp.data});
       });
@@ -186,6 +189,7 @@ export default class EventService {
   demoteEvent(eventId) {
     return this.http.put(`api/event/${eventId}/demote`)
       .then(resp => {
+        this.handleUpdateEvent(resp.data, false);
         this.eventSocket.emit('unscheduled event in group',
           {group: resp.data.groupId, event: resp.data});
       });
@@ -193,7 +197,7 @@ export default class EventService {
 
   downvoteEvent(eventId) {
     return this.http.put(`api/event/${eventId}/downvote`).then(resp => {
-      this.events[eventId] = resp.data;
+      this.handleUpdateEvent(resp.data, false);
       this.eventSocket.emit('updated event in group',
         {group: resp.data.groupId, event: resp.data});
     });
@@ -201,7 +205,7 @@ export default class EventService {
 
   upvoteEvent(eventId) {
     return this.http.put(`api/event/${eventId}/upvote`).then(resp => {
-      this.events[eventId] = resp.data;
+      this.handleUpdateEvent(resp.data, false);
       this.eventSocket.emit('updated event in group',
         {group: resp.data.groupId, event: resp.data});
     });
