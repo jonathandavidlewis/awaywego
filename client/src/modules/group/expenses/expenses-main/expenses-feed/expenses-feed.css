@@ -3,6 +3,7 @@
   padding: 10px;
   display: flex;
   flex-direction: column;
+  padding-bottom: 70px;
 }
 
 .expenses-feed-header {

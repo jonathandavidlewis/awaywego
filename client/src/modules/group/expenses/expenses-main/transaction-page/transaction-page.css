@@ -1,5 +1,6 @@
 .transaction-page-container {
   padding: 10px;
+  padding-bottom: 70px;
 }
 
 .transaction-page-label-container {
@@ -7,6 +8,7 @@
 }
 
 .transaction-page-label-item {
-  padding-right: 10px;
+  padding: 0 5px;
   color: var(--dk3);
+  font-size: 0.9em;
 }

@@ -83,3 +83,4 @@ html, body {
 .flex-align-stretch { align-items: stretch; }
 .flex-1 { flex: 1 }
 .flex-0 { flex: 0 }
+.overflow { overflow: auto; }
