@@ -1,6 +1,7 @@
 <div class="expenses-add-container flex-col">
 
   <div class="expenses-add-form-container">
+    <div class="expenses-add-form-header">Create An Expense</div>
     <div class="expenses-add-input-block">
       <input class="awgl-form-input form-control" name="expense-description" ng-model="$ctrl.description"
         type="text" placeholder="Describe your Expense" />
@@ -10,15 +11,19 @@
         type="number" placeholder="What was the total?" />
     </div>
     <div class="expenses-add-people-share-option">
-      <label for="share">Share Equally</label>
-      <input  name="share" type="radio" ng-model="$ctrl.transactionType" value="equal"/>
-      <label for="share">Share Custom(Not yet available)</label>
-      <input  name="share" type="radio" ng-model="$ctrl.transactionType" value="percentage"/>
+      <div class="expenses-add-people-share-item">
+        <label for="share">Share Equally</label>
+        <input  name="share" type="radio" ng-model="$ctrl.transactionType" value="equal"/>
+      </div>
+      <div class="expenses-add-people-share-item">
+        <label for="share">Share Custom</label>
+        <input  name="share" type="radio" ng-model="$ctrl.transactionType" value="percentage"/>
+      </div>
     </div>
 
     <div class="expenses-added-people-container">
       <div class="expenses-added-people-area">
-        <div class="expenses-add-payer-description"><button class="awgd-button" ng-click="$ctrl.toggleCards(true)">Who Paid? </button></div>
+        <div class="expenses-add-payer-description"><button class="awgd-button" ng-click="$ctrl.toggleCards(true)">Add Payers</button></div>
         <div ng-show="$ctrl.payerToggle === true" class="ng-show flex-col">
           <expenses-add-people-card
           toggle="$ctrl.togglePayer"
@@ -30,7 +35,7 @@
       </div>
 
       <div class="expenses-added-people-area">
-        <div class="expenes-add-owers-description"><button class="awgd-button" ng-click="$ctrl.toggleCards()">Who Owes?</button></div>
+        <div class="expenes-add-owers-description"><button class="awgd-button" ng-click="$ctrl.toggleCards()">Add Owers</button></div>
         <div ng-show="$ctrl.owerToggle === true" class="ng-show flex-col">
           <expenses-add-people-card
           toggle="$ctrl.toggleOwer"

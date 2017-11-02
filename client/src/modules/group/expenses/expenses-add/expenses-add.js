@@ -113,10 +113,10 @@ class ExpensesAddController {
   }
 
   addExpense() {
-    if (Object.keys(this.payers).length === 0 || Object.keys(this.checkedMembers).length === 0) {
-      console.log('Payers or owers is empty, cannot submit');
+    if (!this.validateForm()) {
       return;
     }
+
     let expense = {
       groupId: this.stateParams.groupId,
       description: this.description,
@@ -134,6 +134,20 @@ class ExpensesAddController {
     return Number(Math.round(value + 'e+2') + 'e-2');
   }
 
+  validateForm() {
+    if (!this.amount || !this.description) {
+      this.formWarning = 'Please enter at least both a description and an amount';
+      return false;
+    } else if (Object.keys(this.payers).length === 0) {
+      this.formWarning = 'Please add a payer';
+      return false;
+    } else if (Object.keys(this.checkedMembers).length === 0) {
+      this.formWarning = 'Please add an ower';
+      return false;
+    } else {
+      return true;
+    }
+  }
 }
 
 ExpensesAddController.$inject = ['GroupService', 'ExpensesService', '$state', '$stateParams'];

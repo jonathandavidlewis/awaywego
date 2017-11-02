@@ -10,6 +10,23 @@
   justify-content: space-between;
 }
 
+.expenses-add-form-header {
+  font-size: 1.3em;
+  color: var(--dk3);
+  text-align: center;
+}
+
+.expenses-add-people-share-option {
+  color: var(--dk3);
+  display: flex;
+  justify-content: space-around;
+}
+
+.expenes-add-people-share-option {
+  display: flex;
+  flex: 1 1 auto;
+}
+
 .expenses-added-people-area {
   display: flex;
   flex-direction: column;
