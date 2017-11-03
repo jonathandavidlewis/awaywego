@@ -6,8 +6,8 @@
 
     <div class="header-user-dropdown-toggle dropdown-toggle" id="userDropdown"
       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <img ng-src="{{$ctrl.UserService.user.profilePic}}" ng-if="$ctrl.UserService.user.profilePic" class="avatar">
-      <i ng-if="$ctrl.UserService.user.profilePic == false" class="material-icons">account_circle</i>
+      <img ng-if="$ctrl.UserService.user.profilePic" ng-src="{{$ctrl.UserService.user.profilePic}}" class="avatar">
+      <i ng-if="!$ctrl.UserService.user.profilePic" class="material-icons">account_circle</i>
       <div class="header-user-menu-name">{{$ctrl.UserService.user.name}}</div>
     </div>
 

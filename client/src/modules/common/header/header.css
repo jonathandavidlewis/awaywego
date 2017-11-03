@@ -16,6 +16,16 @@
   margin-left: 10px;
 }
 
+.header-user-menu-name {
+  font-size: .9em;
+}
+
+.avatar {
+  border-radius: 50%;
+  height: 30px;
+  padding-left: 2px;
+}
+
 .header-title span {
   font-family: 'Montserrat' !important;
 }
@@ -74,9 +84,4 @@
 
 .header-user-dropdown-container .dropdown-toggle::after {
     display:none
-}
-
-.avatar {
-  border-radius: 50%;
-  height: 40px;
 }
