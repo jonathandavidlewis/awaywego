@@ -1,7 +1,7 @@
 const authRouter = require('express').Router();
 const { jwtAuth, pwdAuth, jwtOptions } = require('./auth-config.js');
 const googleRouter = require('./google/google-router');
-const { loginUser, createUser} = require('./auth-utils');
+const { loginUser, createUser} = require('./login-handlers');
 
 authRouter.use('/google', googleRouter);
 
