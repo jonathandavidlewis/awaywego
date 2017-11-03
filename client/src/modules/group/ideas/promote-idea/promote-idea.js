@@ -11,8 +11,8 @@ import './promote-idea.css';
 class PromoteIdeaController {
   constructor(EventService, $stateParams, $state, MomentService) {
     this.EventService = EventService;
-    this.$stateParams = $stateParams;
-    this.$state = $state;
+    this.stateParams = $stateParams;
+    this.state = $state;
     this.moment = MomentService.moment;
     this.$onInit = this.$onInit.bind(this);
     this.formWarning = '';
@@ -26,11 +26,16 @@ class PromoteIdeaController {
   }
 
   $onInit() {
-    this.event = this.EventService.getEvent(this.$stateParams.eventId);
-    if (!this.event.startTime) { this.event.startTime = this.moment(); }
-    this.formattedStartTime = this.moment(this.event.startTime).format('MM/DD/YYYY hh:mm A');
-    if (!this.event.endTime) { this.event.endTime = this.moment(); }
-    this.formattedEndTime = this.moment(this.event.endTime).format('MM/DD/YYYY hh:mm A');
+    if (this.stateParams.eventId === 'new') {
+      this.formattedStartTime = this.moment().format('MM/DD/YYYY hh:mm A');
+      this.formattedEndTime = this.moment().add(1, 'hour').format('MM/DD/YYYY hh:mm A');
+    } else {
+      this.event = this.EventService.getEvent(this.stateParams.eventId);
+      if (!this.event.startTime) { this.event.startTime = this.moment(); }
+      this.formattedStartTime = this.moment(this.event.startTime).format('MM/DD/YYYY hh:mm A');
+      if (!this.event.endTime) { this.event.endTime = this.moment().add(1, 'hour'); }
+      this.formattedEndTime = this.moment(this.event.endTime).format('MM/DD/YYYY hh:mm A');
+    }
   }
 
   onStartDateChange(newValue) {
@@ -50,7 +55,7 @@ class PromoteIdeaController {
       promotedIdea.addressText = this.addressText;
       promotedIdea.addressLink = this.addressLink;
       this.EventService.promoteEvent(promotedIdea).then(resp => {
-        this.$state.go('app.group.home');
+        this.state.go('app.group.home');
       }).catch(err => {
         console.log('Server error: ', err);
         this.formWarning = 'Error: please try again or contact a server admin';
