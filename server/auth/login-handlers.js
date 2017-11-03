@@ -10,7 +10,8 @@ const loginUser = (req, res) => {
   const token = jwt.sign({
     name: req.user.name,
     userId: req.user._id,
-    email: req.user.email
+    email: req.user.email,
+    profilePic: req.user.profilePic
   }, jwtOptions.secretOrKey);
   res.json({message: 'Log In was successful', token: token});
 };
