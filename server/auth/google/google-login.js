@@ -11,11 +11,14 @@ const loginGoogleUser = (req, res) => {
   const googleId = req.user.id;
   const newUser = {name: name, email: email, googleId: googleId};
 
-  console.log(req.user);
-
   User.findOne({googleId: googleId}).then((user) => {
     if (user) {
-      const token = jwt.sign({name: user.name, userId: user._id, email: user.email, profilePic: user.profilePic}, jwtOptions.secretOrKey);
+      const token = jwt.sign({
+        name: user.name,
+        userId: user._id,
+        mail: user.email,
+        profilePic: user.profilePic
+      }, jwtOptions.secretOrKey);
       res.locals.newToken = token;
       res.locals.googleAccessToken = user.googleAccessToken;
       if (req.user.new) {
@@ -25,7 +28,7 @@ const loginGoogleUser = (req, res) => {
         res.render('index');
       }
     } else {
-      console.log('There should have been a Google user, but none was found');
+      if (debug) { console.log('There should have been a Google user, but none was found'); }
     }
   }).catch((err) => res.status(500).json({message: err}));
 };
