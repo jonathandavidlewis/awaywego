@@ -17,7 +17,6 @@ const TransactionCardComponent = {
     transaction: '<',
     settleTransaction: '<',
     removeTransaction: '<',
-    filterState: '<',
     user: '<'
   },
   template: template,

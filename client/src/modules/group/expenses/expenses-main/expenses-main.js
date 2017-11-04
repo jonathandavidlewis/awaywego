@@ -7,27 +7,10 @@ import './expenses-main.css';
 class ExpensesMainController {
   constructor(ExpensesService) {
     this.ExpensesService = ExpensesService;
-
-    this.settleTransaction = this.settleTransaction.bind(this);
-    this.removeTransaction = this.removeTransaction.bind(this);
-    this.removeExpense = this.removeExpense.bind(this);
-
   }
 
   $onInit() {
     this.ExpensesService.getExpenses();
-  }
-
-  removeExpense(expenseId) {
-    this.ExpensesService.removeExpense(expenseId);
-  }
-
-  settleTransaction(transactionId) {
-    this.ExpensesService.settleTransaction(transactionId);
-  }
-
-  removeTransaction(transactionId) {
-    this.ExpensesService.removeTransaction(transactionId);
   }
 }
 

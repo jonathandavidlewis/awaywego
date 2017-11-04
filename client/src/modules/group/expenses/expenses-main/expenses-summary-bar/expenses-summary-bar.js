@@ -14,9 +14,7 @@ ExpensesSummaryBarController.$inject = ['ExpensesService'];
 
 const ExpensesSummaryBarComponent = {
   restrict: 'E',
-  bindings: {
-    summary: '<'
-  },
+  bindings: {},
   template: template,
   controller: ExpensesSummaryBarController
 };

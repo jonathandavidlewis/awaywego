@@ -78,8 +78,6 @@ const TransactionPageComponent = {
   restrict: 'E',
   bindings: {
     transactions: '<',
-    settleTransaction: '<',
-    removeTransaction: '<'
   },
   template: template,
   controller: TransactionPageController

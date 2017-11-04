@@ -13,6 +13,7 @@ export default class ExpensesService {
     this.getExpenses = this.getExpenses.bind(this);
     this.roundMoney = this.roundMoney.bind(this);
     this.filterUserTransactions = this.filterUserTransactions.bind(this);
+    this.removeExpense = this.removeExpense.bind(this);
   }
 
   // ExpensesService data access methods
