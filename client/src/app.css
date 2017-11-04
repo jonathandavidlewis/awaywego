@@ -42,6 +42,11 @@ html, body {
   background-color: var(--m5);
 }
 
+.dropdown-toggle,
+.dropdown-item {
+  cursor: pointer;
+}
+
 .dropdown-toggle::after {
     display:none
 }
