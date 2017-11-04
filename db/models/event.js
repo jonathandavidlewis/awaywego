@@ -3,6 +3,7 @@ const db = require('../config.js');
 const Schema = mongoose.Schema;
 
 let eventSchema = new Schema({
+  userId: {type: Schema.ObjectId, ref: 'User', required: true},
   title: {type: String, required: true},
   addressName: {type: String, required: false},
   addressText: {type: String, required: false},

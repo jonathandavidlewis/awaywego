@@ -23,6 +23,7 @@ eventRouter.post('/', (req, res) => {
   newEvent.status = 'idea';
   newEvent.upVotes = [];
   newEvent.downVotes = [];
+  newEvent.userId = req.user._id;
 
   Event.create(newEvent).then(event => res.status(201).json(event))
     .catch(err => res.status(500).json({'Server error': err}));
