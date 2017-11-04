@@ -11,7 +11,6 @@ class ExpensesAddPeopleCardController {
 
   clickPerson() {
     this.checked = !this.checked;
-    console.log('card', this.member);
     this.toggle(this.member);
   }
 

@@ -102,7 +102,6 @@ export default class ExpensesService {
   }
 
   removeTransaction(transactionId) {
-    console.log('remove service', transactionId);
     return this.http.delete(`/api/expenses/transaction/${transactionId}/remove`).then(() => this.getExpenses());
   }
 
@@ -111,7 +110,6 @@ export default class ExpensesService {
   }
 
   removeExpense(expenseId) {
-    console.log('remove expense service', expenseId);
     return this.http.delete(`/api/expenses/${expenseId}/remove`).then(() => this.getExpenses());
   }
 

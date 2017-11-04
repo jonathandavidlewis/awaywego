@@ -49,7 +49,6 @@ expensesRouter.get('/:groupId', (req, res) => {
         select: 'name'
       }
     }).exec().then((expenses) => {
-      console.log('get route ', expenses);
       res.status(200).json(expenses);
     }).catch(err => res.status(500).json({'Server error': err}));
 });
