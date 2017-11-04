@@ -5,12 +5,8 @@ import template from './expenses-main.html';
 import './expenses-main.css';
 
 class ExpensesMainController {
-  constructor(ExpensesService, $stateParams) {
+  constructor(ExpensesService) {
     this.ExpensesService = ExpensesService;
-    this.stateParams = $stateParams;
-    this.expenses = this.ExpensesService.expenses;
-    this.summary = this.ExpensesService.summary;
-    this.transactions = this.ExpensesService.transactions;
 
     this.settleTransaction = this.settleTransaction.bind(this);
     this.removeTransaction = this.removeTransaction.bind(this);
@@ -23,9 +19,7 @@ class ExpensesMainController {
   }
 
   removeExpense(expenseId) {
-    this.ExpensesService.removeExpense(expenseId).then(() => {
-      this.updateExpenses();
-    });
+    this.ExpensesService.removeExpense(expenseId);
   }
 
   settleTransaction(transactionId) {
@@ -37,7 +31,7 @@ class ExpensesMainController {
   }
 }
 
-ExpensesMainController.$inject = ['ExpensesService', '$stateParams'];
+ExpensesMainController.$inject = ['ExpensesService'];
 
 const ExpensesMainComponent = {
   restrict: 'E',

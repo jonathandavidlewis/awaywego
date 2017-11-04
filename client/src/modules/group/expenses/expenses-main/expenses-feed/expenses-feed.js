@@ -5,11 +5,12 @@ import template from './expenses-feed.html';
 import './expenses-feed.css';
 
 class ExpensesFeedController {
-  constructor() {
-
+  constructor(ExpensesService) {
+    this.ExpensesService = ExpensesService;
   }
 }
-ExpensesFeedController.$inject = [];
+
+ExpensesFeedController.$inject = ['ExpensesService'];
 
 const ExpensesFeedComponent = {
   restrict: 'E',

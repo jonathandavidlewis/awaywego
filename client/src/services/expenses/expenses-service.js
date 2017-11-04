@@ -61,6 +61,7 @@ export default class ExpensesService {
 
   getExpenses() {
     return this.http.get(`/api/expenses/${this.stateParams.groupId}`).then((res) => {
+      console.log('GET EXPENSES', res.data);
       this.expenses = res.data;
       this.summary = this.calculateDebts();
       this.transactions = this.filterUserTransactions();
@@ -82,7 +83,7 @@ export default class ExpensesService {
 
   removeExpense(expenseId) {
     console.log('remove expense service', expenseId);
-    return this.http.delete(`/api/expenses/${expenseId}/remove`);
+    return this.http.delete(`/api/expenses/${expenseId}/remove`).then(() => this.getExpenses());
   }
 
   roundMoney(value) {
