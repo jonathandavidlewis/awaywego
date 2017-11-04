@@ -1,7 +1,7 @@
 export default class GroupService {
   constructor($http, UserService) {
     this.$inject = ['$http', 'UserService'];
-    this.http = http;
+    this.http = $http;
     this.groups = [];
     this.currentGroup = null;
   }
