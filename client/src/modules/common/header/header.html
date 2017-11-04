@@ -4,7 +4,7 @@
   </a>
   <div class="header-user-dropdown-container dropdown">
 
-    <div class="header-user-dropdown-toggle dropdown-toggle" id="userDropdown"
+    <div class="header-user-dropdown-toggle dropdown-toggle flex-col" id="userDropdown"
       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <img ng-if="$ctrl.UserService.user.profilePic" ng-src="{{$ctrl.UserService.user.profilePic}}" class="avatar">
       <i ng-if="!$ctrl.UserService.user.profilePic" class="material-icons">account_circle</i>
@@ -12,14 +12,9 @@
     </div>
 
     <div class="header-user-dropdown-menu dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-      <div class="header-dropdown-item dropdown-item">
-        <a class="header-dropdown-item-link" ui-sref="app.friends.list"><span>Friends</span></a>
-      </div>
-      <div class="header-dropdown-item dropdown-item">
-        <a class="header-dropdown-item-link header-logout"
-          ng-if="$ctrl.UserService.isLoggedIn" ng-click="$ctrl.logout()">Logout
-        </a>
-      </div>
+      <a class="dropdown-item" ui-sref="app.friends.list">Friends</a>
+      <a class="dropdown-item" ng-if="$ctrl.UserService.isLoggedIn"
+        ng-click="$ctrl.logout()">Logout</a>
     </div>
   </div>
 </div>
