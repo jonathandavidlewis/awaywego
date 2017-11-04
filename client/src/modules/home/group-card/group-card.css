@@ -27,32 +27,6 @@
   cursor: pointer;
 }
 
-.group-card-delete {
-  flex: 0 0 30px;
-  cursor: pointer;
-}
-
-.group-card-delete i:hover,
-.group-card-more-details:hover,
-.group-card-title:hover {
-  color: var(--m3);
-}
-
-.group-card-bottom-menu {
-  display: flex;
-  flex: 1 0 auto;
-  justify-content: center;
-  align-items: center;
-}
-.group-card-bottom-menu a {
-  text-decoration: none;
-}
-
-.group-card-more-details {
-  display: flex;
-  margin-top: 10px;
-}
-
 .group-card-image {
   flex: 0 0 auto;
   width: 150px;
