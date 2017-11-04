@@ -29,6 +29,7 @@ class PromoteIdeaController {
     if (this.stateParams.eventId === 'new') {
       this.event = {};
       this.event.groupId = this.stateParams.groupId;
+      this.event.imageUrl = '';
     } else {
       this.event = this.EventService.getEvent(this.stateParams.eventId);
     }
