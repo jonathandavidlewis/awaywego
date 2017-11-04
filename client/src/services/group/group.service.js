@@ -1,13 +1,13 @@
 export default class GroupService {
-  constructor($http) {
-    this.$inject = ['$http'];
-    this.$http = $http;
+  constructor($http, UserService) {
+    this.$inject = ['$http', 'UserService'];
+    this.http = http;
     this.groups = [];
     this.currentGroup = null;
   }
 
   submitNewGroup(group) {
-    return this.$http.post('/api/group', group).then(resp => {
+    return this.http.post('/api/group', group).then(resp => {
       this.groups.push(resp.data);
     });
   }
@@ -23,30 +23,30 @@ export default class GroupService {
   }
 
   getGroupById(groupId) {
-    return this.$http.get(`/api/group/${groupId}`).then(resp => resp.data);
+    return this.http.get(`/api/group/${groupId}`).then(resp => resp.data);
   }
 
   deleteGroupById(groupId) {
-    return this.$http.delete(`/api/group/${groupId}`).then(() => {
+    return this.http.delete(`/api/group/${groupId}`).then(() => {
       const ind = this.groups.findIndex(g => g._id === groupId);
       if (ind > -1) { this.groups.splice(ind, 1); }
     });
   }
 
   getAllGroups() {
-    return this.$http.get('/api/group/').then((resp => {
+    return this.http.get('/api/group/').then((resp => {
       this.groups = resp.data;
       return resp.data;
     }));
   }
 
   removeMemberFromCurrentGroup(userId) {
-    return this.$http.put(`/api/group/${this.currentGroup._id}/members/remove/${userId}`)
+    return this.http.put(`/api/group/${this.currentGroup._id}/members/remove/${userId}`)
       .then(resp => this.currentGroup = resp.data);
   }
 
   addMembersToCurrentGroup(members) {
-    return this.$http.put(`/api/group/${this.currentGroup._id}/members/add`, {members})
+    return this.http.put(`/api/group/${this.currentGroup._id}/members/add`, {members})
       .then(resp => this.currentGroup = resp.data);
   }
 
