@@ -11,8 +11,17 @@
           <span ng-if="$ctrl.EventService.events[$ctrl.eventId].description.length > 250"><a ui-sref="^.idea({ideaId: $ctrl.EventService.events[$ctrl.eventId]._id})">{{' read more'}}</a></span>
         </div>
       </div>
-      <div ng-click="$ctrl.handleDeleteClick()" class="ideas-card-admin-delete-container">
-        <i class="material-icons">delete</i>
+      <div class="dropdown ideas-card-dropdown-container"
+        ng-if="$ctrl.canEditOrDelete()">
+        <div class="dropdown-toggle" id={{'dd-'+$ctrl.eventId}} data-toggle="dropdown">
+          <i class="material-icons">more_vert</i>
+        </div>
+        <div class="dropdown-menu dropdown-menu-right">
+          <div class="dropdown-item"
+            ng-click="$ctrl.EventService.deleteEvent($ctrl.eventId)">
+            Delete Idea
+          </div>
+        </div>
       </div>
     </div>
     <div class="ideas-card-footer flex">
