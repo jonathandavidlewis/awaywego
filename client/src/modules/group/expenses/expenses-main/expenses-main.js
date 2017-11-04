@@ -8,11 +8,10 @@ class ExpensesMainController {
   constructor(ExpensesService, $stateParams) {
     this.ExpensesService = ExpensesService;
     this.stateParams = $stateParams;
-    this.expenses = [];
-    this.summary = '';
-    this.transactions = '';
+    this.expenses = this.ExpensesService.expenses;
+    this.summary = this.ExpensesService.summary;
+    this.transactions = this.ExpensesService.transactions;
 
-    this.updateExpenses = this.updateExpenses.bind(this);
     this.settleTransaction = this.settleTransaction.bind(this);
     this.removeTransaction = this.removeTransaction.bind(this);
     this.removeExpense = this.removeExpense.bind(this);
@@ -20,15 +19,7 @@ class ExpensesMainController {
   }
 
   $onInit() {
-    this.updateExpenses();
-  }
-
-  updateExpenses() {
-    this.ExpensesService.getExpenses(this.stateParams.groupId).then(() => {
-      this.expenses = this.ExpensesService.returnExpenses();
-      this.summary = this.ExpensesService.calculateDebts();
-      this.transactions = this.ExpensesService.filterUserTransactions();
-    });
+    this.ExpensesService.getExpenses();
   }
 
   removeExpense(expenseId) {
@@ -38,18 +29,14 @@ class ExpensesMainController {
   }
 
   settleTransaction(transactionId) {
-    this.ExpensesService.settleTransaction(transactionId).then(() => {
-      this.updateExpenses();
-    });
+    this.ExpensesService.settleTransaction(transactionId);
   }
 
   removeTransaction(transactionId) {
-    this.ExpensesService.removeTransaction(transactionId).then((res) => {
-      this.updateExpenses();
-    });
+    this.ExpensesService.removeTransaction(transactionId);
   }
-
 }
+
 ExpensesMainController.$inject = ['ExpensesService', '$stateParams'];
 
 const ExpensesMainComponent = {
