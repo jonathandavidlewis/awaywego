@@ -155,13 +155,8 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
 
   const expensesTransactionState = {
     name: 'app.group.expenses.main.transactions',
-    url: '/transactions/{filterState}',
-    component: 'transactionPage',
-    resolve: {
-      filterState: ['$stateParams', function($stateParams) {
-        return $stateParams.filterState;
-      }]
-    }
+    url: '/transactions',
+    component: 'transactionPage'
   };
 
   const expenseState = {

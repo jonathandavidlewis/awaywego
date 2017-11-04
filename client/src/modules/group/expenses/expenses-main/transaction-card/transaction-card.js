@@ -5,19 +5,19 @@ import template from './transaction-card.html';
 import './transaction-card.css';
 
 class TransactionCardController {
-  constructor() {
+  constructor(UserService) {
+    this.user = UserService.user.id;
   }
 }
 
-TransactionCardController.$inject = [];
+TransactionCardController.$inject = ['UserService'];
 
 const TransactionCardComponent = {
   restrict: 'E',
   bindings: {
     transaction: '<',
     settleTransaction: '<',
-    removeTransaction: '<',
-    user: '<'
+    removeTransaction: '<'
   },
   template: template,
   controller: TransactionCardController

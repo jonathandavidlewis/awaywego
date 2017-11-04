@@ -1,5 +1,5 @@
 <div class="expenses-summary-bar-container">
-  <div ui-sref="^.main.transactions({filterState: 'owedTo'})" class="expenses-summary-bar-item-container">
+  <div ui-sref="^.main.transactions" ng-click="$ctrl.ExpensesService.changeFilter('Money You Owe')" class="expenses-summary-bar-item-container">
     <div class="expenses-summary-item-label">
       <span>I owe: </span>
     </div>
@@ -8,7 +8,7 @@
     ng-class="{'expenses-summary-negative': $ctrl.ExpensesService.summary.debt > 0}">{{$ctrl.ExpensesService.summary.debt | currency:"$"}}</div>
   </div>
 
-  <div ui-sref="^.main.transactions({filterState: 'owed'})" class="expenses-summary-bar-item-container">
+  <div ui-sref="^.main.transactions" ng-click="$ctrl.ExpensesService.changeFilter('Money You Are Owed')" class="expenses-summary-bar-item-container">
     <div class="expenses-summary-item-label">
       <span>I am owed: </span>
     </div>
@@ -17,7 +17,7 @@
     ng-class="{'expenses-summary-positive': $ctrl.ExpensesService.summary.owed > 0}">{{$ctrl.ExpensesService.summary.owed | currency:"$"}}</div>
   </div>
 
-  <div ui-sref="^.main.transactions({filterState: 'balance'})" class="expenses-summary-bar-item-container">
+  <div ui-sref="^.main.transactions" ng-click="$ctrl.ExpensesService.changeFilter('All')" class="expenses-summary-bar-item-container">
     <div class="expenses-summary-item-label">
       <span>Balance: </span>
     </div>

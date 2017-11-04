@@ -7,34 +7,32 @@ export default class ExpensesService {
     this.expenses = [];
     this.summary = {};
     this.transactions = [];
+    this.filterBy = 'All';
 
-
+    // Bindings
     this.calculateDebts = this.calculateDebts.bind(this);
     this.getExpenses = this.getExpenses.bind(this);
     this.roundMoney = this.roundMoney.bind(this);
-    this.filterUserTransactions = this.filterUserTransactions.bind(this);
+    this.filterTransactions = this.filterTransactions.bind(this);
     this.removeExpense = this.removeExpense.bind(this);
     this.removeTransaction = this.removeTransaction.bind(this);
     this.settleTransaction = this.settleTransaction.bind(this);
+    this.changeFilter = this.changeFilter.bind(this);
   }
 
-  // ExpensesService data access methods
-  returnExpenses() { return this.expenses; }
+  // Data Manipulation Methods
 
-
-  filterUserTransactions() {
+  filterTransactions() {
     let result = [];
     this.expenses.forEach((expense) => {
       expense.transactions.forEach((transaction) => {
-        if (transaction.to._id === this.UserService.user.id || transaction.from._id === this.UserService.user.id) {
-          transaction.description = expense.description;
-          result.push(transaction);
-        }
+        transaction.description = expense.description;
+        result.push(transaction);
       });
     });
-
     return result;
   }
+
 
   calculateDebts() {
     let owed = 0;
@@ -50,11 +48,40 @@ export default class ExpensesService {
         }
       });
     });
-
-
     return {owed: this.roundMoney(owed), debt: this.roundMoney(debt), balance: this.roundMoney(owed - debt)};
   }
 
+  // Angular filtering Methods
+
+  changeFilter(type) {
+    this.filterBy = type;
+  }
+
+  filterByOwed(transaction) {
+    if (transaction.to._id === this.UserService.user.id) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  filterByOwedTo(transaction) {
+    if (transaction.from._id === this.UserService.user.id) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  filterByExpenseId(transaction) {
+    if (transaction.expenseId === this.stateParams.expenseId) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  // API Methods
 
   newExpense(expense) {
     return this.http.post('/api/expenses', expense).then(() => {
@@ -64,10 +91,9 @@ export default class ExpensesService {
 
   getExpenses() {
     return this.http.get(`/api/expenses/${this.stateParams.groupId}`).then((res) => {
-      console.log('GET EXPENSES', res.data);
       this.expenses = res.data;
       this.summary = this.calculateDebts();
-      this.transactions = this.filterUserTransactions();
+      this.transactions = this.filterTransactions();
     });
   }
 
