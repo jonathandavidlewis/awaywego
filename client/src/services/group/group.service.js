@@ -2,6 +2,7 @@ export default class GroupService {
   constructor($http, UserService) {
     this.$inject = ['$http', 'UserService'];
     this.http = $http;
+    this.UserService = UserService;
     this.groups = [];
     this.currentGroup = null;
   }
@@ -19,7 +20,6 @@ export default class GroupService {
     } else {
       return this.getGroupById(groupId).then(group => this.currentGroup = group);
     }
-
   }
 
   getGroupById(groupId) {
@@ -51,7 +51,7 @@ export default class GroupService {
   }
 
   leaveGroup(groupId) {
-    return this.http.put(`/api/group/${groupId}/members/remove/${UserService.user.id}`)
+    return this.http.put(`/api/group/${groupId}/members/remove/${this.UserService.user.id}`)
       .then(() => {
         const ind = this.groups.findIndex(g => g._id === groupId);
         if (ind > -1) { this.groups.splice(ind, 1); }

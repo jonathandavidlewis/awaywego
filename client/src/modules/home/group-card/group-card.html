@@ -5,9 +5,20 @@
       <div class="group-card-title" ui-sref="app.group.home({groupId: $ctrl.group._id})" ><span>{{$ctrl.group.title}}</span></div>
       <div class="group-card-description"><span>{{$ctrl.group.description}}</span></div>
     </div>
-    <a ng-if="$ctrl.UserService.user.id === $ctrl.group.userId"
-      class="group-card-delete" ng-click="$ctrl.GroupService.deleteGroupById($ctrl.group._id)">
-      <i class="material-icons">clear</i>
-    </a>
+    <div class="dropdown">
+      <div class="dropdown-toggle" id={{'dd-'+$ctrl.group._id}} data-toggle="dropdown">
+        <i class="material-icons">more_vert</i>
+      </div>
+      <div class="dropdown-menu dropdown-menu-right">
+        <div ng-if="$ctrl.UserService.user.id === $ctrl.group.userId"
+          class="dropdown-item" ng-click="$ctrl.GroupService.deleteGroupById($ctrl.group._id)">
+          Delete Group
+        </div>
+        <div ng-if="$ctrl.UserService.user.id !== $ctrl.group.userId"
+          class="dropdown-item" ng-click="$ctrl.GroupService.leaveGroup($ctrl.group._id)">
+          Leave Group
+        </div>
+      </div>
+    </div>
   </div>
 </div>
