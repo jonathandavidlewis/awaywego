@@ -27,15 +27,16 @@ class PromoteIdeaController {
 
   $onInit() {
     if (this.stateParams.eventId === 'new') {
-      this.formattedStartTime = this.moment().format('MM/DD/YYYY hh:mm A');
-      this.formattedEndTime = this.moment().add(1, 'hour').format('MM/DD/YYYY hh:mm A');
+      this.event = {};
+      this.event.groupId = this.stateParams.groupId;
     } else {
       this.event = this.EventService.getEvent(this.stateParams.eventId);
-      if (!this.event.startTime) { this.event.startTime = this.moment(); }
-      this.formattedStartTime = this.moment(this.event.startTime).format('MM/DD/YYYY hh:mm A');
-      if (!this.event.endTime) { this.event.endTime = this.moment().add(1, 'hour'); }
-      this.formattedEndTime = this.moment(this.event.endTime).format('MM/DD/YYYY hh:mm A');
     }
+
+    if (!this.event.startTime) { this.event.startTime = this.moment(); }
+    this.formattedStartTime = this.moment(this.event.startTime).format('MM/DD/YYYY hh:mm A');
+    if (!this.event.endTime) { this.event.endTime = this.moment().add(1, 'hour'); }
+    this.formattedEndTime = this.moment(this.event.endTime).format('MM/DD/YYYY hh:mm A');
   }
 
   onStartDateChange(newValue) {
@@ -54,12 +55,22 @@ class PromoteIdeaController {
       promotedIdea.addressName = this.addressName;
       promotedIdea.addressText = this.addressText;
       promotedIdea.addressLink = this.addressLink;
-      this.EventService.promoteEvent(promotedIdea).then(resp => {
-        this.state.go('app.group.home');
-      }).catch(err => {
-        console.log('Server error: ', err);
-        this.formWarning = 'Error: please try again or contact a server admin';
-      });
+
+      if (this.stateParams.eventId === 'new') {
+        this.EventService.submitScheduledEvent(promotedIdea).then(resp => {
+          this.state.go('app.group.home');
+        }).catch(err => {
+          console.log('Server error: ', err);
+          this.formWarning = 'Error: please try again or contact a server admin';
+        });
+      } else {
+        this.EventService.promoteEvent(promotedIdea).then(resp => {
+          this.state.go('app.group.home');
+        }).catch(err => {
+          console.log('Server error: ', err);
+          this.formWarning = 'Error: please try again or contact a server admin';
+        });
+      }
     }
   }
 

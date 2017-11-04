@@ -156,6 +156,14 @@ export default class EventService {
     });
   }
 
+  submitScheduledEvent(event) {
+    return this.http.post('/api/event/new', event).then(resp => {
+      this.handleNewEvent(resp.data, false);
+      this.eventSocket.emit('scheduled event in group',
+        {group: resp.data.groupId, event: resp.data});
+    });
+  }
+
   updateEvent(eventId, updatedEvent) {
     if (typeof eventId === 'object' && updatedEvent === undefined) {
       updatedEvent = eventId;

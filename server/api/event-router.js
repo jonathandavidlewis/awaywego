@@ -28,6 +28,20 @@ eventRouter.post('/', (req, res) => {
     .catch(err => res.status(500).json({'Server error': err}));
 });
 
+eventRouter.post('/new', (req, res) => {
+  const newEvent = req.body;
+  if (newEvent.imageUrl === '') {
+    delete newEvent.imageUrl;
+  }
+
+  newEvent.status = 'event';
+  newEvent.upVotes = [];
+  newEvent.downVotes = [];
+
+  Event.create(newEvent).then(event => res.status(201).json(event))
+    .catch(err => res.status(500).json({'Server error': err}));
+});
+
 // Update Events
 eventRouter.put('/:eventId', (req, res) => {
   Event.findByIdAndUpdate({_id: req.params.eventId}, req.body, {new: true})
