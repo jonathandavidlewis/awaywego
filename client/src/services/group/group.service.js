@@ -50,4 +50,12 @@ export default class GroupService {
       .then(resp => this.currentGroup = resp.data);
   }
 
+  leaveGroup(groupId) {
+    return this.http.put(`/api/group/${groupId}/members/remove/${UserService.user.id}`)
+      .then(() => {
+        const ind = this.groups.findIndex(g => g._id === groupId);
+        if (ind > -1) { this.groups.splice(ind, 1); }
+      });
+  }
+
 }
