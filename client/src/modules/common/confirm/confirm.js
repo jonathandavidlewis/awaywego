@@ -8,7 +8,6 @@ class ConfirmController {
   constructor(ConfirmService) {
     this.ConfirmService = ConfirmService;
   }
-
 }
 ConfirmController.$inject = ['ConfirmService'];
 

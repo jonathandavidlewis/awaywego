@@ -1,6 +1,6 @@
 <div class="confirm-modal-container" ng-if="$ctrl.ConfirmService.modalIsOpen"
     ng-click="$ctrl.ConfirmService.closeModal()">
-  <div class="confirm-container card-shadow">
+  <div class="confirm-container card-shadow" ng-click="$event.stopPropagation()">
     <div class="confirm-title">
         <span>{{$ctrl.ConfirmService.title}}</span>
     </div>
