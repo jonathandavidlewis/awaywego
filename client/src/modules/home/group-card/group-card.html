@@ -5,17 +5,17 @@
       <div class="group-card-title" ui-sref="app.group.home({groupId: $ctrl.group._id})" ><span>{{$ctrl.group.title}}</span></div>
       <div class="group-card-description"><span>{{$ctrl.group.description}}</span></div>
     </div>
-    <div class="dropdown">
+    <div class="dropdown" ng-click="$event.preventDefault();">
       <div class="dropdown-toggle" id={{'dd-'+$ctrl.group._id}} data-toggle="dropdown">
         <i class="material-icons">more_vert</i>
       </div>
       <div class="dropdown-menu dropdown-menu-right">
         <div ng-if="$ctrl.canDelete()"
-          class="dropdown-item" ng-click="$ctrl.GroupService.deleteGroupById($ctrl.group._id)">
+          class="dropdown-item" ng-click="$ctrl.deleteGroup()">
           Delete Group
         </div>
         <div ng-if="$ctrl.canLeave()"
-          class="dropdown-item" ng-click="$ctrl.GroupService.leaveGroup($ctrl.group._id)">
+          class="dropdown-item" ng-click="$ctrl.leaveGroup()">
           Leave Group
         </div>
       </div>
