@@ -20,9 +20,16 @@
   <div class="comment-card-text flex flex-align-center">
     <span>{{$ctrl.comment.text}}</span>
   </div>
-  <div class="comment-delete-container"
-    ng-if="$ctrl.comment.user._id === $ctrl.user.id"
-    ng-click="$ctrl.handleDeleteClick()">
-    <i class="material-icons">clear</i>
+  <div class="dropdown comment-card-dropdown-container"
+    ng-if="$ctrl.canEditOrDelete()">
+    <div class="dropdown-toggle" id={{'dd-'+$ctrl.comment._id}} data-toggle="dropdown">
+      <i class="material-icons">more_vert</i>
+    </div>
+    <div class="dropdown-menu dropdown-menu-right">
+      <div class="dropdown-item"
+        ng-click="$ctrl.handleDeleteClick()">
+        Delete Comment
+      </div>
+    </div>
   </div>
 </div>
