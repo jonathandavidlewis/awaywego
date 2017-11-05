@@ -23,7 +23,7 @@ class PeopleListController {
   remove(userId) {
     this.ConfirmService.openModal(
       'Are you sure you want to remove this user from the group?',
-      'This action cannot be undone'
+      'This action cannot be undone', 'Yes'
     ) .then(() => {
       this.GroupService.removeMemberFromCurrentGroup(userId)
         .then(() => this.refreshGroup());
