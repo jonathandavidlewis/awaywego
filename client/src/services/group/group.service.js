@@ -42,12 +42,20 @@ export default class GroupService {
 
   removeMemberFromCurrentGroup(userId) {
     return this.http.put(`/api/group/${this.currentGroup._id}/members/remove/${userId}`)
-      .then(resp => this.currentGroup = resp.data);
+      .then(resp => {
+        const ind = this.groups.findIndex(g => g._id === this.currentGroup._id);
+        this.groups[ind] = resp.data;
+        this.currentGroup = resp.data;
+      });
   }
 
   addMembersToCurrentGroup(members) {
     return this.http.put(`/api/group/${this.currentGroup._id}/members/add`, {members})
-      .then(resp => this.currentGroup = resp.data);
+      .then(resp => {
+        const ind = this.groups.findIndex(g => g._id === this.currentGroup._id);
+        this.groups[ind] = resp.data;
+        this.currentGroup = resp.data;
+      });
   }
 
   leaveGroup(groupId) {
