@@ -23,8 +23,10 @@ export default class ConfirmService {
     this.modalIsOpen = false;
   }
 
+  modalOkClick() {
+  }
 
-
-
+  modalCancelClick() {
+  }
 
 }

@@ -7,9 +7,12 @@
       <span>{{$ctrl.ConfirmService.desc}}</span>
     </div>
     <div class="confirm-actions-container">
-      <button class="awgl-button">{{$ctrl.ConfirmService.cancelLabel}}</button>
-      <button class="awgl-button">{{$ctrl.ConfirmService.okLabel}}</button>
+      <button class="awgl-button" ng-click="$ctrl.modalCancelClick()">
+        {{$ctrl.ConfirmService.cancelLabel}}
+      </button>
+      <button class="awgl-button" ng-click="$ctrl.modalOkClick()">
+        {{$ctrl.ConfirmService.okLabel}}
+      </button>
     </div>
   </div>
-
 </div>
