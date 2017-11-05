@@ -1,0 +1,28 @@
+.confirm-modal-container {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: hsla(203, 30%, 80%, .5);
+}
+
+
+.confirm-container {
+  background-color: var(--lt);
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 80%;
+}
+
+.confirm-title {
+  font-size: 1.2em;
+  color: var(--dk3);
+}
+
+.confirm-desc {
+  font-size: .9em;
+  color: var(--da);
+}
