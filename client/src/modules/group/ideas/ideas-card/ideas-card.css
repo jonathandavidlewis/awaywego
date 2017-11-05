@@ -24,6 +24,16 @@ ideas-card {
   flex: 1 0 auto;
 }
 
+.ideas-card-dropdown-container {
+  position: absolute;
+  right: 0px;
+}
+
+.ideas-card-dropdown-container .material-icons {
+  font-size: 1.2em;
+  color: var(--da);
+}
+
 .ideas-card-image-container {
   width: 100%;
   flex: 0 0 auto;
@@ -34,16 +44,6 @@ ideas-card {
   width: 100%;
   height: auto;
   border-radius: 3px;
-}
-
-.ideas-card-admin-delete-container {
-  position: absolute;
-  right: 3px;
-  cursor: pointer;
-}
-
-.ideas-card-admin-delete-container .material-icons {
-  font-size: 1em;
 }
 
 .ideas-card-details-container {
