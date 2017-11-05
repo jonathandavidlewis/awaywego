@@ -5,6 +5,11 @@ describe('HomeModule', function() {
 
   beforeEach(angular.mock.module('app.home'));
 
+  beforeEach(angular.mock.module(function($provide) {
+    $provide.value('$state', {});
+    $provide.value('UserService', {});
+  }));
+
   beforeEach(angular.mock.inject(($rootScope, $compile, $httpBackend) => {
 
     $httpBackend.whenGET('/api/group/').respond([]);
@@ -36,6 +41,10 @@ describe('HomeController', function() {
   let HomeController;
 
   beforeEach(angular.mock.module('app.home'));
+  beforeEach(angular.mock.module(function($provide) {
+    $provide.value('$state', {});
+    $provide.value('UserService', {});
+  }));
   beforeEach(angular.mock.inject(($componentController) => {
     HomeController = $componentController('home', null, {});
   }));
