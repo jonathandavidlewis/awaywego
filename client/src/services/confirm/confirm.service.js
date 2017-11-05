@@ -24,14 +24,15 @@ export default class ConfirmService {
     this.modalIsOpen = false;
   }
 
-  modalOkClick() {
+  modalOkClick($event) {
+    $event.stopPropagation();
     this.modalIsOpen = false;
-    this.result.resolve('confirmed');
+    this.result.resolve();
   }
 
-  modalCancelClick() {
-    this.modalIsOpen = false;
-    this.result.reject('cancelled');
+  modalCancelClick($event) {
+    $event.stopPropagation();
+    this.result.reject();
+    this.closeModal();
   }
-
 }

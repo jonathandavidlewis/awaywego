@@ -1,4 +1,5 @@
-<div class="confirm-modal-container" ng-if="$ctrl.ConfirmService.modalIsOpen">
+<div class="confirm-modal-container" ng-if="$ctrl.ConfirmService.modalIsOpen"
+    ng-click="$ctrl.ConfirmService.closeModal()">
   <div class="confirm-container card-shadow">
     <div class="confirm-title">
         <span>{{$ctrl.ConfirmService.title}}</span>
@@ -7,10 +8,12 @@
       <span>{{$ctrl.ConfirmService.desc}}</span>
     </div>
     <div class="confirm-actions-container">
-      <button class="awgl-button confirm-cancel" ng-click="$ctrl.ConfirmService.modalCancelClick()">
+      <button class="awgl-button confirm-cancel"
+        ng-click="$ctrl.ConfirmService.modalCancelClick($event)">
         {{$ctrl.ConfirmService.cancelLabel}}
       </button>
-      <button class="awgd-button confirm-ok" ng-click="$ctrl.ConfirmService.modalOkClick()">
+      <button class="awgd-button confirm-ok"
+        ng-click="$ctrl.ConfirmService.modalOkClick($event)">
         {{$ctrl.ConfirmService.okLabel}}
       </button>
     </div>
