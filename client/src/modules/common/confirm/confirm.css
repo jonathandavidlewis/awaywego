@@ -14,15 +14,37 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  max-width: 80%;
+  max-width: 90%;
+  padding: 10px;
+  border-radius: 5px;
 }
 
 .confirm-title {
-  font-size: 1.2em;
+  font-size: 1.1em;
   color: var(--dk3);
+  margin-bottom: 5px;
 }
 
 .confirm-desc {
   font-size: .9em;
   color: var(--da);
+  margin-bottom: 5px;
+}
+
+.confirm-actions-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.confirm-actions-container .awgd-button,
+.confirm-actions-container .awgl-button {
+  flex: 1 1 100px;
+  margin: 5px 20px;
+}
+
+@media(max-width: 333px) {
+  .confirm-cancel {
+    order: 999;
+  }
 }
