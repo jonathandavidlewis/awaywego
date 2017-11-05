@@ -9,6 +9,16 @@ class GroupCardController {
     this.UserService = UserService;
     this.GroupService = GroupService;
   }
+
+  canLeave() {
+    return this.UserService.user.id !== this.group.userId;
+  }
+
+  canDelete() {
+    return this.UserService.user.id === this.group.userId;
+  }
+
+
 }
 GroupCardController.$inject = ['UserService', 'GroupService'];
 

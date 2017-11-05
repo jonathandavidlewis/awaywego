@@ -11,14 +11,14 @@ class CommentCardController {
     this.EventService = EventService;
     this.groupOwner = GroupService.currentGroup.userId;
     this.handleDeleteClick = this.handleDeleteClick.bind(this);
-    this.canEditOrDelete = this.canEditOrDelete.bind(this);
+    this.menuShouldAppear = this.menuShouldAppear.bind(this);
   }
 
   handleDeleteClick() {
     this.EventService.removeCommentForEvent(this.eventId, this.comment._id);
   }
 
-  canEditOrDelete() {
+  menuShouldAppear() {
     return this.EventService.events[this.eventId].userId === this.user.id ||
            this.userId === this.groupOwner;
   }

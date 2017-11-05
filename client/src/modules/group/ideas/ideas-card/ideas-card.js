@@ -14,7 +14,7 @@ class IdeasCardController {
     this.downVote = this.downVote.bind(this);
     this.handleDeleteClick = this.handleDeleteClick.bind(this);
     this.handlePromoteClick = this.handlePromoteClick.bind(this);
-    this.canEditOrDelete = this.canEditOrDelete.bind(this);
+    this.menuShouldAppear = this.menuShouldAppear.bind(this);
   }
 
   handleDeleteClick() {
@@ -25,7 +25,7 @@ class IdeasCardController {
     this.promoteEvent(this.eventId);
   }
 
-  canEditOrDelete() {
+  menuShouldAppear() {
     return this.EventService.events[this.eventId].userId === this.userId ||
            this.userId === this.groupOwner;
   }

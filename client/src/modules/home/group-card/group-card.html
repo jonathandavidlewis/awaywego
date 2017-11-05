@@ -10,11 +10,11 @@
         <i class="material-icons">more_vert</i>
       </div>
       <div class="dropdown-menu dropdown-menu-right">
-        <div ng-if="$ctrl.UserService.user.id === $ctrl.group.userId"
+        <div ng-if="$ctrl.canDelete()"
           class="dropdown-item" ng-click="$ctrl.GroupService.deleteGroupById($ctrl.group._id)">
           Delete Group
         </div>
-        <div ng-if="$ctrl.UserService.user.id !== $ctrl.group.userId"
+        <div ng-if="$ctrl.canLeave()"
           class="dropdown-item" ng-click="$ctrl.GroupService.leaveGroup($ctrl.group._id)">
           Leave Group
         </div>
