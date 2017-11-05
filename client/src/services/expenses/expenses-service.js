@@ -51,6 +51,29 @@ export default class ExpensesService {
     return {owed: this.roundMoney(owed), debt: this.roundMoney(debt), balance: this.roundMoney(owed - debt)};
   }
 
+  simplifyDebts() {
+    let debts = {};
+    transactions.forEach((transaction) => {
+      // Exists in from and to : Update amount
+      if (debts[transaction.from] && debts[transaction.from][transaction.to] !== undefined && !(debts[transaction.to] && debts[transaction.to][transaction.from])) {
+        debts[transaction.from][transaction.to] += transaction.amount;
+      } else if (debts[transaction.to] && debts[transaction.to][transaction.from] !== undefined) {
+        debts[transaction.to][transaction.from] -= transaction.amount;
+      } else if (!debts[transaction.from]) {
+        debts[transaction.from] = {[transaction.to]: transaction.amount};
+      } else {
+        debts[transaction.from][transaction.to] = transaction.amount;
+      }
+    });
+    return debts;
+  }
+
+
+  consolidateDebts() {
+
+
+  }
+
   // Angular filtering Methods
 
   changeFilter(type) {
