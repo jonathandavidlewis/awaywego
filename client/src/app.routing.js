@@ -249,7 +249,7 @@ redirectIfNotAuthed.$inject = ['$q', '$state', '$timeout', 'UserService'];
 const redirectToImport = function($q, $state, $timeout, UserService) {
   const result = $q.defer();
   if (localStorage.getItem('new_user')) {
-    localStorage.removeItem("new_user");
+    localStorage.removeItem('new_user');
     $timeout(() => $state.go('app.import'));
     result.resolve('true');
   } else {
