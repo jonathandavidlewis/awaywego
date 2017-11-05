@@ -11,12 +11,13 @@ export default class ConfirmService {
   }
 
   openModal(title, desc, okLabel, cancelLabel) {
-    this.modalIsOpen = true;
     this.title = title;
     this.desc = desc;
     this.okLabel = okLabel || 'OK';
     this.cancelLabel = cancelLabel || 'Cancel';
+    this.modalIsOpen = true;
     this.result = this.q.defer();
+    return this.result.promise;
   }
 
   closeModal() {
@@ -24,9 +25,13 @@ export default class ConfirmService {
   }
 
   modalOkClick() {
+    this.modalIsOpen = false;
+    this.result.resolve('confirmed');
   }
 
   modalCancelClick() {
+    this.modalIsOpen = false;
+    this.result.reject('cancelled');
   }
 
 }
