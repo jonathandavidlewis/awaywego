@@ -9,22 +9,25 @@ class GroupCardController {
     this.UserService = UserService;
     this.GroupService = GroupService;
     this.ConfirmService = ConfirmService;
+    this.busy = false;
   }
 
-  canLeave() {
-    return this.UserService.user.id !== this.group.userId;
-  }
+  amBusy() { this.busy = true; }
 
-  canDelete() {
-    return this.UserService.user.id === this.group.userId;
-  }
+  notBusy() { this.busy = false; }
+
+  canLeave() { return this.UserService.user.id !== this.group.userId; }
+
+  canDelete() { return this.UserService.user.id === this.group.userId; }
 
   deleteGroup() {
     this.ConfirmService.openModal(
       'Are you sure you want to delete this group?',
       'This action cannot be undone', 'Yes'
     ).then(() => {
-      this.GroupService.deleteGroupById(this.group._id);
+      this.GroupService.deleteGroupById(this.group._id).then(() => {
+        this.notBusy();
+      });
     }).catch(() => {});
   }
 
@@ -33,11 +36,12 @@ class GroupCardController {
       'Are you sure you want to leave this group?',
       'This action cannot be undone', 'Yes'
     ).then(() => {
-      this.GroupService.leaveGroup($ctrl.group._id);
+      this.amBusy();
+      this.GroupService.leaveGroup($ctrl.group._id).then(() => {
+        this.notBusy();
+      });
     }).catch(() => {});
   }
-
-
 }
 GroupCardController.$inject = ['UserService', 'GroupService', 'ConfirmService'];
 
