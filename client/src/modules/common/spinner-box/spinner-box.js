@@ -1,7 +1,7 @@
 import angular from 'angular';
 
 // imports for this component
-import template from 'spinner-box';
+import template from './spinner-box.html';
 import './spinner-box.css';
 
 class SpinnerBoxController {
