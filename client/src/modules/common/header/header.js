@@ -14,9 +14,11 @@ class HeaderController {
 }
 HeaderController.$inject = ['UserService'];
 
-export const HeaderComponent = {
+const HeaderComponent = {
   restrict: 'E',
   bindings: {},
   template: template,
   controller: HeaderController
 };
+
+export default HeaderComponent;
