@@ -13,9 +13,15 @@ class SignupController {
     this.password = '';
     this.confPassword = '';
     this.formWarning = '';
+    this.busy = false;
   }
 
+  amBusy() { this.busy = true; }
+
+  notBusy() { this.busy = false; }
+
   signup() {
+    this.amBusy();
     if (this.validateForm()) {
       let newUser = {
         name: this.name,
@@ -34,7 +40,10 @@ class SignupController {
         } else {
           console.log('Error: ', err);
         }
+        this.notBusy();
       });
+    } else { // not busy right away if validate fails
+      this.notBusy();
     }
   }
 
