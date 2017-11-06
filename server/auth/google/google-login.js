@@ -16,7 +16,7 @@ const loginGoogleUser = (req, res) => {
       const token = jwt.sign({
         name: user.name,
         userId: user._id,
-        mail: user.email,
+        email: user.email,
         profilePic: user.profilePic
       }, jwtOptions.secretOrKey);
       res.locals.newToken = token;
