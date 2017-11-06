@@ -1,5 +1,5 @@
 <!-- from SpinKit: https://github.com/tobiasahlin/SpinKit -->
-<div ng-if="$ctrl.busy" class="spinner-container">
+<div ng-if="$ctrl.busy" class="spinner-container" ng-click="$event.stopPropagation()">
   <div class="sk-cube-grid">
     <div class="sk-cube sk-cube1"></div>
     <div class="sk-cube sk-cube2"></div>
