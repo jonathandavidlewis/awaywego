@@ -24,7 +24,7 @@ class GroupCardController {
       'Are you sure you want to delete this group?',
       'This action cannot be undone', 'Yes'
     ).then(() => {
-      this.GroupService.deleteGroupById($ctrl.group._id);
+      this.GroupService.deleteGroupById(this.group._id);
     }).catch(() => {});
   }
 
