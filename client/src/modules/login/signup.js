@@ -4,9 +4,6 @@ import angular from 'angular';
 import template from './signup.html';
 import './login.css';
 
-// temp constants for testing
-const testToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwidXNlcklkIjoiMTIzNDUiLCJuYW1lIjoiSmFyZWQifQ.OH3YX4wMOovE0qOryCJ9_1vZ7a0cMIz-0lk1AwWk8GU';
-
 class SignupController {
   constructor(UserService, $state) {
     this.UserService = UserService;
