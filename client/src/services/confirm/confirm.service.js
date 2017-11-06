@@ -3,16 +3,16 @@ export default class ConfirmService {
     this.$inject = ['$q'];
     this.q = $q;
     this.modalIsOpen = false;
-    this.title = '';
-    this.desc = '';
+    this.prompt = '';
+    this.comment = '';
     this.okLabel = 'OK';
     this.cancelLabel = 'Cancel';
     this.result = null;
   }
 
-  openModal(title, desc, okLabel, cancelLabel) {
-    this.title = title;
-    this.desc = desc;
+  openModal(prompt, comment, okLabel, cancelLabel) {
+    this.prompt = prompt;
+    this.comment = comment;
     this.okLabel = okLabel || 'OK';
     this.cancelLabel = cancelLabel || 'Cancel';
     this.modalIsOpen = true;

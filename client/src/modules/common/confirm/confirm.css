@@ -19,13 +19,13 @@
   border-radius: 5px;
 }
 
-.confirm-title {
+.confirm-prompt {
   font-size: 1.1em;
   color: var(--dk3);
   margin-bottom: 5px;
 }
 
-.confirm-desc {
+.confirm-comment {
   font-size: .9em;
   color: var(--da);
   margin-bottom: 5px;

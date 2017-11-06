@@ -1,11 +1,11 @@
 <div class="confirm-modal-container" ng-if="$ctrl.ConfirmService.modalIsOpen"
     ng-click="$ctrl.ConfirmService.closeModal()">
   <div class="confirm-container card-shadow" ng-click="$event.stopPropagation()">
-    <div class="confirm-title">
-        <span>{{$ctrl.ConfirmService.title}}</span>
+    <div class="confirm-prompt">
+        <span>{{$ctrl.ConfirmService.prompt}}</span>
     </div>
-    <div class="confirm-desc">
-      <span>{{$ctrl.ConfirmService.desc}}</span>
+    <div class="confirm-comment">
+      <span>{{$ctrl.ConfirmService.comment}}</span>
     </div>
     <div class="confirm-actions-container">
       <button class="awgl-button confirm-cancel"
