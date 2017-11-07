@@ -13,11 +13,6 @@ class FriendsAddController {
     this.searchStatus = '';
     this.frCard = null;
 
-    this.requestFriend = this.requestFriend.bind(this);
-    this.inviteFriend = this.inviteFriend.bind(this);
-    this.cancelFriend = this.cancelFriend.bind(this);
-    this.acceptFriend = this.acceptFriend.bind(this);
-    this.rejectFriend = this.rejectFriend.bind(this);
     this.searchForFriend = this.searchForFriend.bind(this);
   }
 
@@ -51,42 +46,6 @@ class FriendsAddController {
       });
     }
   }
-
-  requestFriend(friendId) {
-    this.FriendService.newFriendRequest(friendId).then(() => {
-      this.resetResults();
-      this.closeForm();
-    });
-  }
-
-  inviteFriend(email) {
-    this.FriendService.inviteFriend(email).then(() => {
-      this.resetResults();
-      this.closeForm();
-    });
-  }
-
-  cancelFriend(frId) {
-    this.FriendService.cancelFriendRequest(frId).then(() => {
-      this.resetResults();
-      this.closeForm();
-    });
-  }
-
-  acceptFriend(frId) {
-    this.FriendService.acceptFriendRequest(frId).then(() => {
-      this.resetResults();
-      this.closeForm();
-    });
-  }
-
-  rejectFriend(frId) {
-    this.FriendService.rejectFriendRequest(frId).then(() => {
-      this.resetResults();
-      this.closeForm();
-    });
-  }
-
 }
 
 const FriendsAddComponent = {

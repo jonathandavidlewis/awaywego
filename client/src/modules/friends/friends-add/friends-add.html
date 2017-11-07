@@ -13,15 +13,15 @@
       Awesome! We found {{$ctrl.frCard.to.name}}, want to send a friend request?
     </div>
     <div>
-      <friend-card type="request" user="$ctrl.frCard.to" request="$ctrl.requestFriend"></friend-card>
+      <friend-card type="request" user="$ctrl.frCard.to"></friend-card>
     </div>
   </div>
   <div ng-if="$ctrl.searchStatus === 'invite'" class="friends-request-container">
     <div class="friends-request-message">
-      Can't find that user, do you want to invite them to Away We Go?
+      Can't find that user, do you want to invite them to StartSomething?
     </div>
     <div>
-      <friend-card type="invite" user="$ctrl.frCard.to" invite="$ctrl.inviteFriend"></friend-card>
+      <friend-card type="invite" user="$ctrl.frCard.to"></friend-card>
     </div>
   </div>
   <div ng-if="$ctrl.searchStatus === 'friends'" class="friends-request-container">
@@ -37,9 +37,7 @@
       That user is waiting for you to respond to their friend request!
     </div>
     <div>
-      <friend-card type="pending" user="$ctrl.frCard.to" fr-id="$ctrl.frCard._id"
-        accept="$ctrl.acceptFriend"
-        reject="$ctrl.rejectFriend"></friend-card>
+      <friend-card type="pending" user="$ctrl.frCard.to" fr-id="$ctrl.frCard._id"></friend-card>
     </div>
   </div>
   <div ng-if="$ctrl.searchStatus === 'sent'" class="friends-request-container">
@@ -47,8 +45,7 @@
       You've already sent that user a request
     </div>
     <div>
-      <friend-card type="sent" user="$ctrl.frCard.to" fr-id="$ctrl.frCard._id"
-      cancel="$ctrl.cancelFriend"></friend-card>
+      <friend-card type="sent" user="$ctrl.frCard.to" fr-id="$ctrl.frCard._id"></friend-card>
     </div>
   </div>
 </div>
