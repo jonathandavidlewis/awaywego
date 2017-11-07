@@ -13,9 +13,6 @@ class FriendsListController {
     this.newFriendOpen = false;
 
     // callback bindings
-    this.acceptFriend = this.acceptFriend.bind(this);
-    this.rejectFriend = this.rejectFriend.bind(this);
-    this.cancelFriend = this.cancelFriend.bind(this);
     this.closeForm = this.closeForm.bind(this);
   }
 
@@ -26,18 +23,6 @@ class FriendsListController {
 
   closeForm() {
     this.newFriendOpen = false;
-  }
-
-  acceptFriend(frId) {
-    this.FriendService.acceptFriendRequest(frId);
-  }
-
-  rejectFriend(frId) {
-    this.FriendService.rejectFriendRequest(frId);
-  }
-
-  cancelFriend(frId) {
-    this.FriendService.cancelFriendRequest(frId);
   }
 }
 
