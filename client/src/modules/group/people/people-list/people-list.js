@@ -5,36 +5,13 @@ import template from './people-list.html';
 import './people-list.css';
 
 class PeopleListController {
-  constructor(GroupService, FriendService, UserService, ConfirmService) {
+  constructor(GroupService, UserService) {
     this.GroupService = GroupService;
     this.UserService = UserService;
-    this.ConfirmService = ConfirmService;
-    this.groupOwner = '';
-    this.groupMembers = [];
-    this.refreshGroup();
-    this.busy = false;
-    this.remove = this.remove.bind(this);
-  }
-
-  refreshGroup() {
-    this.groupOwner = this.GroupService.currentGroup.userId;
-    this.groupMembers = this.GroupService.currentGroup.members;
-  }
-
-  remove(userId) {
-    this.ConfirmService.openModal(
-      'Are you sure you want to remove this user from the group?',
-      'This action cannot be undone', 'Yes'
-    ) .then(() => {
-      this.busy = true;
-      this.GroupService.removeMemberFromCurrentGroup(userId)
-        .then(() => this.refreshGroup())
-        .finally(() => this.busy = false);
-    }).catch(() => {});
   }
 
 }
-PeopleListController.$inject = ['GroupService', 'FriendService', 'UserService', 'ConfirmService'];
+PeopleListController.$inject = ['GroupService', 'UserService'];
 
 const PeopleListComponent = {
   restrict: 'E',
