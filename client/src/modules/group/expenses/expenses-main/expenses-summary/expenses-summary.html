@@ -9,12 +9,12 @@
   </div>
   <div class="expenses-summary-body">
     <div class="expenses-summary-body-container">
-      <div class="expenses-summary-mini-card" ng-repeat="transaction in $ctrl.ExpensesService.consolidatedTransactions | filter: $ctrl.ExpensesService.filterByOwedTo" transaction="transaction" >
+      <div class="expenses-summary-mini-card" ng-repeat="transaction in $ctrl.ExpensesService.consolidatedDebts | filter: $ctrl.ExpensesService.filterByOwedTo" transaction="transaction" >
         You owe {{transaction.amount | currency:"$"}} to {{transaction.to.name}}
       </div>
     </div>
     <div class="expenses-summary-body-container">
-      <div class="expenses-summary-mini-card" ng-repeat="transaction in $ctrl.ExpensesService.consolidatedTransactions | filter: $ctrl.ExpensesService.filterByOwed" transaction="transaction" >
+      <div class="expenses-summary-mini-card" ng-repeat="transaction in $ctrl.ExpensesService.consolidatedDebts | filter: $ctrl.ExpensesService.filterByOwed" transaction="transaction" >
         {{transaction.from.name}} owes you {{transaction.amount | currency:"$"}}
       </div>
     </div>

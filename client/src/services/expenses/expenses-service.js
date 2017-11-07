@@ -16,7 +16,7 @@ export default class ExpensesService {
     this.filterBy = 'All';
 
     // Expenses Summary
-    this.consolidatedTransactions = '';
+    this.consolidatedDebts = '';
     this.consolidatedSummary = '';
 
     // Bindings
@@ -138,7 +138,7 @@ export default class ExpensesService {
   consolidateSummary() {
     let owe = 0;
     let receive = 0;
-    this.consolidatedTransactions.forEach((transaction) => {
+    this.consolidatedDebts.forEach((transaction) => {
       if (transaction.from._id === this.UserService.user.id) {
         owe += transaction.amount;
       }
@@ -193,7 +193,7 @@ export default class ExpensesService {
       this.expenses = res.data;
       this.summary = this.calculateDebts();
       this.transactions = this.filterTransactions();
-      this.consolidatedTransactions = this.consolidateDebts();
+      this.consolidatedDebts = this.consolidateDebts();
       this.consolidatedSummary = this.consolidateSummary();
     });
   }
