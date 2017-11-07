@@ -1,24 +1,30 @@
 <div class="expenses-summary-card">
   <div class="expenses-summary-header">
-    <div class="expenses-summary-header-item">You Pay:
-      <div class="expenses-summary-header-amount">{{$ctrl.ExpensesService.consolidatedSummary.owe | currency:"$"}}</div>
+    <div class="expenses-summary-header-item" ng-if="$ctrl.ExpensesService.consolidatedSummary.owe > 0">
+      <div class="expenses-summary-header-title">You Pay:</div>
+      <div class="expenses-summary-header-amount-owe">{{$ctrl.ExpensesService.consolidatedSummary.owe | currency:"$"}}</div>
     </div>
-    <div class="expenses-summary-header-item">You Receive:
-      <div class="expenses-summary-header-amount">{{$ctrl.ExpensesService.consolidatedSummary.receive | currency:"$"}}</div>
+    <div class="expenses-summary-header-item" ng-if="$ctrl.ExpensesService.consolidatedSummary.receive > 0">
+      <div class="expenses-summary-header-title">You Receive:</div>
+      <div class="expenses-summary-header-amount-receive">{{$ctrl.ExpensesService.consolidatedSummary.receive | currency:"$"}}</div>
     </div>
   </div>
   <div class="expenses-summary-body">
     <div class="expenses-summary-body-container">
-      <div class="expenses-summary-mini-card" ng-repeat="transaction in $ctrl.ExpensesService.consolidatedDebts | filter: $ctrl.ExpensesService.filterByOwedTo" transaction="transaction" >
-        You owe {{transaction.amount | currency:"$"}} to {{transaction.to.name}}
+      <div class="expenses-summary-mini-card" ng-repeat="transaction in $ctrl.ExpensesService.consolidatedDebts" transaction="transaction">
+        <div class="expenses-summary-mini-card-avatar">
+          <img ng-if="transaction.from.profilePic" ng-src="{{transaction.from.profilePic}}" class="avatar">
+          <i ng-if="!transaction.from.profilePic" class="material-icons">account_circle</i>
+        </div>
+        <div class="expenses-summary-mini-card-name">{{$ctrl.isCurrentUser(transaction.from, true)}}</div>
+        <div class="expenses-summary-mini-card-body">{{$ctrl.owe}}</div>
+        <div class="expenses-summary-mini-card-amount">{{transaction.amount | currency:"$"}} to </div>
+        <div class="expenses-summary-mini-card-avatar">
+          <img ng-if="transaction.to.profilePic" ng-src="{{transaction.to.profilePic}}" class="avatar">
+          <i ng-if="!transaction.to.profilePic" class="material-icons">account_circle</i>
+        </div>
+        <div class="expenses-summary-mini-card-name">{{$ctrl.isCurrentUser(transaction.to)}}</div>
       </div>
     </div>
-    <div class="expenses-summary-body-container">
-      <div class="expenses-summary-mini-card" ng-repeat="transaction in $ctrl.ExpensesService.consolidatedDebts | filter: $ctrl.ExpensesService.filterByOwed" transaction="transaction" >
-        {{transaction.from.name}} owes you {{transaction.amount | currency:"$"}}
-      </div>
-    </div>
-
   </div>
-
 </div>

@@ -17,22 +17,31 @@
   border-bottom: 1px solid var(--dk3);
 }
 
-.expenses-summary-header-amount {
+.expenses-summary-header-item {
+  display: flex;
+  flex: 1 0 auto;
+  justify-content: space-around;
+}
+
+.expenses-summary-header-title {
+  font-size: 1.2em;
+}
+.expenses-summary-header-amount-owe,
+.expenses-summary-header-amount-receive {
   font-size: 1.2em;
 }
 
 .expenses-summary-body {
   display: flex;
+  justify-content: center;
 }
 
 .expenses-summary-body-container {
-  flex: 1;
   padding: 10px;
+  flex: 1 0 auto;
 }
 
-.expenses-summary-body-container:last-child {
-  border-left: 1px solid var(--dk3);
-}
+
 
 .expenses-summary-mini-card {
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),
@@ -40,4 +49,21 @@
       0 1px 5px 0 rgba(0,0,0,0.2) !important;
   background-color: var(--lla);
   font-size: 0.9em;
+  padding: 5px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.expenses-summary-mini-card > div {
+  padding-right: 5px;
+}
+
+
+.expenses-summary-header-amount-owe {
+  color: palevioletred;
+}
+
+.expenses-summary-header-amount-receive {
+  color: green;
 }
