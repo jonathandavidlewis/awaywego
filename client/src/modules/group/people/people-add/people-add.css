@@ -1,18 +1,9 @@
 .people-add-container {
-  overflow: scroll;
-  background-color: var(--m0);
-}
-
-.people-add-header {
-  padding: 5px 10px;
-  font-size: 1.3em;
-  color: var(--m5);
-  background-color: var(--lt);
-  border-bottom: 1px solid var(--la);
+  padding-bottom: 100px !important;
 }
 
 .people-search-container {
-  background-color: var(--lt);
+  margin-top: -8px;
   margin-bottom: 10px;
 }
 
@@ -26,8 +17,7 @@
   position: fixed;
   bottom: 90px;
   left: 50%;
-  margin-left: -134px;
-  /*transform: translate(-50%, 0);*/
+  margin-left: -130px;
   display: flex;
   justify-content: space-between;
 }
@@ -45,7 +35,7 @@
 }
 
 .people-add-back-container {
-  margin-right: 30px;
+  margin-right: 20px;
 }
 
 .people-add-controls .material-icons {
