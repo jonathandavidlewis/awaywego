@@ -6,11 +6,11 @@ import template from './people-add.html';
 import './people-add.css';
 
 class PeopleAddController {
-  constructor(GroupService, FriendService, UserService, $state) {
+  constructor(GroupService, UserService, FriendService, $state) {
     this.search = '';
     this.GroupService = GroupService;
     this.UserService = UserService;
-    this.$state = $state;
+    this.state = $state;
     this.members = GroupService.currentGroup.members;
     this.friends = FriendService.friendships.map(fr => fr.to);
     this.availableFriends = this.getFriendsNotInGroup();
@@ -50,12 +50,12 @@ class PeopleAddController {
     if (toAdd.length === 0) { return; }
     this.busy = true;
     this.GroupService.addMembersToCurrentGroup(toAdd).then(() => {
-      this.$state.go('^.list');
+      this.state.go('^.list');
     });
   }
 
 }
-PeopleAddController.$inject = ['GroupService', 'FriendService', 'UserService', '$state'];
+PeopleAddController.$inject = ['GroupService', 'UserService', 'FriendService', '$state'];
 
 const PeopleAddComponent = {
   restrict: 'E',
