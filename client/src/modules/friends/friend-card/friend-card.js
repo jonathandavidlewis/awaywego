@@ -5,36 +5,73 @@ import template from './friend-card.html';
 import './friend-card.css';
 
 class FriendCardController {
-  constructor() {
-    this.handleInvite = this.handleInvite.bind(this);
+  constructor(FriendService, ConfirmService) {
+    this.FriendService = FriendService;
+    this.ConfirmService = ConfirmService;
+
+    this.accept = this.accept.bind(this);
+    this.reject = this.reject.bind(this);
+    this.cancel = this.cancel.bind(this);
+    this.request = this.request.bind(this);
+    this.invite = this.invite.bind(this);
   }
 
-  handleInvite(email) {
-    this.invite(email);
-    this.type = "import_invite";
+  accept() {
+    this.FriendService.acceptFriendRequest(this.frId).then(() => {
+      this.type = 'import_invite';
+      this.actioncallback();
+    });
+  }
+
+  reject() {
+    this.FriendService.rejectFriendRequest(this.frId).then(() => {
+      this.actioncallback();
+    });
+  }
+
+  cancel() {
+    this.FriendService.cancelFriendRequest(this.frId).then(() => {
+      this.actioncallback();
+    });
+  }
+
+  request() {
+    this.FriendService.newFriendRequest(this.user._id).then(() => {
+      this.type = 'import_invite';
+      this.actioncallback();
+    });
+  }
+
+  invite() {
+    this.FriendService.inviteFriend(this.user.email).then(() => {
+      this.type = 'import_invite';
+      this.actioncallback();
+    });
   }
 
 }
+FriendCardController.$inject = ['FriendService', 'ConfirmService'];
 
 /*
-  Friend card has many types that determine behavior
-  and also determine expected inputs
+  Friend card has many types that determine look-and-feel, but uses
+  the FriendService to own most of its own behavior
   all types require a user, note that for invited
   users (who have no 'name' yet), pass email in as name
   in the user object:
     user: {_id: null, name: a@a.com, email: ''}
   ------------------------------------
   pending: inbound friend request is pending
-   inputs: accept and reject methods
+   inputs: frId
   sent: outbound friend request is pending
-   inputs: cancel method, frId
+   inputs: frId
   friend:  person is already your friend
    inputs: none atm TODO: add a remove friend system
   request: person is user but not your friend
-   inputs: request method to send friend request
   invite: person is not user and not your friend
-   inputs: invite method to send invite
   self: person is you -> inputs: none
+  -----
+  actionCallback -> let's components using friend cards indicate some
+  callback to be run upon completion of a friend-card action
 */
 
 const FriendCardComponent = {
@@ -43,11 +80,7 @@ const FriendCardComponent = {
     user: '<',
     type: '@',
     frId: '<',
-    accept: '<',
-    reject: '<',
-    cancel: '<',
-    request: '<',
-    invite: '<'
+    actionCallback: '<',
   },
   template: template,
   controller: FriendCardController
