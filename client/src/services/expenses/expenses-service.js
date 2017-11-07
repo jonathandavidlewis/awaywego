@@ -7,7 +7,7 @@ export default class ExpensesService {
     this.expenses = [];
     this.summary = {};
     this.transactions = [];
-    this.consolidatedTransactions = [];
+    this.consolidatedTransactions = '';
     this.filterBy = 'All';
 
     // Bindings
@@ -19,6 +19,7 @@ export default class ExpensesService {
     this.removeTransaction = this.removeTransaction.bind(this);
     this.settleTransaction = this.settleTransaction.bind(this);
     this.changeFilter = this.changeFilter.bind(this);
+    this.consolidateDebts = this.consolidateDebts.bind(this);
   }
 
   // Data Manipulation Methods
@@ -53,7 +54,7 @@ export default class ExpensesService {
   }
 
 
-  consolidateDebts(transactions) {
+  consolidateDebts() {
     let owes = {};
     let isOwed = {};
     let consolidatedTransactions = [];
@@ -61,7 +62,7 @@ export default class ExpensesService {
     // Iterate through all transactions and sum up what all people owe and are owed
 
     // Fill owes
-    transactions.forEach((transaction) => {
+    this.transactions.forEach((transaction) => {
       if (!owes[transaction.from] && owes[transaction.from] !== 0) {
         owes[transaction.from] = transaction.amount;
       } else {
@@ -91,6 +92,8 @@ export default class ExpensesService {
         }
       }
     }
+
+    // TODO: May be useful to filter and pre make equal transactions first to simplify transactions
 
     // Iterate through both arrays and create transactions, simplifying and deleting as needed
     for (let fromId in owes) {
