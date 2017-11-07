@@ -23,12 +23,11 @@
   justify-content: space-around;
 }
 
-.expenses-summary-header-title {
-  font-size: 1.2em;
-}
+
+.expenses-summary-header-title,
 .expenses-summary-header-amount-owe,
 .expenses-summary-header-amount-receive {
-  font-size: 1.2em;
+  font-size: 1.1em;
 }
 
 .expenses-summary-body {
@@ -37,8 +36,8 @@
 }
 
 .expenses-summary-body-container {
-  padding: 10px;
   flex: 1 0 auto;
+  padding: 10px 10px 0 10px;
 }
 
 
@@ -49,10 +48,16 @@
       0 1px 5px 0 rgba(0,0,0,0.2) !important;
   background-color: var(--lla);
   font-size: 0.9em;
-  padding: 5px;
+  padding: 10px;
   margin-bottom: 10px;
   display: flex;
   justify-content: center;
+  align-items: center;
+}
+.expenses-summary-mini-card-avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .expenses-summary-mini-card > div {
