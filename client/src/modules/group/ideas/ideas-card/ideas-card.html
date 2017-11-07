@@ -1,4 +1,5 @@
 <div class="ideas-card">
+  <spinner-box busy="$ctrl.busy"></spinner-box>
   <div class="ideas-card-event-container flex-col">
     <div class="ideas-card-main-container flex-col">
       <a class="ideas-card-header">{{$ctrl.EventService.events[$ctrl.eventId].title}}</a>
@@ -17,7 +18,7 @@
         </div>
         <div class="dropdown-menu dropdown-menu-right">
           <div class="dropdown-item"
-            ng-click="$ctrl.EventService.deleteEvent($ctrl.eventId)">
+            ng-click="$ctrl.handleDelete()">
             Delete Idea
           </div>
         </div>

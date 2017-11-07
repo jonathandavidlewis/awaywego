@@ -5,24 +5,32 @@ import template from './ideas-card.html';
 import './ideas-card.css';
 
 class IdeasCardController {
-  constructor(EventService, UserService, GroupService) {
+  constructor(EventService, UserService, GroupService, ConfirmService) {
     this.EventService = EventService;
     this.userId = UserService.user.id;
     this.groupOwner = GroupService.currentGroup.userId;
+    this.ConfirmService = ConfirmService;
+
+    this.busy = false;
 
     this.upVote = this.upVote.bind(this);
     this.downVote = this.downVote.bind(this);
-    this.handleDeleteClick = this.handleDeleteClick.bind(this);
-    this.handlePromoteClick = this.handlePromoteClick.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
     this.menuShouldAppear = this.menuShouldAppear.bind(this);
   }
 
-  handleDeleteClick() {
-    this.deleteEvent(this.eventId);
-  }
+  handleDelete() {
+    this.ConfirmService.openModal(
+      `Are you sure you want to delete event:
+       ${this.EventService.events[this.eventId].title}?`,
+      'This action cannot be undone', 'Yes'
+    ).then(() => {
+      this.busy = true;
+      this.EventService.deleteEvent(this.eventId).then(() => {
+        this.busy = false;
+      }).catch(() => this.busy = false);
+    });
 
-  handlePromoteClick() {
-    this.promoteEvent(this.eventId);
   }
 
   menuShouldAppear() {
@@ -39,14 +47,12 @@ class IdeasCardController {
   }
 }
 
-IdeasCardController.$inject = ['EventService', 'UserService', 'GroupService'];
+IdeasCardController.$inject = ['EventService', 'UserService', 'GroupService', 'ConfirmService'];
 
 const IdeasCardComponent = {
   restrict: 'E',
   bindings: {
-    eventId: '<',
-    deleteEvent: '<',
-    promoteEvent: '<'
+    eventId: '<'
   },
   template: template,
   controller: IdeasCardController
