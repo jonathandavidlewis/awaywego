@@ -2,18 +2,6 @@
   background-color: var(--m0);
 }
 
-.friends-section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: var(--m5);
-  font-size: 1.3em;
-  border-bottom: 1px solid var(--la);
-  background-color: var(--lt);
-  padding: 5px 10px;
-  margin-bottom: 10px;
-}
-
 .friends-add-form-mount {
   position: relative;
 }
@@ -22,6 +10,7 @@
   width: auto;
   font-size: .75em !important;
   padding: 5px 15px;
+  margin-bottom: 5px;
 }
 
 .no-friends {

@@ -1,6 +1,7 @@
-<div ng-click="$ctrl.closeForm()" class="friends-list-container h100">
+<div ng-click="$ctrl.closeForm()"
+  class="friends-list-container h100 full-window bgc-0">
   <div class="friends-section">
-    <div class="friends-section-header header-shadow">
+    <div class="friends-section-header header flex space-between">
       <span>Friends</span>
       <button ng-click="$ctrl.toggleForm($event)" class="awgd-button">
         Add friends
@@ -16,14 +17,14 @@
     ng-repeat="fr in $ctrl.FriendService.friendships"></friend-card>
   </div>
   <div ng-show="$ctrl.FriendService.inboundReqs.length > 0" class="friends-section">
-    <div class="friends-section-header">
+    <div class="friends-section-header header">
       <span>Pending Friend Requests</span>
     </div>
     <friend-card user="fr.from" fr-id="fr._id" type="pending"
       ng-repeat="fr in $ctrl.FriendService.inboundReqs"></friend-card>
   </div>
   <div ng-if="$ctrl.FriendService.sentReqs.length > 0" class="friends-section">
-    <div class="friends-section-header">
+    <div class="friends-section-header header">
       <span>Sent Friend Requests</span>
     </div>
     <friend-card user="fr.to" fr-id="fr._id" type="sent"
