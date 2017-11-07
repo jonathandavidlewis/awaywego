@@ -26,7 +26,7 @@ class CommentCardController {
       this.busy = true;
       this.EventService.removeCommentForEvent(this.eventId, this.comment._id)
         .finally(() => this.busy = false);
-    });
+    }).catch(() => {});
   }
 
   menuShouldAppear() {
