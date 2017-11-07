@@ -1,20 +1,3 @@
-.group-home-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  height: 100%;
-  padding: 10px;
-  background-color: var(--m0);
-  overflow: auto;
-}
-
-.group-home-title {
-  font-size: 1.4em;
-  color: var(--dk3);
-  border-bottom: 1px solid var(--la);
-  margin-bottom: 10px;
-}
-
 .group-home-buttons-container {
   flex-wrap: wrap;
 }
