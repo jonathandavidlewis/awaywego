@@ -8,7 +8,6 @@ class FriendCardController {
   constructor(FriendService, ConfirmService) {
     this.FriendService = FriendService;
     this.ConfirmService = ConfirmService;
-
     this.accept = this.accept.bind(this);
     this.reject = this.reject.bind(this);
     this.cancel = this.cancel.bind(this);
@@ -16,36 +15,42 @@ class FriendCardController {
     this.invite = this.invite.bind(this);
   }
 
+  $onInit() {
+    if (typeof this.actionCallback !== 'function') {
+      this.actionCallback = function() {};
+    }
+  }
+
   accept() {
     this.FriendService.acceptFriendRequest(this.frId).then(() => {
       this.type = 'import_invite';
-      this.actioncallback();
+      this.actionCallback();
     });
   }
 
   reject() {
     this.FriendService.rejectFriendRequest(this.frId).then(() => {
-      this.actioncallback();
+      this.actionCallback();
     });
   }
 
   cancel() {
     this.FriendService.cancelFriendRequest(this.frId).then(() => {
-      this.actioncallback();
+      this.actionCallback();
     });
   }
 
   request() {
     this.FriendService.newFriendRequest(this.user._id).then(() => {
       this.type = 'import_invite';
-      this.actioncallback();
+      this.actionCallback();
     });
   }
 
   invite() {
     this.FriendService.inviteFriend(this.user.email).then(() => {
       this.type = 'import_invite';
-      this.actioncallback();
+      this.actionCallback();
     });
   }
 

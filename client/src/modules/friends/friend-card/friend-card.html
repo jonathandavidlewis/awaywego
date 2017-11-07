@@ -8,21 +8,21 @@
   </div>
   <div class="friend-card-actions">
     <div ng-if="$ctrl.type === 'pending'" class="friend-card-pending-actions">
-      <i ng-click="$ctrl.accept($ctrl.frId)" class="material-icons">check</i>
-      <i ng-click="$ctrl.reject($ctrl.frId)" class="material-icons">cancel</i>
+      <i ng-click="$ctrl.accept()" class="material-icons">check</i>
+      <i ng-click="$ctrl.reject()" class="material-icons">cancel</i>
     </div>
     <div ng-if="$ctrl.type === 'sent'" class="friend-card-sent-actions">
-      <i  ng-click="$ctrl.cancel($ctrl.frId)" class="material-icons">cancel</i>
+      <i  ng-click="$ctrl.cancel()" class="material-icons">cancel</i>
     </div>
     <div ng-if="$ctrl.type === 'friend'" class="friend-card-friend-actions">
     </div>
     <div ng-if="$ctrl.type === 'request'" class="friend-card-friend-actions">
-      <button class="awgd-button" ng-click="$ctrl.request($ctrl.user._id)">
+      <button ng-click="$ctrl.request()" class="awgd-button">
         <span>Send</span>
       </button>
     </div>
     <div ng-if="$ctrl.type === 'invite'" class="friend-card-friend-actions">
-      <button class="awgd-button" ng-click="$ctrl.handleInvite($ctrl.user.email)">
+      <button ng-click="$ctrl.invite()" class="awgd-button">
         <span>Invite</span>
       </button>
     </div>
