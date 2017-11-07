@@ -8,6 +8,7 @@ class PeopleCardController {
   constructor(GroupService, ConfirmService) {
     this.GroupService = GroupService;
     this.ConfirmService = ConfirmService;
+    this.busy = false;
   }
 
   remove() {

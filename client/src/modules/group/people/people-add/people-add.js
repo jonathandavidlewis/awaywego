@@ -6,13 +6,15 @@ import template from './people-add.html';
 import './people-add.css';
 
 class PeopleAddController {
-  constructor(GroupService, FriendService, $state) {
+  constructor(GroupService, FriendService, UserService, $state) {
     this.search = '';
     this.GroupService = GroupService;
+    this.UserService = UserService;
     this.$state = $state;
     this.members = GroupService.currentGroup.members;
     this.friends = FriendService.friendships.map(fr => fr.to);
     this.availableFriends = this.getFriendsNotInGroup();
+    this.busy = false;
 
     this.toggleSelect = this.toggleSelect.bind(this);
     this.filterFriends = this.filterFriends.bind(this);
@@ -21,13 +23,13 @@ class PeopleAddController {
 
   getFriendsNotInGroup() {
     return _.differenceBy(this.friends, this.members, a => a._id).map(friend => {
-      return {user: friend, checked: false};
+      return {user: friend, selected: false};
     });
   }
 
   toggleSelect(userId) {
     let friend = this.availableFriends.find(avail => avail.user._id === userId);
-    friend.status = !friend.status;
+    friend.selected = !friend.selected;
   }
 
   filterFriends(val) {
@@ -42,17 +44,18 @@ class PeopleAddController {
 
   addToGroup() {
     let toAdd = this.availableFriends.reduce((res, fr) => {
-      if (fr.status) { res.push(fr.user._id); }
+      if (fr.selected) { res.push(fr.user._id); }
       return res;
     }, []);
     if (toAdd.length === 0) { return; }
+    this.busy = true;
     this.GroupService.addMembersToCurrentGroup(toAdd).then(() => {
       this.$state.go('^.list');
     });
   }
 
 }
-PeopleAddController.$inject = ['GroupService', 'FriendService', '$state'];
+PeopleAddController.$inject = ['GroupService', 'FriendService', 'UserService', '$state'];
 
 const PeopleAddComponent = {
   restrict: 'E',
