@@ -7,8 +7,7 @@
       </div>
       <div class="ideas-card-content-container flex-col">
         <div class="ideas-card-details-desc">
-          <span>{{$ctrl.EventService.events[$ctrl.eventId].description | limitTo:250}}</span>
-          <span ng-if="$ctrl.EventService.events[$ctrl.eventId].description.length > 250"><a ui-sref="^.idea({ideaId: $ctrl.EventService.events[$ctrl.eventId]._id})">{{' read more'}}</a></span>
+          <span>{{$ctrl.EventService.events[$ctrl.eventId].description}}</span>
         </div>
       </div>
       <div class="dropdown ideas-card-dropdown-container"
