@@ -1,14 +1,16 @@
-<div class="chat-container flex-col h100">
-  <div class="chat-header">
-    <span>Chat for {{$ctrl.GroupService.currentGroup.title}}</span>
-  </div>
-  <div class="chat-messages-container" ng-cloak>
-    <chat-message ng-repeat="message in $ctrl.ChatService.messages track by message._id"
-      repeat-complete="$ctrl.renderedMessages()"
-      id="{{'chat-msg-' + message._id}}"
-      self="message.user._id === $ctrl.UserService.user.id"
-      message="message" >
-    </chat-message>
+<div class="chat-container flex-col h100 bgc-0">
+  <div class="chat-window flex-window flex-col">
+    <div class="chat-header header">
+      <span>Chat for {{$ctrl.GroupService.currentGroup.title}}</span>
+    </div>
+    <div class="chat-messages-container flex-1 overflow" ng-cloak>
+      <chat-message ng-repeat="message in $ctrl.ChatService.messages track by message._id"
+        repeat-complete="$ctrl.renderedMessages()"
+        id="{{'chat-msg-' + message._id}}"
+        self="message.user._id === $ctrl.UserService.user.id"
+        message="message" >
+      </chat-message>
+    </div>
   </div>
   <div class="chat-status">{{$ctrl.ChatService.usersTyping|chatTyping}}</div>
   <chat-input handle-typing="$ctrl.handleTyping" submit="$ctrl.submit" msg="$ctrl.msg"></chat-input>
