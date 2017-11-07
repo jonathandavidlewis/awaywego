@@ -110,24 +110,26 @@ export default class ExpensesService {
 
     // Iterate through both arrays and create transactions, simplifying and deleting as needed
     for (let fromId in owes) {
-      while (owes[fromId]) {
-        for (let toId in isOwed) {
-          let transaction = {from: owes[fromId].from, to: isOwed[toId].to};
-          if (owes[fromId].amount < isOwed[toId].amount) {
-            transaction.amount = owes[fromId].amount;
-            isOwed[toId].amount -= transaction.amount;
-            delete owes[fromId];
-          } else if (owes[fromId].amount > isOwed[toId].amount) {
-            transaction.amount = isOwed[toId].amount;
-            owes[fromId].amount -= transaction.amount;
-            delete isOwed[toId];
-          } else if (owes[fromId].amount === isOwed[toId].amount) {
-            transaction.amount = isOwed[toId].amount;
-            delete owes[fromId];
-            delete isOwed[toId];
-          }
-          consolidatedTransactions.push(transaction);
+      for (let toId in isOwed) {
+        if (!owes[fromId]) {
+          break;
         }
+
+        let transaction = {from: owes[fromId].from, to: isOwed[toId].to};
+        if (owes[fromId].amount < isOwed[toId].amount) {
+          transaction.amount = owes[fromId].amount;
+          isOwed[toId].amount -= transaction.amount;
+          delete owes[fromId];
+        } else if (owes[fromId].amount > isOwed[toId].amount) {
+          transaction.amount = isOwed[toId].amount;
+          owes[fromId].amount -= transaction.amount;
+          delete isOwed[toId];
+        } else if (owes[fromId].amount === isOwed[toId].amount) {
+          transaction.amount = isOwed[toId].amount;
+          delete owes[fromId];
+          delete isOwed[toId];
+        }
+        consolidatedTransactions.push(transaction);
       }
     }
     return consolidatedTransactions;
