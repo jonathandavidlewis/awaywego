@@ -15,7 +15,7 @@ class FriendCardController {
     this.invite = this.invite.bind(this);
   }
 
-  $onInit() {
+  $onInit() { // set a default 'action callback' to do nothing
     if (typeof this.actionCallback !== 'function') {
       this.actionCallback = function() {};
     }
@@ -29,15 +29,21 @@ class FriendCardController {
   }
 
   reject() {
-    this.FriendService.rejectFriendRequest(this.frId).then(() => {
-      this.actionCallback();
-    });
+    this.ConfirmService.openModal(
+      'Are you sure you want to reject this friend request?', '',
+      'Yes', 'No'
+    ).then(() => this.FriendService.rejectFriendRequest(this.frId))
+      .then(() => this.actionCallback())
+      .catch(() => {});
   }
 
   cancel() {
-    this.FriendService.cancelFriendRequest(this.frId).then(() => {
-      this.actionCallback();
-    });
+    this.ConfirmService.openModal(
+      'Are you sure you want to cancel this friend request?', '',
+      'Yes', 'No'
+    ).then(() => this.FriendService.cancelFriendRequest(this.frId))
+      .then(() => this.actionCallback())
+      .catch(() => {});
   }
 
   request() {
