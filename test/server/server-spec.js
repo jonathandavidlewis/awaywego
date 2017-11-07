@@ -3,6 +3,7 @@ const axios = require('axios');
 const request = require('supertest');
 const jwt = require('jsonwebtoken');
 const User = require('../../db/models/user');
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"; //suppress unauthorized SSL rejection error from self-signed certificate
 
 require('../../server'); //gets the app started
 req = request('https://localhost:8443');
