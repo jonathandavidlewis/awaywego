@@ -1,7 +1,6 @@
 import angular from 'angular';
 
 // imports for this module
-import FriendsNavComponent from './friends-nav/friends-nav.js';
 import FriendsListComponent from './friends-list/friends-list.js';
 import FriendsAddComponent from './friends-add/friends-add.js';
 import FriendCardComponent from './friend-card/friend-card.js';
@@ -23,7 +22,6 @@ const FriendsComponent = {
 
 const FriendsModule = angular.module('app.friends', [])
   .component('friends', FriendsComponent)
-  .component('friendsNav', FriendsNavComponent)
   .component('friendsList', FriendsListComponent)
   .component('friendsAdd', FriendsAddComponent)
   .component('friendCard', FriendCardComponent);
