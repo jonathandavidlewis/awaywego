@@ -73,16 +73,16 @@ export default class ExpensesService {
     let consolidatedTransactions = [];
 
     // Iterate through all transactions and sum up what all people owe and are owed
-    console.log('transactions', this.transactions);
+
     // Fill owes
     this.transactions.forEach((transaction) => {
-      if (!owes[transaction.from._id] && owes[transaction.from._id] !== 0) {
+      if (!owes[transaction.from._id]) {
         owes[transaction.from._id] = {from: transaction.from, amount: transaction.amount};
       } else {
         owes[transaction.from._id].amount += transaction.amount;
       }
       // Fill isOwed
-      if (!isOwed[transaction.to._id] && owes[transaction.to._id] !== 0) {
+      if (!isOwed[transaction.to._id]) {
         isOwed[transaction.to._id] = {to: transaction.to, amount: transaction.amount};
       } else {
         isOwed[transaction.to._id].amount += transaction.amount;
@@ -130,7 +130,6 @@ export default class ExpensesService {
         }
       }
     }
-    console.log('owes', owes, 'consTrans', consolidatedTransactions);
     return consolidatedTransactions;
   }
 
@@ -194,7 +193,6 @@ export default class ExpensesService {
       this.transactions = this.filterTransactions();
       this.consolidatedTransactions = this.consolidateDebts();
       this.consolidatedSummary = this.consolidateSummary();
-      console.log('consolidated transactions: ', this.consolidatedTransactions);
     });
   }
 
