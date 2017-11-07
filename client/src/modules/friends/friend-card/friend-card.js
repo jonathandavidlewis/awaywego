@@ -8,6 +8,7 @@ class FriendCardController {
   constructor(FriendService, ConfirmService) {
     this.FriendService = FriendService;
     this.ConfirmService = ConfirmService;
+    this.busy = false;
     this.accept = this.accept.bind(this);
     this.reject = this.reject.bind(this);
     this.cancel = this.cancel.bind(this);
@@ -22,42 +23,53 @@ class FriendCardController {
   }
 
   accept() {
+    this.busy = true;
     this.FriendService.acceptFriendRequest(this.frId).then(() => {
       this.type = 'import_invite';
       this.actionCallback();
-    });
+    }).finally(() => this.busy = false);
   }
 
   reject() {
     this.ConfirmService.openModal(
       'Are you sure you want to reject this friend request?', '',
       'Yes', 'No'
-    ).then(() => this.FriendService.rejectFriendRequest(this.frId))
+    ).then(() => {
+      this.busy = true;
+      return this.FriendService.rejectFriendRequest(this.frId);
+    })
       .then(() => this.actionCallback())
-      .catch(() => {});
+      .catch(() => {})
+      .finally(() => this.busy = false);
   }
 
   cancel() {
     this.ConfirmService.openModal(
       'Are you sure you want to cancel this friend request?', '',
       'Yes', 'No'
-    ).then(() => this.FriendService.cancelFriendRequest(this.frId))
+    ).then(() => {
+      this.busy = true;
+      return this.FriendService.cancelFriendRequest(this.frId);
+    })
       .then(() => this.actionCallback())
-      .catch(() => {});
+      .catch(() => {})
+      .finally(() => this.busy = false);
   }
 
   request() {
+    this.busy = true;
     this.FriendService.newFriendRequest(this.user._id).then(() => {
       this.type = 'import_invite';
       this.actionCallback();
-    });
+    }).finally(() => this.busy = false);
   }
 
   invite() {
+    this.busy = true;
     this.FriendService.inviteFriend(this.user.email).then(() => {
       this.type = 'import_invite';
       this.actionCallback();
-    });
+    }).finally(() => this.busy = false);
   }
 
 }
