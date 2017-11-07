@@ -5,16 +5,16 @@
     <i class="material-icons">account_circle</i>
   </div>
   <div class="people-card-content">
-    <div class="people-card-name">{{$ctrl.user.name}}</div>
-    <div class="people-card-email">{{$ctrl.user.email}}</div>
+    <div class="people-card-name">{{$ctrl.member.name}}</div>
+    <div class="people-card-email">{{$ctrl.member.email}}</div>
   </div>
-  <div ng-if="!$ctrl.owner && !$ctrl.self" class="people-card-actions">
+  <div ng-if="$ctrl.canRemoveOrSelect()" class="people-card-actions">
     <div ng-if="$ctrl.type === 'member'" class="people-card-actions-icon-container">
       <i ng-click="$ctrl.remove($ctrl.user._id)" class="material-icons">clear</i>
     </div>
     <div ng-if="$ctrl.type === 'select'" class="people-card-actions-icon-container">
-      <i ng-if="$ctrl.checked" class="material-icons">check_box</i>
-      <i ng-if="!$ctrl.checked" class="material-icons">check_box_outline_blank</i>
+      <i ng-if="$ctrl.selected" class="material-icons">check_box</i>
+      <i ng-if="!$ctrl.selected" class="material-icons">check_box_outline_blank</i>
     </div>
   </div>
 </div>
