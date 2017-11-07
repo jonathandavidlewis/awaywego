@@ -18,8 +18,9 @@
   position: relative;
 }
 
-.friends-section-header .material-icons {
-  cursor: pointer;
+.friends-section-header .awgd-button {
+  width: 130px;
+  font-size: .8em !important;
 }
 
 .no-friends {

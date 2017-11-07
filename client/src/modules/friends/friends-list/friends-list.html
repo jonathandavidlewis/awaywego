@@ -2,7 +2,10 @@
   <div class="friends-section">
     <div class="friends-section-header header-shadow">
       <span>Friends</span>
-      <i ng-click="$ctrl.toggleForm($event)" class="material-icons">add_circle</i>
+      <button ng-click="$ctrl.toggleForm($event)" class="awgd-button">
+        Add friends
+      </button>
+      <!-- <i class="material-icons">add_circle</i> -->
     </div>
     <div ng-if="$ctrl.newFriendOpen" class="friends-add-form-mount">
       <friends-add close-form="$ctrl.closeForm"></friends-add>
