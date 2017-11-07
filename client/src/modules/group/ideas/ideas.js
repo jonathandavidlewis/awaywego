@@ -14,27 +14,11 @@ import template from './ideas.html';
 import './ideas.css';
 
 class IdeasController {
-  constructor(EventService, GroupService) {
+  constructor(EventService) {
     this.EventService = EventService;
-    this.groupId = GroupService.currentGroup._id;
-
-    this.deleteEvent = this.deleteEvent.bind(this);
-    this.promoteEvent = this.promoteEvent.bind(this);
-  }
-
-  deleteEvent(eventId) {
-    this.EventService.deleteEvent(eventId).then(() => {
-      this.EventService.loadEventsByGroupId(this.groupId);
-    });
-  }
-
-  promoteEvent(eventId) {
-    this.EventService.promoteEvent(eventId).then(() => {
-      this.EventService.loadEventsByGroupId(this.groupId);
-    });
   }
 }
-IdeasController.$inject = ['EventService', 'GroupService'];
+IdeasController.$inject = ['EventService'];
 
 const IdeasComponent = {
   restrict: 'E',
