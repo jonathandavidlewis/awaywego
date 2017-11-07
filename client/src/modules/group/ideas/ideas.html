@@ -1,5 +1,12 @@
-<div class="ideas-container">
+<div class="ideas-container full-window flex-col flex-align-center bgc-0 overflow">
+  <div class="ideas-title header"><span>Ideas</span></div>
   <ideas-card event-id="idea._id" ng-repeat="idea in $ctrl.EventService.ideas"/>
-  <new-idea-button events="$ctrl.EventService.ideas" ng-if="$ctrl.EventService.ideas.length === 0" class="new-idea-button button-center"></new-idea-button>
-  <new-idea-button events="$ctrl.EventService.ideas" ng-if="$ctrl.EventService.ideas.length" class="new-idea-button button-bottom"></new-idea-button>
+  <new-idea-button ng-if="$ctrl.EventService.ideas.length === 0"
+     class="new-idea-button button-center"
+     events="$ctrl.EventService.ideas">
+  </new-idea-button>
+  <new-idea-button ng-if="$ctrl.EventService.ideas.length"
+    class="new-idea-button button-bottom"
+    events="$ctrl.EventService.ideas">
+  </new-idea-button>
 </div>
