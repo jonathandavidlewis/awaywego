@@ -28,6 +28,10 @@ Kent Shephard
 - [Google Cloud API Application](https://console.cloud.google.com/home/dashboard)
   - [People API](https://console.cloud.google.com/apis/library/people.googleapis.com/?q=people)
 
+### SSL Certificate
+The certificate and private key included are primarily for testing purposes. If you are going to deploy securely, you will need to aquire new credentials
+[A helpful guide on aquiring an SSL certificate](https://startupnextdoor.com/how-to-obtain-and-renew-ssl-certs-with-lets-encrypt-on-node-js/)
+
 ### Credentials
 Credentials are stored in keys.config.js in the following format:
 ```javascript
