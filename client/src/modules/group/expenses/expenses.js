@@ -11,6 +11,7 @@ import TransactionCardComponent from './expenses-main/transaction-card/transacti
 import ExpensesAddComponent from './expenses-add/expenses-add';
 import ExpensesAddPeopleComponent from './expenses-add/expenses-add-people/expenses-add-people';
 import ExpensesAddPeopleCardComponent from './expenses-add/expenses-add-people/expenses-add-people-card/expenses-add-people-card';
+import ExpensesSummaryComponent from './expenses-main/expenses-summary/expenses-summary';
 import ExpensesSummaryBarComponent from './expenses-main/expenses-summary-bar/expenses-summary-bar';
 import ExpensesFeedComponent from './expenses-main/expenses-feed/expenses-feed';
 import ExpensesFeedCardComponent from './expenses-main/expenses-feed/expenses-feed-card/expenses-feed-card';
@@ -41,6 +42,7 @@ const ExpensesModule = angular.module('app.group.expenses', [])
   .component('expensesAdd', ExpensesAddComponent)
   .component('expensesAddPeople', ExpensesAddPeopleComponent)
   .component('expensesAddPeopleCard', ExpensesAddPeopleCardComponent)
+  .component('expensesSummary', ExpensesSummaryComponent)
   .component('expensesSummaryBar', ExpensesSummaryBarComponent)
   .component('expensesFeed', ExpensesFeedComponent)
   .component('expensesFeedCard', ExpensesFeedCardComponent)

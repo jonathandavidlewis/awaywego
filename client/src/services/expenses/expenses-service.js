@@ -60,19 +60,19 @@ export default class ExpensesService {
     let consolidatedTransactions = [];
 
     // Iterate through all transactions and sum up what all people owe and are owed
-
+    console.log('transactions', this.transactions);
     // Fill owes
     this.transactions.forEach((transaction) => {
-      if (!owes[transaction.from] && owes[transaction.from] !== 0) {
-        owes[transaction.from] = transaction.amount;
+      if (!owes[transaction.from._id] && owes[transaction.from._id] !== 0) {
+        owes[transaction.from._id] = {from: transaction.from, amount: transaction.amount};
       } else {
-        owes[transaction.from] += transaction.amount;
+        owes[transaction.from._id].amount += transaction.amount;
       }
       // Fill isOwed
-      if (!isOwed[transaction.to] && owes[transaction.to] !== 0) {
-        isOwed[transaction.to] = transaction.amount;
+      if (!isOwed[transaction.to._id] && owes[transaction.to._id] !== 0) {
+        isOwed[transaction.to._id] = {to: transaction.to, amount: transaction.amount};
       } else {
-        isOwed[transaction.to] += transaction.amount;
+        isOwed[transaction.to._id].amount += transaction.amount;
       }
     });
 
@@ -80,13 +80,13 @@ export default class ExpensesService {
     for (let id in owes) {
       if (isOwed[id] || isOwed[id] === 0) {
         // Check if one is bigger
-        if (owes[id] > isOwed[id]) {
-          owes[id] -= isOwed[id];
+        if (owes[id].amount > isOwed[id].amount) {
+          owes[id].amount -= isOwed[id].amount;
           delete isOwed[id];
-        } else if (owes[id] < isOwed[id]) {
-          isOwed[id] -= owes[id];
+        } else if (owes[id].amount < isOwed[id].amount) {
+          isOwed[id].amount -= owes[id].amount;
           delete owes[id];
-        } else if (owes[id] === isOwed[id]) {
+        } else if (owes[id].amount === isOwed[id].amount) {
           delete owes[id];
           delete isOwed[id];
         }
@@ -99,17 +99,17 @@ export default class ExpensesService {
     for (let fromId in owes) {
       while (owes[fromId]) {
         for (let toId in isOwed) {
-          let transaction = {from: fromId, to: toId};
-          if (owes[fromId] < isOwed[toId]) {
-            transaction.amount = owes[fromId];
-            isOwed[toId] -= transaction.amount;
+          let transaction = {from: owes[fromId].from, to: isOwed[toId].to};
+          if (owes[fromId].amount < isOwed[toId].amount) {
+            transaction.amount = owes[fromId].amount;
+            isOwed[toId].amount -= transaction.amount;
             delete owes[fromId];
-          } else if (owes[fromId] > isOwed[toId]) {
-            transaction.amount = isOwed[toId];
-            owes[fromId] -= transaction.amount;
+          } else if (owes[fromId].amount > isOwed[toId].amount) {
+            transaction.amount = isOwed[toId].amount;
+            owes[fromId].amount -= transaction.amount;
             delete isOwed[toId];
-          } else if (owes[fromId] === isOwed[toId]) {
-            transaction.amount = isOwed[toId];
+          } else if (owes[fromId].amount === isOwed[toId].amount) {
+            transaction.amount = isOwed[toId].amount;
             delete owes[fromId];
             delete isOwed[toId];
           }
@@ -117,7 +117,8 @@ export default class ExpensesService {
         }
       }
     }
-    this.consolidatedTransactions = consolidatedTransactions;
+    console.log('owes', owes, 'consTrans', consolidatedTransactions);
+    return consolidatedTransactions;
   }
 
 
@@ -164,6 +165,8 @@ export default class ExpensesService {
       this.expenses = res.data;
       this.summary = this.calculateDebts();
       this.transactions = this.filterTransactions();
+      this.consolidatedTransactions = this.consolidateDebts();
+      console.log('consolidated transactions: ', this.consolidatedTransactions);
     });
   }
 
