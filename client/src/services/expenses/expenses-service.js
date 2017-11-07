@@ -7,6 +7,7 @@ export default class ExpensesService {
     this.expenses = [];
     this.summary = {};
     this.transactions = [];
+    this.consolidatedTransactions = [];
     this.filterBy = 'All';
 
     // Bindings
@@ -51,28 +52,71 @@ export default class ExpensesService {
     return {owed: this.roundMoney(owed), debt: this.roundMoney(debt), balance: this.roundMoney(owed - debt)};
   }
 
-  simplifyDebts() {
-    let debts = {};
+
+  consolidateDebts(transactions) {
+    let owes = {};
+    let isOwed = {};
+    let consolidatedTransactions = [];
+
+    // Iterate through all transactions and sum up what all people owe and are owed
+
+    // Fill owes
     transactions.forEach((transaction) => {
-      // Exists in from and to : Update amount
-      if (debts[transaction.from] && debts[transaction.from][transaction.to] !== undefined && !(debts[transaction.to] && debts[transaction.to][transaction.from])) {
-        debts[transaction.from][transaction.to] += transaction.amount;
-      } else if (debts[transaction.to] && debts[transaction.to][transaction.from] !== undefined) {
-        debts[transaction.to][transaction.from] -= transaction.amount;
-      } else if (!debts[transaction.from]) {
-        debts[transaction.from] = {[transaction.to]: transaction.amount};
+      if (!owes[transaction.from] && owes[transaction.from] !== 0) {
+        owes[transaction.from] = transaction.amount;
       } else {
-        debts[transaction.from][transaction.to] = transaction.amount;
+        owes[transaction.from] += transaction.amount;
+      }
+      // Fill isOwed
+      if (!isOwed[transaction.to] && owes[transaction.to] !== 0) {
+        isOwed[transaction.to] = transaction.amount;
+      } else {
+        isOwed[transaction.to] += transaction.amount;
       }
     });
-    return debts;
+
+    // Iterate through owes Array, find corresponding key if possible in isOwed Array and cancel out transactions with same ID
+    for (let id in owes) {
+      if (isOwed[id] || isOwed[id] === 0) {
+        // Check if one is bigger
+        if (owes[id] > isOwed[id]) {
+          owes[id] -= isOwed[id];
+          delete isOwed[id];
+        } else if (owes[id] < isOwed[id]) {
+          isOwed[id] -= owes[id];
+          delete owes[id];
+        } else if (owes[id] === isOwed[id]) {
+          delete owes[id];
+          delete isOwed[id];
+        }
+      }
+    }
+
+    // Iterate through both arrays and create transactions, simplifying and deleting as needed
+    for (let fromId in owes) {
+      while (owes[fromId]) {
+        for (let toId in isOwed) {
+          let transaction = {from: fromId, to: toId};
+          if (owes[fromId] < isOwed[toId]) {
+            transaction.amount = owes[fromId];
+            isOwed[toId] -= transaction.amount;
+            delete owes[fromId];
+          } else if (owes[fromId] > isOwed[toId]) {
+            transaction.amount = isOwed[toId];
+            owes[fromId] -= transaction.amount;
+            delete isOwed[toId];
+          } else if (owes[fromId] === isOwed[toId]) {
+            transaction.amount = isOwed[toId];
+            delete owes[fromId];
+            delete isOwed[toId];
+          }
+          consolidatedTransactions.push(transaction);
+        }
+      }
+    }
+    this.consolidatedTransactions = consolidatedTransactions;
   }
 
-
-  consolidateDebts() {
-
-
-  }
 
   // Angular filtering Methods
 
