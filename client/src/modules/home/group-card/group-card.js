@@ -12,10 +12,6 @@ class GroupCardController {
     this.busy = false;
   }
 
-  amBusy() { this.busy = true; }
-
-  notBusy() { this.busy = false; }
-
   canLeave() { return this.UserService.user.id !== this.group.userId; }
 
   canDelete() { return this.UserService.user.id === this.group.userId; }
@@ -25,9 +21,9 @@ class GroupCardController {
       'Are you sure you want to delete this group?',
       'This action cannot be undone', 'Yes'
     ).then(() => {
-      this.GroupService.deleteGroupById(this.group._id).then(() => {
-        this.notBusy();
-      });
+      this.busy = true;
+      this.GroupService.deleteGroupById(this.group._id)
+        .finally(() => this.busy = false);
     }).catch(() => {});
   }
 
@@ -36,10 +32,9 @@ class GroupCardController {
       'Are you sure you want to leave this group?',
       'This action cannot be undone', 'Yes'
     ).then(() => {
-      this.amBusy();
-      this.GroupService.leaveGroup($ctrl.group._id).then(() => {
-        this.notBusy();
-      });
+      this.busy = true;
+      this.GroupService.leaveGroup($ctrl.group._id)
+        .finally(() => this.busy = false);
     }).catch(() => {});
   }
 }

@@ -26,11 +26,9 @@ class IdeasCardController {
       'This action cannot be undone', 'Yes'
     ).then(() => {
       this.busy = true;
-      this.EventService.deleteEvent(this.eventId).then(() => {
-        this.busy = false;
-      }).catch(() => this.busy = false);
-    });
-
+      this.EventService.deleteEvent(this.eventId)
+        .finally(() => this.busy = false);
+    }).catch(() => {});
   }
 
   menuShouldAppear() {

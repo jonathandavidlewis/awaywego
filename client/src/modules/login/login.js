@@ -17,17 +17,13 @@ class LoginController {
     this.busy = false;
   }
 
-  amBusy() { this.busy = true; }
-
-  notBusy() { this.busy = false; }
-
   login() {
-    this.amBusy();
+    this.busy = true;
     if (this.validateForm()) {
       this.UserService.login(this.email, this.password).then(loggedIn => {
         if (loggedIn) {
-          this.$state.go('app.home');
-        } else {
+          return this.$state.go('app.home');
+        } else { // this error should never happen!
           console.log('Login error, please try again or contact server admin');
         }
       }).catch(err => {
@@ -36,10 +32,9 @@ class LoginController {
         } else if (err.data.messages === 'User not found') {
           this.formWarning = 'User not found, please try again';
         }
-        this.notBusy();
-      });
+      }).finally(() => this.busy = false);
     } else { // not busy right away if validate fails
-      this.notBusy();
+      this.busy = false;
     }
   }
 

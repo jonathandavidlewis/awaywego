@@ -16,12 +16,8 @@ class SignupController {
     this.busy = false;
   }
 
-  amBusy() { this.busy = true; }
-
-  notBusy() { this.busy = false; }
-
   signup() {
-    this.amBusy();
+    this.busy = true;
     if (this.validateForm()) {
       let newUser = {
         name: this.name,
@@ -30,18 +26,17 @@ class SignupController {
       };
       this.UserService.signup(newUser).then(loggedIn => {
         if (loggedIn) {
-          this.$state.go('app.home');
-        } else {
+          return this.$state.go('app.home');
+        } else { // this should never happen!
           console.log('Login error, please try again or contact server admin');
         }
       }).catch(err => {
         if (err.status === 422) {
           this.formWarning = 'Email already registered, check again or try signing in';
-        } else {
+        } else { // this error should also never happen!
           console.log('Error: ', err);
         }
-        this.notBusy();
-      });
+      }).finally(() => this.busy = false);
     } else { // not busy right away if validate fails
       this.notBusy();
     }
