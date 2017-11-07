@@ -42,5 +42,3 @@ ignore
 keys.config.js
 keys.config.bak
 ./keys.config.js
-/fullchain.pem
-/privkey.pem

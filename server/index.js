@@ -8,17 +8,10 @@ const chatSockets = require('./sockets/group-chat-sockets.js');
 const eventSockets = require('./sockets/event-sockets.js');
 const fs = require('fs');
 
-const credentials = {};
-
-if (process.env.HTTPS_CERT) {
-  credentials.key = process.env.HTTPS_KEY;
-  credentials.cert = process.env.HTTPS_CERT;
-} else {
-  credentials.key = fs.readFileSync('privkey.pem');
-  cerdentials.cert = fs.readFileSync('fullchain.pem');
-}
-console.log(process.env.HTTPS_CERT);
-console.log(process.env.HTTPS_KEY);
+const credentials = {
+  key: fs.readFileSync('privkey.pem'),
+  cert: fs.readFileSync('fullchain.pem')
+};
 
 const httpsServer = https.createServer(credentials, app);
 const io = socketio(httpsServer);
