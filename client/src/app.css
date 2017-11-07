@@ -11,9 +11,19 @@ html, body {
 
 .h100 { height: 100%; }
 
+.bgc-0 {
+  background-color: var(--m0);
+}
+
 .flex-window {
   flex: 1 0 0;
   min-height: 0;
+  padding: 10px;
+}
+
+.full-window {
+  height: 100%;
+  padding: 10px;
 }
 
 .header-shadow {
