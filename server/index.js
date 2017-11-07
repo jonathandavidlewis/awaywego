@@ -20,7 +20,8 @@ chatSockets(io);
 eventSockets(io);
 
 const httpsRedirect = http.createServer((req, res) => {
-  res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url }).end();
+  res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
+  res.end();
 });
 
 httpsRedirect.listen(port, () => console.log('http listening on port:', port, 'to redirect to https'));
