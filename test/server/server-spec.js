@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../../db/models/user');
 
 require('../../server'); //gets the app started
-req = request('http://localhost:8080');
+req = request('https://localhost:8443');
 
 const TEST_USER = {
   name: 'jim',
