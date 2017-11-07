@@ -1,18 +1,22 @@
 <div class="expenses-summary-card">
   <div class="expenses-summary-header">
-    <div class="expenses-summary-header-item">You owe:
-      <div class="expenses-summary-header-amount">$45.00</div>
+    <div class="expenses-summary-header-item">You Pay:
+      <div class="expenses-summary-header-amount">{{$ctrl.ExpensesService.consolidatedSummary.owe | currency:"$"}}</div>
     </div>
-    <div class="expenses-summary-header-item">You receive:
-      <div class="expenses-summary-header-amount">$75.00</div>
+    <div class="expenses-summary-header-item">You Receive:
+      <div class="expenses-summary-header-amount">{{$ctrl.ExpensesService.consolidatedSummary.receive | currency:"$"}}</div>
     </div>
   </div>
   <div class="expenses-summary-body">
     <div class="expenses-summary-body-container">
-      <transaction-card ng-repeat="transaction in $ctrl.ExpensesService.consolidatedTransactions" transaction="transaction" />
+      <div class="expenses-summary-mini-card" ng-repeat="transaction in $ctrl.ExpensesService.consolidatedTransactions | filter: $ctrl.ExpensesService.filterByOwedTo" transaction="transaction" >
+        You owe {{transaction.amount | currency:"$"}} to {{transaction.to.name}}
+      </div>
     </div>
     <div class="expenses-summary-body-container">
-      <transaction-card ng-repeat="transaction in $ctrl.ExpensesService.consolidatedTransactions" transaction="transaction" />
+      <div class="expenses-summary-mini-card" ng-repeat="transaction in $ctrl.ExpensesService.consolidatedTransactions | filter: $ctrl.ExpensesService.filterByOwed" transaction="transaction" >
+        {{transaction.from.name}} owes you {{transaction.amount | currency:"$"}}
+      </div>
     </div>
 
   </div>

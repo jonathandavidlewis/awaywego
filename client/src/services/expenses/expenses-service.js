@@ -4,11 +4,20 @@ export default class ExpensesService {
     this.http = $http;
     this.stateParams = $stateParams;
     this.UserService = UserService;
+
+    // Expenses Overview
     this.expenses = [];
+
+    // Summary Bar
     this.summary = {};
+
+    // Transaction Page
     this.transactions = [];
-    this.consolidatedTransactions = '';
     this.filterBy = 'All';
+
+    // Expenses Summary
+    this.consolidatedTransactions = '';
+    this.consolidatedSummary = '';
 
     // Bindings
     this.calculateDebts = this.calculateDebts.bind(this);
@@ -19,7 +28,11 @@ export default class ExpensesService {
     this.removeTransaction = this.removeTransaction.bind(this);
     this.settleTransaction = this.settleTransaction.bind(this);
     this.changeFilter = this.changeFilter.bind(this);
+    this.filterByOwed = this.filterByOwed.bind(this);
+    this.filterByOwedTo = this.filterByOwedTo.bind(this);
+    this.filterByExpenseId = this.filterByExpenseId.bind(this);
     this.consolidateDebts = this.consolidateDebts.bind(this);
+    this.consolidateSummary = this.consolidateSummary.bind(this);
   }
 
   // Data Manipulation Methods
@@ -121,6 +134,20 @@ export default class ExpensesService {
     return consolidatedTransactions;
   }
 
+  consolidateSummary() {
+    let owe = 0;
+    let receive = 0;
+    this.consolidatedTransactions.forEach((transaction) => {
+      if (transaction.from._id === this.UserService.user.id) {
+        owe += transaction.amount;
+      }
+      if (transaction.to._id === this.UserService.user.id) {
+        receive += transaction.amount;
+      }
+    });
+    return {owe: owe, receive: receive};
+  }
+
 
   // Angular filtering Methods
 
@@ -166,6 +193,7 @@ export default class ExpensesService {
       this.summary = this.calculateDebts();
       this.transactions = this.filterTransactions();
       this.consolidatedTransactions = this.consolidateDebts();
+      this.consolidatedSummary = this.consolidateSummary();
       console.log('consolidated transactions: ', this.consolidatedTransactions);
     });
   }
