@@ -12,7 +12,7 @@ const credentials = {};
 
 if (process.env.HTTPS_CERT) {
   credentials.key = process.env.HTTPS_KEY;
-  credentials.cert = process.env.HTTPS_CERTl;
+  credentials.cert = process.env.HTTPS_CERT;
 } else {
   credentials.key = fs.readFileSync('privkey.pem');
   cerdentials.cert = fs.readFileSync('fullchain.pem');
