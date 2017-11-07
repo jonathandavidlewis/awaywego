@@ -12,6 +12,7 @@ class PeopleListController {
     this.groupOwner = '';
     this.groupMembers = [];
     this.refreshGroup();
+    this.busy = false;
     this.remove = this.remove.bind(this);
   }
 
@@ -25,8 +26,10 @@ class PeopleListController {
       'Are you sure you want to remove this user from the group?',
       'This action cannot be undone', 'Yes'
     ) .then(() => {
+      this.busy = true;
       this.GroupService.removeMemberFromCurrentGroup(userId)
-        .then(() => this.refreshGroup());
+        .then(() => this.refreshGroup())
+        .finally(() => this.busy = false);
     }).catch(() => {});
   }
 
