@@ -17,7 +17,8 @@ if (process.env.HTTPS_CERT) {
   credentials.key = fs.readFileSync('privkey.pem');
   cerdentials.cert = fs.readFileSync('fullchain.pem');
 }
-console.log(typeof process.env.HTTPS_CERT);
+console.log(process.env.HTTPS_CERT);
+console.log(process.env.HTTPS_KEY);
 
 const httpsServer = https.createServer(credentials, app);
 const io = socketio(httpsServer);
