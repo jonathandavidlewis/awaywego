@@ -1,7 +1,7 @@
 <div class="ideas-card">
   <div class="ideas-card-event-container flex-col">
     <div class="ideas-card-main-container flex-col">
-      <a class="ideas-card-header" ui-sref="^.idea({ideaId: $ctrl.EventService.events[$ctrl.eventId]._id})">{{$ctrl.EventService.events[$ctrl.eventId].title}}</a>
+      <a class="ideas-card-header">{{$ctrl.EventService.events[$ctrl.eventId].title}}</a>
       <div class="ideas-card-image-container">
         <img class="ideas-card-image" ng-src="{{$ctrl.EventService.events[$ctrl.eventId].imageUrl}}" alt="EventPicture"/>
       </div>
