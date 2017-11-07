@@ -13,6 +13,7 @@ class FriendsAddController {
     this.searchStatus = '';
     this.frCard = null;
 
+    this.addBusy = false;
     this.searchForFriend = this.searchForFriend.bind(this);
   }
 
@@ -35,6 +36,7 @@ class FriendsAddController {
       this.searchStatus = friend.status;
       this.frCard = friend.fr;
     } else {
+      this.addBusy = true;
       this.FriendService.findUserByEmail(email).then(user => {
         if (user) {
           this.searchStatus = 'foundUser';
@@ -43,6 +45,7 @@ class FriendsAddController {
           this.searchStatus = 'invite';
           this.frCard = {_id: null, to: {email: email}};
         }
+        this.addBusy = false;
       });
     }
   }
