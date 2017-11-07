@@ -9,8 +9,8 @@ const eventSockets = require('./sockets/event-sockets.js');
 const fs = require('fs');
 
 const credentials = {
-  key: fs.readFileSync('privkey.pem'),
-  cert: fs.readFileSync('fullchain.pem')
+  key: process.env.HTTPS_KEY || fs.readFileSync('privkey.pem'),
+  cert: process.env.HTTPS_CERT || fs.readFileSync('fullchain.pem')
 };
 
 const httpsServer = https.createServer(credentials, app);
