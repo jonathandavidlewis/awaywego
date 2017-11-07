@@ -10,6 +10,7 @@ html, body {
 }
 
 .h100 { height: 100%; }
+.w100 { width: 100%; }
 
 .bgc-0 {
   background-color: var(--m0);
@@ -19,11 +20,23 @@ html, body {
   flex: 1 0 0;
   min-height: 0;
   padding: 10px;
+  overflow: auto;
 }
 
 .full-window {
   height: 100%;
   padding: 10px;
+  overflow: auto;
+}
+
+.header {
+  text-align: left;
+  font-size: 1.4em;
+  padding-left: 5px;
+  color: var(--dk3);
+  border-bottom: 1px solid var(--la);
+  margin-bottom: 10px;
+  width: 100%;
 }
 
 .header-shadow {
@@ -117,6 +130,6 @@ html, body {
 .flex-align-start { align-items: flex-start; }
 .flex-align-end { align-items: flex-end; }
 .flex-align-stretch { align-items: stretch; }
-.flex-1 { flex: 1 }
-.flex-0 { flex: 0 }
+.flex-1 { flex: 1 0 0; }
+.flex-0 { flex: 0; }
 .overflow { overflow: auto; }
