@@ -20,7 +20,7 @@ chatSockets(io);
 eventSockets(io);
 
 const httpsRedirect = http.createServer((req, res) => {
-  res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
+  res.writeHead(301, { 'Location': 'https://' + req.headers['host'] + req.url });
   res.end();
 });
 
