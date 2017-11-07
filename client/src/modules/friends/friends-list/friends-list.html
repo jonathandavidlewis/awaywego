@@ -18,7 +18,6 @@
       <span>Pending Friend Requests</span>
     </div>
     <friend-card user="fr.from" fr-id="fr._id" type="pending"
-      accept="$ctrl.acceptFriend" reject="$ctrl.rejectFriend"
       ng-repeat="fr in $ctrl.FriendService.inboundReqs"></friend-card>
   </div>
   <div ng-if="$ctrl.FriendService.sentReqs.length > 0" class="friends-section">
@@ -26,7 +25,6 @@
       <span>Sent Friend Requests</span>
     </div>
     <friend-card user="fr.to" fr-id="fr._id" type="sent"
-      cancel="$ctrl.cancelFriend"
       ng-repeat="fr in $ctrl.FriendService.sentReqs"></friend-card>
   </div>
 </div>
