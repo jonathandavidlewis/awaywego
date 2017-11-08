@@ -22,7 +22,7 @@
         <label for="idea-end-time">End:</label>
         <div class="date-time">
           <mdp-date-picker class="picker" mdp-placeholder="Date" mdp-format="MM/DD/YYYY" ng-model="$ctrl.endTime"></mdp-date-picker>
-          <mdp-time-picker class="picker" mdp-placeholder="Time" mdp-format="hh:mm A" ng-model="$ctrl.endTime" ng-change="$ctrl.onStartTimeChange"></mdp-time-picker>
+          <mdp-time-picker class="picker" mdp-placeholder="Time" mdp-format="hh:mm A" ng-model="$ctrl.endTime" ng-change="$ctrl.onEndTimeChange()"></mdp-time-picker>
         </div>
       </div>
       <div class="promote-idea-input-block">

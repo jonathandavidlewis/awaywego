@@ -19,6 +19,9 @@ class PromoteIdeaController {
     this.addressText = '';
     this.addressLink = '';
     this.startTime = new Date();
+    this.endTime = '';
+    this.milliseconds = '';
+    this.endTimeChanged = false;
     this.onStartTimeChange = this.onStartTimeChange.bind(this);
     this.onEndTimeChange = this.onEndTimeChange.bind(this);
   }
@@ -36,12 +39,14 @@ class PromoteIdeaController {
   }
 
   onStartTimeChange() {
-    this.milliseconds = this.startTime.getTime() + (60 * 60 * 1000);
-    this.endTime = new Date(this.milliseconds);
+    if (!this.endTimeChanged) {
+      this.milliseconds = this.startTime.getTime() + (60 * 60 * 1000);
+      this.endTime = new Date(this.milliseconds);
+    }
   }
 
   onEndTimeChange() {
-
+    this.endTimeChanged = true;
   }
 
   submit() {
