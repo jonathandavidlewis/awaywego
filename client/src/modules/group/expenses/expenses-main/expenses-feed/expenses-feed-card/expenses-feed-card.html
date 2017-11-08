@@ -1,5 +1,5 @@
-<div class="expenses-feed-card awg-flex">
-  <div class="expenses-feed-card-item awg-flex-1" ui-sref="^.^.main.transactions" ng-click="$ctrl.ExpensesService.changeFilterExpense($ctrl.expense)">{{$ctrl.expense.description}}</div>
+<div class="expenses-feed-card awg-flex" ng-click="$ctrl.ExpensesService.changeFilterExpense($ctrl.expense)">
+  <div class="expenses-feed-card-item awg-flex-1" ui-sref="^.^.main.transactions">{{$ctrl.expense.description}}</div>
   <div
   class="expenses-feed-card-item">{{$ctrl.expense.amount | currency:"$"}}</div>
   <div class="dropdown expenses-feed-card-dropdown-container"
