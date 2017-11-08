@@ -1,4 +1,9 @@
-import angular from 'angular';
+// preloading jquery so angular will see it
+import $ from 'jquery';
+window.$ = $;
+window.jQuery = $;
+// loading angular to window for the main app.js import
+const angular = require('angular');
 import uirouter from '@uirouter/angularjs';
 
 // import other modules
@@ -19,13 +24,13 @@ import MomentService from './services/moment/moment.service';
 import ImageSearchService from './services/images/image.search.service';
 import ConfirmService from './services/confirm/confirm.service';
 
-// import global styles
-import './styles/forms.css';
-
 // imports for this component
 import appRouting from './app.routing';
 import template from './app.html';
 import './app.css';
+
+// import global styles
+import './styles/forms.css';
 
 class AppController {
   constructor(UserService) {
