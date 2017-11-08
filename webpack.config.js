@@ -21,7 +21,7 @@ module.exports = {
       },
       {
         test: /\.css$/, // have to include node modules for css b/c of react-widgets
-        include: [path.join(__dirname, '/client/src')],
+        include: [path.join(__dirname, '/client/src'), path.join(__dirname, '/node_modules')],
         loader: ExtractTextPlugin.extract({fallback: 'style-loader', use: 'css-loader'})
       },
       {
