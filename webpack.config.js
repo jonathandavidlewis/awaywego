@@ -1,5 +1,6 @@
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   context: __dirname,
@@ -21,7 +22,7 @@ module.exports = {
       {
         test: /\.css$/, // have to include node modules for css b/c of react-widgets
         include: [path.join(__dirname, '/client/src')],
-        loaders: ['style-loader', 'css-loader']
+        loader: ExtractTextPlugin.extract({fallback: 'style-loader', use: 'css-loader'})
       },
       {
         test: /\.(gif|jpe?g|png|ttf|eot|svg|woff2?)$/,
@@ -37,6 +38,7 @@ module.exports = {
       inject: 'div',
       hash: true,
       filename: 'index.handlebars'
-    })
+    }),
+    new ExtractTextPlugin('style-bundle.css')
   ]
 };
