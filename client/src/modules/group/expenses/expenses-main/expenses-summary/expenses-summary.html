@@ -31,8 +31,8 @@
             <div class="expenses-summary-mini-card-name"><b>{{transaction.to._id === $ctrl.UserService.user.id ? 'you' : transaction.to.name}}</b></div>
           </div>
         </div>
-        <div class="dropdown-menu dropdown-menu-right">
-          <div class="dropdown-item" ng-click="$ctrl.settle(transaction)">
+        <div class="dropdown-menu dropdown-menu-right" ng-if="$ctrl.menuShouldAppear(transaction)">
+          <div class="dropdown-item" ng-click="$ctrl.handleSettle(transaction)">
             Settle Expense
           </div>
         </div>
