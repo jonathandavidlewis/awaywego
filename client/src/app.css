@@ -37,6 +37,20 @@ html, body {
   border-bottom: 1px solid var(--la);
   margin-bottom: 10px;
   width: 100%;
+  display: flex;
+  flex: 0 0 auto;
+}
+
+.header a,
+.header span {
+  display: flex;
+  align-items: center;
+}
+
+.header .material-icons {
+  font-weight: bold;
+  font-size: 1.4em;
+  margin: 0 5px 0 -10px;
 }
 
 .header-shadow {
