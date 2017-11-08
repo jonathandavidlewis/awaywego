@@ -6,6 +6,7 @@
   background-color: var(--lt);
   padding: 10px;
   border-bottom: 1px solid var(--la);
+  position: relative;
 }
 
 .event-feed-card-title {
@@ -39,4 +40,15 @@
 
 .event-feed-card-address-details {
   font-size: .9em;
+}
+
+.event-feed-card-dropdown-container {
+  position: absolute;
+  top: 10px;
+  right: 5px;
+}
+
+.event-feed-card-dropdown-container .material-icons {
+  font-size: 1.2em;
+  color: var(--da);
 }

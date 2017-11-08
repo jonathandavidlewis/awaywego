@@ -38,6 +38,18 @@
         </div>
       </div>
     </div>
+    <div class="dropdown event-feed-card-dropdown-container"
+        ng-if="$ctrl.menuShouldAppear()">
+        <div class="dropdown-toggle" id={{'dd-'+$ctrl.event._id}} data-toggle="dropdown">
+          <i class="material-icons">more_vert</i>
+        </div>
+        <div class="dropdown-menu dropdown-menu-right">
+          <div class="dropdown-item"
+            ng-click="$ctrl.handleUnscheduleEvent()">
+            Unschedule Event
+          </div>
+        </div>
+      </div>
   </div>
   <comments event-id="$ctrl.event._id"></comments>
 </div>
