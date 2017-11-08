@@ -2,5 +2,16 @@
   <div class="expenses-feed-card-item awg-flex-1" ui-sref="^.^.main.transactions" ng-click="$ctrl.ExpensesService.changeFilterExpense($ctrl.expense)">{{$ctrl.expense.description}}</div>
   <div
   class="expenses-feed-card-item">{{$ctrl.expense.amount | currency:"$"}}</div>
-  <div class="expenses-feed-card-item" ng-click="$ctrl.removeExpense($ctrl.expense._id)"><i class="material-icons">delete</i></div>
+  <div class="dropdown expenses-feed-card-dropdown-container"
+    ng-if="$ctrl.menuShouldAppear()">
+    <div class="dropdown-toggle" id={{'dd-'+$ctrl.expense._id}} data-toggle="dropdown">
+      <i class="material-icons">more_vert</i>
+    </div>
+    <div class="dropdown-menu dropdown-menu-right">
+      <div class="dropdown-item"
+        ng-click="$ctrl.handleDelete()">
+        Delete Expense
+      </div>
+    </div>
+  </div>
 </div>

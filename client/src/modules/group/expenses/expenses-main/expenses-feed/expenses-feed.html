@@ -1,6 +1,6 @@
 <div class="expenses-feed-container">
   <div class="expenses-feed-header">Expenses Summary</div>
-  
+
   <expenses-summary />
 
   <div class="expenses-feed-header">Expenses Overview</div>
@@ -10,4 +10,6 @@
     <div class="expenses-feed-item"><b>Actions</b></div>
   </div>
   <expenses-feed-card ng-repeat="expense in $ctrl.ExpensesService.expenses" expense="expense" remove-expense="$ctrl.ExpensesService.removeExpense" />
+
+  <div class="expenses-feed-header">Transactions Overview</div>
 </div>
