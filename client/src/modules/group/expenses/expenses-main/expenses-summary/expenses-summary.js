@@ -20,7 +20,7 @@ class ExpensesSummaryController {
   settle(transaction) {
     let expense = {
       groupId: this.stateParams.groupId,
-      description: `${transaction.from.name} paid ${transaction.to.name}`,
+      description: `${transaction.from.name} settled with ${transaction.to.name}`,
       amount: transaction.amount,
       transactions: [{from: transaction.to, to: transaction.from, amount: transaction.amount}]
     };

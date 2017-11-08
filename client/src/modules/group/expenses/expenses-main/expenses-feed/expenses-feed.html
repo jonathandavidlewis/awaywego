@@ -6,5 +6,5 @@
 
   <expenses-summary></expenses-summary>
   <div class="header">History</div>
-  <expenses-feed-card ng-repeat="expense in $ctrl.ExpensesService.expenses" expense="expense"></expenses-feed-card>
+  <expenses-feed-card ng-repeat="expense in $ctrl.ExpensesService.expenses | orderBy:'-createdAt' | limitTo:15" expense="expense"></expenses-feed-card>
 </div>
