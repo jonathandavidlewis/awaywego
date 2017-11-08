@@ -1,5 +1,6 @@
 <div class="people-list-container full-window bgc-0">
   <div class="people-section-header header">
+    <a ui-sref="app.home"><i class="material-icons">navigate_before</i></a>
     <span>People in {{$ctrl.GroupService.currentGroup.title}}</span>
   </div>
   <people-card ng-repeat="member in $ctrl.GroupService.currentGroup.members"

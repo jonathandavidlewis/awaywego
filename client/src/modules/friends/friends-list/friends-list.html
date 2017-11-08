@@ -1,8 +1,9 @@
 <div ng-click="$ctrl.closeForm()"
   class="friends-list-container h100 full-window bgc-0">
   <div class="friends-section">
-    <div class="friends-section-header header awg-flex awg-space-between">
-      <span>Friends</span>
+    <div class="friends-section-header header awg-flex">
+      <a ui-sref="app.home"><i class="material-icons">navigate_before</i></a>
+      <span class="awg-flex-1">Friends</span>
       <button ng-click="$ctrl.toggleForm($event)" class="awgd-button">
         Add friends
       </button>
