@@ -8,6 +8,9 @@
       <div class="expenses-summary-header-title">You Receive:</div>
       <div class="expenses-summary-header-amount-receive">{{$ctrl.ExpensesService.consolidatedSummary.receive | currency:"$"}}</div>
     </div>
+    <div class="expenses-summary-header-item" ng-if="$ctrl.ExpensesService.consolidatedSummary.receive === 0 && $ctrl.ExpensesService.consolidatedSummary.owe === 0">
+      <div class="expenses-summary-header-title">You're all settled up!</div>
+    </div>
   </div>
   <div class="expenses-summary-body">
     <div class="expenses-summary-body-container">
