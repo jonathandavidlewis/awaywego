@@ -1,12 +1,22 @@
 <div class="transaction-page-container">
-  <div class="expenses-feed-header">Transactions filtered by {{$ctrl.header}}</div>
+  <div class="dropdown transaction-page-dropdown-container">
+    <div class="dropdown-toggle" id={{'dd-'+$ctrl.expense._id}} data-toggle="dropdown">
+      <div class="expenses-feed-header">Transactions</div>
+      <div class="transaction-page-subheader">Filtered By {{$ctrl.ExpensesService.transactionHeader}} <i class="material-icons">keyboard_arrow_down</i></div>
+    </div>
+    <div class="dropdown-menu dropdown-menu-right">
+      <div class="dropdown-item" ng-click="$ctrl.ExpensesService.changeFilter('Money You Are Owed')">Money you are owed</div>
+      <div class="dropdown-item" ng-click="$ctrl.ExpensesService.changeFilter('Money You Owe')">Money you owe</div>
+      <div class="dropdown-item" ng-click="$ctrl.ExpensesService.changeFilter('All')">All transactions</div>
+    </div>
+  </div>
   <div class="transaction-page-label-container awg-flex">
-    <div ng-if="$ctrl.stateParams.filterState" class="transaction-page-label-item"><b>Desc.</b></div>
+    <div class="transaction-page-label-item"><b>Desc.</b></div>
     <div class="transaction-page-label-item"><b>From</b></div>
     <div class="transaction-page-label-item"><b>To</b></div>
     <div class="transaction-page-label-item"><b>Amount</b></div>
   </div>
-  <transaction-card ng-repeat="transaction in $ctrl.ExpensesService.transactions | filter:$ctrl.filterTransactions" transaction="transaction" settle-transaction="$ctrl.ExpensesService.settleTransaction" user="$ctrl.userId" />
-  <div class="transaction-page-empty" ng-if="$ctrl.filteredTransactions.length === 0">No open transactions are available</div>
+  <transaction-card ng-repeat="transaction in $ctrl.ExpensesService.transactions | filter:$ctrl.ExpensesService.useFilter.type" transaction="transaction" settle-transaction="$ctrl.ExpensesService.settleTransaction" user="$ctrl.userId" ></transaction-card>
+  <div class="transaction-page-empty" ng-if="$ctrl.ExpensesService.transactions.length === 0">No open transactions are available</div>
 
 </div>

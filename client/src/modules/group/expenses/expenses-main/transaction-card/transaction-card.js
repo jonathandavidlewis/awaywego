@@ -29,7 +29,6 @@ class TransactionCardController {
   }
 
   menuShouldAppear() {
-    console.log(this.transaction);
     return this.ExpensesService.findExpenseById(this.transaction.expenseId)._id === this.userId ||
            this.groupOwner === this.userId;
   }

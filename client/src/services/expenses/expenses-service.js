@@ -15,6 +15,8 @@ export default class ExpensesService {
     this.transactions = [];
     this.filterBy = 'All';
     this.selectedExpense = '';
+    this.transactionHeader = '';
+    this.useFilter = {type: ''};
 
     // Expenses Summary
     this.consolidatedDebts = '';
@@ -36,6 +38,8 @@ export default class ExpensesService {
     this.consolidateDebts = this.consolidateDebts.bind(this);
     this.consolidateSummary = this.consolidateSummary.bind(this);
     this.findExpenseById = this.findExpenseById.bind(this);
+    this.decideFilter = this.decideFilter.bind(this);
+
   }
 
   // Data Manipulation Methods
@@ -165,12 +169,32 @@ export default class ExpensesService {
   // Angular filtering Methods
 
   changeFilter(type) {
+    console.log('Filter changed:', type);
     this.filterBy = type;
+    this.decideFilter();
+    console.log('Filter is: ', this.useFilter);
   }
 
   changeFilterExpense(expense) {
     this.changeFilter('Expense');
     this.selectedExpense = expense;
+    this.decideFilter();
+  }
+
+  decideFilter() {
+    if (this.filterBy === 'Money You Are Owed') {
+      this.transactionHeader = 'Money You Are Owed';
+      this.useFilter.type = this.filterByOwed;
+    } else if (this.filterBy === 'Money You Owe') {
+      this.transactionHeader = 'Money You Owe';
+      this.useFilter.type = this.filterByOwedTo;
+    } else if (this.filterBy === 'Expense') {
+      this.transactionHeader = 'Expense - ' + this.selectedExpense.description;
+      this.useFilter.type = this.filterByExpenseId;
+    } else {
+      this.transactionHeader = 'All';
+      this.useFilter.type = () => true;
+    }
   }
 
   filterByOwed(transaction) {
