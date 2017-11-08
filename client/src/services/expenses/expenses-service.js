@@ -29,7 +29,6 @@ export default class ExpensesService {
     this.filterTransactions = this.filterTransactions.bind(this);
     this.removeExpense = this.removeExpense.bind(this);
     this.removeTransaction = this.removeTransaction.bind(this);
-    this.settleTransaction = this.settleTransaction.bind(this);
     this.changeFilter = this.changeFilter.bind(this);
     this.changeFilterExpense = this.changeFilterExpense.bind(this);
     this.filterByOwed = this.filterByOwed.bind(this);
@@ -243,10 +242,6 @@ export default class ExpensesService {
 
   removeTransaction(transactionId) {
     return this.http.delete(`/api/expenses/transaction/${transactionId}/remove`).then(() => this.getExpenses());
-  }
-
-  settleTransaction(transactionId) {
-    return this.http.put(`/api/expenses/transaction/${transactionId}/settle`).then(() => this.getExpenses());
   }
 
   removeExpense(expenseId) {
