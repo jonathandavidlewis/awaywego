@@ -1,6 +1,19 @@
 const eventRouter = require('express').Router();
 const Event = require('../../db/models/event.js');
 
+// Get all events belonging to a specific group
+eventRouter.get('/group/:groupId', (req, res) => {
+  Event.find({groupId: req.params.groupId}).then((events) => {
+    res.status(200).json(events);
+  }).catch(err => res.status(500).json({'Server error': err}));
+});
+// get a single event
+eventRouter.get('/:eventId', (req, res) => {
+  Event.findById(req.params.eventId).then(event => {
+    res.status(200).json(event);
+  }).catch(err => res.status(500).json({'Server error': err}));
+});
+
 // Create Events
 eventRouter.post('/', (req, res) => {
   const newEvent = req.body;
@@ -17,7 +30,6 @@ eventRouter.post('/', (req, res) => {
 });
 
 eventRouter.post('/new', (req, res) => {
-  console.log('here ======>', req.body);
   const newEvent = req.body;
   if (newEvent.imageUrl === '') {
     delete newEvent.imageUrl;
@@ -30,20 +42,6 @@ eventRouter.post('/new', (req, res) => {
   Event.create(newEvent).then(event => res.status(201).json(event))
     .catch(err => res.status(500).json({'Server error': err}));
 });
-
-// Get all events belonging to a specific group
-eventRouter.get('/group/:groupId', (req, res) => {
-  Event.find({groupId: req.params.groupId}).then((events) => {
-    res.status(200).json(events);
-  }).catch(err => res.status(500).json({'Server error': err}));
-});
-// get a single event
-eventRouter.get('/:eventId', (req, res) => {
-  Event.findById(req.params.eventId).then(event => {
-    res.status(200).json(event);
-  }).catch(err => res.status(500).json({'Server error': err}));
-});
-
 
 // Update Events
 eventRouter.put('/:eventId', (req, res) => {
