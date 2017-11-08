@@ -25,7 +25,7 @@ class PromoteIdeaController {
     this.endDateChanged = false;
     this.onStartDateChange = this.onStartDateChange.bind(this);
     this.onStartTimeChange = this.onStartTimeChange.bind(this);
-    this.onEndTimeChange = this.onEndTimeChange.bind(this);
+    this.onEndDateTimeChange = this.onEndDateTimeChange.bind(this);
   }
 
   $onInit() {
@@ -54,11 +54,8 @@ class PromoteIdeaController {
     }
   }
 
-  onEndDateChange() {
+  onEndDateTimeChange() {
     this.endDateChanged = true;
-  }
-
-  onEndTimeChange() {
     this.endTimeChanged = true;
   }
 
