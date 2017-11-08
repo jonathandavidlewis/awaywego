@@ -2,4 +2,5 @@
   <header class="app-header" ng-if="$ctrl.UserService.isLoggedIn"></header>
   <ui-view class="awg-flex-1 awg-overflow"></ui-view>
   <confirm></confirm>
+  <spinner-box busy="$ctrl.appBusy"></spinner-box>
 </div>

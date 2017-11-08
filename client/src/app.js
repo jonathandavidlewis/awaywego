@@ -37,11 +37,20 @@ import './app.css';
 import './styles/forms.css';
 
 class AppController {
-  constructor(UserService) {
+  constructor(UserService, $transitions) {
     this.UserService = UserService;
+    this.transitions = $transitions;
+    this.appBusy = false;
+  }
+
+  $onInit() {
+    this.transitions.onStart({}, (transition) => {
+      this.appBusy = true;
+      transition.promise.finally(() => this.appBusy = false);
+    });
   }
 }
-AppController.$inject = ['UserService'];
+AppController.$inject = ['UserService', '$transitions'];
 
 const AppComponent = {
   template: template,
