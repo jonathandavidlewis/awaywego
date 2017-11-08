@@ -9,9 +9,10 @@ import template from './import-contacts.html';
 import './import-contacts.css';
 
 class ImportContactsController {
-  constructor(FriendService, $state, $http) {
+  constructor(FriendService, ConfirmService, $state, $http) {
     this.http = $http;
     this.FriendService = FriendService;
+    this.ConfirmService = ConfirmService;
     this.googleAccessToken = localStorage.getItem('awg_google_access_token');
     this.search = '';
     this.$state = $state;
@@ -54,16 +55,25 @@ class ImportContactsController {
   }
 
   loadContacts(contacts) {
-    return contacts.reduce((filteredContacts, contact) => {
-      if (contact.emailAddresses) {
-        let thisContact = {email: contact.emailAddresses[0].value};
-        if (contact.names) {
-          thisContact.name = contact.names[0].displayName;
-          filteredContacts[contact.emailAddresses[0].value] = thisContact;
+    if (contacts) {
+      return contacts.reduce((filteredContacts, contact) => {
+        if (contact.emailAddresses) {
+          let thisContact = {email: contact.emailAddresses[0].value};
+          if (contact.names) {
+            thisContact.name = contact.names[0].displayName;
+            filteredContacts[contact.emailAddresses[0].value] = thisContact;
+          }
         }
-      }
-      return filteredContacts;
-    }, {});
+        return filteredContacts;
+      }, {});
+    } else {
+      this.ConfirmService.openModal(
+        'No Google contacts found', '', 'Continue'
+      ).then(() => {
+        this.busy = true;
+        this.$state.go('app.home');
+      }).catch(() => {});
+    }
   }
 
   filterGoogleContacts(response) {
@@ -142,7 +152,7 @@ class ImportContactsController {
 
 
 }
-ImportContactsController.$inject = ['FriendService', '$state', '$http'];
+ImportContactsController.$inject = ['FriendService', 'ConfirmService', '$state', '$http'];
 
 const ImportContactsComponent = {
   restrict: 'E',
