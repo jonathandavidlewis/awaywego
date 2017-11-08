@@ -1,4 +1,4 @@
-<div class="make-idea-container flex-col flex-start flex-align-stretch">
+<div class="make-idea-container awg-flex-col awg-flex-start awg-flex-align-stretch">
   <div class="make-idea-header"><span>Awesome! <br /> Let's get started</span></div>
   <div class="make-idea-form-container">
     <form name="newIdea" ng-submit="$ctrl.submit()">
@@ -17,10 +17,10 @@
         <label for="plan-image">Last, how about a background picture?</label>
         <image-search image-url="$ctrl.imageUrl"></image-search>
       </div>
-      <div ng-if="$ctrl.formWarning" class="awgl-form-warning flex flex-center">
+      <div ng-if="$ctrl.formWarning" class="awgl-form-warning awg-flex awg-flex-center">
         <span>{{$ctrl.formWarning}}</span>
       </div>
-      <div class="make-idea-submit-container flex flex-center">
+      <div class="make-idea-submit-container awg-flex awg-flex-center">
         <div class="make-idea-submit-button-container">
           <button type="submit" class="awgl-button" name="make-idea-submit">Submit your idea</button>
         </div>

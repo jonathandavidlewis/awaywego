@@ -1,4 +1,4 @@
-<form name="messageForm" ng-submit="$ctrl.submit()" class="chat-input-container flex">
+<form name="messageForm" ng-submit="$ctrl.submit()" class="chat-input-container awg-flex">
   <textarea class="chat-input awgl-form-input" maxlength=200
     ng-keypress="$ctrl.handleTyping($event)"  ng-model="$ctrl.msg" required></textarea>
   <button ng-disabled="messageForm.$invalid" type="submit" class="chat-submit"><i class="material-icons">send</i></button>

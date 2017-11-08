@@ -1,4 +1,4 @@
-<div class="ideas-container full-window flex-col flex-align-center bgc-0 overflow">
+<div class="ideas-container full-window awg-flex-col awg-flex-align-center bgc-0 awg-overflow">
   <div class="ideas-title header"><span>Ideas</span></div>
   <ideas-card event-id="idea._id" ng-repeat="idea in $ctrl.EventService.ideas"/>
   <new-idea-button ng-if="$ctrl.EventService.ideas.length === 0"

@@ -27,14 +27,14 @@
           </div>
         </div>
       </div>
-      <div class="login-submit-container flex flex-center">
+      <div class="login-submit-container awg-flex awg-flex-center">
         <div class="login-submit-button-container">
           <button type="submit" class="awgl-button" id="login" ng-disabled="loginForm.$invalid">Sign in</button>
         </div>
       </div>
       <a href="../auth/google" target="_self"><div class="g-signin2 awgl-button">
         <div>
-          <div class="flex flex-center">
+          <div class="awg-flex awg-flex-center">
               <div  class="google-icon-container">
                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 48 48" class="abcRioButtonSvg">
                   <g>
@@ -50,13 +50,13 @@
           </div>
         </div>
       </div></a>
-      <div ng-if="$ctrl.formWarning" class="awgl-form-warning flex flex-center">
+      <div ng-if="$ctrl.formWarning" class="awgl-form-warning awg-flex awg-flex-center">
         <span>{{$ctrl.formWarning}}</span>
       </div>
     </form>
   </div>
   <div class="login-other-container">
-    <div class="login-other-container-item flex flex-center">
+    <div class="login-other-container-item awg-flex awg-flex-center">
       <a ui-sref="signup">Don't have an account? Sign up today</a>
     </div>
   </div>

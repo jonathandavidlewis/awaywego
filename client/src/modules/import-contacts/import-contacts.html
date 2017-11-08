@@ -9,13 +9,13 @@
       Loading your contacts...
     </span>
   </div>
-  <div ng-if="$ctrl.allContacts.length === 0" class="flex flex-col flex-align-center h100">
+  <div ng-if="$ctrl.allContacts.length === 0" class="awg-flex awg-flex-col awg-flex-align-center h100">
     <div class="info-text header-shadow">
       <span>
         Welcome! To help you get started quickly you can access your Google contacts and invite friends from there or see who's already joined.
       </span>
     </div>
-    <div class="flex floating-center-button space-between flex-align-stretch">
+    <div class="awg-flex floating-center-button awg-space-between awg-flex-align-stretch">
       <button type="submit" class="awgd-button" name="get-contacts" ng-click="$ctrl.getGoogleContacts()">Import contacts</button>
       <div class ="w50"> </div>
       <button type="submit" class="awgd-button" name="get-contacts">Skip</button>

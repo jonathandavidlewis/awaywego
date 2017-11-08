@@ -1,4 +1,4 @@
-<div class="make-group-container flex-col flex-start flex-align-stretch">
+<div class="make-group-container awg-flex-col awg-flex-start awg-flex-align-stretch">
   <div class="make-group-header"><span>Awesome! <br /> Let's get started</span></div>
   <div class="make-group-form-container">
     <form name="newPlan" ng-submit="$ctrl.submit()">
@@ -13,10 +13,10 @@
           type="text" rows=2></textarea>
       </div>
       <image-search image-url="$ctrl.imageUrl"></image-search>
-      <div ng-if="$ctrl.formWarning" class="awgl-form-warning flex flex-center">
+      <div ng-if="$ctrl.formWarning" class="awgl-form-warning awg-flex awg-flex-center">
         <span>{{$ctrl.formWarning}}</span>
       </div>
-      <div class="make-group-submit-container flex flex-center">
+      <div class="make-group-submit-container awg-flex awg-flex-center">
         <div class="make-group-submit-button-container">
           <button type="submit" class="awgl-button" name="make-group-submit">Create Group</button>
         </div>

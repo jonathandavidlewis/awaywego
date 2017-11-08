@@ -1,12 +1,12 @@
 <div class="ideas-card w100">
   <spinner-box busy="$ctrl.busy"></spinner-box>
-  <div class="ideas-card-event-container flex-col">
-    <div class="ideas-card-main-container flex-col">
+  <div class="ideas-card-event-container awg-flex-col">
+    <div class="ideas-card-main-container awg-flex-col">
       <a class="ideas-card-header">{{$ctrl.EventService.events[$ctrl.eventId].title}}</a>
       <div class="ideas-card-image-container">
         <img class="ideas-card-image" ng-src="{{$ctrl.EventService.events[$ctrl.eventId].imageUrl}}" alt="EventPicture"/>
       </div>
-      <div class="ideas-card-content-container flex-col">
+      <div class="ideas-card-content-container awg-flex-col">
         <div class="ideas-card-details-desc">
           <span>{{$ctrl.EventService.events[$ctrl.eventId].description}}</span>
         </div>
@@ -24,27 +24,27 @@
         </div>
       </div>
     </div>
-    <div class="ideas-card-footer flex">
-      <div class="ideas-card-likes-wrapper flex">
+    <div class="ideas-card-footer awg-flex">
+      <div class="ideas-card-likes-wrapper awg-flex">
         <div ng-click="$ctrl.upVote()"
           ng-class="{'upvoted': $ctrl.EventService.events[$ctrl.eventId].upVotes.indexOf($ctrl.userId) > -1}"
-          class="ideas-card-vote flex"
+          class="ideas-card-vote awg-flex"
           >
           <i class="material-icons">thumb_up</i>
         </div>
         <div class="ideas-card-likes">{{$ctrl.EventService.events[$ctrl.eventId].upVotes.length - $ctrl.EventService.events[$ctrl.eventId].downVotes.length}}</div>
         <div ng-click="$ctrl.downVote()"
           ng-class="{'downvoted':$ctrl.EventService.events[$ctrl.eventId].downVotes.indexOf($ctrl.userId) > -1}"
-          class="ideas-card-vote flex">
+          class="ideas-card-vote awg-flex">
           <i class="material-icons">thumb_down</i>
         </div>
       </div>
-      <div class="ideas-card-actions flex">
+      <div class="ideas-card-actions awg-flex">
         <a ui-sref="app.group.promoteIdea({eventId: $ctrl.EventService.events[$ctrl.eventId]._id})">Schedule</a>
       </div>
     </div>
   </div>
-  <div class="ideas-card-comment-container flex">
+  <div class="ideas-card-comment-container awg-flex">
     <comments event-id="$ctrl.eventId"></comments>
   </div>
 </div>

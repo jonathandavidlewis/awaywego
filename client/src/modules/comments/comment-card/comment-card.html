@@ -1,7 +1,7 @@
-<div class="comment-card-container flex">
+<div class="comment-card-container awg-flex">
   <spinner-box busy="$ctrl.busy"></spinner-box>
-  <div class="comment-card-header flex-col">
-    <div class="comment-card-header-user flex flex-align-center">
+  <div class="comment-card-header awg-flex-col">
+    <div class="comment-card-header-user awg-flex awg-flex-align-center">
       <div ng-if="$ctrl.comment.user.profilePic !== ''" class="comment-avatar">
         <div class="comment-avatar-pic"
              ng-style="{'background-image':'url({{$ctrl.comment.user.profilePic}})'}">
@@ -14,11 +14,11 @@
         <span>{{$ctrl.comment.user.name}}</span>
       </div>
     </div>
-    <div class="comment-time flex">
+    <div class="comment-time awg-flex">
       <span>{{$ctrl.moment($ctrl.comment.createdAt).calendar()}}</span>
     </div>
   </div>
-  <div class="comment-card-text flex flex-align-center">
+  <div class="comment-card-text awg-flex awg-flex-align-center">
     <span>{{$ctrl.comment.text}}</span>
   </div>
   <div class="dropdown comment-card-dropdown-container"

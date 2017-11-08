@@ -124,17 +124,17 @@ html, body {
 
 
 /*  flex utility classes  */
-.flex { display: flex; }
-.flex-col { display: flex; flex-direction: column; }
-.flex-start { justify-content: flex-start; }
-.flex-end { justify-content: flex-end; }
-.flex-center { justify-content: center; }
-.space-around { justify-content: space-around; }
-.space-between { justify-content: space-between; }
-.flex-align-center { align-items: center; }
-.flex-align-start { align-items: flex-start; }
-.flex-align-end { align-items: flex-end; }
-.flex-align-stretch { align-items: stretch; }
-.flex-1 { flex: 1 0 0; }
-.flex-0 { flex: 0; }
-.overflow { overflow: auto; }
+.awg-flex { display: flex; }
+.awg-flex-col { display: flex; flex-direction: column; }
+.awg-flex-start { justify-content: flex-start; }
+.awg-flex-end { justify-content: flex-end; }
+.awg-flex-center { justify-content: center; }
+.awg-space-around { justify-content: space-around; }
+.awg-space-between { justify-content: space-between; }
+.awg-flex-align-center { align-items: center; }
+.awg-flex-align-start { align-items: flex-start; }
+.awg-flex-align-end { align-items: flex-end; }
+.awg-flex-align-stretch { align-items: stretch; }
+.awg-flex-1 { flex: 1 0 0; }
+.awg-flex-0 { flex: 0; }
+.awg-overflow { overflow: auto; }

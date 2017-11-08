@@ -1,4 +1,4 @@
-<div class="expenses-add-container flex-col">
+<div class="expenses-add-container awg-flex-col">
 
   <div class="expenses-add-form-container">
     <div class="expenses-add-form-header">Create An Expense</div>
@@ -24,7 +24,7 @@
     <div class="expenses-added-people-container">
       <div class="expenses-added-people-area">
         <div class="expenses-add-payer-description"><button class="awgd-button" ng-click="$ctrl.toggleCards(true)">Add Payers</button></div>
-        <div ng-show="$ctrl.payerToggle === true" class="ng-show flex-col">
+        <div ng-show="$ctrl.payerToggle === true" class="ng-show awg-flex-col">
           <expenses-add-people-card
           toggle="$ctrl.togglePayer"
           amount="$ctrl.amount"
@@ -36,7 +36,7 @@
 
       <div class="expenses-added-people-area">
         <div class="expenes-add-owers-description"><button class="awgd-button" ng-click="$ctrl.toggleCards()">Add Owers</button></div>
-        <div ng-show="$ctrl.owerToggle === true" class="ng-show flex-col">
+        <div ng-show="$ctrl.owerToggle === true" class="ng-show awg-flex-col">
           <expenses-add-people-card
           toggle="$ctrl.toggleOwer"
           amount="$ctrl.amount"
@@ -47,7 +47,7 @@
       </div>
     </div>
 
-    <div ng-if="$ctrl.formWarning" class="awgl-form-warning flex flex-center">
+    <div ng-if="$ctrl.formWarning" class="awgl-form-warning awg-flex awg-flex-center">
       <span>{{$ctrl.formWarning}}</span>
     </div>
 
