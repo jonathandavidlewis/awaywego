@@ -16,7 +16,13 @@ import './ideas.css';
 class IdeasController {
   constructor(EventService) {
     this.EventService = EventService;
+    console.log(this.EventService.ideas);
   }
+
+  sortIdeas(i) {
+    return (i.upVotes.length - i.downVotes.length);
+  }
+
 }
 IdeasController.$inject = ['EventService'];
 
