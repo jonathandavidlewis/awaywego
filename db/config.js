@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
 mongoUri = 'mongodb://localhost/awaywego';
 mongoose.connect(process.env.MONGODB_URI || mongoUri, {useMongoClient: true});
 
