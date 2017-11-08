@@ -16,7 +16,7 @@
           <img ng-if="transaction.from.profilePic" ng-src="{{transaction.from.profilePic}}" class="avatar">
           <i ng-if="!transaction.from.profilePic" class="material-icons">account_circle</i>
         </div>
-        <div class="expenses-summary-mini-card-name">{{transaction.from._id === $ctrl.UserService.user.id ? You : transaction.from.name}}</div>
+        <div class="expenses-summary-mini-card-name">{{transaction.from._id === $ctrl.UserService.user.id ? 'You' : transaction.from.name}}</div>
         <div class="expenses-summary-mini-card-body">{{transaction.from._id === $ctrl.UserService.user.id ? 'owe' : 'owes'}}</div>
         <div class="expenses-summary-mini-card-amount">{{transaction.amount | currency:"$"}} to </div>
         <div class="expenses-summary-mini-card-avatar">

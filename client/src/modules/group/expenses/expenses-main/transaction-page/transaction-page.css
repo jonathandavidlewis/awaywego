@@ -7,14 +7,14 @@
 
 .transaction-page-label-container {
   justify-content: space-around;
-
+  padding-right: 24px;
 }
 
 .transaction-page-label-item {
   padding: 0 5px;
   color: var(--dk3);
   font-size: 0.9em;
-  flex: 1 1 20%;
+  flex: 1 1 25%;
   display: flex;
   justify-content: center;
 }

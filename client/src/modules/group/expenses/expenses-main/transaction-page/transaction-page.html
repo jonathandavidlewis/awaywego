@@ -5,8 +5,6 @@
     <div class="transaction-page-label-item"><b>From</b></div>
     <div class="transaction-page-label-item"><b>To</b></div>
     <div class="transaction-page-label-item"><b>Amount</b></div>
-    <div class="transaction-page-label-item"><b>Settle</b></div>
-    <div class="transaction-page-label-item"><b>Delete</b></div>
   </div>
   <transaction-card ng-repeat="transaction in $ctrl.ExpensesService.transactions | filter:$ctrl.filterTransactions" transaction="transaction" settle-transaction="$ctrl.ExpensesService.settleTransaction" user="$ctrl.userId" />
   <div class="transaction-page-empty" ng-if="$ctrl.filteredTransactions.length === 0">No open transactions are available</div>

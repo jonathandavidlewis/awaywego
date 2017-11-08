@@ -6,8 +6,7 @@
   class="transaction-card-detail-item"
   ng-class="{'transaction-card-positive': $ctrl.transaction.to._id === $ctrl.user, 'transaction-card-negative': $ctrl.transaction.from._id === $ctrl.user}"
   >{{$ctrl.transaction.amount | currency:"$"}}</div>
-  <div class="transaction-card-detail-item" ng-click="$ctrl.settleTransaction($ctrl.transaction._id)">Settle</div>
-  <div class="dropdown expenses-feed-card-dropdown-container"
+  <div class="dropdown transaction-feed-card-dropdown-container"
     ng-if="$ctrl.menuShouldAppear()">
     <div class="dropdown-toggle" id={{'dd-'+$ctrl.transaction._id}} data-toggle="dropdown">
       <i class="material-icons">more_vert</i>

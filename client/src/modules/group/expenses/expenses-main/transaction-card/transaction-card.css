@@ -9,6 +9,11 @@
   display: flex;
 }
 
+.transaction-feed-card-dropdown-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .transaction-card-detail-item {
   padding: 5px 0;
