@@ -22,6 +22,8 @@ class PromoteIdeaController {
     this.addressText = '';
     this.addressLink = '';
     this.startTime = new Date();
+    this.milliseconds = this.startTime.getTime() + (60 * 60 * 1000);
+    this.endTime = new Date(this.milliseconds);
     this.onEndDateChange = this.onEndDateChange.bind(this);
     this.onStartDateChange = this.onStartDateChange.bind(this);
   }
@@ -52,13 +54,14 @@ class PromoteIdeaController {
   submit() {
     if (this.validateForm()) {
       let promotedIdea = this.event;
-      promotedIdea.startTime = new Date(promotedIdea.startTime);
-      promotedIdea.endTime = new Date(promotedIdea.endTime);
+      promotedIdea.startTime = this.startTime;
+      promotedIdea.endTime = this.endTime;
       promotedIdea.addressName = this.addressName;
       promotedIdea.addressText = this.addressText;
       promotedIdea.addressLink = this.addressLink;
 
       if (this.stateParams.eventId === 'new') {
+        console.log('here');
         this.EventService.submitScheduledEvent(promotedIdea).then(resp => {
           this.state.go('app.group.home');
         }).catch(err => {

@@ -19,7 +19,8 @@
   margin-bottom: 20px;
 }
 
-.promote-idea-input-block label {
+.promote-idea-input-block label,
+.date-time-pickers label {
   color: var(--dk3);
   font-size: 1.1em;
 }
@@ -40,4 +41,14 @@
 label {
   margin-top: 10px;
   margin-bottom: 0;
+}
+
+.date-time {
+  display: flex;
+}
+
+.picker {
+  flex-basis: 50%;
+  display: flex;
+  justify-content: center;
 }
