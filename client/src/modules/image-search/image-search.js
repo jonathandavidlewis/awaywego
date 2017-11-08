@@ -12,6 +12,10 @@ class ImageSearchController {
     this.spinner = false;
   }
 
+  $onInit() {
+    this.placeholder = this.placeholder || 'Search for an image';
+  }
+
   imageSearch(query) {
     this.images = [];
     this.spinner = true;
@@ -33,7 +37,8 @@ ImageSearchController.$inject = ['ImageSearchService'];
 const ImageSearchComponent = {
   restrict: 'E',
   bindings: {
-    imageUrl: '='
+    imageUrl: '=',
+    placeholder: '@'
   },
   template: template,
   controller: ImageSearchController
