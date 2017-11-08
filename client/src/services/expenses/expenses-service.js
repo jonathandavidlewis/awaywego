@@ -169,10 +169,8 @@ export default class ExpensesService {
   // Angular filtering Methods
 
   changeFilter(type) {
-    console.log('Filter changed:', type);
     this.filterBy = type;
     this.decideFilter();
-    console.log('Filter is: ', this.useFilter);
   }
 
   changeFilterExpense(expense) {

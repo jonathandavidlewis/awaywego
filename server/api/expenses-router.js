@@ -39,14 +39,14 @@ expensesRouter.get('/:groupId', (req, res) => {
       populate: {
         path: 'to',
         model: 'User',
-        select: 'name'
+        select: 'name profilePic'
       }
     }).populate({
       path: 'transactions',
       populate: {
         path: 'from',
         model: 'User',
-        select: 'name'
+        select: 'name profilePic'
       }
     }).exec().then((expenses) => {
       res.status(200).json(expenses);
