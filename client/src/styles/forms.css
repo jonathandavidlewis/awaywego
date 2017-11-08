@@ -64,7 +64,8 @@
   padding: 10px;
   background-color: var(--dk3);
   color: var(--lt);
-  border: none
+  border: none;
+  border-radius: 5px;
 }
 
 .awgd-button:hover { background-color: var(--dk4); }
@@ -159,6 +160,7 @@
   background-color: white;
   border: 1.5px solid var(--dk3);
   color: var(--dk5);
+  border-radius: 5px;
 }
 
 .awgl-button:hover { background-color: var(--m2); }

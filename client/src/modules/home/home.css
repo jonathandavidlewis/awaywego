@@ -2,7 +2,7 @@
   width: 50px !important;
   height: 50px !important;
   cursor: pointer;
-  border-radius: 50%;
+  border-radius: 50% !important;
   display: flex;
   justify-content: center;
   align-items: center;
