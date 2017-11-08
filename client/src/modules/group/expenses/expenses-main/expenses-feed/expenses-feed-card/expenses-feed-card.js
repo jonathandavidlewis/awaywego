@@ -38,8 +38,7 @@ ExpensesFeedCardController.$inject = ['ExpensesService', 'UserService', 'GroupSe
 const ExpensesFeedCardComponent = {
   restrict: 'E',
   bindings: {
-    expense: '<',
-    removeExpense: '<'
+    expense: '<'
   },
   template: template,
   controller: ExpensesFeedCardController
