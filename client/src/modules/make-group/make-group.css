@@ -1,33 +1,7 @@
-.make-group-container {
-  height: 100%;
-  padding: 20px 50px;
-  background: linear-gradient(white, var(--m1));
-  overflow: auto;
-}
-
-.make-group-header {
-  margin: 10px 0 20px 0;
-  text-align: center;
-}
-
-.make-group-header span {
-  font-size: 1.7em;
-  color: var(--dk4);
-}
-
 .make-group-input-block {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
-.make-group-input-block label {
-  color: var(--dk3);
-  font-size: 1.1em;
-}
-
-.make-group-input {
-  width: 100%;
-}
-
-.make-group-submit-button-container {
-  width: 100%;
+.make-group-submit-container {
+  margin-top: 20px;
 }
