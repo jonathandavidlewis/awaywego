@@ -234,42 +234,40 @@ routing.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
 export default routing;
 
 //TODO: look into avoiding the ugly flash, possibly removing the $timeout()
-const redirectIfNotAuthed = function($q, $state, $timeout, UserService) {
+const redirectIfNotAuthed = function($q, $state, UserService) {
   const result = $q.defer();
   if (UserService.isLoggedIn) {
     result.resolve(UserService.user);
   } else {
-    $timeout(() => $state.go('login'));
-    result.reject('Not authorized, please login!');
+    $state.go('login');
   }
   return result;
 };
-redirectIfNotAuthed.$inject = ['$q', '$state', '$timeout', 'UserService'];
+redirectIfNotAuthed.$inject = ['$q', '$state', 'UserService'];
 
-const redirectToImport = function($q, $state, $timeout, UserService) {
+const redirectToImport = function($q, $state, UserService) {
   const result = $q.defer();
   if (localStorage.getItem('new_user')) {
     localStorage.removeItem('new_user');
-    $timeout(() => $state.go('app.import'));
+    $state.go('app.import');
     result.resolve('true');
   } else {
     result.resolve('true');
   }
   return result;
 };
-redirectToImport.$inject = ['$q', '$state', '$timeout'];
+redirectToImport.$inject = ['$q', '$state', 'UserService'];
 
-const skipIfAuthed = function($q, $state, $timeout, UserService) {
+const skipIfAuthed = function($q, $state, UserService) {
   const result = $q.defer();
   if (UserService.isLoggedIn) {
-    result.reject('Logged in, redirecting to home.');
-    $timeout(() => $state.go('app.home'));
+    $state.go('app.home');
   } else {
     result.resolve();
   }
   return result;
 };
-redirectIfNotAuthed.$inject = ['$q', '$state', '$timeout', 'UserService'];
+redirectIfNotAuthed.$inject = ['$q', '$state', 'UserService'];
 
 const loadFriends = function(FriendService) {
   return FriendService.loadFriends();
