@@ -5,6 +5,12 @@
   overflow: auto;
 }
 
+
+
+.expenses-add-input-block {
+  padding: 10px 0;
+}
+
 .expenses-added-people-container {
   justify-content: space-between;
 }
@@ -15,22 +21,11 @@
   text-align: center;
 }
 
-.expenses-add-people-share-option {
-  color: var(--dk3);
-  display: flex;
-  justify-content: space-around;
-}
-
-.expenes-add-people-share-option {
-  display: flex;
-  flex: 1 1 auto;
-}
-
 .expenses-added-people-area {
   display: flex;
   flex-direction: column;
   flex: 1 1 50%;
-  padding: 5px;
+  padding: 10px 0;
 }
 
 .expenses-add-names-card {

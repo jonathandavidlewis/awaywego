@@ -10,16 +10,6 @@
       <input ng-change="$ctrl.updateTransactions()" class="awgl-form-input form-control expenses-input" name="expense-amount" ng-model="$ctrl.amount"
         type="number" placeholder="What was the total?" />
     </div>
-    <div class="expenses-add-people-share-option">
-      <div class="expenses-add-people-share-item">
-        <label for="share">Share Equally</label>
-        <input  name="share" type="radio" ng-model="$ctrl.transactionType" value="equal"/>
-      </div>
-      <div class="expenses-add-people-share-item">
-        <label for="share">Share Custom</label>
-        <input  name="share" type="radio" ng-model="$ctrl.transactionType" value="percentage"/>
-      </div>
-    </div>
 
     <div class="expenses-added-people-container flex-col">
       <div class="expenses-added-people-area">
