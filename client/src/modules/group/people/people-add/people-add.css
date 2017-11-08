@@ -15,9 +15,9 @@
 
 .people-add-controls {
   position: fixed;
-  bottom: 90px;
+  bottom: 80px;
   left: 50%;
-  margin-left: -130px;
+  margin-left: -67px;
   display: flex;
   justify-content: space-between;
 }
