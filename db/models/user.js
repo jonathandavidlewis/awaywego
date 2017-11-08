@@ -2,15 +2,14 @@ const mongoose = require('mongoose');
 const db = require('../config');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
-const Promise = require('bluebird');
 
 let userSchema = new Schema({
   name: {type: String, required: true},
   email: {type: String, required: true, unique: true},
   password: {type: String, required: false},
   profilePic: String,
-  googleId: {type: Number, unique: true},
-  googleAccessToken: {type: String, unique: true}
+  googleId: {type: Number, unique: true, sparse: true},
+  googleAccessToken: {type: String, unique: true, sparse: true}
 });
 
 userSchema.methods.comparePassword = function(pwd) {
