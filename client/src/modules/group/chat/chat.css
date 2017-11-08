@@ -3,5 +3,9 @@
   color: var(--da);
   font-size: .8em;
   font-style: italic;
-  border-top: 1px solid var(--m1);
+  border-top: 1px solid var(--m3tr5);
+}
+
+.chat-window {
+  padding-bottom: 0 !important;
 }
