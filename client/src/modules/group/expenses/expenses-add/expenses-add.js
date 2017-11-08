@@ -81,9 +81,7 @@ class ExpensesAddController {
       checked[member.name] = member;
     }
 
-    if (this.transactionType === 'equal') {
-      this.createEqualTransactions();
-    }
+    this.updateTransactions();
   }
 
   togglePayer(member) {
@@ -94,16 +92,14 @@ class ExpensesAddController {
       checked[member.name] = member;
     }
 
-    if (this.transactionType === 'equal') {
-      this.createEqualTransactions();
-    }
+    this.updateTransactions();
   }
 
 
   createEqualTransactions() {
     let numberOfPeople = Object.keys(this.checkedMembers).length;
     let numberOfPayers = Object.keys(this.payers).length;
-    let portion = this.roundMoney(this.amount / numberOfPayers / (numberOfPeople + numberOfPayers));
+    let portion = this.roundMoney(this.amount / numberOfPayers / (numberOfPeople));
     let transactions = [];
     for (let member in this.checkedMembers) {
       for (let payer in this.payers) {
