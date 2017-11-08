@@ -1,22 +1,28 @@
-<div class="expenses-feed-card awg-flex">
-  <div class="expenses-feed-card-item awg-flex-1">{{$ctrl.expense.description}}</div>
-  <div
-  class="expenses-feed-card-item">{{$ctrl.expense.amount | currency:"$"}}</div>
-  <div class="dropdown expenses-feed-card-dropdown-container"
-    ng-if="$ctrl.menuShouldAppear()">
-    <div class="dropdown-toggle" id={{'dd-'+$ctrl.expense._id}} data-toggle="dropdown">
-      <i class="material-icons">more_vert</i>
-    </div>
-    <div class="dropdown-menu dropdown-menu-right">
-      <div class="dropdown-item"
-        ng-click="$ctrl.ExpensesService.changeFilterExpense($ctrl.expense)"
-        ui-sref="^.transactions">
-        See Transaction Breakdown
+<div class="expenses-feed-card awg-flex-col">
+  <div class="expenses-feed-card-main-container awg-flex">
+    <div class="expenses-feed-card-item awg-flex-1" ng-click="$ctrl.toggleDetails()">{{$ctrl.expense.description}}</div>
+    <div
+    class="expenses-feed-card-item">{{$ctrl.expense.amount | currency:"$"}}</div>
+    <div class="dropdown expenses-feed-card-dropdown-container"
+      ng-if="$ctrl.menuShouldAppear()">
+      <div class="dropdown-toggle" id={{'dd-'+$ctrl.expense._id}} data-toggle="dropdown">
+        <i class="material-icons">more_vert</i>
       </div>
-      <div class="dropdown-item"
-        ng-click="$ctrl.handleDelete()">
-        Delete Expense
+      <div class="dropdown-menu dropdown-menu-right">
+        <div class="dropdown-item"
+          ng-click="$ctrl.ExpensesService.changeFilterExpense($ctrl.expense)"
+          ui-sref="^.transactions">
+          See Transaction Breakdown
+        </div>
+        <div class="dropdown-item"
+          ng-click="$ctrl.handleDelete()">
+          Delete Expense
+        </div>
       </div>
     </div>
+  </div>
+  <div class="expenses-feed-card-detail-slider" ng-if="$ctrl.details">
+    <div class="expenses-feed-card-detail-item"><b>Paid by</b> : {{$ctrl.populatePaidBy()}}</div>
+    <div class="expenses-feed-card-detail-item"><b>Split Among</b> : {{$ctrl.populateSplitAmong()}}</div>
   </div>
 </div>

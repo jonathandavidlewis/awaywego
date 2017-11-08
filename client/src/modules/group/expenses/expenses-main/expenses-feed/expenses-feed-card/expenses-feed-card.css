@@ -12,3 +12,12 @@
   padding-right: 10px;
   color: var(--dk4);
 }
+
+.expenses-feed-card-detail-slider {
+  margin-top: 10px;
+  border-top: 1px solid var(--la);
+}
+
+.expenses-feed-card-detail-item {
+  color: var(--dk4);
+}

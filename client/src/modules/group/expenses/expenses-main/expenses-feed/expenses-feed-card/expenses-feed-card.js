@@ -10,10 +10,11 @@ class ExpensesFeedCardController {
     this.userId = UserService.user.id;
     this.groupOwner = GroupService.currentGroup.userId;
     this.ConfirmService = ConfirmService;
-
+    this.details = false;
 
     this.handleDelete = this.handleDelete.bind(this);
     this.menuShouldAppear = this.menuShouldAppear.bind(this);
+    this.toggleDetails = this.toggleDetails.bind(this);
   }
   handleDelete() {
     this.ConfirmService.openModal(
@@ -30,6 +31,30 @@ class ExpensesFeedCardController {
   menuShouldAppear() {
     return this.expense.userId === this.userId ||
            this.groupOwner === this.userId;
+  }
+
+  toggleDetails() {
+    this.details = !this.details;
+  }
+
+  populatePaidBy() {
+    let paid = {};
+    this.expense.transactions.forEach((transaction) => {
+      if (!paid[transaction.to.name]) {
+        paid[transaction.to.name] = true;
+      }
+    });
+    return Object.keys(paid).join(', ').toString();
+  }
+
+  populateSplitAmong() {
+    let among = {};
+    this.expense.transactions.forEach((transaction) => {
+      if (!among[transaction.from.name]) {
+        among[transaction.from.name] = true;
+      }
+    });
+    return Object.keys(among).join(', ').toString();
   }
 
 }
