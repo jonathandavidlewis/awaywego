@@ -93,8 +93,8 @@ angular.module('app', [
   .config(appRouting)
   .component('app', AppComponent)
   .run(['$state', function($state) {
-    window.myAppErrorLog = [];
+    window.routingErrorLog = [];
     $state.defaultErrorHandler(function(error) {
-      window.myAppErrorLog.push(error);
+      window.routingErrorLog.push(error);
     });
   }]);
