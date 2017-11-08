@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
 const db = require('../config.js');
 const Schema = mongoose.Schema;
 const Transaction = require('./transaction');
