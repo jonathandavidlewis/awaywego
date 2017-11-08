@@ -37,20 +37,33 @@ import './app.css';
 import './styles/forms.css';
 
 class AppController {
-  constructor(UserService, $transitions) {
+  constructor(UserService, $transitions, $timeout) {
     this.UserService = UserService;
     this.transitions = $transitions;
+    this.timeout = $timeout;
+    this.initBusy = false;
     this.appBusy = false;
+    this.timeoutBusy = this.timeoutBusy.bind(this);
+  }
+
+  timeoutBusy() {
+    this.initBusy = true;
+    this.timeout(() => {
+      if (this.initBusy) { this.appBusy = true; }
+    }, 200);
   }
 
   $onInit() {
     this.transitions.onStart({}, (transition) => {
-      this.appBusy = true;
-      transition.promise.finally(() => this.appBusy = false);
+      this.timeoutBusy();
+      transition.promise.finally(() => {
+        this.initBusy = false;
+        this.appBusy = false;
+      });
     });
   }
 }
-AppController.$inject = ['UserService', '$transitions'];
+AppController.$inject = ['UserService', '$transitions', '$timeout'];
 
 const AppComponent = {
   template: template,
@@ -78,4 +91,10 @@ angular.module('app', [
   .service('ImageSearchService', ImageSearchService)
   .service('ConfirmService', ConfirmService)
   .config(appRouting)
-  .component('app', AppComponent);
+  .component('app', AppComponent)
+  .run(['$state', function($state) {
+    window.myAppErrorLog = [];
+    $state.defaultErrorHandler(function(error) {
+      window.myAppErrorLog.push(error);
+    });
+  }]);
