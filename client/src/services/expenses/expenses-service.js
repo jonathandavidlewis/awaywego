@@ -35,9 +35,19 @@ export default class ExpensesService {
     this.filterByExpenseId = this.filterByExpenseId.bind(this);
     this.consolidateDebts = this.consolidateDebts.bind(this);
     this.consolidateSummary = this.consolidateSummary.bind(this);
+    this.findExpenseById = this.findExpenseById.bind(this);
   }
 
   // Data Manipulation Methods
+
+  findExpenseById(expenseId) {
+    for (let i = 0; i < this.expenses.length; i++) {
+      if (expenseId === this.expenses[i]._id) {
+        return this.expenses[i];
+      }
+    }
+    return null;
+  }
 
   filterTransactions() {
     let result = [];

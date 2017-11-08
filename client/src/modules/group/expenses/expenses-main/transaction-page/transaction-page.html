@@ -8,7 +8,7 @@
     <div class="transaction-page-label-item"><b>Settle</b></div>
     <div class="transaction-page-label-item"><b>Delete</b></div>
   </div>
-  <transaction-card ng-repeat="transaction in $ctrl.ExpensesService.transactions | filter:$ctrl.filterTransactions" transaction="transaction" settle-transaction="$ctrl.ExpensesService.settleTransaction" remove-transaction="$ctrl.ExpensesService.removeTransaction" user="$ctrl.userId" />
+  <transaction-card ng-repeat="transaction in $ctrl.ExpensesService.transactions | filter:$ctrl.filterTransactions" transaction="transaction" settle-transaction="$ctrl.ExpensesService.settleTransaction" user="$ctrl.userId" />
   <div class="transaction-page-empty" ng-if="$ctrl.filteredTransactions.length === 0">No open transactions are available</div>
 
 </div>
