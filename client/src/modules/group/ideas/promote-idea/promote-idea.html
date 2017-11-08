@@ -15,6 +15,8 @@
         <div class="awg-flex">
           <div class="awg-flex-col awg-flex-1">
             <label for="idea-start-time">Start time:</label>
+            <mdp-date-picker mdp-format="MM/DD/YYYY" ng-model="$ctrl.startTime"></mdp-date-picker>
+            <mdp-time-picker mdp-format="hh:mm A" ng-model="$ctrl.startTime"></mdp-time-picker>
             <div class="awgl-form-input form-control" moment-picker="$ctrl.event.startTime" format="MM/DD/YYYY hh:mm A" change="$ctrl.onStartDateChange(newValue, oldValue)" value="$ctrl.moment()">
               {{ $ctrl.formattedStartTime }}
             </div>

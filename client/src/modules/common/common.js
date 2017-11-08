@@ -1,4 +1,6 @@
 import angular from 'angular';
+import mdPickers from 'md-pickers';
+import 'md-pickers/dist/mdPickers.css';
 
 // services *just* for this module
 
@@ -7,7 +9,7 @@ import HeaderComponent from './header/header';
 import ConfirmComponent from './confirm/confirm';
 import SpinnerBoxComponent from './spinner-box/spinner-box.js';
 
-const CommonModule = angular.module('app.common', [])
+const CommonModule = angular.module('app.common', [mdPickers])
   .component('header', HeaderComponent)
   .component('confirm', ConfirmComponent)
   .component('spinnerBox', SpinnerBoxComponent);

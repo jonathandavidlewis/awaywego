@@ -5,6 +5,10 @@ window.jQuery = $;
 // loading angular to window for the main app.js import
 const angular = require('angular');
 import uirouter from '@uirouter/angularjs';
+import ngMaterial from 'angular-material';
+import 'angular-material/angular-material.css';
+import ngAria from 'angular-aria';
+import ngAnimate from 'angular-animate';
 
 // import other modules
 import CommonModule from './modules/common/common';
@@ -46,6 +50,9 @@ const AppComponent = {
 
 angular.module('app', [
   uirouter,
+  ngMaterial,
+  ngAria,
+  ngAnimate,
   CommonModule,
   HomeModule,
   LoginModule,

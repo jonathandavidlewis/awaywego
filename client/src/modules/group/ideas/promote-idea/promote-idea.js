@@ -21,6 +21,7 @@ class PromoteIdeaController {
     this.addressName = '';
     this.addressText = '';
     this.addressLink = '';
+    this.startTime = new Date();
     this.onEndDateChange = this.onEndDateChange.bind(this);
     this.onStartDateChange = this.onStartDateChange.bind(this);
   }
