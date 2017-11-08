@@ -1,5 +1,4 @@
 const expect = require('chai').expect;
-const axios = require('axios');
 const request = require('supertest');
 const User = require('../../db/models/user');
 
