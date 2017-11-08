@@ -7,38 +7,59 @@
         type="text" placeholder="Describe your Expense" />
     </div>
     <div class="expenses-add-input-block">
-      <input ng-change="$ctrl.updateTransactions()" class="awgl-form-input form-control expenses-input" name="expense-amount" ng-model="$ctrl.amount"
+      <input ng-change="$ctrl.updateTransactions()" class="awgl-form-input form-control expenses-input" name="expense-amount"       ng-model="$ctrl.amount"
         type="number" placeholder="What was the total?" />
     </div>
 
-    <div class="expenses-added-people-container flex-col">
+    <div class="expenses-added-people-container awg-flex-col">
+
       <div class="expenses-added-people-area">
-        <div ng-if="$ctrl.payerToggle === false" class="expenses-add-payer-description">
-          <button class="awgd-button" ng-click="$ctrl.toggleCards(true)">Paid By</button>
-        </div>
-        <div ng-if="$ctrl.payerToggle === true" class="expenses-add-payer-description">
-          <button class="awgd-button" ng-click="$ctrl.toggleCards(true)">Set Payers</button>
+        <div class="dropdown expenses-add-dropdown-container">
+          <div class="dropdown-toggle" id={{'dd-'+$ctrl.expense._id}} data-toggle="dropdown">
+            <div ng-if="$ctrl.payerToggle === false" class="expenses-add-payer-description">
+              <button class="awgd-button">Paid By</button>
+            </div>
+          </div>
+          <div class="dropdown-menu dropdown-menu-right">
+            <expenses-add-people-card
+              class="dropdown-item"
+              toggle="$ctrl.togglePayer"
+              amount="$ctrl.amount"
+              ng-repeat="member in $ctrl.members"
+              member="member"
+            />
+          </div>
         </div>
 
-        <expenses-add-people-card ng-click="$ctrl.toggleCards(true)" ng-show="$ctrl.payerToggle === false" ng-repeat="payer in $ctrl.payers" class="ng-show" member="payer" is-payer="true" />
-
-        <div ng-show="$ctrl.payerToggle === true" class="ng-show awg-flex-col">
-          <expenses-add-people-card
-          toggle="$ctrl.togglePayer"
-          amount="$ctrl.amount"
-          ng-repeat="member in $ctrl.members"
-          member="member"
-          />
-        </div>
+        <expenses-add-people-card
+          ng-show="$ctrl.payerToggle === false"
+          ng-repeat="payer in $ctrl.payers"
+          class="ng-show"
+          member="payer"
+          is-payer="true"
+          transaction-type="$ctrl.transactionType"
+        />
       </div>
 
       <div class="expenses-added-people-area">
-        <div class="expenes-add-owers-description"><button class="awgd-button" ng-click="$ctrl.toggleCards()">Split Among</button></div>
+        <div class="dropdown expenses-add-dropdown-container">
+          <div class="dropdown-toggle" id={{'dd-'+$ctrl.expense._id}} data-toggle="dropdown">
+            <div class="expenses-add-owers-description">
+              <div class="awgd-button">{{$ctrl.transactionType === 'custom' ? 'Custom Split Among':'Split Equally Among'}}</div>
+            </div>
+          </div>
+          <div class="dropdown-menu dropdown-menu-right">
+            <div class="dropdown-item" ng-click="$ctrl.toggleTransactionType('equal')">Split Equally</div>
+            <div class="dropdown-item" ng-click="$ctrl.toggleTransactionType('custom')">Custom Input</div>
+          </div>
+        </div>
+
           <expenses-add-people-card
-          toggle="$ctrl.toggleOwer"
-          amount="$ctrl.amount"
-          ng-repeat="member in $ctrl.members"
-          member="member"
+            toggle="$ctrl.toggleOwer"
+            amount="$ctrl.amount"
+            ng-repeat="member in $ctrl.members"
+            member="member"
+            transaction-type="$ctrl.transactionType"
           />
       </div>
     </div>

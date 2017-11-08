@@ -48,6 +48,11 @@ class ExpensesAddController {
     this.togglePayer = this.togglePayer.bind(this);
     this.createEqualTransactions = this.createEqualTransactions.bind(this);
     this.addExpense = this.addExpense.bind(this);
+    this.toggleTransactionType = this.toggleTransactionType.bind(this);
+  }
+
+  toggleTransactionType(type) {
+    this.transactionType = type;
   }
 
   toggleCards(payerToggle) {

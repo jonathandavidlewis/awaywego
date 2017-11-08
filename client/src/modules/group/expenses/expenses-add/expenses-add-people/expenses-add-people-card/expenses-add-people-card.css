@@ -1,7 +1,7 @@
 .expense-add-people-card-container {
   display: flex;
   justify-content: space-between;
-  padding: 10px 0;
+  padding: 10px;
   align-items: center;
   border-bottom: 1px solid var(--m3tr5);
   background-color: var(--lt);
@@ -18,4 +18,8 @@
 
 .expense-add-people-card-content {
   align-self: flex-start;
+}
+
+.expense-add-people-card-actions {
+  flex: 0 1 auto;
 }

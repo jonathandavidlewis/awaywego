@@ -9,7 +9,13 @@
     <div class="expense-add-people-card-name">{{$ctrl.member.name}}</div>
   </div>
 
-  <div class="expense-add-people-card-actions">
+  <div ng-if="$ctrl.transactionType === 'custom'" class="expense-add-people-card-actions">
+    <div class="expense-add-people-card-actions-icon-container">
+      <input type="number" />
+    </div>
+  </div>
+
+  <div ng-if="$ctrl.transactionType !== 'custom'" class="expense-add-people-card-actions">
     <div class="expense-add-people-card-actions-icon-container">
       <i ng-if="$ctrl.checked" class="material-icons">check_box</i>
       <i ng-if="!$ctrl.checked" class="material-icons">check_box_outline_blank</i>

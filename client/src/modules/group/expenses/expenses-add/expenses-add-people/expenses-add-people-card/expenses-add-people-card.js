@@ -39,7 +39,8 @@ const ExpensesAddPeopleCardComponent = {
     toggle: '<',
     amount: '<',
     selectedMembers: '<',
-    isPayer: '<'
+    isPayer: '<',
+    transactionType: '<'
   },
   template: template,
   controller: ExpensesAddPeopleCardController
