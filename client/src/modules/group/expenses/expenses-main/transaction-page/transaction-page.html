@@ -1,8 +1,11 @@
 <div class="transaction-page-container">
+  <div class="expenses-title header">
+    <a ui-sref="^.feed"><i class="material-icons">navigate_before</i></a>
+    <span>Transactions</span>
+  </div>
   <div class="dropdown transaction-page-dropdown-container">
     <div class="dropdown-toggle" id={{'dd-'+$ctrl.expense._id}} data-toggle="dropdown">
-      <div class="expenses-feed-header">Transactions</div>
-      <div class="transaction-page-subheader">Filtered By {{$ctrl.ExpensesService.transactionHeader}} <i class="material-icons">keyboard_arrow_down</i></div>
+      <div class="transaction-page-subheader">Filter By -  {{$ctrl.ExpensesService.transactionHeader}} <i class="material-icons">keyboard_arrow_down</i></div>
     </div>
     <div class="dropdown-menu dropdown-menu-right">
       <div class="dropdown-item" ng-click="$ctrl.ExpensesService.changeFilter('Money You Are Owed')">Money you are owed</div>
