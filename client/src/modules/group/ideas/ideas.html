@@ -3,7 +3,7 @@
     <a ui-sref="app.home"><i class="material-icons">navigate_before</i></a>
     <span>Ideas</span>
   </div>
-  <ideas-card event-id="idea._id" ng-repeat="idea in $ctrl.EventService.ideas"/>
+  <ideas-card event-id="idea._id" ng-repeat="idea in $ctrl.EventService.ideas"></ideas-card>
   <new-idea-button ng-if="$ctrl.EventService.ideas.length === 0"
      class="new-idea-button button-center"
      events="$ctrl.EventService.ideas">
