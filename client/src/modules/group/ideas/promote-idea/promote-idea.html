@@ -15,14 +15,14 @@
         <label for="idea-start-time">Start:</label>
         <div class="date-time">
           <mdp-date-picker class="picker" mdp-placeholder="Date" mdp-format="MM/DD/YYYY" ng-model="$ctrl.startTime"></mdp-date-picker>
-          <mdp-time-picker class="picker" mdp-placeholder="Time" mdp-format="hh:mm A" ng-model="$ctrl.startTime" ng-change="$ctrl.onStartDateChange()"></mdp-time-picker>
+          <mdp-time-picker class="picker" mdp-placeholder="Time" mdp-format="hh:mm A" ng-model="$ctrl.startTime" ng-change="$ctrl.onStartTimeChange()"></mdp-time-picker>
         </div>
       </div>
       <div class="date-time-pickers">
         <label for="idea-end-time">End:</label>
         <div class="date-time">
           <mdp-date-picker class="picker" mdp-placeholder="Date" mdp-format="MM/DD/YYYY" ng-model="$ctrl.endTime"></mdp-date-picker>
-          <mdp-time-picker class="picker" mdp-placeholder="Time" mdp-format="hh:mm A" ng-model="$ctrl.endTime"></mdp-time-picker>
+          <mdp-time-picker class="picker" mdp-placeholder="Time" mdp-format="hh:mm A" ng-model="$ctrl.endTime" ng-change="$ctrl.onStartTimeChange"></mdp-time-picker>
         </div>
       </div>
       <div class="promote-idea-input-block">

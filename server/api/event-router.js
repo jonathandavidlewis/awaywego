@@ -17,6 +17,7 @@ eventRouter.post('/', (req, res) => {
 });
 
 eventRouter.post('/new', (req, res) => {
+  console.log('here ======>', req.body);
   const newEvent = req.body;
   if (newEvent.imageUrl === '') {
     delete newEvent.imageUrl;

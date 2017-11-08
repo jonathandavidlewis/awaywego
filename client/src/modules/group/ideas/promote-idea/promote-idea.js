@@ -1,7 +1,6 @@
 import angular from 'angular';
 
 // import services for this modules
-import momentPicker from 'angular-moment-picker';
 
 // imports for this component
 import AddressSearchComponent from '../../../address-search/address-search';
@@ -9,35 +8,40 @@ import template from './promote-idea.html';
 import './promote-idea.css';
 
 class PromoteIdeaController {
-  constructor(EventService, $stateParams, $state, MomentService) {
+  constructor(EventService, UserService, $stateParams, $state) {
     this.EventService = EventService;
+    this.UserService = UserService;
     this.stateParams = $stateParams;
     this.state = $state;
-    this.moment = MomentService.moment;
     this.$onInit = this.$onInit.bind(this);
     this.formWarning = '';
     this.addressName = '';
     this.addressText = '';
     this.addressLink = '';
     this.startTime = new Date();
-    this.milliseconds = this.startTime.getTime() + (60 * 60 * 1000);
-    this.endTime = new Date(this.milliseconds);
-    this.onStartDateChange = this.onStartDateChange.bind(this);
+    this.onStartTimeChange = this.onStartTimeChange.bind(this);
+    this.onEndTimeChange = this.onEndTimeChange.bind(this);
   }
 
   $onInit() {
+    this.onStartTimeChange();
     if (this.stateParams.eventId === 'new') {
       this.event = {};
       this.event.groupId = this.stateParams.groupId;
+      this.event.userId = this.UserService.user.id;
       this.event.imageUrl = '';
     } else {
       this.event = this.EventService.getEvent(this.stateParams.eventId);
     }
   }
 
-  onStartDateChange() {
+  onStartTimeChange() {
     this.milliseconds = this.startTime.getTime() + (60 * 60 * 1000);
     this.endTime = new Date(this.milliseconds);
+  }
+
+  onEndTimeChange() {
+
   }
 
   submit() {
@@ -48,9 +52,7 @@ class PromoteIdeaController {
       promotedIdea.addressName = this.addressName;
       promotedIdea.addressText = this.addressText;
       promotedIdea.addressLink = this.addressLink;
-
       if (this.stateParams.eventId === 'new') {
-        console.log('here');
         this.EventService.submitScheduledEvent(promotedIdea).then(resp => {
           this.state.go('app.group.home');
         }).catch(err => {
@@ -74,11 +76,11 @@ class PromoteIdeaController {
     if (!this.event.title) {
       this.formWarning = 'Please enter a title';
     }
-    if (!this.event.startTime) {
+    if (!this.startTime) {
       this.formWarning = 'Please enter a start time';
       return false;
     }
-    if (!this.event.endTime) {
+    if (!this.endTime) {
       this.formWarning = 'Please enter an end time';
       return false;
     }
@@ -86,7 +88,7 @@ class PromoteIdeaController {
   }
 }
 
-PromoteIdeaController.$inject = ['EventService', '$stateParams', '$state', 'MomentService'];
+PromoteIdeaController.$inject = ['EventService', 'UserService', '$stateParams', '$state'];
 
 const PromoteIdeaComponent = {
   restrict: 'E',
@@ -95,7 +97,7 @@ const PromoteIdeaComponent = {
   controller: PromoteIdeaController
 };
 
-const PromoteIdeaModule = angular.module('app.plan.planner.promoteIdea', ['moment-picker'])
+const PromoteIdeaModule = angular.module('app.plan.planner.promoteIdea', [])
   .component('promoteIdea', PromoteIdeaComponent)
   .component('addressSearch', AddressSearchComponent);
 
