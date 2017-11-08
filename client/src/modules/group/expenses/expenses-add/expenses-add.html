@@ -1,7 +1,10 @@
 <div class="expenses-add-container awg-flex-col">
 
   <div class="expenses-add-form-container">
-    <div class="expenses-add-form-header">Create An Expense</div>
+    <div class="expenses-title header">
+      <a ui-sref="^.main.feed"><i class="material-icons">navigate_before</i></a>
+      <span>Create An Expense</span>
+    </div>
     <div class="expenses-add-input-block">
       <input class="awgl-form-input form-control expenses-input" name="expense-description" ng-model="$ctrl.description"
         type="text" placeholder="Describe your Expense" />

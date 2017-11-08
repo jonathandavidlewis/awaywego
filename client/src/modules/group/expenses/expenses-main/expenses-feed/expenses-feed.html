@@ -3,14 +3,9 @@
     <a ui-sref="^.^.^.home"><i class="material-icons">navigate_before</i></a>
     <span>Expenses</span>
   </div>
-  <div class="expenses-feed-header">Expenses Summary</div>
+
   <expenses-summary></expenses-summary>
-  <div class="expenses-feed-header">Expenses Overview</div>
-  <div class="expenses-feed-label awg-flex">
-    <div class="expenses-feed-item awg-flex-1"><b>Description</b></div>
-    <div class="expenses-feed-item"><b>Amount</b></div>
-    <div class="expenses-feed-item"><b>Actions</b></div>
-  </div>
+  <div class="header">History</div>
   <expenses-feed-card ng-repeat="expense in $ctrl.ExpensesService.expenses" expense="expense"></expenses-feed-card>
 
   <div class="expenses-feed-header" ui-sref="^.transactions">Transactions Overview</div>
