@@ -20,7 +20,7 @@ class TransactionPageController {
       this.header = 'Money You Owe';
       return this.ExpensesService.filterByOwedTo(transaction);
     } else if (this.ExpensesService.filterBy === 'Expense') {
-      this.header = 'Expense';
+      this.header = 'Expense - ' + this.ExpensesService.selectedExpense.description;
       return this.ExpensesService.filterByExpenseId(transaction);
     } else {
       this.header = 'All';

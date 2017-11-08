@@ -14,6 +14,7 @@ export default class ExpensesService {
     // Transaction Page
     this.transactions = [];
     this.filterBy = 'All';
+    this.selectedExpense = '';
 
     // Expenses Summary
     this.consolidatedDebts = '';
@@ -28,6 +29,7 @@ export default class ExpensesService {
     this.removeTransaction = this.removeTransaction.bind(this);
     this.settleTransaction = this.settleTransaction.bind(this);
     this.changeFilter = this.changeFilter.bind(this);
+    this.changeFilterExpense = this.changeFilterExpense.bind(this);
     this.filterByOwed = this.filterByOwed.bind(this);
     this.filterByOwedTo = this.filterByOwedTo.bind(this);
     this.filterByExpenseId = this.filterByExpenseId.bind(this);
@@ -156,6 +158,11 @@ export default class ExpensesService {
     this.filterBy = type;
   }
 
+  changeFilterExpense(expense) {
+    this.changeFilter('Expense');
+    this.selectedExpense = expense;
+  }
+
   filterByOwed(transaction) {
     if (transaction.to._id === this.UserService.user.id) {
       return true;
@@ -173,7 +180,7 @@ export default class ExpensesService {
   }
 
   filterByExpenseId(transaction) {
-    if (transaction.expenseId === this.stateParams.expenseId) {
+    if (transaction.expenseId === this.selectedExpense._id) {
       return true;
     } else {
       return false;

@@ -5,11 +5,11 @@ import template from './expenses-feed-card.html';
 import './expenses-feed-card.css';
 
 class ExpensesFeedCardController {
-  constructor() {
-
+  constructor(ExpensesService) {
+    this.ExpensesService = ExpensesService;
   }
 }
-ExpensesFeedCardController.$inject = [];
+ExpensesFeedCardController.$inject = ['ExpensesService'];
 
 const ExpensesFeedCardComponent = {
   restrict: 'E',
