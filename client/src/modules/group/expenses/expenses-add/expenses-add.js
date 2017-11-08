@@ -5,7 +5,7 @@ import template from './expenses-add.html';
 import './expenses-add.css';
 
 class ExpensesAddController {
-  constructor(GroupService, ExpensesService, $state, $stateParams) {
+  constructor(GroupService, ExpensesService, $state, $stateParams, UserService) {
     this.state = $state;
     this.stateParams = $stateParams;
     // Brings in GroupService to get current group's members
@@ -15,6 +15,9 @@ class ExpensesAddController {
     // Brings in Expenses service to make POST API calls.
     this.ExpensesService = ExpensesService;
 
+    // Bring in User Service to check self
+    this.UserService = UserService;
+    this.UserService.user._id = this.UserService.user.id;
 
     // Total bill amount
     this.amount = '';
@@ -150,7 +153,7 @@ class ExpensesAddController {
   }
 }
 
-ExpensesAddController.$inject = ['GroupService', 'ExpensesService', '$state', '$stateParams'];
+ExpensesAddController.$inject = ['GroupService', 'ExpensesService', '$state', '$stateParams', 'UserService'];
 
 const ExpensesAddComponent = {
   restrict: 'E',

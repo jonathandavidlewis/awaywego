@@ -6,7 +6,6 @@
 }
 
 .expenses-added-people-container {
-  display: flex;
   justify-content: space-between;
 }
 

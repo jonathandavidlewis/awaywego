@@ -21,9 +21,17 @@
       </div>
     </div>
 
-    <div class="expenses-added-people-container">
+    <div class="expenses-added-people-container flex-col">
       <div class="expenses-added-people-area">
-        <div class="expenses-add-payer-description"><button class="awgd-button" ng-click="$ctrl.toggleCards(true)">Add Payers</button></div>
+        <div ng-if="$ctrl.payerToggle === false" class="expenses-add-payer-description">
+          <button class="awgd-button" ng-click="$ctrl.toggleCards(true)">Paid By</button>
+        </div>
+        <div ng-if="$ctrl.payerToggle === true" class="expenses-add-payer-description">
+          <button class="awgd-button" ng-click="$ctrl.toggleCards(true)">Set Payers</button>
+        </div>
+
+        <expenses-add-people-card ng-click="$ctrl.toggleCards(true)" ng-show="$ctrl.payerToggle === false" ng-repeat="payer in $ctrl.payers" class="ng-show" member="payer" is-payer="true" />
+
         <div ng-show="$ctrl.payerToggle === true" class="ng-show awg-flex-col">
           <expenses-add-people-card
           toggle="$ctrl.togglePayer"
@@ -35,15 +43,13 @@
       </div>
 
       <div class="expenses-added-people-area">
-        <div class="expenes-add-owers-description"><button class="awgd-button" ng-click="$ctrl.toggleCards()">Add Owers</button></div>
-        <div ng-show="$ctrl.owerToggle === true" class="ng-show awg-flex-col">
+        <div class="expenes-add-owers-description"><button class="awgd-button" ng-click="$ctrl.toggleCards()">Split Among</button></div>
           <expenses-add-people-card
           toggle="$ctrl.toggleOwer"
           amount="$ctrl.amount"
           ng-repeat="member in $ctrl.members"
           member="member"
           />
-        </div>
       </div>
     </div>
 
