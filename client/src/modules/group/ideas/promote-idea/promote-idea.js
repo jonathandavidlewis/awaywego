@@ -16,15 +16,12 @@ class PromoteIdeaController {
     this.moment = MomentService.moment;
     this.$onInit = this.$onInit.bind(this);
     this.formWarning = '';
-    this.formattedStartTime = '';
-    this.formattedEndTime = '';
     this.addressName = '';
     this.addressText = '';
     this.addressLink = '';
     this.startTime = new Date();
     this.milliseconds = this.startTime.getTime() + (60 * 60 * 1000);
     this.endTime = new Date(this.milliseconds);
-    this.onEndDateChange = this.onEndDateChange.bind(this);
     this.onStartDateChange = this.onStartDateChange.bind(this);
   }
 
@@ -36,19 +33,11 @@ class PromoteIdeaController {
     } else {
       this.event = this.EventService.getEvent(this.stateParams.eventId);
     }
-
-    if (!this.event.startTime) { this.event.startTime = this.moment(); }
-    this.formattedStartTime = this.moment(this.event.startTime).format('MM/DD/YYYY hh:mm A');
-    if (!this.event.endTime) { this.event.endTime = this.moment().add(1, 'hour'); }
-    this.formattedEndTime = this.moment(this.event.endTime).format('MM/DD/YYYY hh:mm A');
   }
 
-  onStartDateChange(newValue) {
-    this.formattedStartTime = newValue.format('MM/DD/YYYY hh:mm A');
-  }
-
-  onEndDateChange(newValue) {
-    this.formattedEndTime = newValue.format('MM/DD/YYYY hh:mm A');
+  onStartDateChange() {
+    this.milliseconds = this.startTime.getTime() + (60 * 60 * 1000);
+    this.endTime = new Date(this.milliseconds);
   }
 
   submit() {
