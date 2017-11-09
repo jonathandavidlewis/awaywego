@@ -1,6 +1,10 @@
 <div class="home-container awg-flex-col awg-flex-align-center full-window bgc-0">
   <div class="home-title header">Groups</div>
   <div class="home-container-window w100">
+    <div ng-if="$ctrl.GroupService.groups.length === 0">
+      <span>It looks like you don't have any groups yet! Add a group with the '+' below.</span>
+
+    </div>
     <group-card group="group" ng-repeat="group in $ctrl.GroupService.groups"></group-card>
   </div>
   <button class="new-group-button awgd-button" ui-sref="app.makeGroup">

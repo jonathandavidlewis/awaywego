@@ -1,5 +1,8 @@
 <div ng-click="$ctrl.closeForm()"
   class="friends-list-container h100 full-window bgc-0">
+  <div class="new-user-box" ng-if="$ctrl.UserService.isNewUser">
+    <button type="submit" class="awgd-button" name="continue" ui-sref="app.home">Continue</button>
+  </div>
   <div class="friends-section">
     <div class="friends-section-header header awg-flex">
       <a ui-sref="app.home"><i class="material-icons">navigate_before</i></a>

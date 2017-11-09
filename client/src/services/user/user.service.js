@@ -8,6 +8,7 @@ export default class UserService {
     this.isLoggedIn = false;
     this.user = {};
     this.processTokenAndSignIn(this.getToken());
+    this.isNewUser = false;
   }
 
   processTokenAndSignIn(token) {

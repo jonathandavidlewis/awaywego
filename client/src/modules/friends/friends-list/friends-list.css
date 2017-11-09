@@ -20,3 +20,9 @@
   color: var(--dk5);
   font-size: 1.1em;
 }
+
+.new-user-box {
+  margin-bottom: 10px;
+  border: 1px solid #AAA;
+  box-shadow: 1px 1px 1px #777;
+}
