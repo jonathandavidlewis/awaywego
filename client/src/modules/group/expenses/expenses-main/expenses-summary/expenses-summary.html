@@ -14,6 +14,9 @@
   </div>
   <div class="expenses-summary-body">
     <div class="expenses-summary-body-container">
+      <div class="expenses-summary-card-empty-container" ng-if="$ctrl.ExpensesService.consolidatedDebts.length === 0">
+        <span>There are no current outstanding transactions.</span>
+      </div>
       <div class="expenses-summary-mini-card" ng-repeat="transaction in $ctrl.ExpensesService.consolidatedDebts" transaction="transaction">
         <div class="expenses-summary-mini-card-avatar">
           <img ng-if="transaction.from.profilePic" ng-src="{{transaction.from.profilePic}}" class="avatar">
@@ -37,7 +40,6 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </div>

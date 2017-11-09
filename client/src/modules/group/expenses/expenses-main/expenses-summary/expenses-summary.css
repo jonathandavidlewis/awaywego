@@ -89,3 +89,7 @@
 .expenses-summary-header-amount-receive {
   color: green;
 }
+
+.expenses-summary-card-empty-container {
+  font-size: 0.8em;
+}
