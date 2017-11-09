@@ -10,7 +10,7 @@
 
 .transaction-card-detail-description {
   padding: 5px 0;
-  flex: 0 0 25%;
+  flex: 1 0 15%;
   word-break: break-word;
 }
 
@@ -19,8 +19,9 @@
   color: var(--dk4);
   display: flex;
   align-items: center;
-  flex: 1 0 auto;
+  flex: 1 1 auto;
   word-break: break-word;
+  font-size: 0.9em;
 }
 
 .transaction-card-menu-item {

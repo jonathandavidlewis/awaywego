@@ -1,9 +1,17 @@
 <div class="transaction-card-container">
   <div ng-if="$ctrl.ExpensesService.filterBy !== 'Expense'" class="transaction-card-detail-description">{{$ctrl.transaction.description}}</div>
   <div class="transaction-card-detail-summation">
+    <div class="expenses-summary-mini-card-avatar">
+      <img ng-if="$ctrl.transaction.from.profilePic" ng-src="{{$ctrl.transaction.from.profilePic}}" class="avatar">
+      <i ng-if="!$ctrl.transaction.from.profilePic" class="material-icons">account_circle</i>
+    </div>
     <span>
       {{$ctrl.transaction.from.name}} owed {{$ctrl.transaction.amount | currency:"$"}} to {{$ctrl.transaction.to.name}}
     </span>
+    <div class="expenses-summary-mini-card-avatar">
+      <img ng-if="$ctrl.transaction.to.profilePic" ng-src="{{$ctrl.transaction.to.profilePic}}" class="avatar">
+      <i ng-if="!$ctrl.transaction.to.profilePic" class="material-icons">account_circle</i>
+    </div>
     </div>
 
 </div>
