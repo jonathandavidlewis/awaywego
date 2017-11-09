@@ -14,29 +14,30 @@
   </div>
   <div class="expenses-summary-body">
     <div class="expenses-summary-body-container">
-      <div class="dropdown expenses-summary-card-dropdown-container" ng-repeat="transaction in $ctrl.ExpensesService.consolidatedDebts" transaction="transaction">
-        <div class="dropdown-toggle" id={{'dd-'+transaction._id}} data-toggle="dropdown">
-          <div class="expenses-summary-mini-card">
-            <div class="expenses-summary-mini-card-avatar">
-              <img ng-if="transaction.from.profilePic" ng-src="{{transaction.from.profilePic}}" class="avatar">
-              <i ng-if="!transaction.from.profilePic" class="material-icons">account_circle</i>
-            </div>
-            <div class="expenses-summary-mini-card-name"><b>{{transaction.from._id === $ctrl.UserService.user.id ? 'You' : transaction.from.name}}</b></div>
-            <div class="expenses-summary-mini-card-body">{{transaction.from._id === $ctrl.UserService.user.id ? 'owe' : 'owes'}}</div>
-            <div class="expenses-summary-mini-card-amount">{{transaction.amount | currency:"$"}} to </div>
-            <div class="expenses-summary-mini-card-avatar">
-              <img ng-if="transaction.to.profilePic" ng-src="{{transaction.to.profilePic}}" class="avatar">
-              <i ng-if="!transaction.to.profilePic" class="material-icons">account_circle</i>
-            </div>
-            <div class="expenses-summary-mini-card-name"><b>{{transaction.to._id === $ctrl.UserService.user.id ? 'you' : transaction.to.name}}</b></div>
-          </div>
+      <div class="expenses-summary-mini-card" ng-repeat="transaction in $ctrl.ExpensesService.consolidatedDebts" transaction="transaction">
+        <div class="expenses-summary-mini-card-avatar">
+          <img ng-if="transaction.from.profilePic" ng-src="{{transaction.from.profilePic}}" class="avatar">
+          <i ng-if="!transaction.from.profilePic" class="material-icons">account_circle</i>
         </div>
-        <div class="dropdown-menu dropdown-menu-right" ng-if="$ctrl.menuShouldAppear(transaction)">
-          <div class="dropdown-item" ng-click="$ctrl.handleSettle(transaction)">
-            Settle Expense
+        <div class="expenses-summary-mini-card-name"><b>{{transaction.from._id === $ctrl.UserService.user.id ? 'You' : transaction.from.name}}</b></div>
+        <div class="expenses-summary-mini-card-body">{{transaction.from._id === $ctrl.UserService.user.id ? 'owe' : 'owes'}}</div>
+        <div class="expenses-summary-mini-card-amount">{{transaction.amount | currency:"$"}} to </div>
+        <div class="expenses-summary-mini-card-avatar">
+          <img ng-if="transaction.to.profilePic" ng-src="{{transaction.to.profilePic}}" class="avatar">
+          <i ng-if="!transaction.to.profilePic" class="material-icons">account_circle</i>
+        </div>
+        <div class="expenses-summary-mini-card-name"><b>{{transaction.to._id === $ctrl.UserService.user.id ? 'you' : transaction.to.name}}</b></div>
+        <div class="dropdown expenses-summary-card-dropdown-container"
+          ng-if="$ctrl.menuShouldAppear(transaction)">
+          <div class="dropdown-toggle expenses-summary-card-dropdown-icon" id={{'dd-'+$ctrl.expense._id}} data-toggle="dropdown">
+            <i class="material-icons">more_vert</i>
+          </div>
+          <div class="dropdown-menu dropdown-menu-right">
+            <div class="dropdown-item" ng-click="$ctrl.handleSettle(transaction)">Settle Expense</button>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </div>

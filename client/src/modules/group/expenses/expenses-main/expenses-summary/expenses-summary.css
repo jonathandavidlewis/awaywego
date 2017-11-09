@@ -40,11 +40,21 @@
   padding-top: 5px;
 }
 
+.expenses-summary-card-dropdown-container {
+  flex: 1 0 auto;
+  justify-content: flex-end;
+  padding: 0px;
+  display: flex;
+}
+
+.expenses-summary-card-dropdown-icon {
+  justify-content: flex-end;
+}
 
 
 .expenses-summary-mini-card {
   font-size: 0.9em;
-  padding: 10px;
+  padding: 10px 0;
   margin-bottom: 10px;
   display: flex;
   align-items: center;
@@ -53,6 +63,7 @@
 
 .expenses-summary-mini-card:last-child {
   border-bottom: none;
+  padding-right: 0;
 }
 
 .expenses-summary-mini-card-avatar {
@@ -65,6 +76,9 @@
   padding-right: 5px;
 }
 
+.expenses-summary-mini-card > div:last-child {
+  padding-right: 0;
+}
 
 .expenses-summary-header-amount-owe {
   color: palevioletred;

@@ -1,14 +1,15 @@
-.expenses-main-container {
+.expenses-main-add-controls {
+  position: fixed;
+  bottom: 90px;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  display: flex;
+  justify-content: space-between;
 }
 
 .expenses-main-add-button-container {
-  /*margin: 0px auto 0 auto;
-  width: 50%;
-  padding-bottom: 25px;*/
-  position: fixed;
-  bottom: 90px;
   display: flex;
-  flex: 1;
   justify-content: center;
-  width: 100%;
+  align-items: center;
+  cursor: pointer;
 }
