@@ -1,0 +1,32 @@
+<div class="make-event-container full-window overflow awg-flex-col awg-flex-start awg-flex-align-stretch">
+  <div class="make-event-header header">
+    <a ui-sref="^.ideas"><i class="material-icons">navigate_before</i></a>
+    <span>Suggest an idea</span>
+  </div>
+  <div class="make-event-form-container">
+    <form name="newIdea" ng-submit="$ctrl.submit()">
+      <div class="make-event-input-block">
+        <label class="sr-only" for="idea-title">Idea name</label>
+        <input class="awgl-form-input form-control" name="idea-title" ng-model="$ctrl.title"
+          type="text" placeholder="Idea name" />
+      </div>
+      <div class="make-event-input-block">
+        <label class="sr-only" for="description">Description</label>
+        <textarea class="awgl-form-input form-control" name="idea-desc" ng-model="$ctrl.desc"
+          type="text" rows=2 placeholder="Description (optional)"></textarea>
+      </div>
+      <div class="make-event-input-block">
+        <label class="sr-only" for="plan-image">Background picture</label>
+        <image-search image-url="$ctrl.imageUrl"></image-search>
+      </div>
+      <div ng-if="$ctrl.formWarning" class="awgl-form-warning awg-flex awg-flex-center">
+        <span>{{$ctrl.formWarning}}</span>
+      </div>
+      <div class="make-event-submit-container awg-flex awg-flex-center">
+        <div class="make-event-submit-button-container">
+          <button type="submit" class="awgd-button" name="make-event-submit">Submit your idea</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
