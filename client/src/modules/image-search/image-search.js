@@ -10,10 +10,18 @@ class ImageSearchController {
     this.search = '';
     this.images = [];
     this.spinner = false;
+    this.handleTyping = this.handleTyping.bind(this);
   }
 
   $onInit() {
     this.placeholder = this.placeholder || 'Search for an image';
+  }
+
+  handleTyping(event) {
+    event.stopPropagation();
+    if (event.key === 'Enter') {
+      this.imageSearch(this.search);
+    }
   }
 
   imageSearch(query) {
