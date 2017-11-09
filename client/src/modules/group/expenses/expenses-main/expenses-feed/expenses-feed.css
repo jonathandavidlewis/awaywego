@@ -17,3 +17,16 @@
   padding-right: 10px;
   color: var(--dk3);
 }
+
+.expenses-feed-empty {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+  justify-content: center;
+}
+
+.expenses-feed-empty h3 {
+  align-self: center;
+  text-align: center;
+  width: 50%
+}

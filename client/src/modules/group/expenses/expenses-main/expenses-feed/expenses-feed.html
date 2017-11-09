@@ -4,7 +4,10 @@
     <span>Expenses</span>
   </div>
 
-  <expenses-summary></expenses-summary>
-  <div class="header">History</div>
+  <expenses-summary ng-if="$ctrl.ExpensesService.expenses.length > 0"></expenses-summary>
+  <div class="header" ng-if="$ctrl.ExpensesService.expenses.length > 0">History</div>
+  <span class="expenses-feed-empty" ng-if="$ctrl.ExpensesService.expenses.length === 0">
+    <h3>Let's start by adding an expense.</h3>
+  </span>
   <expenses-feed-card ng-repeat="expense in $ctrl.ExpensesService.expenses | orderBy:'-createdAt' | limitTo:15" expense="expense"></expenses-feed-card>
 </div>
