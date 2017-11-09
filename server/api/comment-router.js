@@ -67,9 +67,19 @@ const eventPermissionsCheck = (userId, eventId) => {
 };
 
 const commentPermissionsCheck = (userId, commentId) => {
-  return Comment.findById(commentId).then(comment => {
+  let comment;
+  return Comment.findById(commentId).then(foundComment => {
+    comment = foundComment;
     if (!comment) { throw new Error('comment_not_found'); }
-    if (!comment.user.equals(userId)) { throw new Error('not_users_comment'); }
+    if (!comment.user.equals(userId)) {
+      Event.findById(comment.eventId)
+        .then(e => Group.findById(e.groupId))
+        .then(group => {
+          if (!comment.user.equals(group.userId)) {
+            throw new Error('not_users_comment');
+          }
+        });
+    }
   });
 };
 
