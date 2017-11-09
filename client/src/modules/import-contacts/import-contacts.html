@@ -2,7 +2,10 @@
   <div class="people-add-header header">
     <span>Import your contacts</span>
   </div>
-  <div class="text-center" ng-if="$ctrl.allContacts.length"> We found {{$ctrl.allContacts.length}} contacts. Invite them below</div>
+  <div class="text-center" ng-if="$ctrl.allContacts.length">
+    <span>We found {{$ctrl.allContacts.length}} contacts. Invite them below</span>
+    <button type="submit" class="awgd-button" name="continue" ui-sref="app.friends.list">Continue</button>
+  </div>
 
   <div class="text-center min-line-height" ng-if="$ctrl.allContacts.length === 0">
     <span ng-if="$ctrl.loadingContacts">
@@ -18,7 +21,7 @@
     <div class="awg-flex floating-center-button awg-space-between awg-flex-align-stretch">
       <button type="submit" class="awgd-button" name="get-contacts" ng-click="$ctrl.getGoogleContacts()">Import contacts</button>
       <div class ="w50"> </div>
-      <button type="submit" class="awgd-button" name="get-contacts" ui-sref="app.home">Skip</button>
+      <button type="submit" class="awgd-button" name="skip" ui-sref="app.friends">Skip</button>
     </div>
 
   </div>

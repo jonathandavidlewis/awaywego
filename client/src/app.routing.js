@@ -248,7 +248,8 @@ redirectIfNotAuthed.$inject = ['$q', '$state', 'UserService'];
 const redirectToImport = function($q, $state, UserService) {
   const result = $q.defer();
   if (localStorage.getItem('new_user')) {
-    localStorage.removeItem('new_user');
+    UserService.isNewUser = true;
+    //localStorage.removeItem('new_user');
     $state.go('app.import');
     result.resolve('true');
   } else {
