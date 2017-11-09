@@ -4,7 +4,7 @@
   </div>
   <div class="text-center" ng-if="$ctrl.allContacts.length">
     <span>We found {{$ctrl.allContacts.length}} contacts. Invite them below</span>
-    <button type="submit" class="awgd-button" name="continue" ui-sref="app.friends.list">Continue</button>
+    <button type="button" class="awgd-button" name="continue" ui-sref="app.friends.list">Continue</button>
   </div>
 
   <div class="text-center min-line-height" ng-if="$ctrl.allContacts.length === 0">
@@ -19,9 +19,9 @@
       </span>
     </div>
     <div class="awg-flex floating-center-button awg-space-between awg-flex-align-stretch">
-      <button type="submit" class="awgd-button" name="get-contacts" ng-click="$ctrl.getGoogleContacts()">Import contacts</button>
+      <button type="button" class="awgd-button" name="get-contacts" ng-click="$ctrl.getGoogleContacts()">Import contacts</button>
       <div class ="w50"> </div>
-      <button type="submit" class="awgd-button" name="skip" ui-sref="app.friends.list">Skip</button>
+      <button type="button" class="awgd-button" name="skip" ui-sref="app.friends.list">Skip</button>
     </div>
 
   </div>
