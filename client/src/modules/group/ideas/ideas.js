@@ -39,6 +39,7 @@ const IdeasModule = angular.module('app.group.ideas', [
   .component('ideas', IdeasComponent)
   .component('ideasCard', IdeasCardComponent)
   .component('newIdeaButton', NewIdeaButtonComponent)
-  .component('makeIdea', MakeIdeaComponent);
+  .component('makeIdea', MakeIdeaComponent)
+  .component('makeEvent', MakeEventComponent);
 
 export default IdeasModule.name;

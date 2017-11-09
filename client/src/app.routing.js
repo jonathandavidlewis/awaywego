@@ -95,10 +95,10 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
     component: 'makeIdea'
   };
 
-  const groupPromoteIdeaState = {
-    name: 'app.group.promoteIdea',
-    url: '/idea/{eventId}/promote',
-    component: 'promoteIdea'
+  const groupMakeEventState = {
+    name: 'app.group.makeEvent',
+    url: '/idea/schedule',
+    component: 'makeEvent'
   };
 
   const peopleState = {
@@ -213,7 +213,7 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
   $stateProvider.state(groupIdeasState);
   $stateProvider.state(groupIdeaState);
   $stateProvider.state(groupMakeIdeaState);
-  $stateProvider.state(groupPromoteIdeaState);
+  $stateProvider.state(groupMakeEventState);
   $stateProvider.state(chatState);
 
   // expenses states
