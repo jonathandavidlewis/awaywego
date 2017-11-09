@@ -14,6 +14,11 @@
   font-weight: bold;
 }
 
+.expenses-feed-card-description {
+  display: flex;
+  align-items: center;
+}
+
 .expenses-feed-card-description:focus {
   outline: none;
 }
