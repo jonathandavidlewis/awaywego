@@ -2,7 +2,6 @@
   overflow: auto;
   display: flex;
   flex-direction: column;
-  padding-bottom: 70px;
   height: 100%;
 }
 
@@ -21,19 +20,15 @@
 .expenses-feed-empty {
   display: flex;
   flex-direction: column;
-  flex: 1 0 auto;
   justify-content: center;
+  align-items: center;
+  flex: 1 0 auto;
 }
 
 .expenses-feed-empty h3 {
-  align-self: center;
   text-align: center;
-  width: 50%
 }
 
-.expenses-feed-add-button-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
+.expenses-feed-empty button {
+  width: 50%;
 }
