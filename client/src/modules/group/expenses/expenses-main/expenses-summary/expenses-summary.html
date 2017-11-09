@@ -29,7 +29,7 @@
         <div class="expenses-summary-mini-card-name"><b>{{transaction.to._id === $ctrl.UserService.user.id ? 'you' : transaction.to.name}}</b></div>
         <div class="dropdown expenses-summary-card-dropdown-container"
           ng-if="$ctrl.menuShouldAppear(transaction)">
-          <div class="dropdown-toggle expenses-summary-card-dropdown-icon" id={{'dd-'+$ctrl.expense._id}} data-toggle="dropdown">
+          <div class="dropdown-toggle" id={{'dd-'+$ctrl.expense._id}} data-toggle="dropdown">
             <i class="material-icons">more_vert</i>
           </div>
           <div class="dropdown-menu dropdown-menu-right">

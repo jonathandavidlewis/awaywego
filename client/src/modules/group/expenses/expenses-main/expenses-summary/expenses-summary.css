@@ -47,8 +47,10 @@
   display: flex;
 }
 
-.expenses-summary-card-dropdown-icon {
-  justify-content: flex-end;
+
+.expenses-summary-card-dropdown-container .material-icons {
+  color: var(--la);
+  font-size: 1.2em;
 }
 
 
