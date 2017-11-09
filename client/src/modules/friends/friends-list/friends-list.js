@@ -19,10 +19,7 @@ class FriendsListController {
   }
 
   toggleForm($event) {
-    //debugger;
     $event.stopPropagation();
-    console.log('clicked');
-    //$event.preventDefault();
     this.newFriendOpen = !this.newFriendOpen;
   }
 
