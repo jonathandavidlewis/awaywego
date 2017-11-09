@@ -106,6 +106,10 @@ html, body {
   font-weight: bold;
 }
 
+:focus {
+  outline-color: var(--dk1) !important;
+}
+
 :root {
 
   /*-- white base: #f6f4ee;*/
