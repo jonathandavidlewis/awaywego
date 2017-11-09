@@ -9,7 +9,10 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
   const loginState = {
     name: 'login',
     url: '/login',
-    component: 'login'
+    component: 'login',
+    resolve: {
+      skip: skipIfAuthed,
+    }
   };
 
   const signupState = {
@@ -247,7 +250,7 @@ redirectIfNotAuthed.$inject = ['$q', '$state', 'UserService'];
 
 const redirectToImport = function($q, $state, UserService) {
   const result = $q.defer();
-  if (localStorage.getItem('new_user')) {
+  if (localStorage.getItem('new_user') && UserService.isLoggedIn) {
     UserService.isNewUser = true;
     //localStorage.removeItem('new_user');
     $state.go('app.import');
