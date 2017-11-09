@@ -1,9 +1,6 @@
-.share-idea-content {
+.share-idea-button {
   display: flex;
   flex-direction: column;
-}
-
-.share-idea-button {
   flex: 1;
 }
 
@@ -12,5 +9,7 @@
 }
 
 .share-idea-button button {
+  align-self: center;
   cursor: pointer;
+  width: 50%;
 }
