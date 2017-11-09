@@ -1,27 +1,25 @@
 .transaction-card-container {
-  justify-content: space-around;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),
       0 3px 1px -2px rgba(0,0,0,0.12),
       0 1px 5px 0 rgba(0,0,0,0.2) !important;
   background-color: var(--lt);
   padding: 10px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   display: flex;
 }
 
-.transaction-feed-card-dropdown-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.transaction-card-detail-description {
+  padding: 5px 0;
+  flex: 0 0 25%;
+  word-break: break-word;
 }
 
-.transaction-card-detail-item {
+.transaction-card-detail-summation {
   padding: 5px 0;
   color: var(--dk4);
-  flex: 1 1 20%;
   display: flex;
-  justify-content: center;
   align-items: center;
+  flex: 1 0 auto;
   word-break: break-word;
 }
 

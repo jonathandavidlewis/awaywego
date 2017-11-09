@@ -13,12 +13,6 @@
       <div class="dropdown-item" ng-click="$ctrl.ExpensesService.changeFilter('All')">All transactions</div>
     </div>
   </div>
-  <div class="transaction-page-label-container awg-flex">
-    <div class="transaction-page-label-item"><b>Desc.</b></div>
-    <div class="transaction-page-label-item"><b>From</b></div>
-    <div class="transaction-page-label-item"><b>To</b></div>
-    <div class="transaction-page-label-item"><b>Amount</b></div>
-  </div>
   <transaction-card ng-repeat="transaction in $ctrl.ExpensesService.transactions | filter:$ctrl.ExpensesService.useFilter.type" transaction="transaction" settle-transaction="$ctrl.ExpensesService.settleTransaction" user="$ctrl.userId" ></transaction-card>
   <div class="transaction-page-empty" ng-if="$ctrl.ExpensesService.transactions.length === 0">No open transactions are available</div>
 

@@ -1,21 +1,9 @@
 <div class="transaction-card-container">
-  <div class="transaction-card-detail-item">{{$ctrl.transaction.description}}</div>
-  <div class="transaction-card-detail-item">{{$ctrl.transaction.from.name}}</div>
-  <div class="transaction-card-detail-item">{{$ctrl.transaction.to.name}}</div>
-  <div
-  class="transaction-card-detail-item"
-  ng-class="{'transaction-card-positive': $ctrl.transaction.to._id === $ctrl.user, 'transaction-card-negative': $ctrl.transaction.from._id === $ctrl.user}"
-  >{{$ctrl.transaction.amount | currency:"$"}}</div>
-  <div class="dropdown transaction-feed-card-dropdown-container"
-    ng-if="$ctrl.menuShouldAppear()">
-    <div class="dropdown-toggle" id={{'dd-'+$ctrl.transaction._id}} data-toggle="dropdown">
-      <i class="material-icons">more_vert</i>
+  <div class="transaction-card-detail-description">{{$ctrl.transaction.description}}</div>
+  <div class="transaction-card-detail-summation">
+    <span>
+      {{$ctrl.transaction.from.name}} owed {{$ctrl.transaction.amount | currency:"$"}} to {{$ctrl.transaction.to.name}}
+    </span>
     </div>
-    <div class="dropdown-menu dropdown-menu-right">
-      <div class="dropdown-item"
-        ng-click="$ctrl.handleDelete()">
-        Delete Transaction
-      </div>
-    </div>
-  </div>
+
 </div>
