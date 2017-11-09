@@ -3,7 +3,7 @@
     ng-click="$event.stopPropagation()">
     <div class="header"><span>Schedule Event</span></div>
     <div class="promote-idea-form-container">
-      <form name="newIdea" ng-submit="$ctrl.submit()">
+      <form name="newIdea">
         <div class="promote-idea-input-block">
           <label class="sr-only" for="idea-title">Location</label>
           <address-search address-name="$ctrl.addressName" address-text="$ctrl.addressText" address-link="$ctrl.addressLink"></address-search>
@@ -49,7 +49,7 @@
             name="promote-idea-cancel">Cancel</button>
           </div>
           <div class="promote-idea-submit-button-container">
-            <button type="submit" class="awgd-button"
+            <button type="button" class="awgd-button" ng-click="$ctrl.submit()"
             name="promote-idea-submit">Schedule</button>
           </div>
         </div>

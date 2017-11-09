@@ -28,7 +28,11 @@ class IdeasCardController {
       this.showSchedule = true;
     }, 100);
   }
-  closeSchedule() { this.showSchedule = false; }
+  closeSchedule() {
+    return this.timeout(() => {
+      this.showSchedule = false;
+    }, 100);
+  }
 
   handleDelete() {
     this.ConfirmService.openModal(

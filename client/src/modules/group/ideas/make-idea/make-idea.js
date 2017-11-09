@@ -13,10 +13,12 @@ class MakeIdeaController {
     this.desc = '';
     this.imageUrl = '';
     this.formWarning = '';
+    this.busy = false;
   }
 
   submit() {
     if (this.validateForm()) {
+      this.busy = true;
       let newIdea = {
         title: this.title,
         description: this.desc,
@@ -24,11 +26,10 @@ class MakeIdeaController {
         groupId: this.groupId,
       };
       this.EventService.submitNewEvent(newIdea).then(resp => {
-        this.$state.go('app.group.ideas');
+        this.$state.go('^.ideas');
       }).catch(err => {
-        console.log('Server error: ', err);
         this.formWarning = 'Error: please try again or contact a server admin';
-      });
+      }).finally(() => this.busy = false);
     }
   }
 
