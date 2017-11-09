@@ -1,7 +1,8 @@
 export default class ConfirmService {
-  constructor($q) {
-    this.$inject = ['$q'];
+  constructor($q, $timeout) {
+    this.$inject = ['$q', '$timeout'];
     this.q = $q;
+    this.timeout = $timeout;
     this.modalIsOpen = false;
     this.prompt = '';
     this.comment = '';
@@ -26,13 +27,17 @@ export default class ConfirmService {
 
   modalOkClick($event) {
     $event.stopPropagation();
-    this.modalIsOpen = false;
-    this.result.resolve();
+    this.timeout(() => {
+      this.modalIsOpen = false;
+      this.result.resolve();
+    }, 100);
   }
 
   modalCancelClick($event) {
     $event.stopPropagation();
-    this.result.reject();
-    this.closeModal();
+    this.timeout(() => {
+      this.result.reject();
+      this.closeModal();
+    }, 100);
   }
 }
