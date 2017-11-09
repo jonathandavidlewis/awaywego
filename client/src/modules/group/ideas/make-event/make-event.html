@@ -8,47 +8,53 @@
       <div class="make-event-input-block">
         <label class="sr-only" for="idea-title">Idea name</label>
         <input class="awgl-form-input form-control" name="idea-title" ng-model="$ctrl.title"
-          type="text" placeholder="Idea name" />
+        type="text" placeholder="Idea name" />
       </div>
       <div class="make-event-input-block">
         <label class="sr-only" for="description">Description</label>
         <textarea class="awgl-form-input form-control" name="idea-desc" ng-model="$ctrl.desc"
-          type="text" rows=2 placeholder="Description (optional)"></textarea>
+        type="text" rows=2 placeholder="Description (optional)"></textarea>
       </div>
       <div class="make-event-input-block">
         <label class="sr-only" for="plan-image">Background picture</label>
         <image-search image-url="$ctrl.imageUrl"></image-search>
       </div>
-      <div class="promote-idea-input-block">
-          <label class="sr-only" for="idea-title">Location</label>
-          <address-search address-name="$ctrl.addressName" address-text="$ctrl.addressText" address-link="$ctrl.addressLink"></address-search>
+      <div class="make-event-input-block">
+        <label class="sr-only" for="idea-title">Location</label>
+        <address-search address-name="$ctrl.addressName" address-text="$ctrl.addressText" address-link="$ctrl.addressLink"></address-search>
+      </div>
+      <div class="date-time-pickers">
+        <label class="sr-only" for="idea-end-time">Start date and time</label>
+        <div class="date-time">
+          <mdp-date-picker class="picker" mdp-placeholder="Start date"
+          mdp-format="MM/DD/YYYY" ng-model="$ctrl.startTime"
+          mdp-min-date="$ctrl.startTime"
+          mdp-open-on-click="true"></mdp-date-picker>
+          <mdp-time-picker class="picker" mdp-placeholder="Start time"
+          mdp-format="hh:mm A" ng-model="$ctrl.startTime"
+          mdp-min-date="$ctrl.startTime"
+          mdp-open-on-click="true"></mdp-time-picker>
         </div>
-        <div class="date-time-pickers">
-          <label class="sr-only" for="idea-end-time">Start date and time</label>
-          <div class="date-time">
-            <mdp-date-picker required class="picker" mdp-placeholder="Start date"
-            mdp-format="MM/DD/YYYY" ng-model="$ctrl.startTime"
-            ng-change="$ctrl.onStartDateTimeChange()"
-            mdp-open-on-click="true"></mdp-date-picker>
-            <mdp-time-picker required class="picker" mdp-placeholder="Start time"
-            mdp-format="hh:mm A" ng-model="$ctrl.startTime"
-            ng-change="$ctrl.onStartDateTimeChange()"
-            mdp-open-on-click="true"></mdp-time-picker>
+      </div>
+      <div class="date-time-pickers" ng-show="$ctrl.showEndDrawer">
+        <label class="sr-only" for="idea-end-time">End date and time</label>
+        <div class="date-time">
+          <mdp-date-picker class="picker" mdp-placeholder="End date"
+          mdp-format="MM/DD/YYYY" ng-model="$ctrl.endTime"
+          mdp-min-date="$ctrl.startTime"
+          mdp-open-on-click="true"></mdp-date-picker>
+          <mdp-time-picker class="picker" mdp-placeholder="End time"
+          mdp-format="hh:mm A" ng-model="$ctrl.endTime"
+          mdp-min-date="$ctrl.startTime"
+          mdp-open-on-click="true"></mdp-time-picker>
+          <div class="promote-idea-cancel-time-container" ng-click="$ctrl.clearEndTime()">
+            <i class="material-icons">cancel</i>
           </div>
         </div>
-        <div class="date-time-pickers">
-          <label class="sr-only" for="idea-end-time">End date and time</label>
-          <div class="date-time">
-            <mdp-date-picker class="picker" mdp-placeholder="End date"
-            mdp-format="MM/DD/YYYY" ng-model="$ctrl.endTime"
-            ng-change="$ctrl.onEndDateTimeChange()"
-            mdp-open-on-click="true"></mdp-date-picker>
-            <mdp-time-picker class="picker" mdp-placeholder="End time"
-            mdp-format="hh:mm A" ng-model="$ctrl.endTime"
-            ng-change="$ctrl.onEndDateTimeChange()"
-            mdp-open-on-click="true"></mdp-time-picker>
-          </div>
-        </div>
+      </div>
+      <div class="make-event-end-option" ng-click="$ctrl.openEndDrawer()">
+        <span ng-if="!$ctrl.showEndDrawer">Set an end time?</span>
+      </div>
       <div ng-if="$ctrl.formWarning" class="awgl-form-warning awg-flex awg-flex-center">
         <span>{{$ctrl.formWarning}}</span>
       </div>

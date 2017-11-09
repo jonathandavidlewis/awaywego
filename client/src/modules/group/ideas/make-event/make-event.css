@@ -5,3 +5,33 @@
 .make-event-submit-container {
   margin-top: 20px;
 }
+
+.make-event-container .search-input-block {
+  margin-bottom: 10px;
+}
+
+.make-event-end-option {
+  margin-top: -15px;
+  padding-left: 10px;
+  color: var(--dk3);
+  font-size: 1.1em;
+  cursor: pointer;
+  outline: none;
+  margin-bottom: 10px;
+}
+
+/* overriding some ng-material and md-pickers styles */
+.make-event-container md-input-container {
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
+.make-event-container md-input-container .md-errors-spacer {
+  min-height: 10px;
+}
+.make-event-container md-input-container label {
+  margin-bottom: 0;
+}
+.make-event-container .md-button.md-icon-button {
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
