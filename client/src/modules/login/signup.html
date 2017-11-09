@@ -1,91 +1,129 @@
-<div class="signup-container">
-  <spinner-box busy="$ctrl.busy"></spinner-box>
-  <div class="signup-header"><span>StartSomething</span></div>
-  <div class="login-form-container">
-    <form name="signupForm" ng-submit="$ctrl.signup()" novalidate>
-      <div class="form-group">
-        <div class="form-group-row" >
-          <label class="sr-only" for="name"></label>
-          <div class="awgd-form-input-icon input-group-addon"><i class="material-icons">face</i></div>
-          <input class="awgd-form-input form-control"  name="name" type="text"
-          ng-model="$ctrl.name" placeholder="Name" required
-          ng-class="{'awgd-has-error' : signupForm.name.$invalid && signupForm.name.$touched }" />
-          <div class="awgd-error-icon" ng-show="signupForm.name.$invalid && signupForm.name.$touched">
-            <i class="material-icons">error_outline</i>
-          </div>
-        </div>
-        <div class="awgd-form-warning" ng-show="signupForm.name.$invalid && signupForm.name.$touched">
-          <span>Name is required</span>
-        </div>
+<div class="signup-page-container">
+  <div id="signup" class="signup-container">
+    <spinner-box busy="$ctrl.busy"></spinner-box>
+    <div class="signup-header"><span>Start Something</span></div>
+    <div class="login-subheader signup text-center">
+      <div>
+        <span>Making plans with friends is easy</span>
       </div>
-      <div class="form-group">
-        <div class="form-group-row">
-          <label class="sr-only" for="email"></label>
-          <div class="awgd-form-input-icon input-group-addon"><i class="material-icons">account_circle</i></div>
-          <input class="awgd-form-input form-control" name="email" type="email"
-          ng-model="$ctrl.email" placeholder="Email Address" required
-          ng-class="{'awgd-has-error' : signupForm.email.$invalid && signupForm.email.$touched }" />
-          <div class="awgd-error-icon" ng-show="signupForm.email.$invalid && signupForm.email.$touched">
-            <i class="material-icons">error_outline</i>
-          </div>
-        </div>
-        <p class="awgd-form-warning" ng-show="signupForm.email.$invalid && signupForm.email.$touched">Please enter a valid email</p>
+      <div class="info-link">
+        <a href="" ng-click="$ctrl.slideToAbout()"><span>(Find out more)</span></a>
       </div>
-      <div class="form-group">
-        <div class="form-group-row">
-          <label class="sr-only" for="password"></label>
-          <div class="awgd-form-input-icon input-group-addon"><i class="material-icons">lock_open</i></div>
-          <input class="awgd-form-input form-control" name="password" type="password"
-          ng-model="$ctrl.password" placeholder="Password" required
-          ng-class="{'awgd-has-error' : signupForm.password.$invalid && signupForm.password.$touched }" />
-          <div class="awgd-error-icon" ng-show="signupForm.password.$invalid && signupForm.password.$touched">
-            <i class="material-icons">error_outline</i>
-          </div>
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="form-group-row">
-          <label class="sr-only" for="conf-password"></label>
-          <div class="awgd-form-input-icon input-group-addon"><i class="material-icons">lock</i></div>
-          <input class="awgd-form-input form-control" name="confPassword" type="password"
-          ng-model="$ctrl.confPassword" placeholder="Confirm password" required
-          ng-class="{'awgd-has-error' : signupForm.confPassword.$invalid && signupForm.confPassword.$touched }" />
-          <div class="awgd-error-icon" ng-show="signupForm.confPassword.$invalid && signupForm.confPassword.$touched">
-            <i class="material-icons">error_outline</i>
-          </div>
-        </div>
-      </div>
-      <div class="login-submit-container awg-flex awg-flex-center">
-        <div class="login-submit-button-container">
-          <button type="submit" class="awgd-button" id="login" ng-disabled="signupForm.$invalid">Sign up</button>
-        </div>
-      </div>
-      <a href="../auth/google" target="_self"><div class="g-signin2 awgl-button">
-        <div>
-          <div class="awg-flex awg-flex-center">
-            <div  class="google-icon-container">
-              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 48 48" class="abcRioButtonSvg">
-                <g>
-                  <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"></path>
-                  <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"></path>
-                  <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"></path>
-                  <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"></path>
-                  <path fill="none" d="M0 0h48v48H0z"></path>
-                </g>
-              </svg>
+    </div>
+    <div class="login-form-container">
+      <form name="signupForm" ng-submit="$ctrl.signup()" novalidate>
+        <div class="form-group">
+          <div class="form-group-row" >
+            <label class="sr-only" for="name"></label>
+            <div class="awgl-form-input-icon input-group-addon"><i class="material-icons">face</i></div>
+            <input class="awgl-form-input form-control"  name="name" type="text"
+            ng-model="$ctrl.name" placeholder="Name" required
+            ng-class="{'awgl-has-error' : signupForm.name.$invalid && signupForm.name.$touched }" />
+            <div class="awgl-error-icon" ng-show="signupForm.name.$invalid && signupForm.name.$touched">
+              <i class="material-icons">error_outline</i>
             </div>
-            <span class="google-button-label"> Signup with Google</span>
+          </div>
+          <div class="awgl-form-warning" ng-show="signupForm.name.$invalid && signupForm.name.$touched">
+            <span>Name is required</span>
           </div>
         </div>
-      </div></a>
-      <div ng-if="$ctrl.formWarning" class="awgd-form-warning awg-flex awg-flex-center">
-        <span>{{$ctrl.formWarning}}</span>
+        <div class="form-group">
+          <div class="form-group-row">
+            <label class="sr-only" for="email"></label>
+            <div class="awgl-form-input-icon input-group-addon"><i class="material-icons">account_circle</i></div>
+            <input class="awgl-form-input form-control" name="email" type="email"
+            ng-model="$ctrl.email" placeholder="Email Address" required
+            ng-class="{'awgl-has-error' : signupForm.email.$invalid && signupForm.email.$touched }" />
+            <div class="awgl-error-icon" ng-show="signupForm.email.$invalid && signupForm.email.$touched">
+              <i class="material-icons">error_outline</i>
+            </div>
+          </div>
+          <p class="awgl-form-warning" ng-show="signupForm.email.$invalid && signupForm.email.$touched">Please enter a valid email</p>
+        </div>
+        <div class="form-group">
+          <div class="form-group-row">
+            <label class="sr-only" for="password"></label>
+            <div class="awgl-form-input-icon input-group-addon"><i class="material-icons">lock_open</i></div>
+            <input class="awgl-form-input form-control" name="password" type="password"
+            ng-model="$ctrl.password" placeholder="Password" required
+            ng-class="{'awgl-has-error' : signupForm.password.$invalid && signupForm.password.$touched }" />
+            <div class="awgl-error-icon" ng-show="signupForm.password.$invalid && signupForm.password.$touched">
+              <i class="material-icons">error_outline</i>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-group-row">
+            <label class="sr-only" for="conf-password"></label>
+            <div class="awgl-form-input-icon input-group-addon"><i class="material-icons">lock</i></div>
+            <input class="awgl-form-input form-control" name="confPassword" type="password"
+            ng-model="$ctrl.confPassword" placeholder="Confirm password" required
+            ng-class="{'awgl-has-error' : signupForm.confPassword.$invalid && signupForm.confPassword.$touched }" />
+            <div class="awgl-error-icon" ng-show="signupForm.confPassword.$invalid && signupForm.confPassword.$touched">
+              <i class="material-icons">error_outline</i>
+            </div>
+          </div>
+        </div>
+        <div class="login-submit-container awg-flex awg-flex-center">
+          <div class="login-submit-button-container">
+            <button type="submit" class="awgl-button" id="login" ng-disabled="signupForm.$invalid">Sign up</button>
+          </div>
+        </div>
+        <a href="../auth/google" target="_self"><div class="g-signin2 awgl-button">
+          <div>
+            <div class="awg-flex awg-flex-center">
+              <div  class="google-icon-container">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 48 48" class="abcRioButtonSvg">
+                  <g>
+                    <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"></path>
+                    <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"></path>
+                    <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"></path>
+                    <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"></path>
+                    <path fill="none" d="M0 0h48v48H0z"></path>
+                  </g>
+                </svg>
+              </div>
+              <span class="google-button-label"> Signup with Google</span>
+            </div>
+          </div>
+        </div></a>
+        <div ng-if="$ctrl.formWarning" class="awgl-form-warning awg-flex awg-flex-center">
+          <span>{{$ctrl.formWarning}}</span>
+        </div>
+      </form>
+    </div>
+    <div class="signup-other-container">
+      <div class="login-other-container-item awg-flex awg-flex-center">
+        <a ui-sref="login">Already have an account? Login here</a>
       </div>
-    </form>
-  </div>
-  <div class="signup-other-container">
-    <div class="login-other-container-item awg-flex awg-flex-center">
-      <a ui-sref="login">Already have an account? Login here</a>
+    </div>
+    <div class="scroll-learn-more">
+      <div class="login-other-container-item awg-flex awg-flex-center">
+        <a href="" ng-click="$ctrl.slideToAbout()"><span>(Scroll down to learn more)</span></a>
+      </div>
     </div>
   </div>
+  <div id="about-us" class="container signup-container signup-padding">
+    <div class="row">
+      <div class="col-md-4 signup-card">
+        <h3>Turn ideas into plans</h3>
+        <img class="signup-image" src="img/friends-having-fun-sm-wide.jpg" alt="">
+        <p class="card-description">Use group collaboration and voting features to find a winning activity idea.</p>
+      </div>
+      <div class="col-md-4 signup-card">
+        <h3>Enjoy your adventures</h3>
+        <img class ="signup-image" src="img/kayaking-sm-wide.jpg" alt="">
+        <p class="card-description" >Centralized event communication puts the most difficult activities within your grasp!</p>
+      </div>
+      <div class="col-md-4 signup-card">
+        <h3>Split payments</h3>
+        <img class="signup-image" src="img/bill-sm-wide.jpg" alt="">
+        <p class="card-description">Don't let worrying about money ruin your fun. Use pay sharing features to track and split expenses!</p>
+      </div>
+    </div>
+    <div class="text-center signup-link">
+      <a href="" ng-click="$ctrl.slideToSignup()"><h5>Sign me up!</h5></a>
+    </div>
+  </div>
+
 </div>

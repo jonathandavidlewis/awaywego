@@ -9,16 +9,16 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
   const loginState = {
     name: 'login',
     url: '/login',
-    component: 'login',
-    resolve: {
-      skip: skipIfAuthed,
-    }
+    component: 'login'
   };
 
   const signupState = {
     name: 'signup',
     url: '/signup',
     component: 'signup',
+    resolve: {
+      skip: skipIfAuthed,
+    }
   };
 
   // all protected states are prefixed by /app
@@ -239,7 +239,7 @@ const redirectIfNotAuthed = function($q, $state, UserService) {
   if (UserService.isLoggedIn) {
     result.resolve(UserService.user);
   } else {
-    $state.go('login');
+    $state.go('signup');
   }
   return result;
 };

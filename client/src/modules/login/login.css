@@ -1,20 +1,24 @@
+.signup-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100vh;
+  overflow: auto;
+  padding: 0 50px;
+  background: white;
+}
+
+.signup-page-container {
+  background-color: white;
+}
+
 .login-container {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   height: 100%;
   overflow: auto;
-  padding: 20px 50px;
-  background: white;
-}
-
-.signup-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  height: 100%;
-  overflow: auto;
-  padding: 20px 50px;
+  padding: 0 50px;
   background: linear-gradient(135deg, var(--dk2), var(--dk5));
 }
 
@@ -23,6 +27,7 @@
   margin: 50px 0 50px 0;
   text-align: center;
   font-size: 3em;
+  line-height: 1em;
 }
 
 .login-subheader {
@@ -36,11 +41,11 @@
   font-size: 0.75em;
 }
 
-.login-header span {
+.signup-header span, .login-subheader.signup span {
   color: var(--dk3);
 }
 
-.signup-header span {
+.login-header span, .login-subheader span{
   color: white;
 }
 
@@ -59,7 +64,7 @@
   color: var(--dk3);
 }
 
-.signup-other-container a {
+.login-other-container a {
   color: var(--m1);
 }
 
@@ -73,4 +78,30 @@ a:hover {
 
 button {
   cursor: pointer;
+}
+
+.scroll-learn-more {
+  margin-top: 50px;
+}
+
+.signup-padding {
+  padding: 20px 10px;
+}
+
+.signup-image {
+  width: 80%;
+}
+
+.signup-card {
+  margin: 0 15px;
+  border: 1px solid #CCC;
+  box-shadow: 1px 1px 1px #AAA;
+}
+
+.card-description {
+  margin-bottom: 0.5rem;
+}
+
+.signup-link {
+  margin-top: 10px;
 }
