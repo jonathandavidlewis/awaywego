@@ -12,10 +12,6 @@ export default class EventService {
     this.ideas = [];
     this.feed = [];
     this.eventSocket = null;
-
-    // HELPER METHODS to debug, remove when done!
-    window.evs = this;
-    window.triggerDigest = () => this.rootScope.$apply();
   }
 
   //===========  SOCKET LOGIC ===========\\
@@ -93,7 +89,6 @@ export default class EventService {
   }
 
   handleNewComment(comment, digest) {
-    console.log('handling new comment: ', comment, ', triggering diegest?', digest);
     if (!this.comments[comment.eventId]) {
       this.comments[comment.eventId] = [comment];
     } else {
