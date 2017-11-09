@@ -30,8 +30,8 @@ class CommentCardController {
   }
 
   menuShouldAppear() {
-    return this.EventService.events[this.eventId].userId === this.user.id ||
-           this.userId === this.groupOwner;
+    return this.comment.user._id === this.user.id ||
+           this.groupOwner === this.user.id;
   }
 
 }
