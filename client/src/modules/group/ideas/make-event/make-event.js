@@ -22,19 +22,19 @@ class MakeEventController {
     this.endTimeChanged = false;
     this.endDateChanged = false;
     this.onStartDateChange = this.onStartDateChange.bind(this);
-    this.onStartTimeChange = this.onStartTimeChange.bind(this);
-    this.onEndDateTimeChange = this.onEndDateTimeChange.bind(this);
+    // this.onStartTimeChange = this.onStartTimeChange.bind(this);
+    // this.onEndDateTimeChange = this.onEndDateTimeChange.bind(this);
     this.formWarning = '';
   }
 
-  $onInit() {
-    // this.onStartTimeChange();
-    this.event = {};
-    this.event.groupId = this.stateParams.groupId;
-    this.event.userId = this.UserService.user.id;
-    this.event.imageUrl = '';
-    this.event = this.EventService.getEvent(this.stateParams.eventId);
-  }
+  // $onInit() {
+  //   // this.onStartTimeChange();
+  //   this.event = {};
+  //   this.event.groupId = this.groupId;
+  //   this.event.userId = this.UserService.user.id;
+  //   this.event.imageUrl = '';
+  //   this.event = this.EventService.getEvent(this.stateParams.eventId);
+  // }
 
   onStartDateChange() {
     if (!this.endDateChanged) {

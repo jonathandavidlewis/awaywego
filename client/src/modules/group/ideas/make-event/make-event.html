@@ -19,12 +19,42 @@
         <label class="sr-only" for="plan-image">Background picture</label>
         <image-search image-url="$ctrl.imageUrl"></image-search>
       </div>
+      <div class="promote-idea-input-block">
+          <label class="sr-only" for="idea-title">Location</label>
+          <address-search address-name="$ctrl.addressName" address-text="$ctrl.addressText" address-link="$ctrl.addressLink"></address-search>
+        </div>
+        <div class="date-time-pickers">
+          <label class="sr-only" for="idea-end-time">Start date and time</label>
+          <div class="date-time">
+            <mdp-date-picker required class="picker" mdp-placeholder="Start date"
+            mdp-format="MM/DD/YYYY" ng-model="$ctrl.startTime"
+            ng-change="$ctrl.onStartDateTimeChange()"
+            mdp-open-on-click="true"></mdp-date-picker>
+            <mdp-time-picker required class="picker" mdp-placeholder="Start time"
+            mdp-format="hh:mm A" ng-model="$ctrl.startTime"
+            ng-change="$ctrl.onStartDateTimeChange()"
+            mdp-open-on-click="true"></mdp-time-picker>
+          </div>
+        </div>
+        <div class="date-time-pickers">
+          <label class="sr-only" for="idea-end-time">End date and time</label>
+          <div class="date-time">
+            <mdp-date-picker class="picker" mdp-placeholder="End date"
+            mdp-format="MM/DD/YYYY" ng-model="$ctrl.endTime"
+            ng-change="$ctrl.onEndDateTimeChange()"
+            mdp-open-on-click="true"></mdp-date-picker>
+            <mdp-time-picker class="picker" mdp-placeholder="End time"
+            mdp-format="hh:mm A" ng-model="$ctrl.endTime"
+            ng-change="$ctrl.onEndDateTimeChange()"
+            mdp-open-on-click="true"></mdp-time-picker>
+          </div>
+        </div>
       <div ng-if="$ctrl.formWarning" class="awgl-form-warning awg-flex awg-flex-center">
         <span>{{$ctrl.formWarning}}</span>
       </div>
       <div class="make-event-submit-container awg-flex awg-flex-center">
         <div class="make-event-submit-button-container">
-          <button type="submit" class="awgd-button" name="make-event-submit">Submit your idea</button>
+          <button type="submit" class="awgd-button" name="make-event-submit">Schedule your event</button>
         </div>
       </div>
     </form>
