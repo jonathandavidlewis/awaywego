@@ -26,10 +26,6 @@ class FriendsListController {
     this.newFriendOpen = !this.newFriendOpen;
   }
 
-  clicked() {
-    console.log('CLICKEDIT');
-  }
-
   closeForm() {
     this.newFriendOpen = false;
   }
