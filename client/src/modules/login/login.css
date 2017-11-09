@@ -25,6 +25,17 @@
   font-size: 3em;
 }
 
+.login-subheader {
+  font-style: italic;
+  font-size: 1.25em;
+  margin-top: -50px;
+  margin-bottom: 50px;
+}
+
+.info-link {
+  font-size: 0.75em;
+}
+
 .login-header span {
   color: var(--dk3);
 }
