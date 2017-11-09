@@ -1,5 +1,4 @@
 .transaction-page-container {
-  padding: 10px;
   padding-bottom: 70px;
   height: 100%;
   overflow: auto;
@@ -44,7 +43,7 @@
       0 1px 5px 0 rgba(0,0,0,0.2) !important;
   background-color: var(--lt);
   padding: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 
