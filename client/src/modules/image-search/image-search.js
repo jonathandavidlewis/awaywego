@@ -21,6 +21,7 @@ class ImageSearchController {
     event.stopPropagation();
     if (event.key === 'Enter') {
       this.imageSearch(this.search);
+      event.preventDefault();
     }
   }
 
