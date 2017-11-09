@@ -71,7 +71,7 @@ class ImportContactsController {
         'No Google contacts found', '', 'Continue'
       ).then(() => {
         this.busy = true;
-        this.$state.go('app.home');
+        this.$state.go('app.friends.list');
       }).catch(() => {});
     }
   }
