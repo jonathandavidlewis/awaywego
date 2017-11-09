@@ -8,6 +8,7 @@ import PromoteIdeaModule from './promote-idea/promote-idea';
 import IdeasCardComponent from './ideas-card/ideas-card.js';
 import NewIdeaButtonComponent from './new-idea-button/new-idea-button';
 import MakeIdeaComponent from './make-idea/make-idea';
+import MakeEventComponent from './make-event/make-event';
 
 // imports for this component
 import template from './ideas.html';
