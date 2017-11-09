@@ -4,8 +4,9 @@
     <span>Transactions</span>
   </div>
   <div class="dropdown transaction-page-dropdown-container">
-    <div class="dropdown-toggle" id={{'dd-'+$ctrl.expense._id}} data-toggle="dropdown">
-      <div class="transaction-page-subheader">Filter By -  {{$ctrl.ExpensesService.transactionHeader}} <i class="material-icons">keyboard_arrow_down</i></div>
+    <div class="dropdown-toggle flex" id={{'dd-'+$ctrl.expense._id}} data-toggle="dropdown">
+      <div class="transaction-page-subheader">Filter By {{$ctrl.ExpensesService.transactionHeader}} <i class="material-icons">keyboard_arrow_down</i></div>
+
     </div>
     <div class="dropdown-menu dropdown-menu-right">
       <div class="dropdown-item" ng-click="$ctrl.ExpensesService.changeFilter('Money You Are Owed')">Money you are owed</div>
@@ -13,6 +14,13 @@
       <div class="dropdown-item" ng-click="$ctrl.ExpensesService.changeFilter('All')">All transactions</div>
     </div>
   </div>
+  <div ng-if="$ctrl.ExpensesService.filterBy === 'Expense'" class="transaction-page-expense-info flex-col">
+    <span class="transaction-page-expense-amount"><b>Expense Amount: </b> <span> {{$ctrl.ExpensesService.selectedExpense.amount | currency:"$"}}</span></span>
+    <span class="transaction-page-paid-by"><b>Paid By: </b><span> {{$ctrl.populatePaidBy()}}</span></span>
+    <span class="transaction-page-split-with"><b>Split With: </b><span> {{$ctrl.populateSplitAmong()}}</span></span>
+    <span class="transaction-page-date"><b>Date: </b><span> {{$ctrl.ExpensesService.selectedExpense.createdAt | date:'MM/dd/yyyy'}}</span></span>
+  </div>
+  <div ng-if="$ctrl.ExpensesService.filterBy === 'Expense'" class="header">Transaction Log</div>
   <transaction-card ng-repeat="transaction in $ctrl.ExpensesService.transactions | filter:$ctrl.ExpensesService.useFilter.type" transaction="transaction" settle-transaction="$ctrl.ExpensesService.settleTransaction" user="$ctrl.userId" ></transaction-card>
   <div class="transaction-page-empty" ng-if="$ctrl.ExpensesService.transactions.length === 0">No open transactions are available</div>
 

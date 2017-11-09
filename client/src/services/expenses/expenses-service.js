@@ -186,7 +186,7 @@ export default class ExpensesService {
       this.transactionHeader = 'Money You Owe';
       this.useFilter.type = this.filterByOwedTo;
     } else if (this.filterBy === 'Expense') {
-      this.transactionHeader = 'Expense - ' + this.selectedExpense.description;
+      this.transactionHeader = 'Expense: ' + this.selectedExpense.description;
       this.useFilter.type = this.filterByExpenseId;
     } else {
       this.transactionHeader = 'All';

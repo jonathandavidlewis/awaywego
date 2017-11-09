@@ -1,5 +1,5 @@
 <div class="transaction-card-container">
-  <div class="transaction-card-detail-description">{{$ctrl.transaction.description}}</div>
+  <div ng-if="$ctrl.ExpensesService.filterBy !== 'Expense'" class="transaction-card-detail-description">{{$ctrl.transaction.description}}</div>
   <div class="transaction-card-detail-summation">
     <span>
       {{$ctrl.transaction.from.name}} owed {{$ctrl.transaction.amount | currency:"$"}} to {{$ctrl.transaction.to.name}}

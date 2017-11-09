@@ -8,6 +8,27 @@ class TransactionPageController {
   constructor(ExpensesService) {
     this.ExpensesService = ExpensesService;
     this.header = '';
+    this.expense = this.ExpensesService.selectedExpense;
+  }
+
+  populatePaidBy() {
+    let paid = {};
+    this.expense.transactions.forEach((transaction) => {
+      if (!paid[transaction.to.name]) {
+        paid[transaction.to.name] = true;
+      }
+    });
+    return Object.keys(paid).join(', ').toString();
+  }
+
+  populateSplitAmong() {
+    let among = {};
+    this.expense.transactions.forEach((transaction) => {
+      if (!among[transaction.from.name]) {
+        among[transaction.from.name] = true;
+      }
+    });
+    return Object.keys(among).join(', ').toString();
   }
 }
 
