@@ -9,9 +9,13 @@
   cursor: pointer;
 }
 
-.expenses-feed-card-amount{
+.expenses-feed-card-amount {
   color: var(--dk4);
   font-weight: bold;
+}
+
+.expenses-feed-card-description:focus {
+  outline: none;
 }
 
 .expenses-feed-card-date {

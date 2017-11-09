@@ -1,6 +1,6 @@
 <div class="expenses-feed-card awg-flex-col">
   <div class="expenses-feed-card-main-container awg-flex">
-    <div class="expenses-feed-card-item awg-flex-1" ng-click="$ctrl.toggleDetails()">{{$ctrl.expense.description}}</div>
+    <div class="expenses-feed-card-description awg-flex-1" ng-click="$ctrl.toggleDetails()">{{$ctrl.expense.description}}</div>
     <div class="expenses-feed-card-info-container awg-flex-col awg-flex-center awg-flex-align-end">
       <div class="expenses-feed-card-amount">{{$ctrl.expense.amount | currency:"$"}}</div>
       <div class="expenses-feed-card-date awg-flex-1" ng-click="$ctrl.toggleDetails()">{{$ctrl.expense.createdAt | date:'MM/dd/yy'}}</div>

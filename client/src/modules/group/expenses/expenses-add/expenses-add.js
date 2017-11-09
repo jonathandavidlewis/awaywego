@@ -19,10 +19,8 @@ class ExpensesAddController {
     this.UserService = UserService;
     this.UserService.user._id = this.UserService.user.id;
 
-    // Total bill amount
+    // Form Input
     this.amount = '';
-
-
     this.description = '';
 
     // This is recalculated every time there is a change to amount, owers, or payers

@@ -28,8 +28,22 @@
   padding: 10px 0;
 }
 
+.expenses-added-people-area *:focus {
+  outline: none;
+}
+
 .expenses-add-owers-description {
   text-align: center;
+}
+
+.expenses-add-dropdown-container {
+  flex: 1 0 auto;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.expenses-add-dropdown-container div {
+  justify-content: flex-end;
 }
 
 .expenses-add-names-card {

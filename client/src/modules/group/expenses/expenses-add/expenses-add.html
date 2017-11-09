@@ -16,21 +16,24 @@
 
     <div class="expenses-added-people-container awg-flex-col">
 
-      <div class="expenses-added-people-area">
-        <div class="dropdown expenses-add-dropdown-container">
-          <div class="dropdown-toggle" id={{'dd-'+$ctrl.expense._id}} data-toggle="dropdown">
-            <div ng-if="$ctrl.payerToggle === false" class="expenses-add-payer-description">
-              <button class="awgd-button">Paid By</button>
+      <div class="expenses-added-people-area flex-col">
+        <div class="expenses-add-payers-section-heading">
+          <div class="header">Paid By</button>
+          <div class="dropdown expenses-add-dropdown-container">
+            <div class="dropdown-toggle" id={{'dd-PaidBy'}} data-toggle="dropdown">
+              <div class="expenses-add-payer-description">
+                <i class="material-icons">keyboard_arrow_down</i>
+              </div>
             </div>
-          </div>
-          <div class="dropdown-menu dropdown-menu-right">
-            <expenses-add-people-card
-              class="dropdown-item"
-              toggle="$ctrl.togglePayer"
-              amount="$ctrl.amount"
-              ng-repeat="member in $ctrl.members"
-              member="member"
-            />
+            <div class="dropdown-menu dropdown-menu-right">
+              <expenses-add-people-card
+                class="dropdown-item"
+                toggle="$ctrl.togglePayer"
+                amount="$ctrl.amount"
+                ng-repeat="member in $ctrl.members"
+                member="member"
+              />
+            </div>
           </div>
         </div>
 
