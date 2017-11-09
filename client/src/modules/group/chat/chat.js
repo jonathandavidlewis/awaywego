@@ -13,7 +13,7 @@ import template from './chat.html';
 import './chat.css';
 
 class ChatController {
-  constructor(ChatService, GroupService, UserService, $element, $timeout, $interval) {
+  constructor(ChatService, GroupService, UserService, $timeout) {
     // services
     this.ChatService = ChatService;
     this.GroupService = GroupService;
@@ -21,7 +21,7 @@ class ChatController {
     this.UserService = UserService;
     this.timeout = $timeout;
 
-    this.messagesContainer = $element.find('.chat-messages-container');
+    this.messagesContainer = window.$('.chat-messages-container');
     this.msgsEl = this.messagesContainer[0];
     this.isScrolledToBottom = true;
 
@@ -31,6 +31,7 @@ class ChatController {
     this.submit = this.submit.bind(this);
     this.messagesContainer.on('scroll', _.throttle(this.watchScroll.bind(this), 200));
     this.renderedMessages = this.renderedMessages.bind(this);
+    this.scrollToBottom = this.scrollToBottom.bind(this);
     this.handleTyping = this.handleTyping.bind(this);
 
     this.debStopTyping = _.debounce(this.stopTyping.bind(this), 1500);
@@ -76,7 +77,7 @@ class ChatController {
   }
 
   renderedMessages() {
-    if (this.isScrolledToBottom) { this.scrollToBottom(); }
+    if (this.isScrolledToBottom) { this.timeout(this.scrollToBottom, 0, false); }
   }
 
   scrollToBottom() {
@@ -84,7 +85,7 @@ class ChatController {
   }
 
 }
-ChatController.$inject = ['ChatService', 'GroupService', 'UserService', '$element', '$timeout'];
+ChatController.$inject = ['ChatService', 'GroupService', 'UserService', '$timeout'];
 
 const ChatComponent = {
   restrict: 'E',
