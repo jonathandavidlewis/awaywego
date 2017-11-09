@@ -36,13 +36,9 @@
   text-align: center;
 }
 
-.expenses-add-dropdown-container {
+.expenses-add-payer-icon {
   flex: 1 0 auto;
   display: flex;
-  justify-content: flex-end;
-}
-
-.expenses-add-dropdown-container div {
   justify-content: flex-end;
 }
 

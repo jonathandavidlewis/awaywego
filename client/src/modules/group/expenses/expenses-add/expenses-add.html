@@ -19,6 +19,13 @@
       <div class="expenses-added-people-area flex-col">
         <div class="expenses-add-payers-section-heading">
           <div class="header">Paid By</button>
+          <div class="expenses-add-payer-icon">
+            <i ng-if="!$ctrl.payerToggle" ng-click="$ctrl.toggleCards(true)" class="material-icons">keyboard_arrow_down</i>
+            <i ng-if="$ctrl.payerToggle" ng-click="$ctrl.toggleCards(true)" class="material-icons">keyboard_arrow_up</i>
+          </div>
+        </div>
+        <!-- <div class="expenses-add-payers-section-heading">
+          <div class="header">Paid By</button>
           <div class="dropdown expenses-add-dropdown-container">
             <div class="dropdown-toggle" id={{'dd-PaidBy'}} data-toggle="dropdown">
               <div class="expenses-add-payer-description">
@@ -35,16 +42,26 @@
               />
             </div>
           </div>
-        </div>
+        </div> -->
 
         <expenses-add-people-card
+          ng-click="$ctrl.toggleCards(true)"
           ng-show="$ctrl.payerToggle === false"
           ng-repeat="payer in $ctrl.payers"
           class="ng-show"
           member="payer"
           is-payer="true"
           transaction-type="$ctrl.transactionType"
-        />
+        /></expenses-add-people-card>
+
+        <expenses-add-people-card
+          ng-show="$ctrl.payerToggle"
+          class="ng-show"
+          toggle="$ctrl.togglePayer"
+          amount="$ctrl.amount"
+          ng-repeat="member in $ctrl.members"
+          member="member"
+        ></expenses-add-people-card>
       </div>
 
       <div class="expenses-added-people-area">
