@@ -24,7 +24,10 @@
         </div>
         <div class="expenses-summary-mini-card-name"><b>{{transaction.from._id === $ctrl.UserService.user.id ? 'You' : transaction.from.name}}</b></div>
         <div class="expenses-summary-mini-card-body">{{transaction.from._id === $ctrl.UserService.user.id ? 'owe' : 'owes'}}</div>
-        <div class="expenses-summary-mini-card-amount">{{transaction.amount | currency:"$"}} to </div>
+        <div class="expenses-summary-mini-card-amount">
+          <span ng-class="{'expenses-summary-negative': transaction.from._id === $ctrl.userId, 'expenses-summary-positive': transaction.to._id === $ctrl.userId}">{{transaction.amount | currency:"$"}}
+          </span><span>to<span>
+        </div>
         <div class="expenses-summary-mini-card-avatar">
           <img ng-if="transaction.to.profilePic" ng-src="{{transaction.to.profilePic}}" class="avatar">
           <i ng-if="!transaction.to.profilePic" class="material-icons">account_circle</i>
