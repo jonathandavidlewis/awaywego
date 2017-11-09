@@ -24,6 +24,18 @@
   text-align: center;
   font-weight: bold;
   color: var(--dk3);
+  display: flex;
+  justify-content: center;
+}
+
+.transaction-page-subheader span,
+.transaction-page-subheader i {
+  display: flex;
+}
+
+.transaction-page-subheader .material-icons {
+  display: flex;
+  align-self: flex-end;
 }
 
 .transaction-page-expense-info {

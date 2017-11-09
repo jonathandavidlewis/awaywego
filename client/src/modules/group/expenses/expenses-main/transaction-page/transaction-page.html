@@ -5,7 +5,10 @@
   </div>
   <div class="dropdown transaction-page-dropdown-container">
     <div class="dropdown-toggle flex" id={{'dd-'+$ctrl.expense._id}} data-toggle="dropdown">
-      <div class="transaction-page-subheader">Filter By {{$ctrl.ExpensesService.transactionHeader}} <i class="material-icons">keyboard_arrow_down</i></div>
+      <div class="transaction-page-subheader">
+        <span>Filter By {{$ctrl.ExpensesService.transactionHeader}}</span>
+        <i class="material-icons">keyboard_arrow_down</i>
+      </div>
 
     </div>
     <div class="dropdown-menu dropdown-menu-right">
