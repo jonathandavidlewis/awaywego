@@ -16,10 +16,6 @@ export default class EventService {
     // HELPER METHODS to debug, remove when done!
     window.evs = this;
     window.triggerDigest = () => this.rootScope.$apply();
-    window.upvoteEvent = (userId) => {
-      this.events['59f27698be6a1c024291e684'].upVotes.push(userId);
-      window.triggerDigest();
-    };
   }
 
   //===========  SOCKET LOGIC ===========\\
@@ -97,6 +93,7 @@ export default class EventService {
   }
 
   handleNewComment(comment, digest) {
+    console.log('handling new comment: ', comment, ', triggering diegest?', digest);
     if (!this.comments[comment.eventId]) {
       this.comments[comment.eventId] = [comment];
     } else {
@@ -231,11 +228,8 @@ export default class EventService {
 
   postCommentForEvent(eventId, comment) {
     return this.http.post(`/api/comments/event/${eventId}`, {text: comment}).then(resp => {
-      if (!this.comments[eventId]) {
-        this.comments[eventId] = [resp.data.newComment];
-      } else {
-        this.comments[eventId].push(resp.data.newComment);
-      }
+      const comment = resp.data.newComment;
+      this.handleNewComment(comment, false);
       this.eventSocket.emit('new comment in group',
         {group: this.events[eventId].groupId, comment});
     });
@@ -244,7 +238,8 @@ export default class EventService {
   updateCommentForEvent(eventId, commentId, newText) {
     return this.http.put(`/api/comments/${commentId}`, {text: newText})
       .then(resp => {
-        this.handleUpdateComment(resp.data, false);
+        const comment = resp.data;
+        this.handleUpdateComment(comment, false);
         this.eventSocket.emit('updated comment in group',
           {group: this.events[eventId].groupId, comment});
       });
