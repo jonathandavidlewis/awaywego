@@ -1,7 +1,7 @@
 <div class="promote-idea-popup-container" ng-click="$ctrl.closeSchedule()">
   <div class="promote-idea-container flex-window awg-flex-col awg-flex-start awg-flex-align-stretch overflow"
     ng-click="$event.stopPropagation()">
-    <div class="ideas-card-header"><span>Schedule Event</span></div>
+    <div class="header"><span>Schedule Event</span></div>
     <div class="promote-idea-form-container">
       <form name="newIdea" ng-submit="$ctrl.submit()">
         <div class="promote-idea-input-block">
@@ -11,36 +11,46 @@
         <div class="date-time-pickers">
           <label class="sr-only" for="idea-end-time">Start date and time</label>
           <div class="date-time">
-            <mdp-date-picker required class="picker" mdp-placeholder="Start date"
+            <mdp-date-picker class="picker" mdp-placeholder="Start date"
             mdp-format="MM/DD/YYYY" ng-model="$ctrl.startTime"
-            ng-change="$ctrl.onStartDateTimeChange()"
+            mdp-min-date="$ctrl.startTime"
             mdp-open-on-click="true"></mdp-date-picker>
-            <mdp-time-picker required class="picker" mdp-placeholder="Start time"
+            <mdp-time-picker class="picker" mdp-placeholder="Start time"
             mdp-format="hh:mm A" ng-model="$ctrl.startTime"
-            ng-change="$ctrl.onStartDateTimeChange()"
+            mdp-min-date="$ctrl.startTime"
             mdp-open-on-click="true"></mdp-time-picker>
           </div>
         </div>
-        <div class="date-time-pickers">
+        <div class="date-time-pickers" ng-show="$ctrl.showEndDrawer">
           <label class="sr-only" for="idea-end-time">End date and time</label>
           <div class="date-time">
             <mdp-date-picker class="picker" mdp-placeholder="End date"
             mdp-format="MM/DD/YYYY" ng-model="$ctrl.endTime"
-            ng-change="$ctrl.onEndDateTimeChange()"
+            mdp-min-date="$ctrl.startTime"
             mdp-open-on-click="true"></mdp-date-picker>
             <mdp-time-picker class="picker" mdp-placeholder="End time"
             mdp-format="hh:mm A" ng-model="$ctrl.endTime"
-            ng-change="$ctrl.onEndDateTimeChange()"
+            mdp-min-date="$ctrl.startTime"
             mdp-open-on-click="true"></mdp-time-picker>
+            <div class="promote-idea-cancel-time-container" ng-click="$ctrl.clearEndTime()">
+              <i class="material-icons">cancel</i>
+            </div>
           </div>
+        </div>
+        <div class="promote-idea-end-option" ng-click="$ctrl.openEndDrawer()">
+          <span ng-if="!$ctrl.showEndDrawer">Set an end time?</span>
         </div>
         <div ng-if="$ctrl.formWarning" class="awgl-form-warning awg-flex awg-flex-center">
           <span>{{$ctrl.formWarning}}</span>
         </div>
-        <div class="promote-idea-submit-container awg-flex awg-flex-center">
+        <div class="promote-idea-submit-container awg-flex awg-flex-center awg-space-between">
           <div class="promote-idea-submit-button-container">
-            <button ng-disabled="loginForm.$invalid" type="submit" class="awgl-button"
-              name="promote-idea-submit">Schedule event</button>
+            <button class="awgl-button" type="button" ng-click="$ctrl.closeSchedule()"
+            name="promote-idea-cancel">Cancel</button>
+          </div>
+          <div class="promote-idea-submit-button-container">
+            <button type="submit" class="awgd-button"
+            name="promote-idea-submit">Schedule</button>
           </div>
         </div>
       </form>
