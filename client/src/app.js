@@ -90,8 +90,13 @@ angular.module('app', [
   .service('MomentService', MomentService)
   .service('ImageSearchService', ImageSearchService)
   .service('ConfirmService', ConfirmService)
-  .config(appRouting)
   .component('app', AppComponent)
+  .config(appRouting)
+  .config(['$mdThemingProvider', function($mdThemingProvider) {
+    $mdThemingProvider.theme('default')
+      .primaryPalette('blue')
+      .accentPalette('blue');
+  }])
   .run(['$state', function($state) {
     window.routingErrorLog = [];
     $state.defaultErrorHandler(function(error) {
