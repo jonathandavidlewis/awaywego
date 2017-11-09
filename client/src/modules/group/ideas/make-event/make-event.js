@@ -21,6 +21,7 @@ class MakeEventController {
     this.showEndDrawer = false;
     this.openEndDrawer = this.openEndDrawer.bind(this);
     this.formWarning = '';
+    this.busy = false;
   }
 
   openEndDrawer() {
@@ -37,6 +38,7 @@ class MakeEventController {
 
   submit() {
     if (this.validateForm()) {
+      this.busy = true;
       let newEvent = {
         title: this.title,
         description: this.desc,
@@ -49,8 +51,10 @@ class MakeEventController {
         addressLink: this.addressLink,
       };
       this.EventService.submitScheduledEvent(newEvent).then(resp => {
-        this.$state.go('app.group.home');
-      }).catch(err => {});
+        this.state.go('^.home');
+      }).catch(err => {
+        this.formWarning = 'Server error, please try again or contact a server admin';
+      }).finally(() => this.busy = false);
     }
   }
 
