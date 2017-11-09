@@ -1,8 +1,10 @@
 <div class="expenses-feed-card awg-flex-col">
   <div class="expenses-feed-card-main-container awg-flex">
     <div class="expenses-feed-card-item awg-flex-1" ng-click="$ctrl.toggleDetails()">{{$ctrl.expense.description}}</div>
-    <div
-    class="expenses-feed-card-item">{{$ctrl.expense.amount | currency:"$"}}</div>
+    <div class="expenses-feed-card-info-container awg-flex-col awg-flex-center awg-flex-align-end">
+      <div class="expenses-feed-card-amount">{{$ctrl.expense.amount | currency:"$"}}</div>
+      <div class="expenses-feed-card-date awg-flex-1" ng-click="$ctrl.toggleDetails()">{{$ctrl.expense.createdAt | date:'MM/dd/yy'}}</div>
+    </div>
     <div class="dropdown expenses-feed-card-dropdown-container"
       ng-if="$ctrl.menuShouldAppear()">
       <div class="dropdown-toggle" id={{'dd-'+$ctrl.expense._id}} data-toggle="dropdown">
@@ -22,7 +24,7 @@
     </div>
   </div>
   <div class="expenses-feed-card-detail-slider" ng-if="$ctrl.details">
-    <div class="expenses-feed-card-detail-item"><b>Paid by</b> : {{$ctrl.populatePaidBy()}}</div>
-    <div class="expenses-feed-card-detail-item"><b>Split Among</b> : {{$ctrl.populateSplitAmong()}}</div>
+    <div class="expenses-feed-card-detail-item"><b>Paid by</b> : <span>{{$ctrl.populatePaidBy()}}</span></div>
+    <div class="expenses-feed-card-detail-item"><b>Split Among</b> : <span>{{$ctrl.populateSplitAmong()}}</span></div>
   </div>
 </div>

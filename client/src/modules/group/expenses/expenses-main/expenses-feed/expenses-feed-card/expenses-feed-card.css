@@ -5,12 +5,19 @@
       0 1px 5px 0 rgba(0,0,0,0.2) !important;
   background-color: var(--lt);
   padding: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
+  cursor: pointer;
 }
 
-.expenses-feed-card-item {
-  padding-right: 10px;
+.expenses-feed-card-amount{
   color: var(--dk4);
+  font-weight: bold;
+}
+
+.expenses-feed-card-date {
+  font-size: 0.8em;
+  font-style: italic;
+  color: var(--da);
 }
 
 .expenses-feed-card-detail-slider {
@@ -20,4 +27,17 @@
 
 .expenses-feed-card-detail-item {
   color: var(--dk4);
+}
+
+.expenses-feed-card-detail-item span {
+  color: var(--da);
+}
+
+.expenses-feed-card-dropdown-container .material-icons {
+  color: var(--la);
+  font-size: 1.2em;
+}
+
+.expenses-feed-card-info-container {
+  margin-right: 5px;
 }

@@ -45,7 +45,10 @@
       </div>
 
       <div class="expenses-added-people-area">
-        <div class="dropdown expenses-add-dropdown-container">
+        <div class="expenses-add-owers-description">
+          <div class="header">{{$ctrl.transactionType === 'custom' ? 'Custom Split Among':'Split Equally With'}}</div>
+        </div>
+        <!-- <div class="dropdown expenses-add-dropdown-container">
           <div class="dropdown-toggle" id={{'dd-'+$ctrl.expense._id}} data-toggle="dropdown">
             <div class="expenses-add-owers-description">
               <div class="awgd-button">{{$ctrl.transactionType === 'custom' ? 'Custom Split Among':'Split Equally Among'}}</div>
@@ -55,7 +58,7 @@
             <div class="dropdown-item" ng-click="$ctrl.toggleTransactionType('equal')">Split Equally</div>
             <div class="dropdown-item" ng-click="$ctrl.toggleTransactionType('custom')">Custom Input</div>
           </div>
-        </div>
+        </div> -->
 
           <expenses-add-people-card
             toggle="$ctrl.toggleOwer"
@@ -75,9 +78,6 @@
     <div ng-repeat="member in $ctrl.transactions" class="expenses-added-transactions-card">{{member.from.name}} owes {{member.amount | currency:"$"}} to {{member.to.name}}</div>
 
     <div class="expenses-add-controls">
-      <a ui-sref="^.main.feed" class="expenses-add-back-container">
-        <button class="awgd-button"><i class="material-icons">arrow_back</i></button>
-      </a>
       <div class="expenses-add-save-container">
         <button ng-click="$ctrl.addExpense()" class="awgd-button">Save Expense</button>
       </div>

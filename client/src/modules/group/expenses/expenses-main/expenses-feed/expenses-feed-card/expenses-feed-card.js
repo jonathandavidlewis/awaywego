@@ -12,6 +12,7 @@ class ExpensesFeedCardController {
     this.ConfirmService = ConfirmService;
     this.details = false;
 
+
     this.handleDelete = this.handleDelete.bind(this);
     this.menuShouldAppear = this.menuShouldAppear.bind(this);
     this.toggleDetails = this.toggleDetails.bind(this);

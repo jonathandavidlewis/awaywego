@@ -17,7 +17,8 @@
 }
 
 .expense-add-people-card-content {
-  align-self: flex-start;
+  flex: 1 0 0;
+  margin-left: 10px;
 }
 
 .expense-add-people-card-actions {

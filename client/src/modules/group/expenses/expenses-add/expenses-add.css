@@ -47,8 +47,7 @@
   position: fixed;
   bottom: 90px;
   left: 50%;
-  margin-left: -134px;
-  /*transform: translate(-50%, 0);*/
+  transform: translate(-50%, 0%);
   display: flex;
   justify-content: space-between;
 }
