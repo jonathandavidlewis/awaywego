@@ -15,7 +15,9 @@ class ExpensesAddPeopleCardController {
   $onInit() {
     if (this.member._id === this.UserService.user.id || this.isPayer) {
       this.checked = !this.checked;
-      this.toggle(this.member);
+      if (this.toggle) {
+        this.toggle(this.member);
+      }
     }
   }
 

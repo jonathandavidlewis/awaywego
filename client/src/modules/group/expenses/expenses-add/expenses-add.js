@@ -47,6 +47,8 @@ class ExpensesAddController {
     this.createEqualTransactions = this.createEqualTransactions.bind(this);
     this.addExpense = this.addExpense.bind(this);
     this.toggleTransactionType = this.toggleTransactionType.bind(this);
+
+    this.busy = false;
   }
 
   toggleTransactionType(type) {
@@ -118,7 +120,7 @@ class ExpensesAddController {
     if (!this.validateForm()) {
       return;
     }
-
+    this.busy = true;
     let expense = {
       groupId: this.stateParams.groupId,
       description: this.description,
@@ -128,8 +130,8 @@ class ExpensesAddController {
     this.ExpensesService.newExpense(expense).then(() => {
       this.state.go('app.group.expenses.main.feed');
     }).catch(err => {
-      console.log('Server error: ', err);
-    });
+      console.log('Server error, please try again or contact a server admin');
+    }).finally(() => this.busy = false);
   }
 
   roundMoney(value) {
@@ -138,7 +140,7 @@ class ExpensesAddController {
 
   validateForm() {
     if (!this.amount || !this.description) {
-      this.formWarning = 'Please enter at least both a description and an amount';
+      this.formWarning = 'Please enter an expense description and amount';
       return false;
     } else if (Object.keys(this.payers).length === 0) {
       this.formWarning = 'Please add a payer';
