@@ -5,11 +5,12 @@ import template from './ideas-card.html';
 import './ideas-card.css';
 
 class IdeasCardController {
-  constructor(EventService, UserService, GroupService, ConfirmService) {
+  constructor(EventService, UserService, GroupService, ConfirmService, $timeout) {
     this.EventService = EventService;
     this.userId = UserService.user.id;
     this.groupOwner = GroupService.currentGroup.userId;
     this.ConfirmService = ConfirmService;
+    this.timeout = $timeout;
 
     this.showSchedule = false;
     this.busy = false;
@@ -22,7 +23,11 @@ class IdeasCardController {
     this.menuShouldAppear = this.menuShouldAppear.bind(this);
   }
 
-  openSchedule() { this.showSchedule = true; }
+  openSchedule() {
+    return this.timeout(() => {
+      this.showSchedule = true;
+    }, 100);
+  }
   closeSchedule() { this.showSchedule = false; }
 
   handleDelete() {
@@ -55,7 +60,7 @@ class IdeasCardController {
   }
 }
 
-IdeasCardController.$inject = ['EventService', 'UserService', 'GroupService', 'ConfirmService'];
+IdeasCardController.$inject = ['EventService', 'UserService', 'GroupService', 'ConfirmService', '$timeout'];
 
 const IdeasCardComponent = {
   restrict: 'E',
