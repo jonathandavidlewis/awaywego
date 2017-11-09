@@ -5,7 +5,7 @@
     <span>Schedule an Event</span>
   </div>
   <div class="make-event-form-container">
-    <form name="newIdea" ng-submit="$ctrl.submit()">
+    <form name="newIdea">
       <div class="make-event-input-block">
         <label class="sr-only" for="idea-title">Idea name</label>
         <input class="awgl-form-input form-control" name="idea-title" ng-model="$ctrl.title"
@@ -59,7 +59,8 @@
       </div>
       <div class="make-event-submit-container awg-flex awg-flex-center">
         <div class="make-event-submit-button-container">
-          <button type="submit" class="awgd-button" name="make-event-submit">Schedule your event</button>
+          <button type="button" class="awgd-button" ng-click="$ctrl.submit()"
+            name="make-event-submit">Schedule your event</button>
         </div>
       </div>
     </form>
