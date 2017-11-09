@@ -1,10 +1,11 @@
 <div class="make-group-container full-window overflow awg-flex-col awg-flex-start awg-flex-align-stretch">
+  <spinner-box busy="$ctrl.busy"></spinner-box>
   <div class="make-group-header header">
     <a ui-sref="^.home"><i class="material-icons">navigate_before</i></a>
     <span>New Group</span>
   </div>
   <div class="make-group-form-container">
-    <form name="newPlan" ng-submit="$ctrl.submit()">
+    <form name="newPlan">
       <div class="make-group-input-block">
         <label class="sr-only" for="group-title">Group name</label>
         <input class="awgl-form-input form-control" name="group-title" ng-model="$ctrl.title"
@@ -21,7 +22,7 @@
       </div>
       <div class="make-group-submit-container awg-flex awg-flex-center">
         <div class="make-group-submit-button-container">
-          <button type="submit" class="awgd-button" name="make-group-submit">Create Group</button>
+          <button type="button" ng-click="$ctrl.submit()" class="awgd-button" name="make-group-submit">Create Group</button>
         </div>
       </div>
     </form>

@@ -16,6 +16,7 @@ class MakeGroupController {
     this.desc = '';
     this.imageUrl = '';
     this.formWarning = '';
+    this.busy = false;
   }
 
   submit() {
@@ -25,12 +26,12 @@ class MakeGroupController {
         description: this.desc,
         imageUrl: this.imageUrl
       };
+      this.busy = true;
       this.GroupService.submitNewGroup(newGroup).then(resp => {
         this.$state.go('app.home');
-      }).catch(err => {
-        console.log('Server error: ', err);
-        this.formWarning = 'Error: please try again or contact a server admin';
-      });
+      }).catch(() => {
+        this.formWarning = 'Server error, please try again or contact server admin';
+      }).finally(() => { this.busy = false; });
     }
   }
 
