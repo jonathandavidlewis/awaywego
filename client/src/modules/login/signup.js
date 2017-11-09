@@ -59,6 +59,19 @@ class SignupController {
       return true;
     }
   }
+
+  slideToAbout() {
+    document.querySelector('#about-us').scrollIntoView({
+      behavior: 'smooth'
+    });
+  }
+
+  slideToSignup() {
+    document.querySelector('#signup').scrollIntoView({
+      behavior: 'smooth'
+    });
+  }
+
 }
 SignupController.$inject = ['UserService', '$state'];
 
