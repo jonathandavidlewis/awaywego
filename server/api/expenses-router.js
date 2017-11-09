@@ -53,12 +53,6 @@ expensesRouter.get('/:groupId', (req, res) => {
     }).catch(err => res.status(500).json({'Server error': err}));
 });
 
-expensesRouter.put('/transaction/:transactionId/settle', (req, res) => {
-  Transaction.findByIdAndUpdate(req.params.transactionId, {status: 'settled'}).then((transaction) => {
-    res.status(200).json(transaction);
-  }).catch(err => res.status(500).json({'Server error': err}));
-});
-
 expensesRouter.delete('/:expenseId/remove', (req, res) => {
   Expense.findByIdAndRemove(req.params.expenseId).exec().then(() => res.status(200).json({'Message': 'Deleted'}))
     .catch(err => res.status(500).json({'Server error': err}));

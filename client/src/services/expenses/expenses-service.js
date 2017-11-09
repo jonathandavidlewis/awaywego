@@ -8,7 +8,7 @@ export default class ExpensesService {
     // Expenses Overview
     this.expenses = [];
 
-    // Summary Bar
+    // Summary Bar TODO: Remove as no longer necessary
     this.summary = {};
 
     // Transaction Page
@@ -41,8 +41,13 @@ export default class ExpensesService {
 
   }
 
-  // Data Manipulation Methods
+  /*
+  ==============================================================================
+   Data Manipulation Methods
+  ==============================================================================
+  */
 
+  // Searches current storage for an expense and returns it
   findExpenseById(expenseId) {
     for (let i = 0; i < this.expenses.length; i++) {
       if (expenseId === this.expenses[i]._id) {
@@ -52,6 +57,7 @@ export default class ExpensesService {
     return null;
   }
 
+  // Populates the this.transactions array on storage
   filterTransactions() {
     let result = [];
     this.expenses.forEach((expense) => {
@@ -63,7 +69,7 @@ export default class ExpensesService {
     return result;
   }
 
-
+  // TODO: Remove as no longer necessary
   calculateDebts() {
     let owed = 0;
     let debt = 0;
@@ -81,7 +87,7 @@ export default class ExpensesService {
     return {owed: this.roundMoney(owed), debt: this.roundMoney(debt), balance: this.roundMoney(owed - debt)};
   }
 
-
+  // This iterates through transactions and combines debts to create the smallest amount of transactions
   consolidateDebts() {
     let owes = {};
     let isOwed = {};
@@ -89,14 +95,14 @@ export default class ExpensesService {
 
     // Iterate through all transactions and sum up what all people owe and are owed
 
-    // Fill owes
+    // Populates the owes object with key of ids of everyone who owes money
     this.transactions.forEach((transaction) => {
       if (!owes[transaction.from._id]) {
         owes[transaction.from._id] = {from: transaction.from, amount: transaction.amount};
       } else {
         owes[transaction.from._id].amount += transaction.amount;
       }
-      // Fill isOwed
+      // Populates the isOwed object with key of ids of everyone who is owed money
       if (!isOwed[transaction.to._id]) {
         isOwed[transaction.to._id] = {to: transaction.to, amount: transaction.amount};
       } else {
@@ -104,10 +110,9 @@ export default class ExpensesService {
       }
     });
 
-    // Iterate through owes Array, find corresponding key if possible in isOwed Array and cancel out transactions with same ID
+    // Finds the same user in both owes and isOwed, and cancels out the difference
     for (let id in owes) {
       if (isOwed[id] || isOwed[id] === 0) {
-        // Check if one is bigger
         if (owes[id].amount > isOwed[id].amount) {
           owes[id].amount -= isOwed[id].amount;
           delete isOwed[id];
@@ -150,6 +155,7 @@ export default class ExpensesService {
     return consolidatedTransactions;
   }
 
+  // Calculates a summary of what the logged in user owes
   consolidateSummary() {
     let owe = 0;
     let receive = 0;
@@ -165,18 +171,26 @@ export default class ExpensesService {
   }
 
 
-  // Angular filtering Methods
+  /*
+  ==============================================================================
+   Filtering Methods for Transaction Page
+  ==============================================================================
+  */
 
+  // filterBy is set to keep track of different filter options for the Transaction Page
   changeFilter(type) {
     this.filterBy = type;
     this.decideFilter();
   }
 
+  // filtering by Expense utilizes different logic to keep track of the expense for top-level info
   changeFilterExpense(expense) {
     this.changeFilter('Expense');
     this.selectedExpense = expense;
     this.decideFilter();
   }
+
+  // Makes a decision based on what filter to use
 
   decideFilter() {
     if (this.filterBy === 'Money You Are Owed') {
@@ -218,8 +232,11 @@ export default class ExpensesService {
     }
   }
 
-  // API Methods
-
+  /*
+  ==============================================================================
+   API Methods
+  ==============================================================================
+  */
   newExpense(expense) {
     return this.http.post('/api/expenses', expense).then(() => {
       this.getExpenses();
@@ -236,6 +253,11 @@ export default class ExpensesService {
     });
   }
 
+  removeExpense(expenseId) {
+    return this.http.delete(`/api/expenses/${expenseId}/remove`).then(() => this.getExpenses());
+  }
+
+  // Currently not in use, but useful for future edit functionality
   addTransaction(expenseId, transaction) {
     return this.http.post(`/api/expenses/${expenseId}/add`, transaction).then(() => this.getExpenses());
   }
@@ -244,10 +266,8 @@ export default class ExpensesService {
     return this.http.delete(`/api/expenses/transaction/${transactionId}/remove`).then(() => this.getExpenses());
   }
 
-  removeExpense(expenseId) {
-    return this.http.delete(`/api/expenses/${expenseId}/remove`).then(() => this.getExpenses());
-  }
 
+  // This function is used to round to two decimal places and bypass JavaScript's rounding issues
   roundMoney(value) {
     return Number(Math.round(value + 'e+2') + 'e-2').toFixed(2);
   }
