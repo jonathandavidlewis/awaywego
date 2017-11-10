@@ -33,8 +33,7 @@ class GroupCardController {
       'This action cannot be undone', 'Yes'
     ).then(() => {
       this.busy = true;
-      this.GroupService.leaveGroup($ctrl.group._id)
-        .finally(() => this.busy = false);
+      this.GroupService.leaveGroup(this.group._id).finally(() => this.busy = false);
     }).catch(() => {});
   }
 }

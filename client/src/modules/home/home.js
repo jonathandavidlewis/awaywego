@@ -12,6 +12,10 @@ class HomeController {
   constructor(GroupService) {
     this.GroupService = GroupService;
   }
+
+  $onInit() {
+    this.GroupService.getAllGroups();
+  }
 }
 
 HomeController.$inject = ['GroupService'];
