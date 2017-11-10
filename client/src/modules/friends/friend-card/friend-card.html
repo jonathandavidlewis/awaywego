@@ -2,7 +2,8 @@
   class="friend-card-container awg-flex awg-space-between card-shadow">
   <spinner-box busy="$ctrl.busy"></spinner-box>
   <div class="friend-card-avatar">
-    <i class="material-icons">account_circle</i>
+    <img ng-if="$ctrl.user.profilePic" ng-src="{{$ctrl.user.profilePic}}" class="avatar">
+    <i ng-if="!$ctrl.user.profilePic" class="material-icons">account_circle</i>
   </div>
   <div class="friend-card-content">
     <div class="friend-card-name">{{$ctrl.user.name}}</div>
