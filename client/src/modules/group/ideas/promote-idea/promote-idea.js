@@ -16,6 +16,7 @@ class PromoteIdeaController {
     this.addressText = '';
     this.addressLink = '';
     this.startTime = this.moment().startOf('hour').add(1, 'hour').toDate();
+    this.today = this.moment(this.startTime);
     this.endTime = null;
     this.showEndDrawer = false;
     this.openEndDrawer = this.openEndDrawer.bind(this);

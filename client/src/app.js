@@ -1,9 +1,4 @@
-// preloading jquery so angular will see it
-import $ from 'jquery';
-window.$ = $;
-window.jQuery = $;
-// loading angular to window for the main app.js import
-const angular = require('angular');
+import angular from 'angular';
 import uirouter from '@uirouter/angularjs';
 import ngMaterial from 'angular-material';
 import 'angular-material/angular-material.css';

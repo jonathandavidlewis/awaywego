@@ -13,15 +13,16 @@ import template from './chat.html';
 import './chat.css';
 
 class ChatController {
-  constructor(ChatService, GroupService, UserService, $timeout) {
+  constructor(ChatService, GroupService, UserService, $timeout, $element) {
     // services
     this.ChatService = ChatService;
     this.GroupService = GroupService;
     this.groupId = GroupService.currentGroup._id;
     this.UserService = UserService;
     this.timeout = $timeout;
+    this.element = $element;
 
-    this.messagesContainer = window.$('.chat-messages-container');
+    this.messagesContainer = this.element.find('.chat-messages-container');
     this.msgsEl = this.messagesContainer[0];
     this.isScrolledToBottom = true;
 
@@ -85,7 +86,7 @@ class ChatController {
   }
 
 }
-ChatController.$inject = ['ChatService', 'GroupService', 'UserService', '$timeout'];
+ChatController.$inject = ['ChatService', 'GroupService', 'UserService', '$timeout', '$element'];
 
 const ChatComponent = {
   restrict: 'E',

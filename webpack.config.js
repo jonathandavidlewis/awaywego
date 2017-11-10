@@ -1,6 +1,7 @@
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var webpack = require('webpack');
 
 module.exports = {
   context: __dirname,
@@ -39,6 +40,9 @@ module.exports = {
       hash: true,
       filename: 'index.handlebars'
     }),
-    new ExtractTextPlugin('style-bundle.css')
+    new ExtractTextPlugin('style-bundle.css'),
+    new webpack.ProvidePlugin({
+      'moment': 'moment'
+    })
   ]
 };
