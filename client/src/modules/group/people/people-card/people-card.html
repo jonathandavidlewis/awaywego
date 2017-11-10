@@ -7,8 +7,8 @@
     <i ng-if="!$ctrl.member.profilePic" class="material-icons">account_circle</i>
   </div>
   <div class="people-card-content">
-    <div class="people-card-name">{{$ctrl.member.name}}</div>
-    <div class="people-card-email">{{$ctrl.member.email}}</div>
+    <span class="people-card-name">{{$ctrl.member.name}}</span>
+    <span class="people-card-email">{{$ctrl.member.email}}</span>
   </div>
   <div ng-if="$ctrl.canRemoveOrSelect()" class="people-card-actions">
     <div ng-if="$ctrl.type === 'member'" class="people-card-actions-icon-container">

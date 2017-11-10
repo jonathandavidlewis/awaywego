@@ -6,8 +6,8 @@
     <i ng-if="!$ctrl.user.profilePic" class="material-icons">account_circle</i>
   </div>
   <div class="friend-card-content">
-    <div class="friend-card-name">{{$ctrl.user.name}}</div>
-    <div class="friend-card-email">{{$ctrl.user.email}}</div>
+    <span class="friend-card-name">{{$ctrl.user.name}}</span>
+    <span class="friend-card-email">{{$ctrl.user.email}}</span>
   </div>
   <div class="friend-card-actions">
     <div ng-if="$ctrl.type === 'pending'" class="friend-card-pending-actions">
