@@ -3,7 +3,8 @@
   ng-click="$ctrl.handleContainerClick()">
   <spinner-box busy="$ctrl.busy"></spinner-box>
   <div class="people-card-avatar">
-    <i class="material-icons">account_circle</i>
+    <img ng-if="$ctrl.member.profilePic" ng-src="{{$ctrl.member.profilePic}}" class="avatar">
+    <i ng-if="!$ctrl.member.profilePic" class="material-icons">account_circle</i>
   </div>
   <div class="people-card-content">
     <div class="people-card-name">{{$ctrl.member.name}}</div>
