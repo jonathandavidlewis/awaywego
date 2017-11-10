@@ -11,9 +11,9 @@
       class="new-idea-button button-bottom"
       events="$ctrl.EventService.ideas">
     </new-idea-button>
-    <new-idea-button ng-if="$ctrl.EventService.ideas.length === 0"
-    class="new-idea-button button-center"
-    events="$ctrl.EventService.ideas">
-    </new-idea-button>
   </div>
+  <new-idea-button ng-if="$ctrl.EventService.ideas.length === 0"
+  class="new-idea-button button-center"
+  events="$ctrl.EventService.ideas">
+  </new-idea-button>
 </div>
