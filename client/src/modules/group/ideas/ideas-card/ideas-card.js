@@ -24,14 +24,10 @@ class IdeasCardController {
   }
 
   openSchedule() {
-    return this.timeout(() => {
-      this.showSchedule = true;
-    }, 100);
+    this.showSchedule = true;
   }
   closeSchedule() {
-    return this.timeout(() => {
-      this.showSchedule = false;
-    }, 100);
+    this.showSchedule = false;
   }
 
   handleDelete() {

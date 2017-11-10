@@ -92,11 +92,13 @@ angular.module('app', [
   .service('ConfirmService', ConfirmService)
   .component('app', AppComponent)
   .config(appRouting)
-  .config(['$mdThemingProvider', function($mdThemingProvider) {
-    $mdThemingProvider.theme('default')
-      .primaryPalette('blue')
-      .accentPalette('blue');
-  }])
+  .config(['$mdThemingProvider', '$mdGestureProvider',
+    function($mdThemingProvider, $mdGestureProvider) {
+      $mdThemingProvider.theme('default')
+        .primaryPalette('blue')
+        .accentPalette('blue');
+      $mdGestureProvider.skipClickHijack();
+    }])
   .run(['$state', function($state) {
     window.routingErrorLog = [];
     $state.defaultErrorHandler(function(error) {
