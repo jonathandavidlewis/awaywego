@@ -9,7 +9,7 @@ const createGoogleUser = require('./create-google-user');
 passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID || GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET || GOOGLE_CLIENT_SECRET,
-  callbackURL: '/auth/google/callback'
+  callbackURL: 'https://letsstartsomething.co.uk/auth/google/callback'
 }, createGoogleUser));
 
 googleRouter.route('/')
