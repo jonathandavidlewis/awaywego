@@ -5,6 +5,7 @@ const socketio = require('socket.io');
 const chatSockets = require('./sockets/group-chat-sockets.js');
 const eventSockets = require('./sockets/event-sockets.js');
 const fs = require('fs');
+process.title = 'node-stsm';
 
 const server = http.createServer(app);
 const io = socketio(server);
