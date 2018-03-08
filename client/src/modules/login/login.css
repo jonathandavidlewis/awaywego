@@ -10,12 +10,18 @@
 
 .signup-page-container {
   background-color: white;
-}
-
-.login-container {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: start;
+  align-items: center;
+
+}
+
+.login-page-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
   height: 100%;
   overflow: auto;
   padding: 0 50px;
@@ -89,13 +95,11 @@ button {
 }
 
 .signup-image {
-  width: 80%;
+  width: 100%;
 }
 
 .signup-card {
-  margin: 0 15px;
-  border: 1px solid #CCC;
-  box-shadow: 1px 1px 1px #AAA;
+  padding: 15px;
 }
 
 .card-description {

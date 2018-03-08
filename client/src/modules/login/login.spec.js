@@ -29,8 +29,8 @@ describe('LoginModule', function() {
     loginCtrl = element.isolateScope().$ctrl;
   }));
 
-  it('should render into a login container div', () => {
-    expect(element.find('div.login-container').length).to.equal(1);
+  it('should render into a login page container div', () => {
+    expect(element.find('div.login-page-container').length).to.equal(1);
   });
 
   it('should have a UserService and $state injected', () => {
