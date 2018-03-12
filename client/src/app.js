@@ -10,6 +10,7 @@ import CommonModule from './modules/common/common';
 import HomeModule from './modules/home/home';
 import LoginModule from './modules/login/login';
 import SignupModule from './modules/login/signup';
+import PrivPolicyModule from './modules/login/privacy-policy';
 import GroupModule from './modules/group/group';
 import MakeGroupModule from './modules/make-group/make-group';
 import FriendsModule from './modules/friends/friends';
@@ -74,6 +75,7 @@ angular.module('app', [
   HomeModule,
   LoginModule,
   SignupModule,
+  PrivPolicyModule,
   GroupModule,
   MakeGroupModule,
   FriendsModule,

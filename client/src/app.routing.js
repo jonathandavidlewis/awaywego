@@ -24,6 +24,14 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
     }
   };
 
+  const privacyState = {
+    name: 'privacy',
+    url: '/privacy',
+    component: 'privacy',
+    resolve: {
+      skip: skipIfAuthed,
+    }
+  }
   // all protected states are prefixed by /app
   // you must be logged in to get through here
   const appState = {
@@ -199,6 +207,7 @@ const routing = function ($stateProvider, $urlRouterProvider, $locationProvider)
   // auth states
   $stateProvider.state(loginState);
   $stateProvider.state(signupState);
+  $stateProvider.state(privacyState);
 
   // main app wrapper states
   $stateProvider.state(appState);
